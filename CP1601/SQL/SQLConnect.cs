@@ -36,7 +36,6 @@ namespace CP1601.SQL
         {
             try
             {
-
                 Conn.Open();
                 //MessageBox.Show("Соединение открыто!");
             }
