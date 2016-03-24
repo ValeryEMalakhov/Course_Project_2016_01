@@ -13,16 +13,16 @@ using Npgsql;
 
 namespace CP1601.WForm_Admin
 {
-    public partial class WFAdmin : Form
+    public partial class WfAdmin : Form
     {
         // общие переменные
-        SQLConnect sqlC = new SQLConnect();
+        SqlConnect _sqlC = new SqlConnect();
 
 
-        public WFAdmin()
+        public WfAdmin()
         {
             InitializeComponent();
-            sqlC.OpenConn();
+            _sqlC.OpenConn();
 
         }
 
@@ -34,7 +34,7 @@ namespace CP1601.WForm_Admin
         private void WFAdmin_FormClosing(object sender, FormClosingEventArgs e)
         {
             // разрываем соединение
-            sqlC.CloseConn();
+            _sqlC.CloseConn();
         }
     }
 }

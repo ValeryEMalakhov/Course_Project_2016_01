@@ -1,6 +1,6 @@
 ﻿namespace CP1601.WForm_Start
 {
-    partial class WFLogin
+    partial class WfLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WFLogin));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WfLogin));
             this.btnLoginLikeAdmin = new System.Windows.Forms.Button();
             this.btnLoginLikeStaff = new System.Windows.Forms.Button();
             this.btnLoginLikeUser = new System.Windows.Forms.Button();
@@ -106,7 +106,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "WFLogin";
+            this.Name = "WfLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.WFLogin_Load);

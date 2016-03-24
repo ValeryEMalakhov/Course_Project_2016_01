@@ -13,29 +13,31 @@ using System.Collections;
 using System.Data.Entity.SqlServer;
 using System.Security.Cryptography;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using Npgsql;
 
 
 namespace CP1601.SQL
 {
-    public class SQLConnect
+    public class SqlConnect
     {
         // временные переменные для подключения
-        private static String SServer = "127.0.0.1";
-        private static String SPort = "5432";
-        private static String SUserId = "postgres";
-        private static String SPassword = "1507";
-        private static String SDatabase = "malakhov";
+        private static String _sServer = "127.0.0.1";
+        private static String _sPort = "5432";
+        private static String _sUserId = "postgres";
+        private static String _sPassword = "1507";
+        private static String _sDatabase = "malakhov";
 
-        private static String connParam = "Server=" + SServer + "; Port=" + SPort + "; User Id=" + SUserId + "; Password=" + SPassword + "; Database=" + SDatabase + ";";
-
-        public NpgsqlConnection conn = new NpgsqlConnection(connParam);
+        private static String ConnParam = "Server=" + _sServer + "; Port=" + _sPort + "; User Id=" + _sUserId + "; Password=" + _sPassword + "; Database=" + _sDatabase + ";";
+        
+        public NpgsqlConnection Conn = new NpgsqlConnection(ConnParam);
 
         public void OpenConn()
         {
             try
             {
-                conn.Open();
+
+                Conn.Open();
                 //MessageBox.Show("Соединение открыто!");
             }
             catch (Exception exp)
@@ -48,7 +50,7 @@ namespace CP1601.SQL
         {
             try
             {
-                conn.Close();
+                Conn.Close();
                 //MessageBox.Show("Соединение закрыто!");
             }
             catch (Exception exp)

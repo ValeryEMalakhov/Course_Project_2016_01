@@ -1,6 +1,6 @@
 ﻿namespace CP1601.WForm_Admin
 {
-    partial class WFAdmin
+    partial class WfAdmin
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WFAdmin));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WfAdmin));
             this.SuspendLayout();
             // 
             // WFAdmin
@@ -39,7 +39,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "WFAdmin";
+            this.Name = "WfAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ADMIN terminal";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WFAdmin_FormClosing);

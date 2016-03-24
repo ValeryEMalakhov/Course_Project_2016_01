@@ -14,9 +14,9 @@ using Npgsql;
 
 namespace CP1601.WForm_Start
 {
-    public partial class WFLogin : Form
+    public partial class WfLogin : Form
     {
-        public WFLogin()
+        public WfLogin()
         {
             InitializeComponent();
         }
@@ -41,7 +41,7 @@ namespace CP1601.WForm_Start
 
         private void btnLoginLikeAdmin_Click(object sender, EventArgs e)
         {
-            WFAdmin adminForm = new WFAdmin();
+            WfAdmin adminForm = new WfAdmin();
             Hide();
             adminForm.ShowDialog();
             Show();
@@ -49,7 +49,7 @@ namespace CP1601.WForm_Start
 
         private void btnLoginLikeStaff_Click(object sender, EventArgs e)
         {
-            WFStaff staffForm = new WFStaff();
+            WfStaff staffForm = new WfStaff();
             Hide();
             staffForm.ShowDialog();
             Show();
