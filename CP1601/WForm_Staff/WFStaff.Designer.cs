@@ -345,7 +345,7 @@
         private System.Windows.Forms.DateTimePicker dateTPNum;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox gBUser;
-        private System.Windows.Forms.DateTimePicker dateTPUser;
+        public System.Windows.Forms.DateTimePicker dateTPUser;
         private System.Windows.Forms.Label label2;
     }
 }

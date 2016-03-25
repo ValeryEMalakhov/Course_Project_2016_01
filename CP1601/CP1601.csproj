@@ -76,6 +76,9 @@
     <Compile Include="WForm_Admin\WFAdmin.Designer.cs">
       <DependentUpon>WFAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="WForm_Staff\StaffReq.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WForm_Staff\WFStaff.cs">
       <SubType>Form</SubType>
     </Compile>

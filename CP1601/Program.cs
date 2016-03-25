@@ -20,12 +20,12 @@ namespace CP1601
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // по умолчанию
-            Application.Run(new WfLogin());
+            //Application.Run(new WfLogin());
 
             // для быстрого тестирования
-            //Application.Run(new WFAdmin());
-            //Application.Run(new WfStaff());
-            //Application.Run(new WFUser());
+            //Application.Run(new WfAdmin());
+            Application.Run(new WfStaff());
+            //Application.Run(new WfUser());
         }
     }
 }

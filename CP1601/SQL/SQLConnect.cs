@@ -19,38 +19,80 @@ using Npgsql;
 
 namespace CP1601.SQL
 {
-    public class SqlConnect
+    public class SqlConnect// : IDisposable
     {
         // временные переменные для подключения
-        private static String _sServer = "127.0.0.1";
-        private static String _sPort = "5432";
-        private static String _sUserId = "postgres";
-        private static String _sPassword = "1507";
-        private static String _sDatabase = "malakhov";
+        private string _sServer = "127.0.0.1";
+        private string _sPort = "5432";
+        private string _sUserId = "postgres";
+        private string _sPassword = "1507";
+        private string _sDatabase = "malakhov";
 
-        private static String ConnParam = "Server=" + _sServer + "; Port=" + _sPort + "; User Id=" + _sUserId + "; Password=" + _sPassword + "; Database=" + _sDatabase + ";";
-        
-        public NpgsqlConnection Conn = new NpgsqlConnection(ConnParam);
+        private string _connParam;
+        private NpgsqlConnection _conn;
+        private static SqlConnect _instance = null;
+
+/**        // для Dispose
+        private bool _disposed = false;
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                //нельзя вызвать метод Dispose для объекта дважды
+                return;
+            }
+            if (disposing)
+            {
+                //тут освобождаем все ресурсы. В нашем случае он только один.
+                CloseConn();
+            }
+            _disposed = true; //помечаем флаг что метод Dispose уже был вызван
+        }
+    */
+
+        public SqlConnect()
+        {
+            _connParam = "Server=" + _sServer + "; Port=" + _sPort + "; User Id=" + _sUserId + "; Password=" + _sPassword + "; Database=" + _sDatabase + ";";
+            _conn = new NpgsqlConnection(_connParam);
+
+        }
+
+        public static SqlConnect GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new SqlConnect();
+            }
+            return (_instance);
+        }
+
+        public NpgsqlConnection GetConn => _conn;
 
         public void OpenConn()
         {
             try
             {
-                Conn.Open();
-                //MessageBox.Show("Соединение открыто!");
+                _conn.Open();
+                //MessageBox.Show(@"Соединение открыто!");
             }
             catch (Exception exp)
             {
                 MessageBox.Show(Convert.ToString(exp));
             }
         }
-
         public void CloseConn()
         {
             try
             {
-                Conn.Close();
-                //MessageBox.Show("Соединение закрыто!");
+                _conn.Close();
+                //MessageBox.Show(@"Соединение закрыто!");
+                //_conn.Dispose();
             }
             catch (Exception exp)
             {
