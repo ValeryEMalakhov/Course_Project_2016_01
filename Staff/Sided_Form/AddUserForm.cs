@@ -40,5 +40,7 @@ namespace Staff.Sided_Form
             // предположим, потом это будет делать IDisposable
             SqlConnect.GetInstance().CloseConn();
         }
+
+
     }
 }

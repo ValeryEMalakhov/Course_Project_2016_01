@@ -32,22 +32,13 @@ namespace Staff
             dgvUser.ScrollBars = ScrollBars.Both;
             dgvNum.ScrollBars = ScrollBars.Horizontal;
 
-            //try
-            //{
-            //    _conn.Open();
-            //    //MessageBox.Show(@"Соединение открыто!");
-            //}
-            //catch (Exception exp)
-            //{
-            //    MessageBox.Show(Convert.ToString(exp));
-            //}
         }
 
         private void StaffWinForm_Load(object sender, EventArgs e)
         {
             // использовать дату из dateTPUser
-            StaffRequest.UserOutput(dgvUser, dateTPUser);
-            StaffRequest.NumOutput(dgvNum, dateTPUser);
+            // StaffRequest.UserOutput(dgvUser, dateTPUser);
+            // StaffRequest.NumOutput(dgvNum, dateTPUser);
         }
 
         private void StaffWinForm_FormClosing(object sender, FormClosingEventArgs e)

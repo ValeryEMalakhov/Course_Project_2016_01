@@ -61,6 +61,7 @@ namespace LogIn
 
         private void btnLoginLikeStaff_Click(object sender, EventArgs e)
         {
+
             StaffWinForm staff = new StaffWinForm();
             Hide();
             staff.ShowDialog();

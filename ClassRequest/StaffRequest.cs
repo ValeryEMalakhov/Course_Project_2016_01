@@ -15,6 +15,8 @@ using System.Data.Entity.SqlServer;
 using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using ClassRequest.DAL;
+using ClassRequest.StaffReq;
 using Npgsql;
 
 namespace ClassRequest
@@ -29,35 +31,29 @@ namespace ClassRequest
             try
             {
                 SqlConnect.GetInstance().OpenConn();
-                string filterDate = dateTPUser.Text;
-                string commPart =
-                    "SELECT *" +
-                    " FROM \"hotel\".\"Client\" c, \"hotel\".\"ACard\" a, \"hotel\".\"Apartment\" ap" +
-                    " WHERE c.client_id = a.client_id" +
-                    " AND ap.ap_id = a.ap_id" +
-                    " AND a.CheckInDate < '" + filterDate + "'::date" +
-                    " AND a.CheckOutDate > '" + filterDate + "'::date ;";
-                NpgsqlCommand command = new NpgsqlCommand(commPart, SqlConnect.GetInstance().GetConn);
-                NpgsqlDataReader readerUserTable = command.ExecuteReader();
 
-                if (readerUserTable.HasRows)
+                string filterDate = dateTPUser.Text;
+                foreach (var v in StaffSql.GetUserList(filterDate))
                 {
-                    foreach (DbDataRecord dbDataRecord in readerUserTable)
-                    {
-                        dgvUser.Rows.Add(dbDataRecord["FirstName"].ToString(),
-                            dbDataRecord["SecondName"].ToString(), dbDataRecord["Gender"].ToString(),
-                            dbDataRecord["Ap_ID"].ToString(),
-                            dbDataRecord["CheckInDate"].ToString(), dbDataRecord["CheckOutDate"].ToString(),
-                            dbDataRecord["Client_ID"].ToString());
-                    }
+                    dgvUser.Rows.Add(v.GetFirstName(), v.GetSecondName(), v.GetGender(), v.GetAp_Id(),
+                        v.GetCheckInDate(), v.GetCheckOutDate(), v.GetClient_Id());
                 }
+
+                SqlConnect.GetInstance().CloseConn();
             }
             catch (NpgsqlException exp)
             {
                 MessageBox.Show(Convert.ToString(exp));
             }
-            SqlConnect.GetInstance().CloseConn();
+            finally
+            {
+                SqlConnect.GetInstance().CloseConn();
+            }
         }
+
+
+
+
 
         // вывод списка свободных номеров
         public static void NumOutput(DataGridView dgvNum, DateTimePicker dateTPNum)
@@ -102,5 +98,12 @@ namespace ClassRequest
         {
 
         }
+
+
+        // сам запрос в user
+
+
+
+
     }
 }
