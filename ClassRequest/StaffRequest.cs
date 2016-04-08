@@ -67,11 +67,5 @@ namespace ClassRequest
                 MessageBox.Show(Convert.ToString(exp));
             }
         }
-
-        // добавление посетителя
-        public void AddUser()
-        {
-
-        }
     }
 }

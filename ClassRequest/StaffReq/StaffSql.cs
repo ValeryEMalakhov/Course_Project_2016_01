@@ -121,8 +121,49 @@ namespace ClassRequest.StaffReq
             return appartmentClassList;
         }
 
+        // добавление посетителя
+        public void AddUser(string textBoxPass, string textBoxFirstName, string textBoxSecondName, string textBoxGender,
+            string dateTimePicker, string textBoxPhone)
+        {
+            try
+            {
+                // открываем соединение
+                sqlConnect.GetInstance().OpenConn();
+                string commPart =
+                "INSERT INTO \"hotel\".\"Client\"" +
+                " (Client_ID, FirstName, SecondName, Gender, DateOfBirth, Phone)" +
+                " VALUES" +
+                " (@Client_ID, @FirstName, @SecondName, @Gender, @DateOfBirth::date, @Phone)";
 
-
-
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                
+                command.Parameters.AddWithValue("@Client_ID", textBoxPass);
+                command.Parameters.AddWithValue("@FirstName", textBoxFirstName);
+                command.Parameters.AddWithValue("@SecondName", textBoxSecondName);
+                command.Parameters.AddWithValue("@Gender", textBoxGender);
+                command.Parameters.AddWithValue("@DateOfBirth", dateTimePicker);
+                command.Parameters.AddWithValue("@Phone", textBoxPhone);
+                
+                try
+                {
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("YESSSSSSSSSSSSSSSSSSSSSSSSS!!!");
+                }
+                catch (NpgsqlException exp)
+                {
+                    MessageBox.Show(Convert.ToString(exp));
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+            finally
+            {
+                // соединение закрыто принудительно
+                sqlConnect.GetInstance().CloseConn();
+            }
+        }
     }
 }

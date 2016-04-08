@@ -44,8 +44,8 @@ namespace Staff
         private void StaffWinForm_Load(object sender, EventArgs e)
         {
             // использовать дату из dateTPUser
-            // staffRequest.UserOutput(dgvUser, dateTPUser);
-            // staffRequest.NumOutput(dgvNum, dateTPUser);
+            staffRequest.UserOutput(dgvUser, dateTPUser);
+            staffRequest.NumOutput(dgvNum, dateTPUser);
         }
 
         private void StaffWinForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -64,6 +64,10 @@ namespace Staff
         {
             AddUserForm addUser = new AddUserForm();
             addUser.ShowDialog();
+
+            // обновляем таблицу
+            staffRequest.UserOutput(dgvUser, dateTPUser);
+            staffRequest.NumOutput(dgvNum, dateTPUser);
         }
 
         private void btnUpdateNum_Click(object sender, EventArgs e)

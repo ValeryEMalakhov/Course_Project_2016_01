@@ -27,7 +27,7 @@ namespace Staff.Sided_Form
     {
         // глобальные переменные
         SqlConnect sqlConnect = new SqlConnect();
-        StaffRequest staffRequest = new StaffRequest();
+        StaffSql staff = new StaffSql();
 
         public AddUserForm()
         {
@@ -48,7 +48,7 @@ namespace Staff.Sided_Form
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            staffRequest.AddUser();
+            staff.AddUser(textBoxPass.Text, textBoxFirstName.Text, textBoxSecondName.Text, textBoxGender.Text, dateTimePicker.Text, textBoxPhone.Text);
         }
     }
 }

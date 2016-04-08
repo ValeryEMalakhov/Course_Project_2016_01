@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddUserForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBoxPass = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.textBoxSecondName = new System.Windows.Forms.TextBox();
@@ -46,6 +48,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBoxPass);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.textBoxPhone);
             this.groupBox1.Controls.Add(this.textBoxFirstName);
             this.groupBox1.Controls.Add(this.textBoxSecondName);
@@ -58,50 +62,73 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(306, 164);
+            this.groupBox1.Size = new System.Drawing.Size(306, 202);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Информаци о клиенте";
             // 
+            // textBoxPass
+            // 
+            this.textBoxPass.Location = new System.Drawing.Point(98, 24);
+            this.textBoxPass.Name = "textBoxPass";
+            this.textBoxPass.Size = new System.Drawing.Size(150, 20);
+            this.textBoxPass.TabIndex = 4;
+            this.textBoxPass.Text = "UU 555 555 555";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 28);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Код паспорта";
+            // 
             // textBoxPhone
             // 
-            this.textBoxPhone.Location = new System.Drawing.Point(98, 125);
+            this.textBoxPhone.Location = new System.Drawing.Point(98, 154);
             this.textBoxPhone.Name = "textBoxPhone";
             this.textBoxPhone.Size = new System.Drawing.Size(150, 20);
             this.textBoxPhone.TabIndex = 2;
+            this.textBoxPhone.Text = "+380 505 65 48";
             // 
             // textBoxFirstName
             // 
-            this.textBoxFirstName.Location = new System.Drawing.Point(98, 21);
+            this.textBoxFirstName.Location = new System.Drawing.Point(98, 50);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(150, 20);
             this.textBoxFirstName.TabIndex = 2;
+            this.textBoxFirstName.Text = "Art";
             // 
             // textBoxSecondName
             // 
-            this.textBoxSecondName.Location = new System.Drawing.Point(98, 47);
+            this.textBoxSecondName.Location = new System.Drawing.Point(98, 76);
             this.textBoxSecondName.Name = "textBoxSecondName";
             this.textBoxSecondName.Size = new System.Drawing.Size(150, 20);
             this.textBoxSecondName.TabIndex = 2;
+            this.textBoxSecondName.Text = "Kun";
             // 
             // textBoxGender
             // 
-            this.textBoxGender.Location = new System.Drawing.Point(98, 73);
+            this.textBoxGender.Location = new System.Drawing.Point(98, 102);
             this.textBoxGender.Name = "textBoxGender";
             this.textBoxGender.Size = new System.Drawing.Size(150, 20);
             this.textBoxGender.TabIndex = 2;
+            this.textBoxGender.Text = "муж";
             // 
             // dateTimePicker
             // 
-            this.dateTimePicker.Location = new System.Drawing.Point(98, 99);
+            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker.Location = new System.Drawing.Point(98, 128);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(150, 20);
             this.dateTimePicker.TabIndex = 1;
+            this.dateTimePicker.Value = new System.DateTime(1996, 4, 30, 21, 27, 0, 0);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 129);
+            this.label5.Location = new System.Drawing.Point(6, 158);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 13);
             this.label5.TabIndex = 0;
@@ -110,7 +137,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 25);
+            this.label1.Location = new System.Drawing.Point(6, 54);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 13);
             this.label1.TabIndex = 0;
@@ -119,7 +146,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 51);
+            this.label2.Location = new System.Drawing.Point(6, 80);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 0;
@@ -128,7 +155,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 103);
+            this.label4.Location = new System.Drawing.Point(6, 132);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(86, 13);
             this.label4.TabIndex = 0;
@@ -137,7 +164,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 77);
+            this.label3.Location = new System.Drawing.Point(6, 106);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(27, 13);
             this.label3.TabIndex = 0;
@@ -145,7 +172,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(110, 182);
+            this.btnAdd.Location = new System.Drawing.Point(110, 220);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(100, 30);
             this.btnAdd.TabIndex = 3;
@@ -189,5 +216,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.TextBox textBoxPass;
+        private System.Windows.Forms.Label label6;
     }
 }
