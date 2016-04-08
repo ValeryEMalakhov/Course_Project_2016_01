@@ -58,8 +58,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\Apartment.cs" />
-    <Compile Include="DAL\UAC.cs" />
+    <Compile Include="DAL\AppartmentClass.cs" />
+    <Compile Include="DAL\UserAppartmentCard.cs" />
     <Compile Include="SqlConnect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaffRequest.cs" />

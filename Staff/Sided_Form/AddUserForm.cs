@@ -19,11 +19,16 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Npgsql;
 using ClassRequest;
+using ClassRequest.StaffReq;
 
 namespace Staff.Sided_Form
 {
     public partial class AddUserForm : Form
     {
+        // глобальные переменные
+        SqlConnect sqlConnect = new SqlConnect();
+        StaffRequest staffRequest = new StaffRequest();
+
         public AddUserForm()
         {
             InitializeComponent();
@@ -38,9 +43,12 @@ namespace Staff.Sided_Form
         {
             // разрываем соединение
             // предположим, потом это будет делать IDisposable
-            SqlConnect.GetInstance().CloseConn();
+            sqlConnect.GetInstance().CloseConn();
         }
 
-
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            staffRequest.AddUser();
+        }
     }
 }

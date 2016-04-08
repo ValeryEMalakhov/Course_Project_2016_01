@@ -23,87 +23,55 @@ namespace ClassRequest
 {
     public class StaffRequest
     {
+        // глобальные переменные
+        StaffSql staff = new StaffSql();
 
         // вывод списка посетителей
-        public static void UserOutput(DataGridView dgvUser, DateTimePicker dateTPUser)
+        public void UserOutput(DataGridView dgvUser, DateTimePicker dateTpUser)
         {
             dgvUser.Rows.Clear();
             try
             {
-                SqlConnect.GetInstance().OpenConn();
-
-                string filterDate = dateTPUser.Text;
-                foreach (var v in StaffSql.GetUserList(filterDate))
+                // фильтр даты
+                string filterDate = dateTpUser.Text;
+                foreach (var v in staff.GetUserList(filterDate))
                 {
                     dgvUser.Rows.Add(v.GetFirstName(), v.GetSecondName(), v.GetGender(), v.GetAp_Id(),
                         v.GetCheckInDate(), v.GetCheckOutDate(), v.GetClient_Id());
                 }
-
-                SqlConnect.GetInstance().CloseConn();
             }
-            catch (NpgsqlException exp)
+            catch (Exception exp)
             {
+                // MessageBox.Show("Не удалось заполнить список!");
                 MessageBox.Show(Convert.ToString(exp));
-            }
-            finally
-            {
-                SqlConnect.GetInstance().CloseConn();
             }
         }
 
-
-
-
-
         // вывод списка свободных номеров
-        public static void NumOutput(DataGridView dgvNum, DateTimePicker dateTPNum)
+        public void NumOutput(DataGridView dgvNum, DateTimePicker dateTpNum)
         {
             dgvNum.Rows.Clear();
             try
             {
-                SqlConnect.GetInstance().OpenConn();
-                string filterDate = dateTPNum.Text;
-                string commPart =
-                    "SELECT a.Ap_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
-                    " FROM \"hotel\".\"Apartment\" a, \"hotel\".\"AClass\" s" +
-                    " WHERE a.Class_ID = s.Class_ID" +
-                    " EXCEPT" +
-                    " SELECT a.Ap_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
-                    " FROM \"hotel\".\"Apartment\" a, \"hotel\".\"ACard\" c, \"hotel\".\"AClass\" s" +
-                    " WHERE a.ap_id = c.ap_id" +
-                    " AND c.CheckInDate < '" + filterDate + "'::date" +
-                    " AND c.CheckOutDate > '" + filterDate + "'::date" +
-                    " ORDER BY (Ap_ID) ;";
-                NpgsqlCommand command = new NpgsqlCommand(commPart, SqlConnect.GetInstance().GetConn);
-                NpgsqlDataReader readerUserTable = command.ExecuteReader();
-
-                if (readerUserTable.HasRows)
+                // фильтр даты
+                string filterDate = dateTpNum.Text;
+                foreach (var v in staff.GetNumList(filterDate))
                 {
-                    foreach (DbDataRecord dbDataRecord in readerUserTable)
-                    {
-                        dgvNum.Rows.Add(dbDataRecord["Ap_ID"].ToString(), dbDataRecord["PlaceQuantity"].ToString(),
-                            dbDataRecord["Class_ID"].ToString(), dbDataRecord["ClassCost"].ToString());
-                    }
+                    dgvNum.Rows.Add(v.GetAp_Id(), v.GetPlaceQuantity(),
+                        v.GetClass_Id(), v.GetClassCost());
                 }
             }
             catch (NpgsqlException exp)
             {
+                // MessageBox.Show("Не удалось выполнить запрос!");
                 MessageBox.Show(Convert.ToString(exp));
             }
-            SqlConnect.GetInstance().CloseConn();
         }
 
         // добавление посетителя
-        public static void AddUser()
+        public void AddUser()
         {
 
         }
-
-
-        // сам запрос в user
-
-
-
-
     }
 }
