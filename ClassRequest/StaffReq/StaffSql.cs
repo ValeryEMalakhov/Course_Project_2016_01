@@ -16,6 +16,7 @@ using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using ClassRequest.DAL;
+using ClassRequest.SingleTable;
 using Npgsql;
 
 namespace ClassRequest.StaffReq
@@ -73,10 +74,10 @@ namespace ClassRequest.StaffReq
             return userAppartmentCardList;
         }
 
-        public List<AppartmentClass> GetNumList(string filterDate)
+        public List<TableApartment> GetNumList(string filterDate)
         {
-            AppartmentClass appartmentClass;
-            var appartmentClassList = new List<AppartmentClass>();
+            TableApartment tableApartment;
+            var tableApartmentList = new List<TableApartment>();
 
             string commPart =
                 "SELECT a.Ap_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
@@ -99,13 +100,13 @@ namespace ClassRequest.StaffReq
 
                 foreach (DbDataRecord dbDataRecord in readerUserTable)
                 {
-                    appartmentClass = new AppartmentClass(
+                    tableApartment = new TableApartment(
                         dbDataRecord["Ap_ID"].ToString(),
                         dbDataRecord["PlaceQuantity"].ToString(),
                         dbDataRecord["Class_ID"].ToString(),
                         dbDataRecord["ClassCost"].ToString());
 
-                    appartmentClassList.Add(appartmentClass);
+                    tableApartmentList.Add(tableApartment);
                 }
             }
             catch (NpgsqlException exp)
@@ -118,7 +119,7 @@ namespace ClassRequest.StaffReq
                 // соединение закрыто принудительно
                 sqlConnect.GetInstance().CloseConn();
             }
-            return appartmentClassList;
+            return tableApartmentList;
         }
 
         // добавление посетителя

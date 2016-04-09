@@ -33,7 +33,11 @@ namespace ClassRequest
 
         public SqlConnect()
         {
-            _connParam = "Server=" + _sServer + "; Port=" + _sPort + "; User Id=" + _sUserId + "; Password=" + _sPassword + "; Database=" + _sDatabase + ";";
+            _connParam = "Server=" + _sServer +
+                         "; Port=" + _sPort +
+                         "; User Id=" + _sUserId +
+                         "; Password=" + _sPassword +
+                         "; Database=" + _sDatabase + ";";
             _conn = new NpgsqlConnection(_connParam);
         }
 

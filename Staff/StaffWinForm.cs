@@ -19,6 +19,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Npgsql;
 using ClassRequest;
+using ClassRequest.StaffReq;
 using Staff.Sided_Form;
 
 namespace Staff

@@ -36,8 +36,8 @@ namespace ClassRequest
                 string filterDate = dateTpUser.Text;
                 foreach (var v in staff.GetUserList(filterDate))
                 {
-                    dgvUser.Rows.Add(v.GetFirstName(), v.GetSecondName(), v.GetGender(), v.GetAp_Id(),
-                        v.GetCheckInDate(), v.GetCheckOutDate(), v.GetClient_Id());
+                    dgvUser.Rows.Add(v.FirstName, v.SecondName, v.Gender, v.ApId,
+                        v.CheckInDate, v.CheckOutDate, v.ClientId);
                 }
             }
             catch (Exception exp)
@@ -57,8 +57,8 @@ namespace ClassRequest
                 string filterDate = dateTpNum.Text;
                 foreach (var v in staff.GetNumList(filterDate))
                 {
-                    dgvNum.Rows.Add(v.GetAp_Id(), v.GetPlaceQuantity(),
-                        v.GetClass_Id(), v.GetClassCost());
+                    dgvNum.Rows.Add(v.ApId, v.PlaceQuantity,
+                        v.ClassId, v.ClassCost);
                 }
             }
             catch (NpgsqlException exp)
@@ -67,5 +67,26 @@ namespace ClassRequest
                 MessageBox.Show(Convert.ToString(exp));
             }
         }
+
+        // запрос списка свободных комнат
+        public void UpdateComboBoxApId(ComboBox comboBox, DateTimePicker dtpIn)
+        {
+            comboBox.Items.Clear();
+            try
+            {
+                // фильтр даты
+                string filterDate = dtpIn.Text;
+                foreach (var v in staff.GetNumList(filterDate))
+                {
+                    comboBox.Items.Add(v.ApId);
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+
     }
 }

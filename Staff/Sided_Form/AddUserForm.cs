@@ -14,6 +14,7 @@ using System.Threading;
 using System.Reflection;
 using System.Collections;
 using System.Data.Entity.SqlServer;
+using System.Data.OleDb;
 using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -27,6 +28,7 @@ namespace Staff.Sided_Form
     {
         // глобальные переменные
         SqlConnect sqlConnect = new SqlConnect();
+        StaffRequest staffRequest = new StaffRequest();
         StaffSql staff = new StaffSql();
 
         public AddUserForm()
@@ -36,7 +38,7 @@ namespace Staff.Sided_Form
 
         private void AddUserForm_Load(object sender, EventArgs e)
         {
-
+            staffRequest.UpdateComboBoxApId(comboBoxApId, dtpCheckIn);
         }
 
         private void AddUserForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -48,7 +50,26 @@ namespace Staff.Sided_Form
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            staff.AddUser(textBoxPass.Text, textBoxFirstName.Text, textBoxSecondName.Text, textBoxGender.Text, dateTimePicker.Text, textBoxPhone.Text);
+            if (textBoxPass.Text != string.Empty &
+                textBoxFirstName.Text != string.Empty &
+                textBoxSecondName.Text != string.Empty &
+                comboBoxGender.Text != string.Empty &
+                dateTimePicker.Text != string.Empty &
+                textBoxPhone.Text != string.Empty)
+            {
+                staff.AddUser(textBoxPass.Text, textBoxFirstName.Text,
+                    textBoxSecondName.Text, comboBoxGender.Text,
+                    dateTimePicker.Text, textBoxPhone.Text);
+            }
+            else
+            {
+                MessageBox.Show(@"Заполните все обязательные поля!");
+            }
+        }
+
+        private void dtpCheckIn_ValueChanged(object sender, EventArgs e)
+        {
+            staffRequest.UpdateComboBoxApId(comboBoxApId, dtpCheckIn);
         }
     }
 }
