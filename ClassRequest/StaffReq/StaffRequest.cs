@@ -16,6 +16,7 @@ using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using ClassRequest.DAL;
+using ClassRequest.SingleTable;
 using ClassRequest.StaffReq;
 using Npgsql;
 
@@ -25,6 +26,7 @@ namespace ClassRequest
     {
         // глобальные переменные
         StaffSql staff = new StaffSql();
+        SelectTable selectTable = new SelectTable();
 
         // вывод списка посетителей
         public void UserOutput(DataGridView dgvUser, DateTimePicker dateTpUser)
@@ -87,6 +89,39 @@ namespace ClassRequest
                 MessageBox.Show(Convert.ToString(exp));
             }
         }
+        // запрос зареганых клиентов
+        public void GetUserIdList(TextBox textBoxPass)
+        {
+            AutoCompleteStringCollection acsCollection = new AutoCompleteStringCollection();
 
+            string[] str = new string[selectTable.GetTableClient().Count];
+            int i = 0;
+            foreach (var v in selectTable.GetTableClient())
+            {
+                str[i] = v.ClientId;
+                ++i;
+            }
+            acsCollection.AddRange(str);
+
+            textBoxPass.AutoCompleteCustomSource = acsCollection;
+            textBoxPass.AutoCompleteMode = AutoCompleteMode.Suggest;
+            textBoxPass.AutoCompleteSource = AutoCompleteSource.CustomSource;
+        }
+        // запрос на все поля клиента если он уже есть в базе
+        public void InputAllClientFields(string textBoxPass, TextBox textBoxFirstName, TextBox textBoxSecondName,
+            ComboBox comboBoxGender, DateTimePicker dateTimePicker, TextBox textBoxPhone)
+        {
+            foreach (var v in selectTable.GetTableClient())
+            {
+                if (v.ClientId == textBoxPass)
+                {
+                    textBoxFirstName.Text = v.FirstName;
+                    textBoxSecondName.Text = v.SecondName;
+                    comboBoxGender.Text = v.Gender;
+                    dateTimePicker.Text = v.DateOfBirth;
+                    textBoxPhone.Text = v.Phone;
+                }
+            }
+        }
     }
 }

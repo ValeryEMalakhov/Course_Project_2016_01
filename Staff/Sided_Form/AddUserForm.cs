@@ -20,6 +20,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Npgsql;
 using ClassRequest;
+using ClassRequest.SingleTable;
 using ClassRequest.StaffReq;
 
 namespace Staff.Sided_Form
@@ -34,6 +35,7 @@ namespace Staff.Sided_Form
         public AddUserForm()
         {
             InitializeComponent();
+            staffRequest.GetUserIdList(textBoxPass);
         }
 
         private void AddUserForm_Load(object sender, EventArgs e)
@@ -44,7 +46,7 @@ namespace Staff.Sided_Form
         private void AddUserForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             // разрываем соединение
-            // предположим, потом это будет делать IDisposable
+            // на всякий случай
             sqlConnect.GetInstance().CloseConn();
         }
 
@@ -54,12 +56,15 @@ namespace Staff.Sided_Form
                 textBoxFirstName.Text != string.Empty &
                 textBoxSecondName.Text != string.Empty &
                 comboBoxGender.Text != string.Empty &
-                dateTimePicker.Text != string.Empty &
-                textBoxPhone.Text != string.Empty)
+
+                comboBoxApId.Text != string.Empty &
+                dtpCheckOut.Value >= dtpCheckIn.Value)
             {
                 staff.AddUser(textBoxPass.Text, textBoxFirstName.Text,
                     textBoxSecondName.Text, comboBoxGender.Text,
-                    dateTimePicker.Text, textBoxPhone.Text);
+                    dtpBirth.Text, textBoxPhone.Text,
+                    
+                    comboBoxApId.Text, dtpCheckIn.Text, dtpCheckOut.Text, textBoxComm.Text);
             }
             else
             {
@@ -70,6 +75,27 @@ namespace Staff.Sided_Form
         private void dtpCheckIn_ValueChanged(object sender, EventArgs e)
         {
             staffRequest.UpdateComboBoxApId(comboBoxApId, dtpCheckIn);
+        }
+
+        private void textBoxPass_Leave(object sender, EventArgs e)
+        {
+            if (textBoxPass.Text != string.Empty)
+            {
+                staffRequest.InputAllClientFields(textBoxPass.Text, textBoxFirstName, textBoxSecondName,
+                    comboBoxGender, dtpBirth, textBoxPhone);
+            }
+        }
+
+        private void textBoxPass_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (textBoxPass.Text != string.Empty)
+                {
+                    staffRequest.InputAllClientFields(textBoxPass.Text, textBoxFirstName, textBoxSecondName,
+                        comboBoxGender, dtpBirth, textBoxPhone);
+                }
+            }
         }
     }
 }

@@ -30,28 +30,28 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddUserForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxGender = new System.Windows.Forms.ComboBox();
             this.textBoxPass = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.textBoxSecondName = new System.Windows.Forms.TextBox();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.dtpBirth = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.comboBoxGender = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBoxComm = new System.Windows.Forms.RichTextBox();
+            this.dtpCheckOut = new System.Windows.Forms.DateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
             this.comboBoxApId = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.dtpCheckIn = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.dtpCheckOut = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBoxComm = new System.Windows.Forms.RichTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -66,7 +66,7 @@
             this.groupBox1.Controls.Add(this.textBoxPhone);
             this.groupBox1.Controls.Add(this.textBoxFirstName);
             this.groupBox1.Controls.Add(this.textBoxSecondName);
-            this.groupBox1.Controls.Add(this.dateTimePicker);
+            this.groupBox1.Controls.Add(this.dtpBirth);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
@@ -79,13 +79,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Информаци о клиенте";
             // 
+            // comboBoxGender
+            // 
+            this.comboBoxGender.FormattingEnabled = true;
+            this.comboBoxGender.Items.AddRange(new object[] {
+            "муж",
+            "жен"});
+            this.comboBoxGender.Location = new System.Drawing.Point(98, 102);
+            this.comboBoxGender.Name = "comboBoxGender";
+            this.comboBoxGender.Size = new System.Drawing.Size(150, 21);
+            this.comboBoxGender.TabIndex = 3;
+            // 
             // textBoxPass
             // 
             this.textBoxPass.Location = new System.Drawing.Point(98, 24);
             this.textBoxPass.Name = "textBoxPass";
             this.textBoxPass.Size = new System.Drawing.Size(150, 20);
-            this.textBoxPass.TabIndex = 4;
-            this.textBoxPass.Text = "XX 77 777 777";
+            this.textBoxPass.TabIndex = 0;
+            this.textBoxPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxPass_KeyDown);
+            this.textBoxPass.Leave += new System.EventHandler(this.textBoxPass_Leave);
             // 
             // label6
             // 
@@ -101,14 +113,14 @@
             this.textBoxPhone.Location = new System.Drawing.Point(98, 155);
             this.textBoxPhone.Name = "textBoxPhone";
             this.textBoxPhone.Size = new System.Drawing.Size(150, 20);
-            this.textBoxPhone.TabIndex = 2;
+            this.textBoxPhone.TabIndex = 5;
             // 
             // textBoxFirstName
             // 
             this.textBoxFirstName.Location = new System.Drawing.Point(98, 50);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(150, 20);
-            this.textBoxFirstName.TabIndex = 2;
+            this.textBoxFirstName.TabIndex = 1;
             // 
             // textBoxSecondName
             // 
@@ -117,14 +129,14 @@
             this.textBoxSecondName.Size = new System.Drawing.Size(150, 20);
             this.textBoxSecondName.TabIndex = 2;
             // 
-            // dateTimePicker
+            // dtpBirth
             // 
-            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker.Location = new System.Drawing.Point(98, 129);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(150, 20);
-            this.dateTimePicker.TabIndex = 1;
-            this.dateTimePicker.Value = new System.DateTime(1995, 1, 1, 0, 0, 0, 0);
+            this.dtpBirth.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpBirth.Location = new System.Drawing.Point(98, 129);
+            this.dtpBirth.Name = "dtpBirth";
+            this.dtpBirth.Size = new System.Drawing.Size(150, 20);
+            this.dtpBirth.TabIndex = 4;
+            this.dtpBirth.Value = new System.DateTime(1995, 1, 1, 0, 0, 0, 0);
             // 
             // label5
             // 
@@ -181,17 +193,6 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // comboBoxGender
-            // 
-            this.comboBoxGender.FormattingEnabled = true;
-            this.comboBoxGender.Items.AddRange(new object[] {
-            "муж",
-            "жен"});
-            this.comboBoxGender.Location = new System.Drawing.Point(98, 102);
-            this.comboBoxGender.Name = "comboBoxGender";
-            this.comboBoxGender.Size = new System.Drawing.Size(150, 21);
-            this.comboBoxGender.TabIndex = 4;
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.textBoxComm);
@@ -209,13 +210,39 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Информаци о номере";
             // 
+            // textBoxComm
+            // 
+            this.textBoxComm.Location = new System.Drawing.Point(98, 105);
+            this.textBoxComm.Name = "textBoxComm";
+            this.textBoxComm.Size = new System.Drawing.Size(150, 91);
+            this.textBoxComm.TabIndex = 9;
+            this.textBoxComm.Text = "";
+            // 
+            // dtpCheckOut
+            // 
+            this.dtpCheckOut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpCheckOut.Location = new System.Drawing.Point(98, 79);
+            this.dtpCheckOut.Name = "dtpCheckOut";
+            this.dtpCheckOut.Size = new System.Drawing.Size(150, 20);
+            this.dtpCheckOut.TabIndex = 8;
+            this.dtpCheckOut.Value = new System.DateTime(2016, 4, 10, 0, 0, 0, 0);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 81);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(92, 13);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "Дата выселения";
+            // 
             // comboBoxApId
             // 
             this.comboBoxApId.FormattingEnabled = true;
             this.comboBoxApId.Location = new System.Drawing.Point(98, 24);
             this.comboBoxApId.Name = "comboBoxApId";
             this.comboBoxApId.Size = new System.Drawing.Size(150, 21);
-            this.comboBoxApId.TabIndex = 4;
+            this.comboBoxApId.TabIndex = 6;
             // 
             // label7
             // 
@@ -232,8 +259,8 @@
             this.dtpCheckIn.Location = new System.Drawing.Point(98, 51);
             this.dtpCheckIn.Name = "dtpCheckIn";
             this.dtpCheckIn.Size = new System.Drawing.Size(150, 20);
-            this.dtpCheckIn.TabIndex = 1;
-            this.dtpCheckIn.Value = new System.DateTime(2016, 4, 9, 0, 0, 0, 0);
+            this.dtpCheckIn.TabIndex = 7;
+            this.dtpCheckIn.Value = new System.DateTime(2016, 4, 10, 0, 0, 0, 0);
             this.dtpCheckIn.ValueChanged += new System.EventHandler(this.dtpCheckIn_ValueChanged);
             // 
             // label10
@@ -253,32 +280,6 @@
             this.label11.Size = new System.Drawing.Size(84, 13);
             this.label11.TabIndex = 0;
             this.label11.Text = "Дата вселения";
-            // 
-            // dtpCheckOut
-            // 
-            this.dtpCheckOut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpCheckOut.Location = new System.Drawing.Point(98, 79);
-            this.dtpCheckOut.Name = "dtpCheckOut";
-            this.dtpCheckOut.Size = new System.Drawing.Size(150, 20);
-            this.dtpCheckOut.TabIndex = 6;
-            this.dtpCheckOut.Value = new System.DateTime(2016, 4, 9, 15, 38, 38, 0);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 81);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(92, 13);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "Дата выселения";
-            // 
-            // textBoxComm
-            // 
-            this.textBoxComm.Location = new System.Drawing.Point(98, 105);
-            this.textBoxComm.Name = "textBoxComm";
-            this.textBoxComm.Size = new System.Drawing.Size(150, 91);
-            this.textBoxComm.TabIndex = 7;
-            this.textBoxComm.Text = "";
             // 
             // groupBox3
             // 
@@ -322,7 +323,7 @@
         private System.Windows.Forms.TextBox textBoxPhone;
         private System.Windows.Forms.TextBox textBoxFirstName;
         private System.Windows.Forms.TextBox textBoxSecondName;
-        private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.DateTimePicker dtpBirth;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
