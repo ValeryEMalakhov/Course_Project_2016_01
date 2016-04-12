@@ -14,6 +14,7 @@ using System.Data.Common;
 using System.Data.Entity.SqlServer;
 using System.Security.Cryptography;
 using System.Diagnostics;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using ClassRequest.DAL;
 using ClassRequest.SingleTable;
@@ -56,6 +57,7 @@ namespace ClassRequest
             try
             {
                 // фильтр даты
+                //var dateMinusDay = dateTpNum.Value.AddDays(-1);
                 string filterDate = dateTpNum.Text;
                 foreach (var v in staff.GetNumList(filterDate))
                 {
@@ -77,6 +79,7 @@ namespace ClassRequest
             try
             {
                 // фильтр даты
+                //var dateMinusDay = dtpIn.Value.AddDays(-1);
                 string filterDate = dtpIn.Text;
                 foreach (var v in staff.GetNumList(filterDate))
                 {
@@ -121,6 +124,31 @@ namespace ClassRequest
                     dateTimePicker.Text = v.DateOfBirth;
                     textBoxPhone.Text = v.Phone;
                 }
+            }
+        }
+        // вывод информации, если изменяются поля комнаты
+        public void UpdateAddStatInfo(ComboBox comboBoxApId, DateTimePicker dtpCheckIn, DateTimePicker dtpCheckOut,
+            Label labelRoomN, Label labelRoomQ, Label labelRoomT, Label labelRoomC)
+        {
+            int costValue = 0;
+            labelRoomN.Text = comboBoxApId.Text;
+            foreach (var v in staff.UpdateStatAdd())
+            {
+                if (v.ApId == comboBoxApId.Text)
+                {
+                    labelRoomQ.Text = v.PlaceQuantity;
+                    costValue = Convert.ToInt32(v.ClassCost);
+                }
+            }
+            var dateDiff = (dtpCheckOut.Value - dtpCheckIn.Value).TotalDays;
+            labelRoomT.Text = Convert.ToString(dateDiff, CultureInfo.CurrentCulture);
+            if (dateDiff > 0)
+            {
+                labelRoomC.Text = Convert.ToString(dateDiff*costValue, CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                labelRoomC.Text = @"Так не сработает";
             }
         }
     }

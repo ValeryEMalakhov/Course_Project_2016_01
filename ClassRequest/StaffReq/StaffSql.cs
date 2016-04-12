@@ -75,17 +75,17 @@ namespace ClassRequest.StaffReq
             return userAppartmentCardList;
         }
 
-        public List<TableApartment> GetNumList(string filterDate)
+        public List<ApartmentAClass> GetNumList(string filterDate)
         {
-            TableApartment tableApartment;
-            var tableApartmentList = new List<TableApartment>();
+            ApartmentAClass tableApartmentAClass;
+            var tableApartmentList = new List<ApartmentAClass>();
 
             string commPart =
-                "SELECT a.Ap_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
+                "SELECT a.Ap_ID, a.Hotel_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
                 " FROM \"hotel\".\"Apartment\" a, \"hotel\".\"AClass\" s" +
                 " WHERE a.Class_ID = s.Class_ID" +
                 " EXCEPT" +
-                " SELECT a.Ap_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
+                " SELECT a.Ap_ID, a.Hotel_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
                 " FROM \"hotel\".\"Apartment\" a, \"hotel\".\"ACard\" c, \"hotel\".\"AClass\" s" +
                 " WHERE a.ap_id = c.ap_id" +
                 " AND c.CheckInDate < '" + filterDate + "'::date" +
@@ -101,13 +101,14 @@ namespace ClassRequest.StaffReq
 
                 foreach (DbDataRecord dbDataRecord in readerUserTable)
                 {
-                    tableApartment = new TableApartment(
+                    tableApartmentAClass = new ApartmentAClass(
                         dbDataRecord["Ap_ID"].ToString(),
+                        dbDataRecord["Hotel_ID"].ToString(),
                         dbDataRecord["PlaceQuantity"].ToString(),
                         dbDataRecord["Class_ID"].ToString(),
                         dbDataRecord["ClassCost"].ToString());
 
-                    tableApartmentList.Add(tableApartment);
+                    tableApartmentList.Add(tableApartmentAClass);
                 }
             }
             catch (NpgsqlException exp)
@@ -128,144 +129,201 @@ namespace ClassRequest.StaffReq
             string textBoxGender, string dtpBirth, string textBoxPhone,
             string comboBoxApId, string dtpCheckIn, string dtpCheckOut, string textBoxComm)
         {
-            int key = 0;
-            foreach (var v in selectTable.GetTableClient())
+            int keyClientJustInHotel = 0;
+            foreach (var v in GetUserList(Convert.ToString(DateTime.Today)))
             {
-                if (v.ClientId == textBoxPass) key = 1;
+                // проверяем наличие постояльца отеле
+                if (v.ClientId == textBoxPass) keyClientJustInHotel = 1;
             }
-            if (key == 0)
+            if (keyClientJustInHotel == 0)
             {
-                // блок добавления нового пользователя в базу
-                try
+                int keyClientInBD = 0;
+                foreach (var v in selectTable.GetTableClient())
                 {
-                    // открываем соединение
-                    sqlConnect.GetInstance().OpenConn();
-                    string commPart =
-                        "INSERT INTO \"hotel\".\"Client\"" +
-                        " (Client_ID, FirstName, SecondName, Gender, DateOfBirth, Phone)" +
-                        " VALUES" +
-                        " (@Client_ID, @FirstName, @SecondName, @Gender, @DateOfBirth::date, @Phone)";
-
-                    NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
-
-                    command.Parameters.AddWithValue("@Client_ID", textBoxPass);
-                    command.Parameters.AddWithValue("@FirstName", textBoxFirstName);
-                    command.Parameters.AddWithValue("@SecondName", textBoxSecondName);
-                    command.Parameters.AddWithValue("@Gender", textBoxGender);
-                    command.Parameters.AddWithValue("@DateOfBirth", dtpBirth);
-                    if (textBoxPhone.Length == 0)
-                    {
-                        textBoxPhone = "";
-                    }
-                    command.Parameters.AddWithValue("@Phone", textBoxPhone);
-
+                    // проверяем наличие постояльца в БД
+                    if (v.ClientId == textBoxPass) keyClientInBD = 1;
+                }
+                if (keyClientInBD == 0)
+                {
+                    // блок добавления нового пользователя в базу
                     try
                     {
-                        command.ExecuteNonQuery();
+                        // открываем соединение
+                        sqlConnect.GetInstance().OpenConn();
+                        string commPart =
+                            "INSERT INTO \"hotel\".\"Client\"" +
+                            " (Client_ID, FirstName, SecondName, Gender, DateOfBirth, Phone)" +
+                            " VALUES" +
+                            " (@Client_ID, @FirstName, @SecondName, @Gender, @DateOfBirth::date, @Phone)";
+
+                        NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+
+                        command.Parameters.AddWithValue("@Client_ID", textBoxPass);
+                        command.Parameters.AddWithValue("@FirstName", textBoxFirstName);
+                        command.Parameters.AddWithValue("@SecondName", textBoxSecondName);
+                        command.Parameters.AddWithValue("@Gender", textBoxGender);
+                        command.Parameters.AddWithValue("@DateOfBirth", dtpBirth);
+                        if (textBoxPhone.Length == 0)
+                        {
+                            textBoxPhone = "";
+                        }
+                        command.Parameters.AddWithValue("@Phone", textBoxPhone);
+
+                        try
+                        {
+                            command.ExecuteNonQuery();
+                        }
+                        catch (NpgsqlException exp)
+                        {
+                            MessageBox.Show(Convert.ToString(exp));
+                        }
                     }
                     catch (NpgsqlException exp)
                     {
+                        // MessageBox.Show("Не удалось выполнить запрос!");
                         MessageBox.Show(Convert.ToString(exp));
                     }
-                }
-                catch (NpgsqlException exp)
-                {
-                    // MessageBox.Show("Не удалось выполнить запрос!");
-                    MessageBox.Show(Convert.ToString(exp));
-                }
-                finally
-                {
-                    // соединение закрыто принудительно
-                    sqlConnect.GetInstance().CloseConn();
-                }
-                // блок добавления человека в карту регистрации
-                try
-                {
-                    // открываем соединение
-                    sqlConnect.GetInstance().OpenConn();
-                    string commPart =
-                        "INSERT INTO \"hotel\".\"ACard\"" +
-                        " (Client_ID, Ap_ID, CheckInDate, CheckOutDate, StComment)" +
-                        " VALUES" +
-                        " (@Client_ID, @Ap_ID, @CheckInDate::date, @CheckOutDate::date, @StComment)";
-
-                    NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
-
-                    command.Parameters.AddWithValue("@Client_ID", textBoxPass);
-                    command.Parameters.AddWithValue("@Ap_ID", Convert.ToInt32(comboBoxApId));
-                    command.Parameters.AddWithValue("@CheckInDate", dtpCheckIn);
-                    command.Parameters.AddWithValue("@CheckOutDate", dtpCheckOut);
-                    if (textBoxComm.Length == 0)
+                    finally
                     {
-                        textBoxComm = "";
+                        // соединение закрыто принудительно
+                        sqlConnect.GetInstance().CloseConn();
                     }
-                    command.Parameters.AddWithValue("@StComment", textBoxComm);
-
+                    // блок добавления человека в карту регистрации
                     try
                     {
-                        command.ExecuteNonQuery();
+                        // открываем соединение
+                        sqlConnect.GetInstance().OpenConn();
+                        string commPart =
+                            "INSERT INTO \"hotel\".\"ACard\"" +
+                            " (Client_ID, Ap_ID, CheckInDate, CheckOutDate, StComment)" +
+                            " VALUES" +
+                            " (@Client_ID, @Ap_ID, @CheckInDate::date, @CheckOutDate::date, @StComment)";
+
+                        NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+
+                        command.Parameters.AddWithValue("@Client_ID", textBoxPass);
+                        command.Parameters.AddWithValue("@Ap_ID", Convert.ToInt32(comboBoxApId));
+                        command.Parameters.AddWithValue("@CheckInDate", dtpCheckIn);
+                        command.Parameters.AddWithValue("@CheckOutDate", dtpCheckOut);
+                        if (textBoxComm.Length == 0)
+                        {
+                            textBoxComm = "";
+                        }
+                        command.Parameters.AddWithValue("@StComment", textBoxComm);
+
+                        try
+                        {
+                            command.ExecuteNonQuery();
+                            MessageBox.Show(@"Успешно добавлен/на!");
+                        }
+                        catch (NpgsqlException exp)
+                        {
+                            MessageBox.Show(Convert.ToString(exp));
+                        }
                     }
                     catch (NpgsqlException exp)
                     {
+                        // MessageBox.Show("Не удалось выполнить запрос!");
                         MessageBox.Show(Convert.ToString(exp));
                     }
+                    finally
+                    {
+                        // соединение закрыто принудительно
+                        sqlConnect.GetInstance().CloseConn();
+                    }
                 }
-                catch (NpgsqlException exp)
+                else
                 {
-                    // MessageBox.Show("Не удалось выполнить запрос!");
-                    MessageBox.Show(Convert.ToString(exp));
-                }
-                finally
-                {
-                    // соединение закрыто принудительно
-                    sqlConnect.GetInstance().CloseConn();
+                    // блок добавления человека в карту регистрации если он уже есть в базе
+                    try
+                    {
+                        // открываем соединение
+                        sqlConnect.GetInstance().OpenConn();
+                        string commPart =
+                            "INSERT INTO \"hotel\".\"ACard\"" +
+                            " (Client_ID, Ap_ID, CheckInDate, CheckOutDate, StComment)" +
+                            " VALUES" +
+                            " (@Client_ID, @Ap_ID, @CheckInDate::date, @CheckOutDate::date, @StComment)";
+
+                        NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+
+                        command.Parameters.AddWithValue("@Client_ID", textBoxPass);
+                        command.Parameters.AddWithValue("@Ap_ID", Convert.ToInt32(comboBoxApId));
+                        command.Parameters.AddWithValue("@CheckInDate", dtpCheckIn);
+                        command.Parameters.AddWithValue("@CheckOutDate", dtpCheckOut);
+                        if (textBoxComm.Length == 0)
+                        {
+                            textBoxComm = "";
+                        }
+                        command.Parameters.AddWithValue("@StComment", textBoxComm);
+
+                        try
+                        {
+                            command.ExecuteNonQuery();
+                            MessageBox.Show(@"Успешно добавлен/на!");
+                        }
+                        catch (NpgsqlException exp)
+                        {
+                            MessageBox.Show(Convert.ToString(exp));
+                        }
+                    }
+                    catch (NpgsqlException exp)
+                    {
+                        // MessageBox.Show("Не удалось выполнить запрос!");
+                        MessageBox.Show(Convert.ToString(exp));
+                    }
+                    finally
+                    {
+                        // соединение закрыто принудительно
+                        sqlConnect.GetInstance().CloseConn();
+                    }
                 }
             }
             else
             {
-                // блок добавления человека в карту регистрации если он уже есть в базе
-                try
-                {
-                    // открываем соединение
-                    sqlConnect.GetInstance().OpenConn();
-                    string commPart =
-                        "INSERT INTO \"hotel\".\"ACard\"" +
-                        " (Client_ID, Ap_ID, CheckInDate, CheckOutDate, StComment)" +
-                        " VALUES" +
-                        " (@Client_ID, @Ap_ID, @CheckInDate::date, @CheckOutDate::date, @StComment)";
+                MessageBox.Show(@"Постоялец таки уже в отеле!");
+            }
+        }
+        public List<ApartmentAClass> UpdateStatAdd()
+        {
+            ApartmentAClass tableApartmentAClass;
+            var tableApartmentList = new List<ApartmentAClass>();
 
-                    NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+            string commPart =
+                "SELECT a.Ap_ID, a.Hotel_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
+                " FROM \"hotel\".\"Apartment\" a, \"hotel\".\"AClass\" s" +
+                " WHERE a.Class_ID = s.Class_ID";
+            try
+            {
+                // открываем соединение
+                sqlConnect.GetInstance().OpenConn();
 
-                    command.Parameters.AddWithValue("@Client_ID", textBoxPass);
-                    command.Parameters.AddWithValue("@Ap_ID", Convert.ToInt32(comboBoxApId));
-                    command.Parameters.AddWithValue("@CheckInDate", dtpCheckIn);
-                    command.Parameters.AddWithValue("@CheckOutDate", dtpCheckOut);
-                    if (textBoxComm.Length == 0)
-                    {
-                        textBoxComm = "";
-                    }
-                    command.Parameters.AddWithValue("@StComment", textBoxComm);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlDataReader readerUserTable = command.ExecuteReader();
 
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    catch (NpgsqlException exp)
-                    {
-                        MessageBox.Show(Convert.ToString(exp));
-                    }
-                }
-                catch (NpgsqlException exp)
+                foreach (DbDataRecord dbDataRecord in readerUserTable)
                 {
-                    // MessageBox.Show("Не удалось выполнить запрос!");
-                    MessageBox.Show(Convert.ToString(exp));
-                }
-                finally
-                {
-                    // соединение закрыто принудительно
-                    sqlConnect.GetInstance().CloseConn();
+                    tableApartmentAClass = new ApartmentAClass(
+                        dbDataRecord["Ap_ID"].ToString(),
+                        dbDataRecord["Hotel_ID"].ToString(),
+                        dbDataRecord["PlaceQuantity"].ToString(),
+                        dbDataRecord["Class_ID"].ToString(),
+                        dbDataRecord["ClassCost"].ToString());
+
+                    tableApartmentList.Add(tableApartmentAClass);
                 }
             }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+            finally
+            {
+                // соединение закрыто принудительно
+                sqlConnect.GetInstance().CloseConn();
+            }
+            return tableApartmentList;
         }
     }
 }

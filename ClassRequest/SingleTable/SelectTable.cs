@@ -102,7 +102,7 @@ namespace ClassRequest.SingleTable
             }
             return tableAClassList;
         }
-        public List<TableApartment> GetTableApartment(string filterDate)
+        public List<TableApartment> GetTableApartment()
         {
             TableApartment tableApartment;
             var tableApartmentList = new List<TableApartment>();
@@ -122,9 +122,9 @@ namespace ClassRequest.SingleTable
                 {
                     tableApartment = new TableApartment(
                         dbDataRecord["Ap_ID"].ToString(),
+                        dbDataRecord["Hotel_ID"].ToString(),
                         dbDataRecord["PlaceQuantity"].ToString(),
-                        dbDataRecord["Class_ID"].ToString(),
-                        dbDataRecord["ClassCost"].ToString());
+                        dbDataRecord["Class_ID"].ToString());
 
                     tableApartmentList.Add(tableApartment);
                 }

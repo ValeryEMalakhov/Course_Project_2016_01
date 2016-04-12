@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\ApartmentAClass.cs" />
     <Compile Include="DAL\UserAppartmentCard.cs" />
     <Compile Include="SingleTable\SelectTable.cs" />
     <Compile Include="SingleTable\TableACard.cs" />

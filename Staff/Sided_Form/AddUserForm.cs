@@ -40,6 +40,8 @@ namespace Staff.Sided_Form
 
         private void AddUserForm_Load(object sender, EventArgs e)
         {
+            dtpCheckIn.Value = DateTime.Today;
+            dtpCheckOut.Value = DateTime.Today;
             staffRequest.UpdateComboBoxApId(comboBoxApId, dtpCheckIn);
         }
 
@@ -63,8 +65,20 @@ namespace Staff.Sided_Form
                 staff.AddUser(textBoxPass.Text, textBoxFirstName.Text,
                     textBoxSecondName.Text, comboBoxGender.Text,
                     dtpBirth.Text, textBoxPhone.Text,
-                    
                     comboBoxApId.Text, dtpCheckIn.Text, dtpCheckOut.Text, textBoxComm.Text);
+
+                textBoxPass.Clear();
+                textBoxFirstName.Clear();
+                textBoxSecondName.Clear();
+                comboBoxGender.Text = string.Empty;
+                textBoxPhone.Clear();
+                comboBoxApId.Items.Clear();
+                comboBoxApId.Text = string.Empty;
+                textBoxComm.Clear();
+
+                // обновляем список свободных комнат
+                staffRequest.UpdateComboBoxApId(comboBoxApId, dtpCheckIn);
+                staffRequest.GetUserIdList(textBoxPass);
             }
             else
             {
@@ -75,6 +89,11 @@ namespace Staff.Sided_Form
         private void dtpCheckIn_ValueChanged(object sender, EventArgs e)
         {
             staffRequest.UpdateComboBoxApId(comboBoxApId, dtpCheckIn);
+            if (comboBoxApId.Text != string.Empty)
+            {
+                staffRequest.UpdateAddStatInfo(comboBoxApId, dtpCheckIn, dtpCheckOut, labelRoomN,
+                    labelRoomQ, labelRoomT, labelRoomC);
+            }
         }
 
         private void textBoxPass_Leave(object sender, EventArgs e)
@@ -94,6 +113,27 @@ namespace Staff.Sided_Form
                 {
                     staffRequest.InputAllClientFields(textBoxPass.Text, textBoxFirstName, textBoxSecondName,
                         comboBoxGender, dtpBirth, textBoxPhone);
+                }
+            }
+        }
+
+        private void comboBoxApId_TextChanged(object sender, EventArgs e)
+        {
+            if (comboBoxApId.Text != string.Empty)
+            {
+                staffRequest.UpdateAddStatInfo(comboBoxApId, dtpCheckIn, dtpCheckOut, labelRoomN,
+                    labelRoomQ, labelRoomT, labelRoomC);
+            }
+        }
+
+        private void comboBoxApId_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (comboBoxApId.Text != string.Empty)
+                {
+                    staffRequest.UpdateAddStatInfo(comboBoxApId, dtpCheckIn, dtpCheckOut, labelRoomN,
+                        labelRoomQ, labelRoomT, labelRoomC);
                 }
             }
         }

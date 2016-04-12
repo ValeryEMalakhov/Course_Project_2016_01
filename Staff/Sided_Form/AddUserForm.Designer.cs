@@ -53,9 +53,20 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.labelRoomQ = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.labelRoomC = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.labelRoomT = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.labelRoomN = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -185,9 +196,9 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(494, 14);
+            this.btnAdd.Location = new System.Drawing.Point(16, 19);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(100, 30);
+            this.btnAdd.Size = new System.Drawing.Size(120, 30);
             this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "Добавить";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -225,7 +236,8 @@
             this.dtpCheckOut.Name = "dtpCheckOut";
             this.dtpCheckOut.Size = new System.Drawing.Size(150, 20);
             this.dtpCheckOut.TabIndex = 8;
-            this.dtpCheckOut.Value = new System.DateTime(2016, 4, 10, 0, 0, 0, 0);
+            this.dtpCheckOut.Value = new System.DateTime(2016, 4, 14, 0, 0, 0, 0);
+            this.dtpCheckOut.ValueChanged += new System.EventHandler(this.comboBoxApId_TextChanged);
             // 
             // label8
             // 
@@ -243,6 +255,8 @@
             this.comboBoxApId.Name = "comboBoxApId";
             this.comboBoxApId.Size = new System.Drawing.Size(150, 21);
             this.comboBoxApId.TabIndex = 6;
+            this.comboBoxApId.TextChanged += new System.EventHandler(this.comboBoxApId_TextChanged);
+            this.comboBoxApId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxApId_KeyDown);
             // 
             // label7
             // 
@@ -260,7 +274,7 @@
             this.dtpCheckIn.Name = "dtpCheckIn";
             this.dtpCheckIn.Size = new System.Drawing.Size(150, 20);
             this.dtpCheckIn.TabIndex = 7;
-            this.dtpCheckIn.Value = new System.DateTime(2016, 4, 10, 0, 0, 0, 0);
+            this.dtpCheckIn.Value = new System.DateTime(2016, 4, 13, 0, 0, 0, 0);
             this.dtpCheckIn.ValueChanged += new System.EventHandler(this.dtpCheckIn_ValueChanged);
             // 
             // label10
@@ -286,16 +300,118 @@
             this.groupBox3.Controls.Add(this.btnAdd);
             this.groupBox3.Location = new System.Drawing.Point(12, 220);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(600, 89);
+            this.groupBox3.Size = new System.Drawing.Size(150, 89);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Панель управления";
+            // 
+            // labelRoomQ
+            // 
+            this.labelRoomQ.AutoSize = true;
+            this.labelRoomQ.Location = new System.Drawing.Point(142, 41);
+            this.labelRoomQ.Name = "labelRoomQ";
+            this.labelRoomQ.Size = new System.Drawing.Size(13, 13);
+            this.labelRoomQ.TabIndex = 10;
+            this.labelRoomQ.Text = "0";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Enabled = false;
+            this.checkBox1.Location = new System.Drawing.Point(9, 63);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(105, 17);
+            this.checkBox1.TabIndex = 4;
+            this.checkBox1.Text = "Закрыть номер";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.labelRoomC);
+            this.groupBox4.Controls.Add(this.checkBox1);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.labelRoomT);
+            this.groupBox4.Controls.Add(this.label16);
+            this.groupBox4.Controls.Add(this.label13);
+            this.groupBox4.Controls.Add(this.label12);
+            this.groupBox4.Controls.Add(this.labelRoomN);
+            this.groupBox4.Controls.Add(this.labelRoomQ);
+            this.groupBox4.Location = new System.Drawing.Point(168, 220);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(444, 89);
+            this.groupBox4.TabIndex = 7;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Панель вывода";
+            // 
+            // labelRoomC
+            // 
+            this.labelRoomC.AutoSize = true;
+            this.labelRoomC.Location = new System.Drawing.Point(344, 41);
+            this.labelRoomC.Name = "labelRoomC";
+            this.labelRoomC.Size = new System.Drawing.Size(13, 13);
+            this.labelRoomC.TabIndex = 14;
+            this.labelRoomC.Text = "0";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(242, 19);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(115, 13);
+            this.label14.TabIndex = 13;
+            this.label14.Text = "Кол-во дней в отеле: ";
+            // 
+            // labelRoomT
+            // 
+            this.labelRoomT.AutoSize = true;
+            this.labelRoomT.Location = new System.Drawing.Point(378, 19);
+            this.labelRoomT.Name = "labelRoomT";
+            this.labelRoomT.Size = new System.Drawing.Size(13, 13);
+            this.labelRoomT.TabIndex = 12;
+            this.labelRoomT.Text = "0";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(242, 41);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(39, 13);
+            this.label16.TabIndex = 11;
+            this.label16.Text = "Цена: ";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 19);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(95, 13);
+            this.label13.TabIndex = 11;
+            this.label13.Text = "Номер комнаты: ";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 41);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(130, 13);
+            this.label12.TabIndex = 11;
+            this.label12.Text = "Кол-во мест в комнате: ";
+            // 
+            // labelRoomN
+            // 
+            this.labelRoomN.AutoSize = true;
+            this.labelRoomN.Location = new System.Drawing.Point(142, 19);
+            this.labelRoomN.Name = "labelRoomN";
+            this.labelRoomN.Size = new System.Drawing.Size(13, 13);
+            this.labelRoomN.TabIndex = 11;
+            this.labelRoomN.Text = "0";
             // 
             // AddUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 321);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -313,6 +429,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -343,5 +461,15 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label labelRoomQ;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label labelRoomT;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label labelRoomN;
+        private System.Windows.Forms.Label labelRoomC;
+        private System.Windows.Forms.Label label16;
     }
 }
