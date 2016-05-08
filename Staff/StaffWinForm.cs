@@ -75,5 +75,28 @@ namespace Staff
         {
             staffRequest.NumOutput(dgvNum, dateTPNum);
         }
+
+        private void btnDeleteUser_Click(object sender, EventArgs e)
+        {
+            // удаление это изменение даты выписки на сегоднешнюю
+            try
+            {
+            staffRequest.FakedUserDelete(dgvUser.CurrentRow.Index);
+            }
+            catch (Exception exp)
+            {
+                // MessageBox.Show("Не удалось заполнить список!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+
+            // обновляем таблицу
+            staffRequest.UserOutput(dgvUser, dateTPUser);
+            staffRequest.NumOutput(dgvNum, dateTPUser);
+        }
+
+        private void dateTPUser_ValueChanged(object sender, EventArgs e)
+        {
+            staffRequest.UserOutput(dgvUser, dateTPUser);
+        }
     }
 }

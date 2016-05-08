@@ -28,28 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffWinForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabUser = new System.Windows.Forms.TabPage();
             this.gBUserAction = new System.Windows.Forms.GroupBox();
+            this.btnDeleteUser = new System.Windows.Forms.Button();
             this.btnAddUser = new System.Windows.Forms.Button();
             this.gBUser = new System.Windows.Forms.GroupBox();
             this.dateTPUser = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.btnUpdateUser = new System.Windows.Forms.Button();
             this.dgvUser = new System.Windows.Forms.DataGridView();
-            this.cName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cSName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cInDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cOutDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CPasp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabNumb = new System.Windows.Forms.TabPage();
             this.gBNum = new System.Windows.Forms.GroupBox();
             this.dateTPNum = new System.Windows.Forms.DateTimePicker();
@@ -61,6 +55,13 @@
             this.CClass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabHotel = new System.Windows.Forms.TabPage();
+            this.cName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cSName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cInDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cOutDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CPasp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
             this.tabUser.SuspendLayout();
             this.gBUserAction.SuspendLayout();
@@ -97,21 +98,32 @@
             // 
             // gBUserAction
             // 
+            this.gBUserAction.Controls.Add(this.btnDeleteUser);
             this.gBUserAction.Controls.Add(this.btnAddUser);
             this.gBUserAction.Location = new System.Drawing.Point(5, 201);
             this.gBUserAction.Name = "gBUserAction";
-            this.gBUserAction.Size = new System.Drawing.Size(315, 191);
+            this.gBUserAction.Size = new System.Drawing.Size(197, 191);
             this.gBUserAction.TabIndex = 6;
             this.gBUserAction.TabStop = false;
             this.gBUserAction.Text = "Действия";
             // 
+            // btnDeleteUser
+            // 
+            this.btnDeleteUser.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteUser.Image")));
+            this.btnDeleteUser.Location = new System.Drawing.Point(111, 105);
+            this.btnDeleteUser.Name = "btnDeleteUser";
+            this.btnDeleteUser.Size = new System.Drawing.Size(80, 80);
+            this.btnDeleteUser.TabIndex = 0;
+            this.btnDeleteUser.UseVisualStyleBackColor = true;
+            this.btnDeleteUser.Click += new System.EventHandler(this.btnDeleteUser_Click);
+            // 
             // btnAddUser
             // 
-            this.btnAddUser.Location = new System.Drawing.Point(120, 19);
+            this.btnAddUser.Image = ((System.Drawing.Image)(resources.GetObject("btnAddUser.Image")));
+            this.btnAddUser.Location = new System.Drawing.Point(6, 19);
             this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(100, 25);
+            this.btnAddUser.Size = new System.Drawing.Size(80, 80);
             this.btnAddUser.TabIndex = 0;
-            this.btnAddUser.Text = "Добавить";
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
@@ -122,7 +134,7 @@
             this.gBUser.Controls.Add(this.btnUpdateUser);
             this.gBUser.Location = new System.Drawing.Point(5, 3);
             this.gBUser.Name = "gBUser";
-            this.gBUser.Size = new System.Drawing.Size(315, 191);
+            this.gBUser.Size = new System.Drawing.Size(197, 191);
             this.gBUser.TabIndex = 5;
             this.gBUser.TabStop = false;
             this.gBUser.Text = "Фильтры";
@@ -134,8 +146,9 @@
             this.dateTPUser.MaxDate = new System.DateTime(2999, 12, 31, 0, 0, 0, 0);
             this.dateTPUser.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateTPUser.Name = "dateTPUser";
-            this.dateTPUser.Size = new System.Drawing.Size(247, 20);
+            this.dateTPUser.Size = new System.Drawing.Size(128, 20);
             this.dateTPUser.TabIndex = 1;
+            this.dateTPUser.ValueChanged += new System.EventHandler(this.dateTPUser_ValueChanged);
             // 
             // label2
             // 
@@ -148,9 +161,10 @@
             // 
             // btnUpdateUser
             // 
-            this.btnUpdateUser.Location = new System.Drawing.Point(210, 160);
+            this.btnUpdateUser.Enabled = false;
+            this.btnUpdateUser.Location = new System.Drawing.Point(6, 160);
             this.btnUpdateUser.Name = "btnUpdateUser";
-            this.btnUpdateUser.Size = new System.Drawing.Size(100, 25);
+            this.btnUpdateUser.Size = new System.Drawing.Size(185, 25);
             this.btnUpdateUser.TabIndex = 1;
             this.btnUpdateUser.Text = "Обновить";
             this.btnUpdateUser.UseVisualStyleBackColor = true;
@@ -167,74 +181,10 @@
             this.cInDate,
             this.cOutDate,
             this.CPasp});
-            this.dgvUser.Location = new System.Drawing.Point(326, 6);
+            this.dgvUser.Location = new System.Drawing.Point(208, 6);
             this.dgvUser.Name = "dgvUser";
-            this.dgvUser.Size = new System.Drawing.Size(605, 521);
+            this.dgvUser.Size = new System.Drawing.Size(723, 521);
             this.dgvUser.TabIndex = 0;
-            // 
-            // cName
-            // 
-            this.cName.HeaderText = "Имя";
-            this.cName.Name = "cName";
-            this.cName.ReadOnly = true;
-            this.cName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cName.Width = 110;
-            // 
-            // cSName
-            // 
-            this.cSName.HeaderText = "Фамилия";
-            this.cSName.Name = "cSName";
-            this.cSName.ReadOnly = true;
-            this.cSName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cSName.Width = 130;
-            // 
-            // cGender
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cGender.DefaultCellStyle = dataGridViewCellStyle1;
-            this.cGender.HeaderText = "Пол";
-            this.cGender.Name = "cGender";
-            this.cGender.ReadOnly = true;
-            this.cGender.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cGender.Width = 40;
-            // 
-            // cNum
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cNum.DefaultCellStyle = dataGridViewCellStyle2;
-            this.cNum.HeaderText = "Номер";
-            this.cNum.Name = "cNum";
-            this.cNum.ReadOnly = true;
-            this.cNum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cNum.Width = 60;
-            // 
-            // cInDate
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cInDate.DefaultCellStyle = dataGridViewCellStyle3;
-            this.cInDate.HeaderText = "Дата вселения";
-            this.cInDate.Name = "cInDate";
-            this.cInDate.ReadOnly = true;
-            this.cInDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cInDate.Width = 110;
-            // 
-            // cOutDate
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cOutDate.DefaultCellStyle = dataGridViewCellStyle4;
-            this.cOutDate.HeaderText = "Дата выселения";
-            this.cOutDate.Name = "cOutDate";
-            this.cOutDate.ReadOnly = true;
-            this.cOutDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cOutDate.Width = 110;
-            // 
-            // CPasp
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CPasp.DefaultCellStyle = dataGridViewCellStyle5;
-            this.CPasp.HeaderText = "Код паспорта";
-            this.CPasp.Name = "CPasp";
-            this.CPasp.ReadOnly = true;
             // 
             // tabNumb
             // 
@@ -272,9 +222,9 @@
             // 
             // btnUpdateNum
             // 
-            this.btnUpdateNum.Location = new System.Drawing.Point(210, 160);
+            this.btnUpdateNum.Location = new System.Drawing.Point(6, 160);
             this.btnUpdateNum.Name = "btnUpdateNum";
-            this.btnUpdateNum.Size = new System.Drawing.Size(100, 25);
+            this.btnUpdateNum.Size = new System.Drawing.Size(304, 25);
             this.btnUpdateNum.TabIndex = 3;
             this.btnUpdateNum.Text = "Обновить";
             this.btnUpdateNum.UseVisualStyleBackColor = true;
@@ -341,6 +291,71 @@
             this.tabHotel.Text = "Отель";
             this.tabHotel.UseVisualStyleBackColor = true;
             // 
+            // cName
+            // 
+            this.cName.HeaderText = "Имя";
+            this.cName.Name = "cName";
+            this.cName.ReadOnly = true;
+            this.cName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cName.Width = 110;
+            // 
+            // cSName
+            // 
+            this.cSName.HeaderText = "Фамилия";
+            this.cSName.Name = "cSName";
+            this.cSName.ReadOnly = true;
+            this.cSName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cSName.Width = 130;
+            // 
+            // cGender
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cGender.DefaultCellStyle = dataGridViewCellStyle6;
+            this.cGender.HeaderText = "Пол";
+            this.cGender.Name = "cGender";
+            this.cGender.ReadOnly = true;
+            this.cGender.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cGender.Width = 40;
+            // 
+            // cNum
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cNum.DefaultCellStyle = dataGridViewCellStyle7;
+            this.cNum.HeaderText = "Номер";
+            this.cNum.Name = "cNum";
+            this.cNum.ReadOnly = true;
+            this.cNum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cNum.Width = 60;
+            // 
+            // cInDate
+            // 
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cInDate.DefaultCellStyle = dataGridViewCellStyle8;
+            this.cInDate.HeaderText = "Дата вселения";
+            this.cInDate.Name = "cInDate";
+            this.cInDate.ReadOnly = true;
+            this.cInDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cInDate.Width = 110;
+            // 
+            // cOutDate
+            // 
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cOutDate.DefaultCellStyle = dataGridViewCellStyle9;
+            this.cOutDate.HeaderText = "Дата выселения";
+            this.cOutDate.Name = "cOutDate";
+            this.cOutDate.ReadOnly = true;
+            this.cOutDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cOutDate.Width = 110;
+            // 
+            // CPasp
+            // 
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CPasp.DefaultCellStyle = dataGridViewCellStyle10;
+            this.CPasp.HeaderText = "Код паспорта";
+            this.CPasp.Name = "CPasp";
+            this.CPasp.ReadOnly = true;
+            this.CPasp.Width = 120;
+            // 
             // StaffWinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -380,13 +395,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnUpdateUser;
         protected internal System.Windows.Forms.DataGridView dgvUser;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cSName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cGender;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cNum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cInDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cOutDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CPasp;
         private System.Windows.Forms.TabPage tabNumb;
         private System.Windows.Forms.GroupBox gBNum;
         private System.Windows.Forms.DateTimePicker dateTPNum;
@@ -398,6 +406,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CClass;
         private System.Windows.Forms.DataGridViewTextBoxColumn CCost;
         private System.Windows.Forms.TabPage tabHotel;
+        private System.Windows.Forms.Button btnDeleteUser;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cSName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cGender;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cInDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cOutDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CPasp;
     }
 }
 

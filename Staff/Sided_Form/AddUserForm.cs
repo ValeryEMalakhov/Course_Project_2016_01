@@ -88,9 +88,18 @@ namespace Staff.Sided_Form
 
         private void dtpCheckIn_ValueChanged(object sender, EventArgs e)
         {
+            if (dtpCheckIn.Value < DateTime.Now)
+            {
+                dtpCheckIn.Value = DateTime.Now;
+            }
+            if (dtpCheckOut.Value < dtpCheckIn.Value)
+            {
+                dtpCheckOut.Value = dtpCheckIn.Value.AddDays(1);
+            }
             staffRequest.UpdateComboBoxApId(comboBoxApId, dtpCheckIn);
             if (comboBoxApId.Text != string.Empty)
             {
+                // обновляет автоматическую статистику в labels
                 staffRequest.UpdateAddStatInfo(comboBoxApId, dtpCheckIn, dtpCheckOut, labelRoomN,
                     labelRoomQ, labelRoomT, labelRoomC);
             }
@@ -119,6 +128,10 @@ namespace Staff.Sided_Form
 
         private void comboBoxApId_TextChanged(object sender, EventArgs e)
         {
+            if (dtpCheckOut.Value < dtpCheckIn.Value)
+            {
+                dtpCheckOut.Value = dtpCheckIn.Value.AddDays(1);
+            }
             if (comboBoxApId.Text != string.Empty)
             {
                 staffRequest.UpdateAddStatInfo(comboBoxApId, dtpCheckIn, dtpCheckOut, labelRoomN,

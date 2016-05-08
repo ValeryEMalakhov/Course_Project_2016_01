@@ -32,13 +32,15 @@ namespace ClassRequest.StaffReq
             UserAppartmentCard userAppartmentCard;
             var userAppartmentCardList = new List<UserAppartmentCard>();
 
+            //MessageBox.Show(filterDate);
+
             string commPart =
                 "SELECT *" +
                 " FROM \"hotel\".\"Client\" c, \"hotel\".\"ACard\" a, \"hotel\".\"Apartment\" ap" +
                 " WHERE c.client_id = a.client_id" +
                 " AND ap.ap_id = a.ap_id" +
-                " AND a.CheckInDate < '" + filterDate + "'::date" +
-                " AND a.CheckOutDate > '" + filterDate + "'::date ;";
+                " AND a.CheckInDate <= '" + filterDate + "'::timestamp with time zone" +
+                " AND a.CheckOutDate > '" + filterDate + "'::timestamp with time zone ;";
 
             try
             {
@@ -88,8 +90,8 @@ namespace ClassRequest.StaffReq
                 " SELECT a.Ap_ID, a.Hotel_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
                 " FROM \"hotel\".\"Apartment\" a, \"hotel\".\"ACard\" c, \"hotel\".\"AClass\" s" +
                 " WHERE a.ap_id = c.ap_id" +
-                " AND c.CheckInDate < '" + filterDate + "'::date" +
-                " AND c.CheckOutDate > '" + filterDate + "'::date" +
+                " AND c.CheckInDate <= '" + filterDate + "'::timestamp with time zone" +
+                " AND c.CheckOutDate > '" + filterDate + "'::timestamp with time zone" +
                 " ORDER BY (Ap_ID) ;";
             try
             {
@@ -154,7 +156,7 @@ namespace ClassRequest.StaffReq
                             "INSERT INTO \"hotel\".\"Client\"" +
                             " (Client_ID, FirstName, SecondName, Gender, DateOfBirth, Phone)" +
                             " VALUES" +
-                            " (@Client_ID, @FirstName, @SecondName, @Gender, @DateOfBirth::date, @Phone)";
+                            " (@Client_ID, @FirstName, @SecondName, @Gender, @DateOfBirth::timestamp with time zone, @Phone)";
 
                         NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
 
@@ -197,7 +199,7 @@ namespace ClassRequest.StaffReq
                             "INSERT INTO \"hotel\".\"ACard\"" +
                             " (Client_ID, Ap_ID, CheckInDate, CheckOutDate, StComment)" +
                             " VALUES" +
-                            " (@Client_ID, @Ap_ID, @CheckInDate::date, @CheckOutDate::date, @StComment)";
+                            " (@Client_ID, @Ap_ID, @CheckInDate::timestamp with time zone, @CheckOutDate::timestamp with time zone, @StComment)";
 
                         NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
 
@@ -243,7 +245,7 @@ namespace ClassRequest.StaffReq
                             "INSERT INTO \"hotel\".\"ACard\"" +
                             " (Client_ID, Ap_ID, CheckInDate, CheckOutDate, StComment)" +
                             " VALUES" +
-                            " (@Client_ID, @Ap_ID, @CheckInDate::date, @CheckOutDate::date, @StComment)";
+                            " (@Client_ID, @Ap_ID, @CheckInDate::timestamp with time zone, @CheckOutDate::timestamp with time zone, @StComment)";
 
                         NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
 
@@ -324,6 +326,33 @@ namespace ClassRequest.StaffReq
                 sqlConnect.GetInstance().CloseConn();
             }
             return tableApartmentList;
+        }
+
+        public void FakeUserDeleteSQL(UserAppartmentCard userAppartmentCard)
+        {
+            string commPart =
+                "UPDATE \"hotel\".\"ACard\"" +
+                " SET CheckOutDate = '" + DateTime.Now + "'" +
+                " WHERE Client_Id = '" + userAppartmentCard.ClientId + "'" +
+                " AND CheckInDate = '" + userAppartmentCard.CheckInDate + "' ;";
+            try
+            {
+                // открываем соединение
+                sqlConnect.GetInstance().OpenConn();
+
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                command.ExecuteNonQuery();
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+            finally
+            {
+                // соединение закрыто принудительно
+                sqlConnect.GetInstance().CloseConn();
+            }
         }
     }
 }

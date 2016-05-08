@@ -36,7 +36,7 @@ namespace ClassRequest
             try
             {
                 // фильтр даты
-                string filterDate = dateTpUser.Text;
+                string filterDate = Convert.ToString(dateTpUser.Value);
                 foreach (var v in staff.GetUserList(filterDate))
                 {
                     dgvUser.Rows.Add(v.FirstName, v.SecondName, v.Gender, v.ApId,
@@ -58,7 +58,7 @@ namespace ClassRequest
             {
                 // фильтр даты
                 //var dateMinusDay = dateTpNum.Value.AddDays(-1);
-                string filterDate = dateTpNum.Text;
+                string filterDate = Convert.ToString(dateTpNum.Value);
                 foreach (var v in staff.GetNumList(filterDate))
                 {
                     dgvNum.Rows.Add(v.ApId, v.PlaceQuantity,
@@ -80,7 +80,7 @@ namespace ClassRequest
             {
                 // фильтр даты
                 //var dateMinusDay = dtpIn.Value.AddDays(-1);
-                string filterDate = dtpIn.Text;
+                string filterDate = Convert.ToString(dtpIn.Value);
                 foreach (var v in staff.GetNumList(filterDate))
                 {
                     comboBox.Items.Add(v.ApId);
@@ -149,6 +149,31 @@ namespace ClassRequest
             else
             {
                 labelRoomC.Text = @"Так не сработает";
+            }
+        }
+
+        // псевдоудаление клента из таблицы
+        public void FakedUserDelete(int dgvIndex)
+        {
+            try
+            {
+                // фильтр даты
+                string filterDate = Convert.ToString(DateTime.Now);
+                // счётчик
+                int i = 0;
+                foreach (var v in staff.GetUserList(filterDate))
+                {
+                    if (i == dgvIndex)
+                    {
+                         staff.FakeUserDeleteSQL(v);
+                    }
+                    ++i;
+                }
+            }
+            catch (Exception exp)
+            {
+                // MessageBox.Show("Не удалось удалить клиента!");
+                MessageBox.Show(Convert.ToString(exp));
             }
         }
     }
