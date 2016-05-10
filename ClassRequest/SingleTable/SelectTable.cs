@@ -24,7 +24,12 @@ namespace ClassRequest.SingleTable
     public class SelectTable
     {
         // глобальные переменные
-        SqlConnect sqlConnect = new SqlConnect();
+        SqlConnect sqlConnect;
+
+        public SelectTable(NpgsqlConnection conn)
+        {
+            sqlConnect = new SqlConnect(conn);
+        }
 
         // запросы на все поля из каждой таблицы
         public List<TableACard> GetTableACard()

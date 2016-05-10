@@ -28,12 +28,15 @@ namespace Staff.Sided_Form
     public partial class AddUserForm : Form
     {
         // глобальные переменные
-        SqlConnect sqlConnect = new SqlConnect();
-        StaffRequest staffRequest = new StaffRequest();
-        StaffSql staff = new StaffSql();
+        SqlConnect sqlConnect;
+        StaffRequest staffRequest;
+        private StaffSql staff;
 
-        public AddUserForm()
+        public AddUserForm(NpgsqlConnection conn)
         {
+            sqlConnect = new SqlConnect(conn);
+            staffRequest = new StaffRequest(conn);
+            staff = new StaffSql(conn);
             InitializeComponent();
             staffRequest.GetUserIdList(textBoxPass);
         }

@@ -13,10 +13,12 @@ using System.Xml.Serialization;
 using System.Threading;
 using System.Reflection;
 using System.Collections;
+using System.Data.Entity;
 using System.Data.Entity.SqlServer;
 using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Configuration;
 using WMPLib;
 using Npgsql;
 using Staff;
@@ -70,8 +72,14 @@ namespace LogIn
 
         private void btnLoginLikeStaff_Click(object sender, EventArgs e)
         {
+            NpgsqlConnection conn = new NpgsqlConnection(
+                "Server=" + ConfigurationManager.AppSettings.Get("ip") +
+                "; Port=" + ConfigurationManager.AppSettings.Get("port") +
+                "; User Id=" + ConfigurationManager.AppSettings.Get("userId") +
+                "; Password=" + ConfigurationManager.AppSettings.Get("passwd") +
+                "; Database=" + ConfigurationManager.AppSettings.Get("dataBase") + ";");
 
-            StaffWinForm staff = new StaffWinForm();
+            StaffWinForm staff = new StaffWinForm(conn);
             Hide();
             staff.ShowDialog();
             Show();
@@ -79,6 +87,13 @@ namespace LogIn
 
         private void btnLoginLikeUser_Click(object sender, EventArgs e)
         {
+            NpgsqlConnection conn = new NpgsqlConnection(
+                "Server=" + ConfigurationManager.AppSettings.Get("ip") +
+                "; Port=" + ConfigurationManager.AppSettings.Get("port") +
+                "; User Id=" + ConfigurationManager.AppSettings.Get("userId") +
+                "; Password=" + ConfigurationManager.AppSettings.Get("passwd") +
+                "; Database=" + ConfigurationManager.AppSettings.Get("dataBase") + ";");
+
             ClientWinForm client = new ClientWinForm();
             Hide();
             client.ShowDialog();

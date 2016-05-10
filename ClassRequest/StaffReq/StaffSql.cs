@@ -24,8 +24,14 @@ namespace ClassRequest.StaffReq
     public class StaffSql
     {
         // глобальные переменные
-        SqlConnect sqlConnect = new SqlConnect();
-        SelectTable selectTable = new SelectTable();
+        SqlConnect sqlConnect;
+        SelectTable selectTable;
+
+        public StaffSql(NpgsqlConnection conn)
+        {
+            sqlConnect = new SqlConnect(conn);
+            selectTable = new SelectTable(conn);
+        }
 
         public List<UserAppartmentCard> GetUserList(string filterDate)
         {

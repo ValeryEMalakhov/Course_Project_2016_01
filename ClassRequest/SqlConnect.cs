@@ -23,37 +23,37 @@ namespace ClassRequest
     public class SqlConnect
     {
         // временные переменные для подключения
-        private string _sServer = "127.0.0.1";
-        private string _sPort = "5432";
-        private string _sUserId = "postgres";
-        private string _sPassword = "1507";
-        private string _sDatabase = "malakhov";
+        //private string _sServer = "127.0.0.1";
+        //private string _sPort = "5432";
+        //private string _sUserId = "postgres";
+        //private string _sPassword = "1507";
+        //private string _sDatabase = "malakhov";
 
-        private string _connParam;
+        //private string _connParam;
         private NpgsqlConnection _conn;
         private static SqlConnect _instance = null;
 
-        public SqlConnect()
+        public SqlConnect(NpgsqlConnection conn)
         {
             //_sServer = ConfigurationManager.AppSettings.Get("ip");
             //_sPort = ConfigurationManager.AppSettings.Get("port");
             //_sUserId = ConfigurationManager.AppSettings.Get("userId");
             //_sPassword = ConfigurationManager.AppSettings.Get("passwd");
             //_sDatabase = ConfigurationManager.AppSettings.Get("dataBase");
+            //_connParam = "Server=" + _sServer +
+            //             "; Port=" + _sPort +
+            //             "; User Id=" + _sUserId +
+            //             "; Password=" + _sPassword +
+            //             "; Database=" + _sDatabase + ";";
 
-            _connParam = "Server=" + _sServer +
-                         "; Port=" + _sPort +
-                         "; User Id=" + _sUserId +
-                         "; Password=" + _sPassword +
-                         "; Database=" + _sDatabase + ";";
-            _conn = new NpgsqlConnection(_connParam);
+            _conn = conn;
         }
 
         public SqlConnect GetInstance()
         {
             if (_instance == null)
             {
-                _instance = new SqlConnect();
+                _instance = new SqlConnect(_conn);
             }
             return (_instance);
         }

@@ -27,16 +27,21 @@ namespace Staff
     public partial class StaffWinForm : Form
     {
         // Глобальные переменные
-        SqlConnect sqlConnect = new SqlConnect();
-        StaffRequest staffRequest = new StaffRequest();
-
-        public StaffWinForm()
+        SqlConnect sqlConnect;
+        StaffRequest staffRequest;
+        NpgsqlConnection _conn;
+        public StaffWinForm(NpgsqlConnection conn)
         {
             InitializeComponent();
-
+            sqlConnect = new SqlConnect(conn);
+            staffRequest = new StaffRequest(conn);
+            _conn = conn;
             dgvUser.ScrollBars = ScrollBars.Both;
             dgvNum.ScrollBars = ScrollBars.Horizontal;
         }
+
+        public StaffWinForm()
+        { }
 
         private void StaffWinForm_Load(object sender, EventArgs e)
         {
@@ -64,7 +69,7 @@ namespace Staff
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            AddUserForm addUser = new AddUserForm();
+            AddUserForm addUser = new AddUserForm(_conn);
             addUser.ShowDialog();
 
             // обновляем таблицу

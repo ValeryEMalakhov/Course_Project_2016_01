@@ -27,8 +27,14 @@ namespace ClassRequest
     public class StaffRequest
     {
         // глобальные переменные
-        StaffSql staff = new StaffSql();
-        SelectTable selectTable = new SelectTable();
+        StaffSql staff;
+        SelectTable selectTable;
+
+        public StaffRequest(NpgsqlConnection conn)
+        {
+            staff = new StaffSql(conn);
+            selectTable = new SelectTable(conn);
+        }
 
         // вывод списка посетителей
         public void UserOutput(DataGridView dgvUser, DateTimePicker dateTpUser)
