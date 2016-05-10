@@ -30,16 +30,12 @@ namespace Staff
         SqlConnect sqlConnect = new SqlConnect();
         StaffRequest staffRequest = new StaffRequest();
 
-
         public StaffWinForm()
         {
             InitializeComponent();
 
             dgvUser.ScrollBars = ScrollBars.Both;
             dgvNum.ScrollBars = ScrollBars.Horizontal;
-
-
-
         }
 
         private void StaffWinForm_Load(object sender, EventArgs e)
@@ -47,6 +43,10 @@ namespace Staff
             // использовать дату из dateTPUser
             staffRequest.UserOutput(dgvUser, dateTPUser);
             staffRequest.NumOutput(dgvNum, dateTPUser);
+            dgvUser.Rows[0].Selected = false;
+            dgvUser.AllowUserToAddRows = false;
+            dgvNum.Rows[0].Selected = false;
+            dgvNum.AllowUserToAddRows = false;
         }
 
         private void StaffWinForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -58,6 +58,7 @@ namespace Staff
 
         private void btnUpdateUser_Click(object sender, EventArgs e)
         {
+            // Эта кнопка мертва
             staffRequest.UserOutput(dgvUser, dateTPUser);
         }
 
@@ -69,6 +70,10 @@ namespace Staff
             // обновляем таблицу
             staffRequest.UserOutput(dgvUser, dateTPUser);
             staffRequest.NumOutput(dgvNum, dateTPUser);
+            dgvUser.Rows[0].Selected = false;
+            dgvUser.AllowUserToAddRows = false;
+            dgvNum.Rows[0].Selected = false;
+            dgvNum.AllowUserToAddRows = false;
         }
 
         private void btnUpdateNum_Click(object sender, EventArgs e)
@@ -81,22 +86,36 @@ namespace Staff
             // удаление это изменение даты выписки на сегоднешнюю
             try
             {
-            staffRequest.FakedUserDelete(dgvUser.CurrentRow.Index);
+                staffRequest.FakedUserDelete(dgvUser.CurrentRow.Index);
             }
             catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось заполнить список!");
                 MessageBox.Show(Convert.ToString(exp));
             }
-
-            // обновляем таблицу
-            staffRequest.UserOutput(dgvUser, dateTPUser);
-            staffRequest.NumOutput(dgvNum, dateTPUser);
+            finally
+            {
+                // обновляем таблицу
+                staffRequest.UserOutput(dgvUser, dateTPUser);
+                staffRequest.NumOutput(dgvNum, dateTPUser);
+                dgvUser.Rows[0].Selected = false;
+                dgvUser.AllowUserToAddRows = false;
+            }
         }
 
         private void dateTPUser_ValueChanged(object sender, EventArgs e)
         {
             staffRequest.UserOutput(dgvUser, dateTPUser);
+            dgvUser.Rows[0].Selected = false;
+            dgvUser.AllowUserToAddRows = false;
+            //MessageBox.Show(Convert.ToString(dateTPUser.Value));
+        }
+
+        private void dateTPNum_ValueChanged(object sender, EventArgs e)
+        {
+            staffRequest.NumOutput(dgvNum, dateTPNum);
+            dgvNum.Rows[0].Selected = false;
+            dgvNum.AllowUserToAddRows = false;
         }
     }
 }

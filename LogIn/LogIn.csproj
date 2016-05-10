@@ -33,6 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AudioObjects, Version=1.0.0.38823, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AudioObjects.1.0.0.38823\lib\net45\AudioObjects.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BASS.NET.Objects, Version=1.0.5242.31312, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BASS.NET.Objects.1.0.5242.31312\lib\net45\BASS.NET.Objects.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -102,10 +110,43 @@
       <Project>{41fd78eb-2679-4010-bf92-dda2f8891e09}</Project>
       <Name>ClassRequest</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Client\Client.csproj">
+      <Project>{5826d706-d3bf-4953-bf88-1ac606609d9c}</Project>
+      <Name>Client</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Staff\Staff.csproj">
       <Project>{cd2dfbe4-cdf8-42e7-ab26-b9e1b9ffbd56}</Project>
       <Name>Staff</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ACTIVEXLib">
+      <Guid>{012F24C1-35B0-11D0-BF2D-0000E8D0D146}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

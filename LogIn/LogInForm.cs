@@ -17,13 +17,19 @@ using System.Data.Entity.SqlServer;
 using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using WMPLib;
 using Npgsql;
 using Staff;
+using Client;
 
 namespace LogIn
 {
     public partial class WfLogin : Form
     {
+        // шутка
+        string path = @"d:\Uni\Curswork\Course_Project_2016_01\CP1601\materials\Sound\Лонгин.mp3";
+        WindowsMediaPlayer wmp = new WindowsMediaPlayer();
+
         public WfLogin()
         {
             InitializeComponent();
@@ -44,6 +50,9 @@ namespace LogIn
         private void WfLogin_Load(object sender, EventArgs e)
         {
             timer.Start();
+            //wmp.URL = path;
+            //wmp.controls.play();
+
         }
 
         private void WfLogin_FormClosing(object sender, FormClosingEventArgs e)
@@ -70,11 +79,10 @@ namespace LogIn
 
         private void btnLoginLikeUser_Click(object sender, EventArgs e)
         {
-            // создать форму для пользователя
-            //WFUser userForm = new WFUser();
-            //Hide();
-            //userForm.ShowDialog();
-            //Show();
+            ClientWinForm client = new ClientWinForm();
+            Hide();
+            client.ShowDialog();
+            Show();
         }
     }
 }

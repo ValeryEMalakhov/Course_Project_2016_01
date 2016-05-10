@@ -41,7 +41,6 @@ namespace ClassRequest.StaffReq
                 " AND ap.ap_id = a.ap_id" +
                 " AND a.CheckInDate <= '" + filterDate + "'::timestamp with time zone" +
                 " AND a.CheckOutDate > '" + filterDate + "'::timestamp with time zone ;";
-
             try
             {
                 // открываем соединение

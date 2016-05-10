@@ -4,6 +4,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -14,6 +15,7 @@ using System.Data.Entity.SqlServer;
 using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Configuration;
 using Npgsql;
 
 namespace ClassRequest
@@ -33,6 +35,12 @@ namespace ClassRequest
 
         public SqlConnect()
         {
+            //_sServer = ConfigurationManager.AppSettings.Get("ip");
+            //_sPort = ConfigurationManager.AppSettings.Get("port");
+            //_sUserId = ConfigurationManager.AppSettings.Get("userId");
+            //_sPassword = ConfigurationManager.AppSettings.Get("passwd");
+            //_sDatabase = ConfigurationManager.AppSettings.Get("dataBase");
+
             _connParam = "Server=" + _sServer +
                          "; Port=" + _sPort +
                          "; User Id=" + _sUserId +

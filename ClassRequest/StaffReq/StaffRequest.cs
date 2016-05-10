@@ -16,6 +16,7 @@ using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using System.Drawing;
 using ClassRequest.DAL;
 using ClassRequest.SingleTable;
 using ClassRequest.StaffReq;
@@ -37,10 +38,18 @@ namespace ClassRequest
             {
                 // фильтр даты
                 string filterDate = Convert.ToString(dateTpUser.Value);
+                int colorKey = 0;
                 foreach (var v in staff.GetUserList(filterDate))
                 {
                     dgvUser.Rows.Add(v.FirstName, v.SecondName, v.Gender, v.ApId,
                         v.CheckInDate, v.CheckOutDate, v.ClientId);
+
+                    if (colorKey%2 == 0)
+                    {
+                        for (int i = 0; i < dgvUser.ColumnCount; ++i)
+                        dgvUser.Rows[colorKey].Cells[i].Style.BackColor = Color.Lavender;
+                    }
+                    colorKey++;
                 }
             }
             catch (Exception exp)
@@ -59,10 +68,16 @@ namespace ClassRequest
                 // фильтр даты
                 //var dateMinusDay = dateTpNum.Value.AddDays(-1);
                 string filterDate = Convert.ToString(dateTpNum.Value);
+                int colorKey = 0;
                 foreach (var v in staff.GetNumList(filterDate))
                 {
-                    dgvNum.Rows.Add(v.ApId, v.PlaceQuantity,
-                        v.ClassId, v.ClassCost);
+                    dgvNum.Rows.Add(v.ApId, v.PlaceQuantity, v.ClassId, v.ClassCost);
+                    if (colorKey % 2 == 0)
+                    {
+                        for (int i = 0; i < dgvNum.ColumnCount; ++i)
+                            dgvNum.Rows[colorKey].Cells[i].Style.BackColor = Color.Lavender;
+                    }
+                    colorKey++;
                 }
             }
             catch (NpgsqlException exp)

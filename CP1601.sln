@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogIn", "LogIn\LogIn.csproj", "{922C6D36-19A1-4F21-9353-CE2046EED2A0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5826D706-D3BF-4953-BF88-1AC606609D9C} = {5826D706-D3BF-4953-BF88-1AC606609D9C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Staff", "Staff\Staff.csproj", "{CD2DFBE4-CDF8-42E7-AB26-B9E1B9FFBD56}"
 EndProject

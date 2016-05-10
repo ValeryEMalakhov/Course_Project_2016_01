@@ -58,7 +58,6 @@
             // 
             // btnLoginLikeUser
             // 
-            this.btnLoginLikeUser.Enabled = false;
             this.btnLoginLikeUser.Location = new System.Drawing.Point(65, 250);
             this.btnLoginLikeUser.Name = "btnLoginLikeUser";
             this.btnLoginLikeUser.Size = new System.Drawing.Size(216, 62);
