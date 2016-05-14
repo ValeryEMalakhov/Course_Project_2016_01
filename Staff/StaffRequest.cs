@@ -14,30 +14,32 @@ using System.Data.Common;
 using System.Data.Entity.SqlServer;
 using System.Security.Cryptography;
 using System.Diagnostics;
+using System.Drawing;
 using System.Globalization;
 using System.Runtime.CompilerServices;
-using System.Drawing;
+using ClassRequest;
 using ClassRequest.DAL;
 using ClassRequest.SingleTable;
-using ClassRequest.StaffReq;
 using Npgsql;
 
-namespace ClassRequest
+namespace Staff
 {
     public class StaffRequest
     {
-        // глобальные переменные
-        StaffSql staff;
-        SelectTable selectTable;
-
-        public StaffRequest(NpgsqlConnection conn)
-        {
-            staff = new StaffSql(conn);
-            selectTable = new SelectTable(conn);
-        }
+        #region Global Values
+        RepositoryACard repositoryACard = new RepositoryACard();
+        RepositoryAClass repositoryAClass = new RepositoryAClass();
+        RepositoryApartment repositoryApartment = new RepositoryApartment();
+        RepositoryApartmentAClass repositoryApartmentAClass = new RepositoryApartmentAClass();
+        RepositoryClient repositoryClient = new RepositoryClient();
+        RepositoryHotel repositoryHotel = new RepositoryHotel();
+        RepositoryStaff repositoryStaff = new RepositoryStaff();
+        RepositoryStaffPosition repositoryStaffPosition = new RepositoryStaffPosition();
+        RepositoryUserApartmentCard repositoryUserApartmentCard = new RepositoryUserApartmentCard();
+        #endregion
 
         // вывод списка посетителей
-        public void UserOutput(DataGridView dgvUser, DateTimePicker dateTpUser)
+        public void UserOutput(SqlConnect sqlConnect, DataGridView dgvUser, DateTimePicker dateTpUser)
         {
             dgvUser.Rows.Clear();
             try
@@ -45,7 +47,7 @@ namespace ClassRequest
                 // фильтр даты
                 string filterDate = Convert.ToString(dateTpUser.Value);
                 int colorKey = 0;
-                foreach (var v in staff.GetUserList(filterDate))
+                foreach (var v in repositoryUserApartmentCard.GetUserList(sqlConnect, filterDate))
                 {
                     dgvUser.Rows.Add(v.FirstName, v.SecondName, v.Gender, v.ApId,
                         v.CheckInDate, v.CheckOutDate, v.ClientId);
@@ -66,7 +68,7 @@ namespace ClassRequest
         }
 
         // вывод списка свободных номеров
-        public void NumOutput(DataGridView dgvNum, DateTimePicker dateTpNum)
+        public void NumOutput(SqlConnect sqlConnect, DataGridView dgvNum, DateTimePicker dateTpNum)
         {
             dgvNum.Rows.Clear();
             try
@@ -75,7 +77,7 @@ namespace ClassRequest
                 //var dateMinusDay = dateTpNum.Value.AddDays(-1);
                 string filterDate = Convert.ToString(dateTpNum.Value);
                 int colorKey = 0;
-                foreach (var v in staff.GetNumList(filterDate))
+                foreach (var v in repositoryApartmentAClass.GetNumList(sqlConnect, filterDate))
                 {
                     dgvNum.Rows.Add(v.ApId, v.PlaceQuantity, v.ClassId, v.ClassCost);
                     if (colorKey % 2 == 0)
@@ -94,7 +96,7 @@ namespace ClassRequest
         }
 
         // запрос списка свободных комнат
-        public void UpdateComboBoxApId(ComboBox comboBox, DateTimePicker dtpIn)
+        public void UpdateComboBoxApId(SqlConnect sqlConnect, ComboBox comboBox, DateTimePicker dtpIn)
         {
             comboBox.Items.Clear();
             try
@@ -102,7 +104,7 @@ namespace ClassRequest
                 // фильтр даты
                 //var dateMinusDay = dtpIn.Value.AddDays(-1);
                 string filterDate = Convert.ToString(dtpIn.Value);
-                foreach (var v in staff.GetNumList(filterDate))
+                foreach (var v in repositoryApartmentAClass.GetNumList(sqlConnect, filterDate))
                 {
                     comboBox.Items.Add(v.ApId);
                 }
@@ -114,13 +116,13 @@ namespace ClassRequest
             }
         }
         // запрос зареганых клиентов
-        public void GetUserIdList(TextBox textBoxPass)
+        public void GetUserIdList(SqlConnect sqlConnect, TextBox textBoxPass)
         {
             AutoCompleteStringCollection acsCollection = new AutoCompleteStringCollection();
 
-            string[] str = new string[selectTable.GetTableClient().Count];
+            string[] str = new string[repositoryClient.GetSingleTable(sqlConnect).Count];
             int i = 0;
-            foreach (var v in selectTable.GetTableClient())
+            foreach (var v in repositoryClient.GetSingleTable(sqlConnect))
             {
                 str[i] = v.ClientId;
                 ++i;
@@ -132,10 +134,10 @@ namespace ClassRequest
             textBoxPass.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
         // запрос на все поля клиента если он уже есть в базе
-        public void InputAllClientFields(string textBoxPass, TextBox textBoxFirstName, TextBox textBoxSecondName,
+        public void InputAllClientFields(SqlConnect sqlConnect, string textBoxPass, TextBox textBoxFirstName, TextBox textBoxSecondName,
             ComboBox comboBoxGender, DateTimePicker dateTimePicker, TextBox textBoxPhone)
         {
-            foreach (var v in selectTable.GetTableClient())
+            foreach (var v in repositoryClient.GetSingleTable(sqlConnect))
             {
                 if (v.ClientId == textBoxPass)
                 {
@@ -148,12 +150,12 @@ namespace ClassRequest
             }
         }
         // вывод информации, если изменяются поля комнаты
-        public void UpdateAddStatInfo(ComboBox comboBoxApId, DateTimePicker dtpCheckIn, DateTimePicker dtpCheckOut,
+        public void SelectStatInfo(SqlConnect sqlConnect, ComboBox comboBoxApId, DateTimePicker dtpCheckIn, DateTimePicker dtpCheckOut,
             Label labelRoomN, Label labelRoomQ, Label labelRoomT, Label labelRoomC)
         {
             int costValue = 0;
             labelRoomN.Text = comboBoxApId.Text;
-            foreach (var v in staff.UpdateStatAdd())
+            foreach (var v in repositoryApartmentAClass.UpdateStatAdd(sqlConnect))
             {
                 if (v.ApId == comboBoxApId.Text)
                 {
@@ -174,7 +176,7 @@ namespace ClassRequest
         }
 
         // псевдоудаление клента из таблицы
-        public void FakedUserDelete(int dgvIndex)
+        public void FakedUserDelete(SqlConnect sqlConnect, int dgvIndex)
         {
             try
             {
@@ -182,11 +184,11 @@ namespace ClassRequest
                 string filterDate = Convert.ToString(DateTime.Now);
                 // счётчик
                 int i = 0;
-                foreach (var v in staff.GetUserList(filterDate))
+                foreach (var v in repositoryUserApartmentCard.GetUserList(sqlConnect, filterDate))
                 {
                     if (i == dgvIndex)
                     {
-                         staff.FakeUserDeleteSQL(v);
+                         repositoryACard.FakeUserDeleteSql(sqlConnect, v);
                     }
                     ++i;
                 }

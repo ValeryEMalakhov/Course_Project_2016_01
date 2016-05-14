@@ -19,55 +19,48 @@ using ClassRequest.DAL;
 using ClassRequest.SingleTable;
 using Npgsql;
 
-namespace ClassRequest.StaffReq
+namespace ClassRequest.DAL
 {
-    public class StaffSql
+    public class RepositoryACard
     {
-        // глобальные переменные
-        SqlConnect sqlConnect;
-        SelectTable selectTable;
-
-        public StaffSql(NpgsqlConnection conn)
+        #region Global Values
+        //RepositoryAClass repositoryAClass = new RepositoryAClass();
+        //RepositoryApartment repositoryApartment = new RepositoryApartment();
+        //RepositoryApartmentAClass repositoryApartmentAClass = new RepositoryApartmentAClass();
+        RepositoryClient repositoryClient = new RepositoryClient();
+        //RepositoryHotel repositoryHotel = new RepositoryHotel();
+        //RepositoryStaff repositoryStaff = new RepositoryStaff();
+        //RepositoryStaffPosition repositoryStaffPosition = new RepositoryStaffPosition();
+        RepositoryUserApartmentCard repositoryUserApartmentCard = new RepositoryUserApartmentCard();
+        #endregion
+        #region TableSelect
+        public List<TableACard> GetSingleTable(SqlConnect sqlConnect)
         {
-            sqlConnect = new SqlConnect(conn);
-            selectTable = new SelectTable(conn);
-        }
-
-        public List<UserAppartmentCard> GetUserList(string filterDate)
-        {
-            UserAppartmentCard userAppartmentCard;
-            var userAppartmentCardList = new List<UserAppartmentCard>();
-
-            //MessageBox.Show(filterDate);
+            TableACard tableACard;
+            var tableACardList = new List<TableACard>();
 
             string commPart =
                 "SELECT *" +
-                " FROM \"hotel\".\"Client\" c, \"hotel\".\"ACard\" a, \"hotel\".\"Apartment\" ap" +
-                " WHERE c.client_id = a.client_id" +
-                " AND ap.ap_id = a.ap_id" +
-                " AND a.CheckInDate <= '" + filterDate + "'::timestamp with time zone" +
-                " AND a.CheckOutDate > '" + filterDate + "'::timestamp with time zone ;";
+                " FROM \"hotel\".\"ACard\";";
             try
             {
                 // открываем соединение
-                sqlConnect.GetInstance().OpenConn();
+                // sqlConnect.GetInstance().OpenConn();
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
                 NpgsqlDataReader readerUserTable = command.ExecuteReader();
 
                 foreach (DbDataRecord dbDataRecord in readerUserTable)
                 {
-                    userAppartmentCard = new UserAppartmentCard(
+                    tableACard = new TableACard(
                         dbDataRecord["Client_ID"].ToString(),
                         dbDataRecord["Ap_ID"].ToString(),
-                        dbDataRecord["FirstName"].ToString(),
-                        dbDataRecord["SecondName"].ToString(),
-                        dbDataRecord["Gender"].ToString(),
                         dbDataRecord["CheckInDate"].ToString(),
-                        dbDataRecord["CheckOutDate"].ToString());
-
-                    userAppartmentCardList.Add(userAppartmentCard);
+                        dbDataRecord["CheckOutDate"].ToString(),
+                        dbDataRecord["StComment"].ToString());
+                    tableACardList.Add(tableACard);
                 }
+                readerUserTable.Close();
             }
             catch (NpgsqlException exp)
             {
@@ -77,86 +70,37 @@ namespace ClassRequest.StaffReq
             finally
             {
                 // соединение закрыто принудительно
-                sqlConnect.GetInstance().CloseConn();
+                // sqlConnect.GetInstance().CloseConn();
             }
-            return userAppartmentCardList;
+            return tableACardList;
         }
-
-        public List<ApartmentAClass> GetNumList(string filterDate)
-        {
-            ApartmentAClass tableApartmentAClass;
-            var tableApartmentList = new List<ApartmentAClass>();
-
-            string commPart =
-                "SELECT a.Ap_ID, a.Hotel_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
-                " FROM \"hotel\".\"Apartment\" a, \"hotel\".\"AClass\" s" +
-                " WHERE a.Class_ID = s.Class_ID" +
-                " EXCEPT" +
-                " SELECT a.Ap_ID, a.Hotel_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
-                " FROM \"hotel\".\"Apartment\" a, \"hotel\".\"ACard\" c, \"hotel\".\"AClass\" s" +
-                " WHERE a.ap_id = c.ap_id" +
-                " AND c.CheckInDate <= '" + filterDate + "'::timestamp with time zone" +
-                " AND c.CheckOutDate > '" + filterDate + "'::timestamp with time zone" +
-                " ORDER BY (Ap_ID) ;";
-            try
-            {
-                // открываем соединение
-                sqlConnect.GetInstance().OpenConn();
-
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
-                NpgsqlDataReader readerUserTable = command.ExecuteReader();
-
-                foreach (DbDataRecord dbDataRecord in readerUserTable)
-                {
-                    tableApartmentAClass = new ApartmentAClass(
-                        dbDataRecord["Ap_ID"].ToString(),
-                        dbDataRecord["Hotel_ID"].ToString(),
-                        dbDataRecord["PlaceQuantity"].ToString(),
-                        dbDataRecord["Class_ID"].ToString(),
-                        dbDataRecord["ClassCost"].ToString());
-
-                    tableApartmentList.Add(tableApartmentAClass);
-                }
-            }
-            catch (NpgsqlException exp)
-            {
-                // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
-            }
-            finally
-            {
-                // соединение закрыто принудительно
-                sqlConnect.GetInstance().CloseConn();
-            }
-            return tableApartmentList;
-        }
-
-        // добавление посетителя
-        public void AddUser(string textBoxPass, string textBoxFirstName, string textBoxSecondName,
-            string textBoxGender, string dtpBirth, string textBoxPhone,
-            string comboBoxApId, string dtpCheckIn, string dtpCheckOut, string textBoxComm)
+        #endregion
+        #region TableInsert
+        public void AddUser(SqlConnect sqlConnect, string textBoxPass, string textBoxFirstName, string textBoxSecondName,
+    string textBoxGender, string dtpBirth, string textBoxPhone,
+    string comboBoxApId, string dtpCheckIn, string dtpCheckOut, string textBoxComm)
         {
             int keyClientJustInHotel = 0;
-            foreach (var v in GetUserList(Convert.ToString(DateTime.Today)))
+            foreach (var v in repositoryUserApartmentCard.GetUserList(sqlConnect, Convert.ToString(DateTime.Today)))
             {
                 // проверяем наличие постояльца отеле
                 if (v.ClientId == textBoxPass) keyClientJustInHotel = 1;
             }
             if (keyClientJustInHotel == 0)
             {
-                int keyClientInBD = 0;
-                foreach (var v in selectTable.GetTableClient())
+                int keyClientInBd = 0;
+                foreach (var v in repositoryClient.GetSingleTable(sqlConnect))
                 {
                     // проверяем наличие постояльца в БД
-                    if (v.ClientId == textBoxPass) keyClientInBD = 1;
+                    if (v.ClientId == textBoxPass) keyClientInBd = 1;
                 }
-                if (keyClientInBD == 0)
+                if (keyClientInBd == 0)
                 {
                     // блок добавления нового пользователя в базу
                     try
                     {
                         // открываем соединение
-                        sqlConnect.GetInstance().OpenConn();
+                        // sqlConnect.GetInstance().OpenConn();
                         string commPart =
                             "INSERT INTO \"hotel\".\"Client\"" +
                             " (Client_ID, FirstName, SecondName, Gender, DateOfBirth, Phone)" +
@@ -193,13 +137,13 @@ namespace ClassRequest.StaffReq
                     finally
                     {
                         // соединение закрыто принудительно
-                        sqlConnect.GetInstance().CloseConn();
+                        // sqlConnect.GetInstance().CloseConn();
                     }
                     // блок добавления человека в карту регистрации
                     try
                     {
                         // открываем соединение
-                        sqlConnect.GetInstance().OpenConn();
+                        // sqlConnect.GetInstance().OpenConn();
                         string commPart =
                             "INSERT INTO \"hotel\".\"ACard\"" +
                             " (Client_ID, Ap_ID, CheckInDate, CheckOutDate, StComment)" +
@@ -236,7 +180,7 @@ namespace ClassRequest.StaffReq
                     finally
                     {
                         // соединение закрыто принудительно
-                        sqlConnect.GetInstance().CloseConn();
+                        // sqlConnect.GetInstance().CloseConn();
                     }
                 }
                 else
@@ -245,7 +189,7 @@ namespace ClassRequest.StaffReq
                     try
                     {
                         // открываем соединение
-                        sqlConnect.GetInstance().OpenConn();
+                        // sqlConnect.GetInstance().OpenConn();
                         string commPart =
                             "INSERT INTO \"hotel\".\"ACard\"" +
                             " (Client_ID, Ap_ID, CheckInDate, CheckOutDate, StComment)" +
@@ -282,7 +226,7 @@ namespace ClassRequest.StaffReq
                     finally
                     {
                         // соединение закрыто принудительно
-                        sqlConnect.GetInstance().CloseConn();
+                        // sqlConnect.GetInstance().CloseConn();
                     }
                 }
             }
@@ -291,49 +235,10 @@ namespace ClassRequest.StaffReq
                 MessageBox.Show(@"Постоялец таки уже в отеле!");
             }
         }
-        public List<ApartmentAClass> UpdateStatAdd()
-        {
-            ApartmentAClass tableApartmentAClass;
-            var tableApartmentList = new List<ApartmentAClass>();
-
-            string commPart =
-                "SELECT a.Ap_ID, a.Hotel_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
-                " FROM \"hotel\".\"Apartment\" a, \"hotel\".\"AClass\" s" +
-                " WHERE a.Class_ID = s.Class_ID";
-            try
-            {
-                // открываем соединение
-                sqlConnect.GetInstance().OpenConn();
-
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
-                NpgsqlDataReader readerUserTable = command.ExecuteReader();
-
-                foreach (DbDataRecord dbDataRecord in readerUserTable)
-                {
-                    tableApartmentAClass = new ApartmentAClass(
-                        dbDataRecord["Ap_ID"].ToString(),
-                        dbDataRecord["Hotel_ID"].ToString(),
-                        dbDataRecord["PlaceQuantity"].ToString(),
-                        dbDataRecord["Class_ID"].ToString(),
-                        dbDataRecord["ClassCost"].ToString());
-
-                    tableApartmentList.Add(tableApartmentAClass);
-                }
-            }
-            catch (NpgsqlException exp)
-            {
-                // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
-            }
-            finally
-            {
-                // соединение закрыто принудительно
-                sqlConnect.GetInstance().CloseConn();
-            }
-            return tableApartmentList;
-        }
-
-        public void FakeUserDeleteSQL(UserAppartmentCard userAppartmentCard)
+        #endregion
+        #region TableDelete
+        // псевдо удаление, реализуется изменением данных в строке
+        public void FakeUserDeleteSql(SqlConnect sqlConnect, TableUserAppartmentCard userAppartmentCard)
         {
             string commPart =
                 "UPDATE \"hotel\".\"ACard\"" +
@@ -343,7 +248,7 @@ namespace ClassRequest.StaffReq
             try
             {
                 // открываем соединение
-                sqlConnect.GetInstance().OpenConn();
+                // sqlConnect.GetInstance().OpenConn();
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
                 command.ExecuteNonQuery();
@@ -356,8 +261,12 @@ namespace ClassRequest.StaffReq
             finally
             {
                 // соединение закрыто принудительно
-                sqlConnect.GetInstance().CloseConn();
+                // sqlConnect.GetInstance().CloseConn();
             }
         }
+        #endregion
+        #region Other
+
+        #endregion
     }
 }

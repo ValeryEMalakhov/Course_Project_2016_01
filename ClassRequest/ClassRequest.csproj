@@ -76,9 +76,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\ApartmentAClass.cs" />
-    <Compile Include="DAL\UserAppartmentCard.cs" />
-    <Compile Include="SingleTable\SelectTable.cs" />
+    <Compile Include="DAL\RepositoryACard.cs" />
+    <Compile Include="DAL\RepositoryAClass.cs" />
+    <Compile Include="DAL\RepositoryApartment.cs" />
+    <Compile Include="DAL\RepositoryApartmentAClass.cs" />
+    <Compile Include="DAL\RepositoryClient.cs" />
+    <Compile Include="DAL\RepositoryHotel.cs" />
+    <Compile Include="DAL\RepositoryStaff.cs" />
+    <Compile Include="DAL\RepositoryStaffPosition.cs" />
+    <Compile Include="DAL\RepositoryUserApartmentCard.cs" />
+    <Compile Include="SingleTable\TableApartmentAClass.cs" />
+    <Compile Include="SingleTable\TableUserApartmentCard.cs" />
     <Compile Include="SingleTable\TableACard.cs" />
     <Compile Include="SingleTable\TableAClass.cs" />
     <Compile Include="SingleTable\TableApartment.cs" />
@@ -88,13 +96,12 @@
     <Compile Include="SingleTable\TableStaffPosition.cs" />
     <Compile Include="SqlConnect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StaffReq\StaffRequest.cs" />
-    <Compile Include="StaffReq\StaffSql.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

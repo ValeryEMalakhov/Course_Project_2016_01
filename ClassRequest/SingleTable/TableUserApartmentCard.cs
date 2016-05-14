@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassRequest.DAL
+namespace ClassRequest.SingleTable
 {
     // User_Appartment_ACard
-    public class UserAppartmentCard
+    public class TableUserAppartmentCard
     {
         public string ClientId { private set; get;  }
         public string ApId { private set; get; }
@@ -17,10 +17,10 @@ namespace ClassRequest.DAL
         public string CheckInDate { private set; get; }
         public string CheckOutDate { private set; get; }
 
-        public UserAppartmentCard()
+        public TableUserAppartmentCard()
         { }
 
-        public UserAppartmentCard(string clientId, string apId, string firstName, string secondName, string gender, string checkInDate, string checkOutDate)
+        public TableUserAppartmentCard(string clientId, string apId, string firstName, string secondName, string gender, string checkInDate, string checkOutDate)
         {
             ClientId = clientId;
             ApId = apId;

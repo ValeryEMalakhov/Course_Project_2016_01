@@ -29,8 +29,8 @@ namespace LogIn
     public partial class WfLogin : Form
     {
         // шутка
-        string path = @"d:\Uni\Curswork\Course_Project_2016_01\CP1601\materials\Sound\Лонгин.mp3";
-        WindowsMediaPlayer wmp = new WindowsMediaPlayer();
+        string _path = @"d:\Uni\Curswork\Course_Project_2016_01\CP1601\materials\Sound\Лонгин.mp3";
+        WindowsMediaPlayer _wmp = new WindowsMediaPlayer();
 
         public WfLogin()
         {

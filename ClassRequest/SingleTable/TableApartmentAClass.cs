@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassRequest.DAL
+namespace ClassRequest.SingleTable
 {
-    public class ApartmentAClass
+    public class TableApartmentAClass
     {
         public string ApId { private set; get; }
         public string HotelId { private set; get; }
@@ -14,10 +14,10 @@ namespace ClassRequest.DAL
         public string ClassId { private set; get; }
         public string ClassCost { private set; get; }
 
-        public ApartmentAClass()
+        public TableApartmentAClass()
         { }
 
-        public ApartmentAClass(string apId, string hotelId, string placeQuantity, string classId, string classCost)
+        public TableApartmentAClass(string apId, string hotelId, string placeQuantity, string classId, string classCost)
         {
             ApId = apId;
             HotelId = hotelId;
