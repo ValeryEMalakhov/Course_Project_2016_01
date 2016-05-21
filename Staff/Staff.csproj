@@ -70,6 +70,7 @@
       <DependentUpon>AddUserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="StaffRequest.cs" />
+    <Compile Include="StaffValidators.cs" />
     <Compile Include="StaffWinForm.cs">
       <SubType>Form</SubType>
     </Compile>

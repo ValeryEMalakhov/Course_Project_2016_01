@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectConfig.cs" />
     <Compile Include="LogInForm.cs">
       <SubType>Form</SubType>
     </Compile>

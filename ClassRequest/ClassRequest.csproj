@@ -85,6 +85,7 @@
     <Compile Include="DAL\RepositoryStaff.cs" />
     <Compile Include="DAL\RepositoryStaffPosition.cs" />
     <Compile Include="DAL\RepositoryUserApartmentCard.cs" />
+    <Compile Include="ReposFactory.cs" />
     <Compile Include="SingleTable\TableApartmentAClass.cs" />
     <Compile Include="SingleTable\TableUserApartmentCard.cs" />
     <Compile Include="SingleTable\TableACard.cs" />

@@ -24,17 +24,22 @@ namespace ClassRequest.DAL
     public class RepositoryACard
     {
         #region Global Values
-        //RepositoryAClass repositoryAClass = new RepositoryAClass();
-        //RepositoryApartment repositoryApartment = new RepositoryApartment();
-        //RepositoryApartmentAClass repositoryApartmentAClass = new RepositoryApartmentAClass();
-        RepositoryClient repositoryClient = new RepositoryClient();
-        //RepositoryHotel repositoryHotel = new RepositoryHotel();
-        //RepositoryStaff repositoryStaff = new RepositoryStaff();
-        //RepositoryStaffPosition repositoryStaffPosition = new RepositoryStaffPosition();
-        RepositoryUserApartmentCard repositoryUserApartmentCard = new RepositoryUserApartmentCard();
+
+        private RepositoryClient repositoryClient;
+        private RepositoryUserApartmentCard repositoryUserApartmentCard;
+        private SqlConnect sqlConnect;
+
         #endregion
+
+        public RepositoryACard(SqlConnect _sqlConnect)
+        {
+            sqlConnect = _sqlConnect;
+            repositoryClient = new RepositoryClient(_sqlConnect);
+            repositoryUserApartmentCard = new RepositoryUserApartmentCard(_sqlConnect);
+        }
+
         #region TableSelect
-        public List<TableACard> GetSingleTable(SqlConnect sqlConnect)
+        public List<TableACard> GetSingleTable()
         {
             TableACard tableACard;
             var tableACardList = new List<TableACard>();
@@ -45,7 +50,7 @@ namespace ClassRequest.DAL
             try
             {
                 // открываем соединение
-                // sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetInstance().OpenConn();
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
                 NpgsqlDataReader readerUserTable = command.ExecuteReader();
@@ -70,18 +75,18 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                // sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetInstance().CloseConn();
             }
             return tableACardList;
         }
         #endregion
         #region TableInsert
-        public void AddUser(SqlConnect sqlConnect, string textBoxPass, string textBoxFirstName, string textBoxSecondName,
+        public void AddUser(string textBoxPass, string textBoxFirstName, string textBoxSecondName,
     string textBoxGender, string dtpBirth, string textBoxPhone,
     string comboBoxApId, string dtpCheckIn, string dtpCheckOut, string textBoxComm)
         {
             int keyClientJustInHotel = 0;
-            foreach (var v in repositoryUserApartmentCard.GetUserList(sqlConnect, Convert.ToString(DateTime.Today)))
+            foreach (var v in repositoryUserApartmentCard.GetUserList(Convert.ToString(DateTime.Today)))
             {
                 // проверяем наличие постояльца отеле
                 if (v.ClientId == textBoxPass) keyClientJustInHotel = 1;
@@ -89,7 +94,7 @@ namespace ClassRequest.DAL
             if (keyClientJustInHotel == 0)
             {
                 int keyClientInBd = 0;
-                foreach (var v in repositoryClient.GetSingleTable(sqlConnect))
+                foreach (var v in repositoryClient.GetSingleTable())
                 {
                     // проверяем наличие постояльца в БД
                     if (v.ClientId == textBoxPass) keyClientInBd = 1;
@@ -100,7 +105,7 @@ namespace ClassRequest.DAL
                     try
                     {
                         // открываем соединение
-                        // sqlConnect.GetInstance().OpenConn();
+                        //sqlConnect.GetInstance().OpenConn();
                         string commPart =
                             "INSERT INTO \"hotel\".\"Client\"" +
                             " (Client_ID, FirstName, SecondName, Gender, DateOfBirth, Phone)" +
@@ -116,7 +121,7 @@ namespace ClassRequest.DAL
                         command.Parameters.AddWithValue("@DateOfBirth", dtpBirth);
                         if (textBoxPhone.Length == 0)
                         {
-                            textBoxPhone = "";
+                            textBoxPhone = @"";
                         }
                         command.Parameters.AddWithValue("@Phone", textBoxPhone);
 
@@ -137,13 +142,13 @@ namespace ClassRequest.DAL
                     finally
                     {
                         // соединение закрыто принудительно
-                        // sqlConnect.GetInstance().CloseConn();
+                        //sqlConnect.GetInstance().CloseConn();
                     }
                     // блок добавления человека в карту регистрации
                     try
                     {
                         // открываем соединение
-                        // sqlConnect.GetInstance().OpenConn();
+                        //sqlConnect.GetInstance().OpenConn();
                         string commPart =
                             "INSERT INTO \"hotel\".\"ACard\"" +
                             " (Client_ID, Ap_ID, CheckInDate, CheckOutDate, StComment)" +
@@ -158,7 +163,7 @@ namespace ClassRequest.DAL
                         command.Parameters.AddWithValue("@CheckOutDate", dtpCheckOut);
                         if (textBoxComm.Length == 0)
                         {
-                            textBoxComm = "";
+                            textBoxComm = @"";
                         }
                         command.Parameters.AddWithValue("@StComment", textBoxComm);
 
@@ -180,7 +185,7 @@ namespace ClassRequest.DAL
                     finally
                     {
                         // соединение закрыто принудительно
-                        // sqlConnect.GetInstance().CloseConn();
+                        //sqlConnect.GetInstance().CloseConn();
                     }
                 }
                 else
@@ -189,7 +194,7 @@ namespace ClassRequest.DAL
                     try
                     {
                         // открываем соединение
-                        // sqlConnect.GetInstance().OpenConn();
+                        //sqlConnect.GetInstance().OpenConn();
                         string commPart =
                             "INSERT INTO \"hotel\".\"ACard\"" +
                             " (Client_ID, Ap_ID, CheckInDate, CheckOutDate, StComment)" +
@@ -204,7 +209,7 @@ namespace ClassRequest.DAL
                         command.Parameters.AddWithValue("@CheckOutDate", dtpCheckOut);
                         if (textBoxComm.Length == 0)
                         {
-                            textBoxComm = "";
+                            textBoxComm = @"";
                         }
                         command.Parameters.AddWithValue("@StComment", textBoxComm);
 
@@ -226,7 +231,7 @@ namespace ClassRequest.DAL
                     finally
                     {
                         // соединение закрыто принудительно
-                        // sqlConnect.GetInstance().CloseConn();
+                        //sqlConnect.GetInstance().CloseConn();
                     }
                 }
             }
@@ -238,7 +243,7 @@ namespace ClassRequest.DAL
         #endregion
         #region TableDelete
         // псевдо удаление, реализуется изменением данных в строке
-        public void FakeUserDeleteSql(SqlConnect sqlConnect, TableUserAppartmentCard userAppartmentCard)
+        public void FakeUserDeleteSql(TableUserAppartmentCard userAppartmentCard)
         {
             string commPart =
                 "UPDATE \"hotel\".\"ACard\"" +
@@ -248,7 +253,7 @@ namespace ClassRequest.DAL
             try
             {
                 // открываем соединение
-                // sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetInstance().OpenConn();
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
                 command.ExecuteNonQuery();
@@ -261,7 +266,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                // sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetInstance().CloseConn();
             }
         }
         #endregion

@@ -24,17 +24,18 @@ namespace ClassRequest.DAL
     public class RepositoryUserApartmentCard
     {
         #region Global Values
-        //RepositoryACard repositoryACard = new RepositoryACard();
-        //RepositoryAClass repositoryAClass = new RepositoryAClass();
-        //RepositoryApartment repositoryApartment = new RepositoryApartment();
-        //RepositoryApartmentAClass repositoryApartmentAClass = new RepositoryApartmentAClass();
-        //RepositoryClient repositoryClient = new RepositoryClient();
-        //RepositoryHotel repositoryHotel = new RepositoryHotel();
-        //RepositoryStaff repositoryStaff = new RepositoryStaff();
-        //RepositoryStaffPosition repositoryStaffPosition = new RepositoryStaffPosition();
+
+        private SqlConnect sqlConnect;
+
         #endregion
+
+        public RepositoryUserApartmentCard(SqlConnect _sqlConnect)
+        {
+            sqlConnect = _sqlConnect;
+        }
+
         #region TableSelect
-        public List<TableUserAppartmentCard> GetUserList(SqlConnect sqlConnect, string filterDate)
+        public List<TableUserAppartmentCard> GetUserList(string filterDate)
         {
             TableUserAppartmentCard userAppartmentCard;
             var userAppartmentCardList = new List<TableUserAppartmentCard>();
@@ -46,16 +47,17 @@ namespace ClassRequest.DAL
                 " FROM \"hotel\".\"Client\" c, \"hotel\".\"ACard\" a, \"hotel\".\"Apartment\" ap" +
                 " WHERE c.client_id = a.client_id" +
                 " AND ap.ap_id = a.ap_id" +
-                " AND a.CheckInDate <= '" + filterDate + "'::timestamp with time zone" +
-                " AND a.CheckOutDate > '" + filterDate + "'::timestamp with time zone ;";
+                " AND a.CheckInDate <= @filterDate::timestamp with time zone" +
+                " AND a.CheckOutDate > @filterDate::timestamp with time zone ;";
             try
             {
                 // открываем соединение
-                // sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetInstance().OpenConn();
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
-                NpgsqlDataReader readerUserTable = command.ExecuteReader();
+                command.Parameters.AddWithValue("@filterDate", filterDate);
 
+                NpgsqlDataReader readerUserTable = command.ExecuteReader();
                 foreach (DbDataRecord dbDataRecord in readerUserTable)
                 {
                     userAppartmentCard = new TableUserAppartmentCard(

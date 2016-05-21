@@ -19,6 +19,7 @@ using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Configuration;
+using ClassRequest;
 using WMPLib;
 using Npgsql;
 using Staff;
@@ -29,13 +30,16 @@ namespace LogIn
     public partial class WfLogin : Form
     {
         // шутка
-        string _path = @"d:\Uni\Curswork\Course_Project_2016_01\CP1601\materials\Sound\Лонгин.mp3";
-        WindowsMediaPlayer _wmp = new WindowsMediaPlayer();
+        //string _path = @"d:\Uni\Curswork\Course_Project_2016_01\CP1601\materials\Sound\Лонгин.mp3";
+        //WindowsMediaPlayer _wmp = new WindowsMediaPlayer();
+        private ReposFactory reposFactory;
 
-        public WfLogin()
+        public WfLogin(ReposFactory reposFactory)
         {
             InitializeComponent();
+            this.reposFactory = reposFactory;
         }
+        public  WfLogin() { }
 
         private void timer_Tick(object sender, EventArgs e)
         {
@@ -59,7 +63,8 @@ namespace LogIn
 
         private void WfLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            
+            reposFactory?.Dispose();
         }
 
         private void btnLoginLikeAdmin_Click(object sender, EventArgs e)
@@ -72,14 +77,7 @@ namespace LogIn
 
         private void btnLoginLikeStaff_Click(object sender, EventArgs e)
         {
-            NpgsqlConnection conn = new NpgsqlConnection(
-                "Server=" + ConfigurationManager.AppSettings.Get("ip") +
-                "; Port=" + ConfigurationManager.AppSettings.Get("port") +
-                "; User Id=" + ConfigurationManager.AppSettings.Get("userId") +
-                "; Password=" + ConfigurationManager.AppSettings.Get("passwd") +
-                "; Database=" + ConfigurationManager.AppSettings.Get("dataBase") + ";");
-
-            StaffWinForm staff = new StaffWinForm(conn);
+            StaffWinForm staff = new StaffWinForm(reposFactory);
             Hide();
             staff.ShowDialog();
             Show();
@@ -87,14 +85,7 @@ namespace LogIn
 
         private void btnLoginLikeUser_Click(object sender, EventArgs e)
         {
-            NpgsqlConnection conn = new NpgsqlConnection(
-                "Server=" + ConfigurationManager.AppSettings.Get("ip") +
-                "; Port=" + ConfigurationManager.AppSettings.Get("port") +
-                "; User Id=" + ConfigurationManager.AppSettings.Get("userId") +
-                "; Password=" + ConfigurationManager.AppSettings.Get("passwd") +
-                "; Database=" + ConfigurationManager.AppSettings.Get("dataBase") + ";");
-
-            ClientWinForm client = new ClientWinForm();
+            ClientWinForm client = new ClientWinForm(reposFactory, textBoxLoginId.Text);
             Hide();
             client.ShowDialog();
             Show();

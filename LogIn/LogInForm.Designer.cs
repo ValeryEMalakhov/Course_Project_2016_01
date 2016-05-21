@@ -36,6 +36,8 @@
             this.btnLoginLikeStaff = new System.Windows.Forms.Button();
             this.btnLoginLikeAdmin = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.textBoxLoginId = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,11 +94,30 @@
             this.timer.Interval = 46;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // textBoxLoginId
+            // 
+            this.textBoxLoginId.Location = new System.Drawing.Point(65, 318);
+            this.textBoxLoginId.Name = "textBoxLoginId";
+            this.textBoxLoginId.Size = new System.Drawing.Size(216, 20);
+            this.textBoxLoginId.TabIndex = 9;
+            this.textBoxLoginId.Text = "GB 22 333 333";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 321);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Client ID";
+            // 
             // WfLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(344, 441);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBoxLoginId);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.btnLoginLikeUser);
             this.Controls.Add(this.btnLoginLikeStaff);
@@ -113,6 +134,7 @@
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -124,6 +146,8 @@
         private System.Windows.Forms.Button btnLoginLikeStaff;
         private System.Windows.Forms.Button btnLoginLikeAdmin;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.TextBox textBoxLoginId;
+        private System.Windows.Forms.Label label1;
     }
 }
 

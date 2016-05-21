@@ -27,60 +27,72 @@ namespace Staff
     public partial class StaffWinForm : Form
     {
         #region Global Values
-        SqlConnect _sqlConnect;
-        NpgsqlConnection _conn;
+
+        StaffValidators _staffValidators;
         StaffRequest _staffRequest;
+        ReposFactory _reposFactory;
+        
         #endregion
 
-        public StaffWinForm(NpgsqlConnection conn)
+        public StaffWinForm(ReposFactory reposFactory)
         {
             InitializeComponent();
-            _conn = conn;
-            _sqlConnect = new SqlConnect(_conn);
+
+            _reposFactory = reposFactory;
             _staffRequest = new StaffRequest();
+            _staffValidators = new StaffValidators();
 
             dgvUser.ScrollBars = ScrollBars.Both;
             dgvNum.ScrollBars = ScrollBars.Horizontal;
         }
 
         public StaffWinForm()
-        { }
+        {
+            InitializeComponent();
+        }
 
         private void StaffWinForm_Load(object sender, EventArgs e)
         {
-            // открываем соединение
-            _sqlConnect.GetInstance().OpenConn();
-
             // использовать дату из dateTPUser
-            _staffRequest.UserOutput(_sqlConnect, dgvUser, dateTPUser);
-            _staffRequest.NumOutput(_sqlConnect, dgvNum, dateTPUser);
+            if (_staffValidators.ValidUserOutput(dateTPUser))
+            {
+                _staffRequest.UserOutput(_reposFactory, dgvUser, dateTPUser);
+            }
+            if (_staffValidators.ValidNumOutput(dateTPUser))
+            {
+                _staffRequest.NumOutput(_reposFactory, dgvNum, dateTPUser);
+            }
 
             dgvUser.Rows[0].Selected = false;
             dgvUser.AllowUserToAddRows = false;
             dgvNum.Rows[0].Selected = false;
-            dgvNum.AllowUserToAddRows = false;
+            dgvNum.AllowUserToAddRows = false; 
         }
 
         private void StaffWinForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // разрываем соединение
-            _sqlConnect.GetInstance().CloseConn();
+
         }
 
         private void btnUpdateUser_Click(object sender, EventArgs e)
         {
             // Эта кнопка мертва
-            _staffRequest.UserOutput(_sqlConnect, dgvUser, dateTPUser);
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            AddUserForm addUser = new AddUserForm(_sqlConnect);
+            AddUserForm addUser = new AddUserForm(_reposFactory);
             addUser.ShowDialog();
 
             // обновляем таблицу
-            _staffRequest.UserOutput(_sqlConnect, dgvUser, dateTPUser);
-            _staffRequest.NumOutput(_sqlConnect, dgvNum, dateTPUser);
+            if (_staffValidators.ValidUserOutput(dateTPUser))
+            {
+                _staffRequest.UserOutput(_reposFactory, dgvUser, dateTPUser);
+            }
+            if (_staffValidators.ValidNumOutput(dateTPUser))
+            {
+                _staffRequest.NumOutput(_reposFactory, dgvNum, dateTPUser);
+            }
 
             dgvUser.Rows[0].Selected = false;
             dgvUser.AllowUserToAddRows = false;
@@ -90,7 +102,7 @@ namespace Staff
 
         private void btnUpdateNum_Click(object sender, EventArgs e)
         {
-            _staffRequest.NumOutput(_sqlConnect, dgvNum, dateTPNum);
+            // Эта кнопка мертва тоже
         }
 
         private void btnDeleteUser_Click(object sender, EventArgs e)
@@ -98,7 +110,13 @@ namespace Staff
             // удаление это изменение даты выписки на сегоднешнюю
             try
             {
-                _staffRequest.FakedUserDelete(_sqlConnect, dgvUser.CurrentRow.Index);
+                if (dgvUser.CurrentRow != null)
+                {
+                    if (_staffValidators.ValidUserDelete(dgvUser.CurrentRow.Index))
+                    {
+                        _staffRequest.FakedUserDelete(_reposFactory, dgvUser.CurrentRow.Index);
+                    }
+                }
             }
             catch (Exception exp)
             {
@@ -108,18 +126,30 @@ namespace Staff
             finally
             {
                 // обновляем таблицу
-                _staffRequest.UserOutput(_sqlConnect, dgvUser, dateTPUser);
-                _staffRequest.NumOutput(_sqlConnect, dgvNum, dateTPUser);
+                if (_staffValidators.ValidUserOutput(dateTPUser))
+                {
+                    _staffRequest.UserOutput(_reposFactory, dgvUser, dateTPUser);
+                }
+                if (_staffValidators.ValidNumOutput(dateTPUser))
+                {
+                    _staffRequest.NumOutput(_reposFactory, dgvNum, dateTPNum);
+                }
             }
         }
 
         private void dateTPUser_ValueChanged(object sender, EventArgs e)
         {
-            _staffRequest.UserOutput(_sqlConnect, dgvUser, dateTPUser);
+            if (_staffValidators.ValidUserOutput(dateTPUser))
+            {
+                _staffRequest.UserOutput(_reposFactory, dgvUser, dateTPUser);
+            }
         }
         private void dateTPNum_ValueChanged(object sender, EventArgs e)
         {
-            _staffRequest.NumOutput(_sqlConnect, dgvNum, dateTPNum);
+            if (_staffValidators.ValidNumOutput(dateTPUser))
+            {
+                _staffRequest.NumOutput(_reposFactory, dgvNum, dateTPNum);
+            }
         }
     }
 }

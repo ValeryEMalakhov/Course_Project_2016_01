@@ -24,17 +24,18 @@ namespace ClassRequest.DAL
     public class RepositoryApartmentAClass
     {
         #region Global Values
-        //RepositoryACard repositoryACard = new RepositoryACard();
-        //RepositoryAClass repositoryAClass = new RepositoryAClass();
-        //RepositoryApartment repositoryApartment = new RepositoryApartment();
-        //RepositoryClient repositoryClient = new RepositoryClient();
-        //RepositoryHotel repositoryHotel = new RepositoryHotel();
-        //RepositoryStaff repositoryStaff = new RepositoryStaff();
-        //RepositoryStaffPosition repositoryStaffPosition = new RepositoryStaffPosition();
-        //RepositoryUserApartmentCard repositoryUserApartmentCard = new RepositoryUserApartmentCard();
+
+        private SqlConnect sqlConnect;
+
         #endregion
+
+        public RepositoryApartmentAClass(SqlConnect _sqlConnect)
+        {
+            sqlConnect = _sqlConnect;
+        }
+
         #region TableSelect
-        public List<TableApartmentAClass> GetNumList(SqlConnect sqlConnect, string filterDate)
+        public List<TableApartmentAClass> GetNumList(string filterDate)
         {
             TableApartmentAClass tableApartmentAClass;
             var tableApartmentList = new List<TableApartmentAClass>();
@@ -47,17 +48,18 @@ namespace ClassRequest.DAL
                 " SELECT a.Ap_ID, a.Hotel_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
                 " FROM \"hotel\".\"Apartment\" a, \"hotel\".\"ACard\" c, \"hotel\".\"AClass\" s" +
                 " WHERE a.ap_id = c.ap_id" +
-                " AND c.CheckInDate <= '" + filterDate + "'::timestamp with time zone" +
-                " AND c.CheckOutDate > '" + filterDate + "'::timestamp with time zone" +
+                " AND c.CheckInDate <= @filterDate::timestamp with time zone" +
+                " AND c.CheckOutDate > @filterDate::timestamp with time zone" +
                 " ORDER BY (Ap_ID) ;";
             try
             {
                 // открываем соединение
-                // sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetInstance().OpenConn();
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
-                NpgsqlDataReader readerUserTable = command.ExecuteReader();
+                command.Parameters.AddWithValue("@filterDate", filterDate);
 
+                NpgsqlDataReader readerUserTable = command.ExecuteReader();
                 foreach (DbDataRecord dbDataRecord in readerUserTable)
                 {
                     tableApartmentAClass = new TableApartmentAClass(
@@ -79,11 +81,11 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                // sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetInstance().CloseConn();
             }
             return tableApartmentList;
         }
-        public List<TableApartmentAClass> UpdateStatAdd(SqlConnect sqlConnect)
+        public List<TableApartmentAClass> UpdateStatAdd()
         {
             TableApartmentAClass tableApartmentAClass;
             var tableApartmentList = new List<TableApartmentAClass>();
@@ -95,7 +97,7 @@ namespace ClassRequest.DAL
             try
             {
                 // открываем соединение
-                // sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetInstance().OpenConn();
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
                 NpgsqlDataReader readerUserTable = command.ExecuteReader();
@@ -121,7 +123,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                // sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetInstance().CloseConn();
             }
             return tableApartmentList;
         }

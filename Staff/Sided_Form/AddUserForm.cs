@@ -28,32 +28,33 @@ namespace Staff.Sided_Form
     public partial class AddUserForm : Form
     {
         #region Global Values
-        RepositoryACard repositoryACard = new RepositoryACard();
-        RepositoryAClass repositoryAClass = new RepositoryAClass();
-        RepositoryApartment repositoryApartment = new RepositoryApartment();
-        RepositoryApartmentAClass repositoryApartmentAClass = new RepositoryApartmentAClass();
-        RepositoryClient repositoryClient = new RepositoryClient();
-        RepositoryHotel repositoryHotel = new RepositoryHotel();
-        RepositoryStaff repositoryStaff = new RepositoryStaff();
-        RepositoryStaffPosition repositoryStaffPosition = new RepositoryStaffPosition();
-        RepositoryUserApartmentCard repositoryUserApartmentCard = new RepositoryUserApartmentCard();
-        #endregion
-        // глобальные переменные
-        SqlConnect _sqlConnect;
-        StaffRequest _staffRequest = new StaffRequest();
 
-        public AddUserForm(SqlConnect sqlConnect)
+        ReposFactory _reposFactory;
+        StaffRequest _staffRequest;
+        StaffValidators _staffValidators;
+
+        #endregion
+
+        public AddUserForm(ReposFactory reposFactory)
         {
             InitializeComponent();
-            this._sqlConnect = sqlConnect;
-            _staffRequest.GetUserIdList(this._sqlConnect, textBoxPass);
+
+            _reposFactory = reposFactory;
+            _staffRequest = new StaffRequest();
+            _staffValidators = new StaffValidators();
+
+            if (_staffValidators.ValidGetUserIdList(textBoxPass))
+            {
+                _staffRequest.GetUserIdList(_reposFactory, textBoxPass);
+            }
         }
 
         private void AddUserForm_Load(object sender, EventArgs e)
         {
             dtpCheckIn.Value = DateTime.Today;
             dtpCheckOut.Value = DateTime.Today;
-            _staffRequest.UpdateComboBoxApId(_sqlConnect, comboBoxApId, dtpCheckIn);
+
+            _staffValidators.ValidUpdateComboBoxApId(comboBoxApId, dtpCheckIn);
         }
 
         private void AddUserForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -63,35 +64,21 @@ namespace Staff.Sided_Form
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (textBoxPass.Text != string.Empty &
-                textBoxFirstName.Text != string.Empty &
-                textBoxSecondName.Text != string.Empty &
-                comboBoxGender.Text != string.Empty &
-
-                comboBoxApId.Text != string.Empty &
-                dtpCheckOut.Value >= dtpCheckIn.Value)
+            if (_staffValidators.ValidAddUser(textBoxPass, textBoxFirstName, textBoxSecondName, comboBoxGender,
+                dtpBirth, textBoxPhone, comboBoxApId, dtpCheckIn, dtpCheckOut, textBoxComm))
             {
-                repositoryACard.AddUser(_sqlConnect, textBoxPass.Text, textBoxFirstName.Text,
-                    textBoxSecondName.Text, comboBoxGender.Text,
-                    dtpBirth.Text, textBoxPhone.Text,
-                    comboBoxApId.Text, dtpCheckIn.Text, dtpCheckOut.Text, textBoxComm.Text);
-
-                textBoxPass.Clear();
-                textBoxFirstName.Clear();
-                textBoxSecondName.Clear();
-                comboBoxGender.Text = string.Empty;
-                textBoxPhone.Clear();
-                comboBoxApId.Items.Clear();
-                comboBoxApId.Text = string.Empty;
-                textBoxComm.Clear();
-
-                // обновляем список свободных комнат
-                _staffRequest.UpdateComboBoxApId(_sqlConnect, comboBoxApId, dtpCheckIn);
-                _staffRequest.GetUserIdList(_sqlConnect, textBoxPass);
+                _staffRequest.AddUser(_reposFactory, textBoxPass, textBoxFirstName, textBoxSecondName, comboBoxGender,
+                    dtpBirth, textBoxPhone, comboBoxApId, dtpCheckIn, dtpCheckOut, textBoxComm);
             }
-            else
+
+            // обновляем список свободных комнат
+            if (_staffValidators.ValidUpdateComboBoxApId(comboBoxApId, dtpCheckIn))
             {
-                MessageBox.Show(@"Заполните все обязательные поля!");
+                _staffRequest.UpdateComboBoxApId(_reposFactory, comboBoxApId, dtpCheckIn);
+            }
+            if (_staffValidators.ValidGetUserIdList(textBoxPass))
+            {
+                _staffRequest.GetUserIdList(_reposFactory, textBoxPass);
             }
         }
 
@@ -105,12 +92,21 @@ namespace Staff.Sided_Form
             {
                 dtpCheckOut.Value = dtpCheckIn.Value.AddDays(1);
             }
-            _staffRequest.UpdateComboBoxApId(_sqlConnect, comboBoxApId, dtpCheckIn);
+
+
+            if (_staffValidators.ValidUpdateComboBoxApId(comboBoxApId, dtpCheckIn))
+            {
+                _staffRequest.UpdateComboBoxApId(_reposFactory, comboBoxApId, dtpCheckIn);
+            }
             if (comboBoxApId.Text != string.Empty)
             {
                 // обновляет автоматическую статистику в labels
-                _staffRequest.SelectStatInfo(_sqlConnect, comboBoxApId, dtpCheckIn, dtpCheckOut, labelRoomN,
-                    labelRoomQ, labelRoomT, labelRoomC);
+                if (_staffValidators.ValidSelectStatInfo(comboBoxApId, dtpCheckIn, dtpCheckOut, labelRoomN,
+                    labelRoomQ, labelRoomT, labelRoomC))
+                {
+                    _staffRequest.SelectStatInfo(_reposFactory, comboBoxApId, dtpCheckIn, dtpCheckOut, labelRoomN,
+                        labelRoomQ, labelRoomT, labelRoomC);
+                }
             }
         }
 
@@ -118,8 +114,13 @@ namespace Staff.Sided_Form
         {
             if (textBoxPass.Text != string.Empty)
             {
-                _staffRequest.InputAllClientFields(_sqlConnect, textBoxPass.Text, textBoxFirstName, textBoxSecondName,
-                    comboBoxGender, dtpBirth, textBoxPhone);
+
+                if (_staffValidators.ValidInputAllClientFields(textBoxPass, textBoxFirstName,
+                    textBoxSecondName, comboBoxGender, dtpBirth, textBoxPhone))
+                {
+                    _staffRequest.InputAllClientFields(_reposFactory, textBoxPass.Text, textBoxFirstName,
+                        textBoxSecondName, comboBoxGender, dtpBirth, textBoxPhone);
+                }
             }
         }
 
@@ -129,8 +130,12 @@ namespace Staff.Sided_Form
             {
                 if (textBoxPass.Text != string.Empty)
                 {
-                    _staffRequest.InputAllClientFields(_sqlConnect, textBoxPass.Text, textBoxFirstName, textBoxSecondName,
-                        comboBoxGender, dtpBirth, textBoxPhone);
+                    if (_staffValidators.ValidInputAllClientFields(textBoxPass, textBoxFirstName,
+                        textBoxSecondName, comboBoxGender, dtpBirth, textBoxPhone))
+                    {
+                        _staffRequest.InputAllClientFields(_reposFactory, textBoxPass.Text, textBoxFirstName,
+                            textBoxSecondName, comboBoxGender, dtpBirth, textBoxPhone);
+                    }
                 }
             }
         }
@@ -141,10 +146,15 @@ namespace Staff.Sided_Form
             {
                 dtpCheckOut.Value = dtpCheckIn.Value.AddDays(1);
             }
+
             if (comboBoxApId.Text != string.Empty)
             {
-                _staffRequest.SelectStatInfo(_sqlConnect, comboBoxApId, dtpCheckIn, dtpCheckOut, labelRoomN,
-                    labelRoomQ, labelRoomT, labelRoomC);
+                if (_staffValidators.ValidSelectStatInfo(comboBoxApId, dtpCheckIn, dtpCheckOut, labelRoomN,
+                    labelRoomQ, labelRoomT, labelRoomC))
+                {
+                    _staffRequest.SelectStatInfo(_reposFactory, comboBoxApId, dtpCheckIn, dtpCheckOut, labelRoomN,
+                        labelRoomQ, labelRoomT, labelRoomC);
+                }
             }
         }
 
@@ -154,8 +164,12 @@ namespace Staff.Sided_Form
             {
                 if (comboBoxApId.Text != string.Empty)
                 {
-                    _staffRequest.SelectStatInfo(_sqlConnect, comboBoxApId, dtpCheckIn, dtpCheckOut, labelRoomN,
-                        labelRoomQ, labelRoomT, labelRoomC);
+                    if (_staffValidators.ValidSelectStatInfo(comboBoxApId, dtpCheckIn, dtpCheckOut, labelRoomN,
+                        labelRoomQ, labelRoomT, labelRoomC))
+                    {
+                        _staffRequest.SelectStatInfo(_reposFactory, comboBoxApId, dtpCheckIn, dtpCheckOut, labelRoomN,
+                            labelRoomQ, labelRoomT, labelRoomC);
+                    }
                 }
             }
         }

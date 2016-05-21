@@ -24,17 +24,18 @@ namespace ClassRequest.DAL
     public class RepositoryStaff
     {
         #region Global Values
-        //RepositoryACard repositoryACard = new RepositoryACard();
-        //RepositoryAClass repositoryAClass = new RepositoryAClass();
-        //RepositoryApartment repositoryApartment = new RepositoryApartment();
-        //RepositoryApartmentAClass repositoryApartmentAClass = new RepositoryApartmentAClass();
-        //RepositoryClient repositoryClient = new RepositoryClient();
-        //RepositoryHotel repositoryHotel = new RepositoryHotel();
-        //RepositoryStaffPosition repositoryStaffPosition = new RepositoryStaffPosition();
-        //RepositoryUserApartmentCard repositoryUserApartmentCard = new RepositoryUserApartmentCard();
+
+        private SqlConnect sqlConnect;
+
         #endregion
+
+        public RepositoryStaff(SqlConnect _sqlConnect)
+        {
+            sqlConnect = _sqlConnect;
+        }
+
         #region TableSelect
-        public List<TableStaff> GetSingleTable(SqlConnect sqlConnect)
+        public List<TableStaff> GetSingleTable()
         {
             TableStaff tableStaff;
             var tableStaffList = new List<TableStaff>();
@@ -45,7 +46,7 @@ namespace ClassRequest.DAL
             try
             {
                 // открываем соединение
-                // sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetInstance().OpenConn();
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
                 NpgsqlDataReader readerUserTable = command.ExecuteReader();
@@ -73,7 +74,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                // sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetInstance().CloseConn();
             }
             return tableStaffList;
         }
