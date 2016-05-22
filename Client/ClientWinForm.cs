@@ -19,6 +19,7 @@ using System.Runtime.CompilerServices;
 using Npgsql;
 using ClassRequest;
 using ClassRequest.DAL;
+using Client.Sided_Form;
 
 namespace Client
 {
@@ -101,7 +102,25 @@ namespace Client
 
         private void btnAddRequest_Click(object sender, EventArgs e)
         {
+            if (dgvNum.CurrentRow != null)
+            {
+                AddForm addUser = new AddForm(_reposFactory, _loginId, dgvNum.Rows[dgvNum.CurrentRow.Index].Cells[0].Value.ToString());
+                addUser.ShowDialog();
+            }
 
+            // обновляем таблицу
+            if (_clientValidators.ValidNumOutput(dateTPNum))
+            {
+                _clientRequest.NumOutput(_reposFactory, dgvNum, dateTPNum);
+            }
+            if (_clientValidators.ValidLogOutput(_loginId))
+            {
+                _clientRequest.LogOutput(_reposFactory, dgvLog, _loginId);
+            }
+            if (_clientValidators.ValidNowOutput(_loginId))
+            {
+                _clientRequest.NowOutput(_reposFactory, dgvNow, _loginId);
+            }
         }
 
         private void btnDeleteRequest_Click(object sender, EventArgs e)

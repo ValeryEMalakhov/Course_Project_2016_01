@@ -35,6 +35,9 @@ namespace Staff.Sided_Form
 
         #endregion
 
+        public AddUserForm()
+        { }
+
         public AddUserForm(ReposFactory reposFactory)
         {
             InitializeComponent();

@@ -39,6 +39,8 @@ namespace Client
                           "-----------------------------------------\n";
         }
 
+        #region mainForm
+
         public bool ValidNumOutput(DateTimePicker dateTPUser)
         {
             try
@@ -156,5 +158,69 @@ namespace Client
                               "-----------------------------------------\n";
             }
         }
+
+        #endregion
+
+        #region addForm
+
+        public bool ValidSelectStatInfo(string comboBoxApId, DateTimePicker dtpCheckIn, DateTimePicker dtpCheckOut, Label labelRoomT)
+        {
+            try
+            {
+                var dateDiff = (dtpCheckOut.Value - dtpCheckIn.Value).TotalDays;
+                labelRoomT.Text = Convert.ToString(dateDiff, CultureInfo.CurrentCulture);
+                if (dateDiff < 0)
+                {
+                    ErrorString += "-- Дата выселения не может быть раньше даты вселения в номер\n";
+                    ValidKey = false;
+                }
+
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
+        public bool ValidAddUser(string comboBoxApId, DateTimePicker dtpCheckIn, DateTimePicker dtpCheckOut, RichTextBox textBoxComm)
+        {
+            try
+            {
+                if (dtpCheckOut.Value < dtpCheckIn.Value)
+                {
+                    ErrorString += "-- Дата выселения не может быть раньше даты вселения в номер\n";
+                    ValidKey = false;
+                }
+
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
+        #endregion
     }
 }
