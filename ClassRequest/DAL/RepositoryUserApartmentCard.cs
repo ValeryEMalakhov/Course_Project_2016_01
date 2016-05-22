@@ -35,6 +35,7 @@ namespace ClassRequest.DAL
         }
 
         #region TableSelect
+
         public List<TableUserAppartmentCard> GetUserList(string filterDate)
         {
             TableUserAppartmentCard userAppartmentCard;
@@ -85,13 +86,17 @@ namespace ClassRequest.DAL
             }
             return userAppartmentCardList;
         }
+
         #endregion
+
         #region TableInsert
 
         #endregion
+
         #region TableDelete
 
         #endregion
+
         #region Other
 
         #endregion

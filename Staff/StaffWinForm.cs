@@ -93,11 +93,6 @@ namespace Staff
             {
                 _staffRequest.NumOutput(_reposFactory, dgvNum, dateTPUser);
             }
-
-            dgvUser.Rows[0].Selected = false;
-            dgvUser.AllowUserToAddRows = false;
-            dgvNum.Rows[0].Selected = false;
-            dgvNum.AllowUserToAddRows = false;
         }
 
         private void btnUpdateNum_Click(object sender, EventArgs e)
@@ -114,7 +109,7 @@ namespace Staff
                 {
                     if (_staffValidators.ValidUserDelete(dgvUser.CurrentRow.Index))
                     {
-                        _staffRequest.FakedUserDelete(_reposFactory, dgvUser.CurrentRow.Index);
+                        _staffRequest.FakedUserDelete(_reposFactory, dgvUser.Rows[dgvUser.CurrentRow.Index].Cells[6].Value.ToString(), dgvUser.Rows[dgvUser.CurrentRow.Index].Cells[4].Value.ToString());
                     }
                 }
             }

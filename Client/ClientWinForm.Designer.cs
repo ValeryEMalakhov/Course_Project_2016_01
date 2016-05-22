@@ -28,21 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientWinForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientWinForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabNumb = new System.Windows.Forms.TabPage();
+            this.gBUserAction = new System.Windows.Forms.GroupBox();
+            this.btnAddRequest = new System.Windows.Forms.Button();
             this.gBNum = new System.Windows.Forms.GroupBox();
             this.dateTPNum = new System.Windows.Forms.DateTimePicker();
             this.btnUpdateNum = new System.Windows.Forms.Button();
@@ -53,26 +55,31 @@
             this.CClass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabHotel = new System.Windows.Forms.TabPage();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dgvLog = new System.Windows.Forms.DataGridView();
-            this.cNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cInDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cOutDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CSessionCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnDeleteRequest = new System.Windows.Forms.Button();
+            this.btnEditRequest = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.dgvNow = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.dgvLog = new System.Windows.Forms.DataGridView();
+            this.cNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cInDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cOutDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CSessionCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.tabNumb.SuspendLayout();
+            this.gBUserAction.SuspendLayout();
             this.gBNum.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNum)).BeginInit();
             this.tabHotel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLog)).BeginInit();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLog)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -88,6 +95,7 @@
             // 
             // tabNumb
             // 
+            this.tabNumb.Controls.Add(this.gBUserAction);
             this.tabNumb.Controls.Add(this.gBNum);
             this.tabNumb.Controls.Add(this.dgvNum);
             this.tabNumb.Location = new System.Drawing.Point(4, 22);
@@ -97,6 +105,26 @@
             this.tabNumb.TabIndex = 1;
             this.tabNumb.Text = "Номера";
             this.tabNumb.UseVisualStyleBackColor = true;
+            // 
+            // gBUserAction
+            // 
+            this.gBUserAction.Controls.Add(this.btnAddRequest);
+            this.gBUserAction.Location = new System.Drawing.Point(6, 204);
+            this.gBUserAction.Name = "gBUserAction";
+            this.gBUserAction.Size = new System.Drawing.Size(285, 154);
+            this.gBUserAction.TabIndex = 7;
+            this.gBUserAction.TabStop = false;
+            this.gBUserAction.Text = "Действия";
+            // 
+            // btnAddRequest
+            // 
+            this.btnAddRequest.Image = ((System.Drawing.Image)(resources.GetObject("btnAddRequest.Image")));
+            this.btnAddRequest.Location = new System.Drawing.Point(10, 19);
+            this.btnAddRequest.Name = "btnAddRequest";
+            this.btnAddRequest.Size = new System.Drawing.Size(80, 80);
+            this.btnAddRequest.TabIndex = 0;
+            this.btnAddRequest.UseVisualStyleBackColor = true;
+            this.btnAddRequest.Click += new System.EventHandler(this.btnAddRequest_Click);
             // 
             // gBNum
             // 
@@ -119,6 +147,7 @@
             this.dateTPNum.Name = "dateTPNum";
             this.dateTPNum.Size = new System.Drawing.Size(214, 20);
             this.dateTPNum.TabIndex = 1;
+            this.dateTPNum.ValueChanged += new System.EventHandler(this.dateTPNum_ValueChanged);
             // 
             // btnUpdateNum
             // 
@@ -129,6 +158,7 @@
             this.btnUpdateNum.TabIndex = 3;
             this.btnUpdateNum.Text = "Обновить";
             this.btnUpdateNum.UseVisualStyleBackColor = true;
+            this.btnUpdateNum.Click += new System.EventHandler(this.btnUpdateNum_Click);
             // 
             // label1
             // 
@@ -193,6 +223,7 @@
             // 
             // tabHotel
             // 
+            this.tabHotel.Controls.Add(this.groupBox1);
             this.tabHotel.Controls.Add(this.label3);
             this.tabHotel.Controls.Add(this.label2);
             this.tabHotel.Controls.Add(this.dgvNow);
@@ -205,72 +236,57 @@
             this.tabHotel.Text = "Кабинет";
             this.tabHotel.UseVisualStyleBackColor = true;
             // 
-            // tabPage1
+            // groupBox1
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(666, 365);
-            this.tabPage1.TabIndex = 3;
-            this.tabPage1.Text = "О нас";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.groupBox1.Controls.Add(this.btnDeleteRequest);
+            this.groupBox1.Controls.Add(this.btnEditRequest);
+            this.groupBox1.Location = new System.Drawing.Point(6, 204);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(213, 154);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Действия";
             // 
-            // dgvLog
+            // btnDeleteRequest
             // 
-            this.dgvLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLog.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cNum,
-            this.cInDate,
-            this.cOutDate,
-            this.CSessionCost});
-            this.dgvLog.Location = new System.Drawing.Point(225, 24);
-            this.dgvLog.Name = "dgvLog";
-            this.dgvLog.Size = new System.Drawing.Size(435, 159);
-            this.dgvLog.TabIndex = 1;
+            this.btnDeleteRequest.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteRequest.Image")));
+            this.btnDeleteRequest.Location = new System.Drawing.Point(117, 19);
+            this.btnDeleteRequest.Name = "btnDeleteRequest";
+            this.btnDeleteRequest.Size = new System.Drawing.Size(80, 80);
+            this.btnDeleteRequest.TabIndex = 0;
+            this.btnDeleteRequest.UseVisualStyleBackColor = true;
+            this.btnDeleteRequest.Click += new System.EventHandler(this.btnDeleteRequest_Click);
             // 
-            // cNum
+            // btnEditRequest
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cNum.DefaultCellStyle = dataGridViewCellStyle9;
-            this.cNum.Frozen = true;
-            this.cNum.HeaderText = "Номер";
-            this.cNum.Name = "cNum";
-            this.cNum.ReadOnly = true;
-            this.cNum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cNum.Width = 60;
+            this.btnEditRequest.Enabled = false;
+            this.btnEditRequest.Image = ((System.Drawing.Image)(resources.GetObject("btnEditRequest.Image")));
+            this.btnEditRequest.Location = new System.Drawing.Point(20, 19);
+            this.btnEditRequest.Name = "btnEditRequest";
+            this.btnEditRequest.Size = new System.Drawing.Size(80, 80);
+            this.btnEditRequest.TabIndex = 0;
+            this.btnEditRequest.UseVisualStyleBackColor = true;
+            this.btnEditRequest.Click += new System.EventHandler(this.btnEditRequest_Click);
             // 
-            // cInDate
+            // label3
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cInDate.DefaultCellStyle = dataGridViewCellStyle10;
-            this.cInDate.Frozen = true;
-            this.cInDate.HeaderText = "Дата вселения";
-            this.cInDate.Name = "cInDate";
-            this.cInDate.ReadOnly = true;
-            this.cInDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cInDate.Width = 110;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(369, 186);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(158, 18);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Журнал бронирования";
             // 
-            // cOutDate
+            // label2
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cOutDate.DefaultCellStyle = dataGridViewCellStyle11;
-            this.cOutDate.Frozen = true;
-            this.cOutDate.HeaderText = "Дата выселения";
-            this.cOutDate.Name = "cOutDate";
-            this.cOutDate.ReadOnly = true;
-            this.cOutDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cOutDate.Width = 110;
-            // 
-            // CSessionCost
-            // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CSessionCost.DefaultCellStyle = dataGridViewCellStyle12;
-            this.CSessionCost.Frozen = true;
-            this.CSessionCost.HeaderText = "Стоимость";
-            this.CSessionCost.Name = "CSessionCost";
-            this.CSessionCost.ReadOnly = true;
-            this.CSessionCost.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CSessionCost.Width = 110;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(369, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(144, 18);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Журнал проживания";
             // 
             // dgvNow
             // 
@@ -329,25 +345,72 @@
             this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn4.Width = 110;
             // 
-            // label2
+            // dgvLog
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(369, 3);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(144, 18);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Журнал проживания";
+            this.dgvLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLog.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cNum,
+            this.cInDate,
+            this.cOutDate,
+            this.CSessionCost});
+            this.dgvLog.Location = new System.Drawing.Point(225, 24);
+            this.dgvLog.Name = "dgvLog";
+            this.dgvLog.Size = new System.Drawing.Size(435, 159);
+            this.dgvLog.TabIndex = 1;
             // 
-            // label3
+            // cNum
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(369, 186);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(158, 18);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Журнал бронирования";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cNum.DefaultCellStyle = dataGridViewCellStyle9;
+            this.cNum.Frozen = true;
+            this.cNum.HeaderText = "Номер";
+            this.cNum.Name = "cNum";
+            this.cNum.ReadOnly = true;
+            this.cNum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cNum.Width = 60;
+            // 
+            // cInDate
+            // 
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cInDate.DefaultCellStyle = dataGridViewCellStyle10;
+            this.cInDate.Frozen = true;
+            this.cInDate.HeaderText = "Дата вселения";
+            this.cInDate.Name = "cInDate";
+            this.cInDate.ReadOnly = true;
+            this.cInDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cInDate.Width = 110;
+            // 
+            // cOutDate
+            // 
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cOutDate.DefaultCellStyle = dataGridViewCellStyle11;
+            this.cOutDate.Frozen = true;
+            this.cOutDate.HeaderText = "Дата выселения";
+            this.cOutDate.Name = "cOutDate";
+            this.cOutDate.ReadOnly = true;
+            this.cOutDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cOutDate.Width = 110;
+            // 
+            // CSessionCost
+            // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CSessionCost.DefaultCellStyle = dataGridViewCellStyle12;
+            this.CSessionCost.Frozen = true;
+            this.CSessionCost.HeaderText = "Стоимость";
+            this.CSessionCost.Name = "CSessionCost";
+            this.CSessionCost.ReadOnly = true;
+            this.CSessionCost.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CSessionCost.Width = 110;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(666, 365);
+            this.tabPage1.TabIndex = 3;
+            this.tabPage1.Text = "О нас";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // ClientWinForm
             // 
@@ -366,13 +429,15 @@
             this.Load += new System.EventHandler(this.ClientWinForm_Load);
             this.tabControl.ResumeLayout(false);
             this.tabNumb.ResumeLayout(false);
+            this.gBUserAction.ResumeLayout(false);
             this.gBNum.ResumeLayout(false);
             this.gBNum.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNum)).EndInit();
             this.tabHotel.ResumeLayout(false);
             this.tabHotel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLog)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvNow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLog)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -404,6 +469,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cInDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn cOutDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn CSessionCost;
+        private System.Windows.Forms.GroupBox gBUserAction;
+        private System.Windows.Forms.Button btnAddRequest;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnDeleteRequest;
+        private System.Windows.Forms.Button btnEditRequest;
     }
 }
 

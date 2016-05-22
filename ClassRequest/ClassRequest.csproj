@@ -46,20 +46,24 @@
       <HintPath>..\packages\Hammer.Drawing.0.2.0.33\lib\net45\Hammer.Drawing.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Hammer.Lib, Version=0.1.0.19, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Hammer.Lib.0.1.0.19\lib\net45\Hammer.Lib.dll</HintPath>
+    <Reference Include="Hammer.Lib, Version=0.6.0.45, Culture=neutral, PublicKeyToken=fbddd2ebcd060689, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hammer.Lib.0.6.0.45\lib\net45\Hammer.Lib.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Hammer.Portable, Version=0.1.0.19, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Hammer.Portable.0.1.0.19\lib\portable-net45+wp80+win\Hammer.Portable.dll</HintPath>
+    <Reference Include="Hammer.Portable, Version=0.6.0.22, Culture=neutral, PublicKeyToken=fbddd2ebcd060689, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hammer.Portable.0.6.0.22\lib\portable-net45+win+wp80\Hammer.Portable.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Mono.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>..\packages\Mono.Security.3.2.3.0\lib\net45\Mono.Security.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Npgsql, Version=3.0.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Npgsql.3.0.5\lib\net45\Npgsql.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Npgsql, Version=3.1.1.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.3.1.1\lib\net451\Npgsql.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -85,6 +89,7 @@
     <Compile Include="DAL\RepositoryStaff.cs" />
     <Compile Include="DAL\RepositoryStaffPosition.cs" />
     <Compile Include="DAL\RepositoryUserApartmentCard.cs" />
+    <Compile Include="DAL\RepositoryUserApartmentCardCost.cs" />
     <Compile Include="ReposFactory.cs" />
     <Compile Include="SingleTable\TableApartmentAClass.cs" />
     <Compile Include="SingleTable\TableUserApartmentCard.cs" />
@@ -95,6 +100,7 @@
     <Compile Include="SingleTable\TableHotel.cs" />
     <Compile Include="SingleTable\TableStaff.cs" />
     <Compile Include="SingleTable\TableStaffPosition.cs" />
+    <Compile Include="SingleTable\TableUserAppartmentCardCost.cs" />
     <Compile Include="SqlConnect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

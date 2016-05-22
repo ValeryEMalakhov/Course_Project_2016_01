@@ -39,6 +39,7 @@ namespace ClassRequest.DAL
         }
 
         #region TableSelect
+
         public List<TableACard> GetSingleTable()
         {
             TableACard tableACard;
@@ -79,11 +80,14 @@ namespace ClassRequest.DAL
             }
             return tableACardList;
         }
+
         #endregion
+
         #region TableInsert
+
         public void AddUser(string textBoxPass, string textBoxFirstName, string textBoxSecondName,
-    string textBoxGender, string dtpBirth, string textBoxPhone,
-    string comboBoxApId, string dtpCheckIn, string dtpCheckOut, string textBoxComm)
+            string textBoxGender, string dtpBirth, string textBoxPhone,
+            string comboBoxApId, string dtpCheckIn, string dtpCheckOut, string textBoxComm)
         {
             int keyClientJustInHotel = 0;
             foreach (var v in repositoryUserApartmentCard.GetUserList(Convert.ToString(DateTime.Today)))
@@ -240,22 +244,28 @@ namespace ClassRequest.DAL
                 MessageBox.Show(@"Постоялец таки уже в отеле!");
             }
         }
+
         #endregion
+
         #region TableDelete
+
         // псевдо удаление, реализуется изменением данных в строке
-        public void FakeUserDeleteSql(TableUserAppartmentCard userAppartmentCard)
+        public void FakeUserDeleteSql(string clientId, string checkInDate)
         {
-            string commPart =
-                "UPDATE \"hotel\".\"ACard\"" +
-                " SET CheckOutDate = '" + DateTime.Now + "'" +
-                " WHERE Client_Id = '" + userAppartmentCard.ClientId + "'" +
-                " AND CheckInDate = '" + userAppartmentCard.CheckInDate + "' ;";
             try
             {
                 // открываем соединение
                 //sqlConnect.GetInstance().OpenConn();
-
+                string commPart =
+                    "UPDATE \"hotel\".\"ACard\"" +
+                    " SET CheckOutDate = '" + DateTime.Now + "'" +
+                    " WHERE Client_Id = @client_Id " +
+                    " AND CheckInDate = @checkInDate::timestamp with time zone ;";
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+
+                command.Parameters.AddWithValue("@client_Id", clientId);
+                command.Parameters.AddWithValue("@checkInDate", checkInDate);
+
                 command.ExecuteNonQuery();
             }
             catch (NpgsqlException exp)
@@ -269,7 +279,37 @@ namespace ClassRequest.DAL
                 //sqlConnect.GetInstance().CloseConn();
             }
         }
+        public void RequestDeleteSql(string clientId, string checkInDate)
+        {
+            try
+            {
+                // открываем соединение
+                //sqlConnect.GetInstance().OpenConn();
+                string commPart =
+                    "DELETE FROM \"hotel\".\"ACard\"" +
+                    " WHERE Client_Id = @client_Id " +
+                    " AND CheckInDate = @checkInDate::timestamp with time zone ;";
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+
+                command.Parameters.AddWithValue("@client_Id", clientId);
+                command.Parameters.AddWithValue("@checkInDate", checkInDate);
+
+                command.ExecuteNonQuery();
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+            finally
+            {
+                // соединение закрыто принудительно
+                //sqlConnect.GetInstance().CloseConn();
+            }
+        }
+
         #endregion
+
         #region Other
 
         #endregion

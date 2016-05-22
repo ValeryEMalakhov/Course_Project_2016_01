@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.Collections;
 using System.Data.Common;
-using System.Data.Entity.SqlServer;
 using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Drawing;
@@ -150,21 +149,23 @@ namespace Staff
             DateTimePicker dtpCheckOut,
             Label labelRoomN, Label labelRoomQ, Label labelRoomT, Label labelRoomC)
         {
-            int costValue = 0;
+            double costValue = 0;
             labelRoomN.Text = comboBoxApId.Text;
             foreach (var v in reposFactory.GetApartmentAClass().UpdateStatAdd())
             {
                 if (v.ApId == comboBoxApId.Text)
                 {
                     labelRoomQ.Text = v.PlaceQuantity;
-                    costValue = Convert.ToInt32(v.ClassCost);
+                    costValue = Convert.ToDouble(v.ClassCost);
                 }
             }
             var dateDiff = (dtpCheckOut.Value - dtpCheckIn.Value).TotalDays;
+            dateDiff = Math.Round(Convert.ToDouble(dateDiff), 2, MidpointRounding.AwayFromZero);
             labelRoomT.Text = Convert.ToString(dateDiff, CultureInfo.CurrentCulture);
             if (dateDiff > 0)
             {
-                labelRoomC.Text = Convert.ToString(dateDiff*costValue, CultureInfo.InvariantCulture);
+                costValue = Math.Round(costValue * Convert.ToDouble(dateDiff), 2, MidpointRounding.AwayFromZero);
+                labelRoomC.Text = Convert.ToString(costValue);
             }
             else
             {
@@ -173,22 +174,13 @@ namespace Staff
         }
 
         // псевдоудаление клента из таблицы
-        public void FakedUserDelete(ReposFactory reposFactory, int dgvIndex)
+        public void FakedUserDelete(ReposFactory reposFactory, string clientId, string checkInDate)
         {
             try
             {
                 // фильтр даты
-                string filterDate = Convert.ToString(DateTime.Now);
-                // счётчик
-                int i = 0;
-                foreach (var v in reposFactory.GetUserApartmentCard().GetUserList(filterDate))
-                {
-                    if (i == dgvIndex)
-                    {
-                        reposFactory.GetACard().FakeUserDeleteSql(v);
-                    }
-                    ++i;
-                }
+                //string filterDate = Convert.ToString(DateTime.Now);
+                reposFactory.GetACard().FakeUserDeleteSql(clientId, checkInDate);
             }
             catch (Exception exp)
             {

@@ -13,7 +13,6 @@ using System.Xml.Serialization;
 using System.Threading;
 using System.Reflection;
 using System.Collections;
-using System.Data.Entity.SqlServer;
 using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Globalization;
@@ -202,11 +201,11 @@ namespace Staff
                     ErrorString += "-- Пол человека не может быть пустым\n";
                     ValidKey = false;
                 }
-                if (comboBoxApId.Text != string.Empty)
-                {
-                    ErrorString += "-- Номер комнаты не может быть пустым\n";
-                    ValidKey = false;
-                }
+                //if (comboBoxApId.Text != string.Empty)
+                //{
+                //    ErrorString += "-- Номер комнаты не может быть пустым\n";
+                //    ValidKey = false;
+                //}
                 if (dtpCheckOut.Value < dtpCheckIn.Value)
                 {
                     ErrorString += "-- Дата выселения не может быть раньше даты вселения в номер\n";
