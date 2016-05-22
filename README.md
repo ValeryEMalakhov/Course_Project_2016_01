@@ -1,5 +1,5 @@
 # VEM Hotel Terminal #
-### Version 0.04.2 ###
+### Version 0.06.0 ###
 ------------------
 Thank you for choosing VEM HT - a student-make terminal for hotel working with clients.
 
