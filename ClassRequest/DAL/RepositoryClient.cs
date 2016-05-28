@@ -35,16 +35,17 @@ namespace ClassRequest.DAL
         }
 
         #region TableSelect
+
         public List<TableClient> GetSingleTable()
         {
             TableClient tableClient;
             var tableClientList = new List<TableClient>();
 
-            string commPart =
-                "SELECT *" +
-                " FROM \"hotel\".\"Client\";";
             try
             {
+                string commPart =
+                    "SELECT *" +
+                    " FROM \"hotel\".\"Client\";";
                 // открываем соединение
                 //sqlConnect.GetInstance().OpenConn();
 
@@ -76,13 +77,65 @@ namespace ClassRequest.DAL
             }
             return tableClientList;
         }
+
         #endregion
+
         #region TableInsert
 
         #endregion
+
+        #region TableUpdate
+
+        public void UserEdit(string clientId, string textBoxFirstName, string textBoxSecondName, string comboBoxGender,
+            string dateTimePicker, string textBoxPhone)
+        {
+            try
+            {
+                // открываем соединение
+                //sqlConnect.GetInstance().OpenConn();
+                string commPart =
+                    "UPDATE \"hotel\".\"Client\"" +
+                    " SET FirstName = @textBoxFirstName," +
+                    " SecondName = @textBoxSecondName," +
+                    " Gender = @comboBoxGender," +
+                    " DateOfBirth = @dateTimePicker::timestamp with time zone ," +
+                    " Phone = @textBoxPhone" +
+                    " WHERE Client_Id = @client_Id ;";
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+
+                command.Parameters.AddWithValue("@textBoxFirstName", textBoxFirstName);
+                command.Parameters.AddWithValue("@textBoxSecondName", textBoxSecondName);
+                command.Parameters.AddWithValue("@comboBoxGender", comboBoxGender);
+                command.Parameters.AddWithValue("@dateTimePicker", dateTimePicker);
+                command.Parameters.AddWithValue("@textBoxPhone", textBoxPhone);
+                if (textBoxPhone.Length == 0)
+                {
+                    textBoxPhone = @"";
+                }
+                command.Parameters.AddWithValue("@Phone", textBoxPhone);
+                command.Parameters.AddWithValue("@client_Id", clientId);
+
+                command.ExecuteNonQuery();
+                MessageBox.Show(@"Данные успешно измененны");
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+            finally
+            {
+                // соединение закрыто принудительно
+                //sqlConnect.GetInstance().CloseConn();
+            }
+        }
+
+        #endregion
+
         #region TableDelete
 
         #endregion
+
         #region Other
 
         #endregion

@@ -34,6 +34,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabUser = new System.Windows.Forms.TabPage();
             this.gBUserAction = new System.Windows.Forms.GroupBox();
@@ -57,11 +59,11 @@
             this.btnUpdateNum = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvNum = new System.Windows.Forms.DataGridView();
+            this.tabHotel = new System.Windows.Forms.TabPage();
             this.CNumb = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CPlace = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CClass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabHotel = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.tabUser.SuspendLayout();
             this.gBUserAction.SuspendLayout();
@@ -172,6 +174,14 @@
             // 
             // dgvUser
             // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cName,
@@ -204,8 +214,8 @@
             // 
             // cGender
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cGender.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cGender.DefaultCellStyle = dataGridViewCellStyle2;
             this.cGender.HeaderText = "Пол";
             this.cGender.Name = "cGender";
             this.cGender.ReadOnly = true;
@@ -214,8 +224,8 @@
             // 
             // cNum
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cNum.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cNum.DefaultCellStyle = dataGridViewCellStyle3;
             this.cNum.HeaderText = "Номер";
             this.cNum.Name = "cNum";
             this.cNum.ReadOnly = true;
@@ -224,8 +234,8 @@
             // 
             // cInDate
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cInDate.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cInDate.DefaultCellStyle = dataGridViewCellStyle4;
             this.cInDate.HeaderText = "Дата вселения";
             this.cInDate.Name = "cInDate";
             this.cInDate.ReadOnly = true;
@@ -234,8 +244,8 @@
             // 
             // cOutDate
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cOutDate.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cOutDate.DefaultCellStyle = dataGridViewCellStyle5;
             this.cOutDate.HeaderText = "Дата выселения";
             this.cOutDate.Name = "cOutDate";
             this.cOutDate.ReadOnly = true;
@@ -244,8 +254,8 @@
             // 
             // CPasp
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CPasp.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CPasp.DefaultCellStyle = dataGridViewCellStyle6;
             this.CPasp.HeaderText = "Код паспорта";
             this.CPasp.Name = "CPasp";
             this.CPasp.ReadOnly = true;
@@ -308,6 +318,14 @@
             // 
             // dgvNum
             // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNum.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvNum.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNum.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CNumb,
@@ -321,13 +339,23 @@
             this.dgvNum.Size = new System.Drawing.Size(605, 521);
             this.dgvNum.TabIndex = 2;
             // 
+            // tabHotel
+            // 
+            this.tabHotel.Location = new System.Drawing.Point(4, 22);
+            this.tabHotel.Name = "tabHotel";
+            this.tabHotel.Padding = new System.Windows.Forms.Padding(3);
+            this.tabHotel.Size = new System.Drawing.Size(936, 533);
+            this.tabHotel.TabIndex = 2;
+            this.tabHotel.Text = "Отель";
+            this.tabHotel.UseVisualStyleBackColor = true;
+            // 
             // CNumb
             // 
             this.CNumb.HeaderText = "№";
             this.CNumb.Name = "CNumb";
             this.CNumb.ReadOnly = true;
             this.CNumb.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CNumb.Width = 40;
+            this.CNumb.Width = 90;
             // 
             // CPlace
             // 
@@ -342,23 +370,12 @@
             this.CClass.Name = "CClass";
             this.CClass.ReadOnly = true;
             this.CClass.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CClass.Width = 80;
             // 
             // CCost
             // 
             this.CCost.HeaderText = "Цена";
             this.CCost.Name = "CCost";
             this.CCost.ReadOnly = true;
-            // 
-            // tabHotel
-            // 
-            this.tabHotel.Location = new System.Drawing.Point(4, 22);
-            this.tabHotel.Name = "tabHotel";
-            this.tabHotel.Padding = new System.Windows.Forms.Padding(3);
-            this.tabHotel.Size = new System.Drawing.Size(936, 533);
-            this.tabHotel.TabIndex = 2;
-            this.tabHotel.Text = "Отель";
-            this.tabHotel.UseVisualStyleBackColor = true;
             // 
             // StaffWinForm
             // 
@@ -405,10 +422,6 @@
         private System.Windows.Forms.Button btnUpdateNum;
         private System.Windows.Forms.Label label1;
         protected internal System.Windows.Forms.DataGridView dgvNum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CNumb;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CPlace;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CClass;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CCost;
         private System.Windows.Forms.TabPage tabHotel;
         private System.Windows.Forms.Button btnDeleteUser;
         private System.Windows.Forms.DataGridViewTextBoxColumn cName;
@@ -418,6 +431,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cInDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn cOutDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn CPasp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CNumb;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CPlace;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CClass;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CCost;
     }
 }
 

@@ -35,24 +35,25 @@ namespace ClassRequest.DAL
         }
 
         #region TableSelect
+
         public List<TableApartmentAClass> GetNumList(string filterDate)
         {
             TableApartmentAClass tableApartmentAClass;
             var tableApartmentList = new List<TableApartmentAClass>();
 
-            string commPart =
-                "SELECT a.Ap_ID, a.Hotel_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
-                " FROM \"hotel\".\"Apartment\" a, \"hotel\".\"AClass\" s" +
-                " WHERE a.Class_ID = s.Class_ID" +
-                " EXCEPT" +
-                " SELECT a.Ap_ID, a.Hotel_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
-                " FROM \"hotel\".\"Apartment\" a, \"hotel\".\"ACard\" c, \"hotel\".\"AClass\" s" +
-                " WHERE a.ap_id = c.ap_id" +
-                " AND c.CheckInDate <= @filterDate::timestamp with time zone" +
-                " AND c.CheckOutDate > @filterDate::timestamp with time zone" +
-                " ORDER BY (Ap_ID) ;";
             try
             {
+                string commPart =
+                    "SELECT a.Ap_ID, a.Hotel_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
+                    " FROM \"hotel\".\"Apartment\" a, \"hotel\".\"AClass\" s" +
+                    " WHERE a.Class_ID = s.Class_ID" +
+                    " EXCEPT" +
+                    " SELECT a.Ap_ID, a.Hotel_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
+                    " FROM \"hotel\".\"Apartment\" a, \"hotel\".\"ACard\" c, \"hotel\".\"AClass\" s" +
+                    " WHERE a.ap_id = c.ap_id" +
+                    " AND c.CheckInDate <= @filterDate::timestamp with time zone" +
+                    " AND c.CheckOutDate > @filterDate::timestamp with time zone" +
+                    " ORDER BY (Ap_ID) ;";
                 // открываем соединение
                 //sqlConnect.GetInstance().OpenConn();
 
@@ -85,17 +86,62 @@ namespace ClassRequest.DAL
             }
             return tableApartmentList;
         }
+        public List<TableApartmentAClass> GetNumListFull()
+        {
+            TableApartmentAClass tableApartmentAClass;
+            var tableApartmentList = new List<TableApartmentAClass>();
+
+            try
+            {
+                string commPart =
+                    "SELECT a.Ap_ID, a.Hotel_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
+                    " FROM \"hotel\".\"Apartment\" a, \"hotel\".\"AClass\" s" +
+                    " WHERE a.Class_ID = s.Class_ID" +
+                    " ORDER BY (Ap_ID) ;";
+                // открываем соединение
+                //sqlConnect.GetInstance().OpenConn();
+
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+
+                NpgsqlDataReader readerUserTable = command.ExecuteReader();
+                foreach (DbDataRecord dbDataRecord in readerUserTable)
+                {
+                    tableApartmentAClass = new TableApartmentAClass(
+                        dbDataRecord["Ap_ID"].ToString(),
+                        dbDataRecord["Hotel_ID"].ToString(),
+                        dbDataRecord["PlaceQuantity"].ToString(),
+                        dbDataRecord["Class_ID"].ToString(),
+                        dbDataRecord["ClassCost"].ToString());
+
+                    tableApartmentList.Add(tableApartmentAClass);
+                }
+                readerUserTable.Close();
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+            finally
+            {
+                // соединение закрыто принудительно
+                //sqlConnect.GetInstance().CloseConn();
+            }
+            return tableApartmentList;
+        }
+
         public List<TableApartmentAClass> UpdateStatAdd()
         {
             TableApartmentAClass tableApartmentAClass;
             var tableApartmentList = new List<TableApartmentAClass>();
 
-            string commPart =
-                "SELECT a.Ap_ID, a.Hotel_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
-                " FROM \"hotel\".\"Apartment\" a, \"hotel\".\"AClass\" s" +
-                " WHERE a.Class_ID = s.Class_ID";
             try
             {
+                string commPart =
+                    "SELECT a.Ap_ID, a.Hotel_ID, a.PlaceQuantity, a.Class_ID, s.ClassCost" +
+                    " FROM \"hotel\".\"Apartment\" a, \"hotel\".\"AClass\" s" +
+                    " WHERE a.Class_ID = s.Class_ID";
+
                 // открываем соединение
                 //sqlConnect.GetInstance().OpenConn();
 
@@ -127,13 +173,17 @@ namespace ClassRequest.DAL
             }
             return tableApartmentList;
         }
+
         #endregion
+
         #region TableInsert
 
         #endregion
+
         #region TableDelete
 
         #endregion
+
         #region Other
 
         #endregion

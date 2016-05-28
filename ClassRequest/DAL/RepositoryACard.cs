@@ -45,11 +45,11 @@ namespace ClassRequest.DAL
             TableACard tableACard;
             var tableACardList = new List<TableACard>();
 
-            string commPart =
-                "SELECT *" +
-                " FROM \"hotel\".\"ACard\";";
             try
             {
+                string commPart =
+                    "SELECT *" +
+                    " FROM \"hotel\".\"ACard\";";
                 // открываем соединение
                 //sqlConnect.GetInstance().OpenConn();
 
@@ -279,6 +279,7 @@ namespace ClassRequest.DAL
                 //sqlConnect.GetInstance().CloseConn();
             }
         }
+
         public void RequestDeleteSql(string clientId, string checkInDate)
         {
             try

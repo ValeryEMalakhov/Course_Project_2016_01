@@ -35,16 +35,17 @@ namespace ClassRequest.DAL
         }
 
         #region TableSelect
+
         public List<TableHotel> GetSingleTable()
         {
             TableHotel tableHotel;
             var tableHotelList = new List<TableHotel>();
 
-            string commPart =
-                "SELECT *" +
-                " FROM \"hotel\".\"Hotel\";";
             try
             {
+                string commPart =
+                    "SELECT *" +
+                    " FROM \"hotel\".\"Hotel\";";
                 // открываем соединение
                 //sqlConnect.GetInstance().OpenConn();
 
@@ -60,7 +61,8 @@ namespace ClassRequest.DAL
                         dbDataRecord["City"].ToString(),
                         dbDataRecord["Street"].ToString(),
                         dbDataRecord["Phone"].ToString(),
-                        dbDataRecord["Class"].ToString());
+                        dbDataRecord["Class"].ToString(),
+                        dbDataRecord["Hotel_Link"].ToString());
                     tableHotelList.Add(tableHotel);
                 }
                 readerUserTable.Close();
@@ -77,13 +79,17 @@ namespace ClassRequest.DAL
             }
             return tableHotelList;
         }
+
         #endregion
+
         #region TableInsert
 
         #endregion
+
         #region TableDelete
 
         #endregion
+
         #region Other
 
         #endregion

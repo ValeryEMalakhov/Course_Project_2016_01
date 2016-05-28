@@ -155,28 +155,95 @@ namespace Client
         public void SelectStatInfo(ReposFactory reposFactory, string comboBoxApId, DateTimePicker dtpCheckIn,
             DateTimePicker dtpCheckOut, Label labelRoomN, Label labelRoomQ, Label labelRoomT, Label labelRoomC)
         {
-            double costValue = 0;
-            labelRoomN.Text = comboBoxApId;
-            foreach (var v in reposFactory.GetApartmentAClass().UpdateStatAdd())
+            try
             {
-                if (v.ApId == comboBoxApId)
+                double costValue = 0;
+                labelRoomN.Text = comboBoxApId;
+                foreach (var v in reposFactory.GetApartmentAClass().UpdateStatAdd())
                 {
-                    labelRoomQ.Text = v.PlaceQuantity;
-                    costValue = Convert.ToDouble(v.ClassCost);
+                    if (v.ApId == comboBoxApId)
+                    {
+                        labelRoomQ.Text = v.PlaceQuantity;
+                        costValue = Convert.ToDouble(v.ClassCost);
+                    }
+                }
+                var dateDiff = (dtpCheckOut.Value - dtpCheckIn.Value).TotalDays;
+                dateDiff = Math.Round(Convert.ToDouble(dateDiff), 2, MidpointRounding.AwayFromZero);
+                labelRoomT.Text = Convert.ToString(dateDiff, CultureInfo.CurrentCulture);
+                if (dateDiff > 0)
+                {
+                    costValue = Math.Round(costValue*Convert.ToDouble(dateDiff), 2, MidpointRounding.AwayFromZero);
+                    labelRoomC.Text = Convert.ToString(costValue);
+                }
+                else
+                {
+                    labelRoomC.Text = @"Так не сработает";
                 }
             }
-            var dateDiff = (dtpCheckOut.Value - dtpCheckIn.Value).TotalDays;
-            dateDiff = Math.Round(Convert.ToDouble(dateDiff), 2, MidpointRounding.AwayFromZero);
-            labelRoomT.Text = Convert.ToString(dateDiff, CultureInfo.CurrentCulture);
-            if (dateDiff > 0)
+            catch (Exception exp)
             {
-                costValue = Math.Round(costValue*Convert.ToDouble(dateDiff), 2, MidpointRounding.AwayFromZero);
-                labelRoomC.Text = Convert.ToString(costValue);
-            }
-            else
-            {
-                labelRoomC.Text = @"Так не сработает";
+                // MessageBox.Show("Не удалось добавить клиента!");
+                MessageBox.Show(Convert.ToString(exp));
             }
         }
+
+        #region editForm
+
+        public void InputAllClientFields(ReposFactory reposFactory, string textBoxPass, TextBox textBoxFirstName,
+            TextBox textBoxSecondName, ComboBox comboBoxGender, DateTimePicker dateTimePicker, TextBox textBoxPhone)
+        {
+            foreach (var v in reposFactory.GetClient().GetSingleTable())
+            {
+                if (v.ClientId == textBoxPass)
+                {
+                    textBoxFirstName.Text = v.FirstName;
+                    textBoxSecondName.Text = v.SecondName;
+                    comboBoxGender.Text = v.Gender;
+                    dateTimePicker.Text = v.DateOfBirth;
+                    textBoxPhone.Text = v.Phone;
+                }
+            }
+        }
+
+        // редактирование клента из таблицы
+        public void UserEdit(ReposFactory reposFactory, string clientId, TextBox textBoxFirstName,
+            TextBox textBoxSecondName, ComboBox comboBoxGender, DateTimePicker dateTimePicker, TextBox textBoxPhone)
+        {
+            try
+            {
+
+                reposFactory.GetClient().UserEdit(clientId, textBoxFirstName.Text, textBoxSecondName.Text, comboBoxGender.Text,
+                    dateTimePicker.Text, textBoxPhone.Text);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+
+        #endregion
+
+        #region other
+
+        public void InputHotelName(ReposFactory reposFactory, LinkLabel lLabelHotelName)
+        {
+            foreach (var v in reposFactory.GetHotel().GetSingleTable())
+            {
+                lLabelHotelName.Text = v.OrgName;
+            }
+        }
+
+        public void InputGroupBoxName(ReposFactory reposFactory, string textBoxPass, GroupBox groupBoxUserInfo)
+        {
+            foreach (var v in reposFactory.GetClient().GetSingleTable())
+            {
+                if (v.ClientId == textBoxPass)
+                {
+                    groupBoxUserInfo.Text = v.FirstName + " " + v.SecondName;
+                }
+            }
+        }
+
+        #endregion
     }
 }

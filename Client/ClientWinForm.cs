@@ -76,6 +76,14 @@ namespace Client
             {
                 _clientRequest.NowOutput(_reposFactory, dgvNow, _loginId);
             }
+
+            //toolTipUserEdit.ToolTipIcon = ToolTipIcon.Info;
+            toolTipAddRequest.SetToolTip(btnAddRequest, @"Забронировать номер");
+            toolTipUserEdit.SetToolTip(btnEditRequest, @"Редактировать профиль пользователя");
+            toolTipDeleteRequest.SetToolTip(btnDeleteRequest, @"Удалить бронь");
+
+            _clientRequest.InputGroupBoxName(_reposFactory, _loginId, groupBoxUserInfo);
+            _clientRequest.InputHotelName(_reposFactory, lLabelHotelName);
         }
 
         private void ClientWinForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -161,7 +169,25 @@ namespace Client
 
         private void btnEditRequest_Click(object sender, EventArgs e)
         {
+            if (_loginId != null)
+            {
+                EditRequestForm editRequestForm = new EditRequestForm(_reposFactory, _loginId);
+                editRequestForm.ShowDialog();
+            }
 
+            // обновляем таблицу
+            if (_clientValidators.ValidNumOutput(dateTPNum))
+            {
+                _clientRequest.NumOutput(_reposFactory, dgvNum, dateTPNum);
+            }
+            if (_clientValidators.ValidLogOutput(_loginId))
+            {
+                _clientRequest.LogOutput(_reposFactory, dgvLog, _loginId);
+            }
+            if (_clientValidators.ValidNowOutput(_loginId))
+            {
+                _clientRequest.NowOutput(_reposFactory, dgvNow, _loginId);
+            }
         }
     }
 }

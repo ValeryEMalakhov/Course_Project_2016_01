@@ -19,6 +19,7 @@ using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Configuration;
+using Admin;
 using ClassRequest;
 using WMPLib;
 using Npgsql;
@@ -69,14 +70,14 @@ namespace LogIn
 
         private void btnLoginLikeAdmin_Click(object sender, EventArgs e)
         {
-            //WfAdmin adminForm = new WfAdmin();
-            //Hide();
-            //adminForm.ShowDialog();
-            //Show();
+            AdminWinForm admin = new AdminWinForm(reposFactory);
+            Hide();
+            admin.ShowDialog();
+            Show();
         }
 
         private void btnLoginLikeStaff_Click(object sender, EventArgs e)
-        { 
+        {
             StaffWinForm staff = new StaffWinForm(reposFactory);
             Hide();
             staff.ShowDialog();

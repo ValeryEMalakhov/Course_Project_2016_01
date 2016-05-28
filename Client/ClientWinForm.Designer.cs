@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientWinForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -41,6 +42,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabNumb = new System.Windows.Forms.TabPage();
             this.gBUserAction = new System.Windows.Forms.GroupBox();
@@ -55,6 +57,10 @@
             this.CClass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabHotel = new System.Windows.Forms.TabPage();
+            this.groupBoxUserInfo = new System.Windows.Forms.GroupBox();
+            this.lLabelHotelName = new System.Windows.Forms.LinkLabel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnDeleteRequest = new System.Windows.Forms.Button();
             this.btnEditRequest = new System.Windows.Forms.Button();
@@ -71,12 +77,16 @@
             this.cOutDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CSessionCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.toolTipUserEdit = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipDeleteRequest = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipAddRequest = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl.SuspendLayout();
             this.tabNumb.SuspendLayout();
             this.gBUserAction.SuspendLayout();
             this.gBNum.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNum)).BeginInit();
             this.tabHotel.SuspendLayout();
+            this.groupBoxUserInfo.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLog)).BeginInit();
@@ -171,6 +181,14 @@
             // 
             // dgvNum
             // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNum.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvNum.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNum.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CNumb,
@@ -185,8 +203,8 @@
             // 
             // CNumb
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CNumb.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CNumb.DefaultCellStyle = dataGridViewCellStyle2;
             this.CNumb.HeaderText = "№";
             this.CNumb.Name = "CNumb";
             this.CNumb.ReadOnly = true;
@@ -195,8 +213,8 @@
             // 
             // CPlace
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CPlace.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CPlace.DefaultCellStyle = dataGridViewCellStyle3;
             this.CPlace.HeaderText = "Кол-во мест";
             this.CPlace.Name = "CPlace";
             this.CPlace.ReadOnly = true;
@@ -205,8 +223,8 @@
             // CClass
             // 
             this.CClass.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CClass.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CClass.DefaultCellStyle = dataGridViewCellStyle4;
             this.CClass.HeaderText = "Класс комнаты";
             this.CClass.Name = "CClass";
             this.CClass.ReadOnly = true;
@@ -215,14 +233,15 @@
             // 
             // CCost
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CCost.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CCost.DefaultCellStyle = dataGridViewCellStyle5;
             this.CCost.HeaderText = "Цена";
             this.CCost.Name = "CCost";
             this.CCost.ReadOnly = true;
             // 
             // tabHotel
             // 
+            this.tabHotel.Controls.Add(this.groupBoxUserInfo);
             this.tabHotel.Controls.Add(this.groupBox1);
             this.tabHotel.Controls.Add(this.label3);
             this.tabHotel.Controls.Add(this.label2);
@@ -236,13 +255,57 @@
             this.tabHotel.Text = "Кабинет";
             this.tabHotel.UseVisualStyleBackColor = true;
             // 
+            // groupBoxUserInfo
+            // 
+            this.groupBoxUserInfo.Controls.Add(this.lLabelHotelName);
+            this.groupBoxUserInfo.Controls.Add(this.label5);
+            this.groupBoxUserInfo.Controls.Add(this.label4);
+            this.groupBoxUserInfo.Location = new System.Drawing.Point(6, 18);
+            this.groupBoxUserInfo.Name = "groupBoxUserInfo";
+            this.groupBoxUserInfo.Size = new System.Drawing.Size(213, 165);
+            this.groupBoxUserInfo.TabIndex = 9;
+            this.groupBoxUserInfo.TabStop = false;
+            this.groupBoxUserInfo.Text = "UserName";
+            // 
+            // lLabelHotelName
+            // 
+            this.lLabelHotelName.Font = new System.Drawing.Font("Monotype Corsiva", 18F, System.Drawing.FontStyle.Italic);
+            this.lLabelHotelName.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.lLabelHotelName.Location = new System.Drawing.Point(6, 91);
+            this.lLabelHotelName.Name = "lLabelHotelName";
+            this.lLabelHotelName.Size = new System.Drawing.Size(201, 35);
+            this.lLabelHotelName.TabIndex = 2;
+            this.lLabelHotelName.TabStop = true;
+            this.lLabelHotelName.Text = "{OrgName}";
+            this.lLabelHotelName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Monotype Corsiva", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(6, 31);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(201, 30);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Вас";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Monotype Corsiva", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(6, 61);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(201, 30);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "приветствует";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnDeleteRequest);
             this.groupBox1.Controls.Add(this.btnEditRequest);
-            this.groupBox1.Location = new System.Drawing.Point(6, 204);
+            this.groupBox1.Location = new System.Drawing.Point(6, 201);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(213, 154);
+            this.groupBox1.Size = new System.Drawing.Size(213, 158);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Действия";
@@ -259,7 +322,6 @@
             // 
             // btnEditRequest
             // 
-            this.btnEditRequest.Enabled = false;
             this.btnEditRequest.Image = ((System.Drawing.Image)(resources.GetObject("btnEditRequest.Image")));
             this.btnEditRequest.Location = new System.Drawing.Point(20, 19);
             this.btnEditRequest.Name = "btnEditRequest";
@@ -303,8 +365,8 @@
             // 
             // dataGridViewTextBoxColumn1
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewTextBoxColumn1.Frozen = true;
             this.dataGridViewTextBoxColumn1.HeaderText = "Номер";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
@@ -314,8 +376,8 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewTextBoxColumn2.Frozen = true;
             this.dataGridViewTextBoxColumn2.HeaderText = "Дата вселения";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
@@ -325,8 +387,8 @@
             // 
             // dataGridViewTextBoxColumn3
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewTextBoxColumn3.Frozen = true;
             this.dataGridViewTextBoxColumn3.HeaderText = "Дата выселения";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
@@ -336,8 +398,8 @@
             // 
             // dataGridViewTextBoxColumn4
             // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewTextBoxColumn4.Frozen = true;
             this.dataGridViewTextBoxColumn4.HeaderText = "Стоимость";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
@@ -360,8 +422,8 @@
             // 
             // cNum
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cNum.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cNum.DefaultCellStyle = dataGridViewCellStyle10;
             this.cNum.Frozen = true;
             this.cNum.HeaderText = "Номер";
             this.cNum.Name = "cNum";
@@ -371,8 +433,8 @@
             // 
             // cInDate
             // 
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cInDate.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cInDate.DefaultCellStyle = dataGridViewCellStyle11;
             this.cInDate.Frozen = true;
             this.cInDate.HeaderText = "Дата вселения";
             this.cInDate.Name = "cInDate";
@@ -382,8 +444,8 @@
             // 
             // cOutDate
             // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cOutDate.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cOutDate.DefaultCellStyle = dataGridViewCellStyle12;
             this.cOutDate.Frozen = true;
             this.cOutDate.HeaderText = "Дата выселения";
             this.cOutDate.Name = "cOutDate";
@@ -393,8 +455,8 @@
             // 
             // CSessionCost
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CSessionCost.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CSessionCost.DefaultCellStyle = dataGridViewCellStyle13;
             this.CSessionCost.Frozen = true;
             this.CSessionCost.HeaderText = "Стоимость";
             this.CSessionCost.Name = "CSessionCost";
@@ -435,6 +497,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvNum)).EndInit();
             this.tabHotel.ResumeLayout(false);
             this.tabHotel.PerformLayout();
+            this.groupBoxUserInfo.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvNow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLog)).EndInit();
@@ -474,6 +537,13 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnDeleteRequest;
         private System.Windows.Forms.Button btnEditRequest;
+        private System.Windows.Forms.GroupBox groupBoxUserInfo;
+        private System.Windows.Forms.ToolTip toolTipUserEdit;
+        private System.Windows.Forms.ToolTip toolTipDeleteRequest;
+        private System.Windows.Forms.ToolTip toolTipAddRequest;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.LinkLabel lLabelHotelName;
     }
 }
 

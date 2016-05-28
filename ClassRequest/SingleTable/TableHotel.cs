@@ -15,12 +15,13 @@ namespace ClassRequest.SingleTable
         public string Street { private set; get; }
         public string Phone { private set; get; }
         public string HotelClass { private set; get; }
+        public string HotelLink { private set; get; }
 
         public TableHotel()
         { }
 
         public TableHotel(string hotelId, string orgName, string hotelName, string city,
-            string street, string phone, string hotelClass)
+            string street, string phone, string hotelClass, string hotelLink)
         {
             HotelId = hotelId;
             OrgName = orgName;
@@ -29,6 +30,7 @@ namespace ClassRequest.SingleTable
             Street = street;
             Phone = phone;
             HotelClass = hotelClass;
+            HotelLink = hotelLink;
         }
     }
 }

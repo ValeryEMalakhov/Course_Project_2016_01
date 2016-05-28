@@ -80,13 +80,14 @@
             // 
             // btnLoginLikeAdmin
             // 
-            this.btnLoginLikeAdmin.Enabled = false;
+            this.btnLoginLikeAdmin.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnLoginLikeAdmin.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnLoginLikeAdmin.Location = new System.Drawing.Point(65, 114);
             this.btnLoginLikeAdmin.Name = "btnLoginLikeAdmin";
             this.btnLoginLikeAdmin.Size = new System.Drawing.Size(216, 62);
             this.btnLoginLikeAdmin.TabIndex = 5;
             this.btnLoginLikeAdmin.Text = "Администратор";
-            this.btnLoginLikeAdmin.UseVisualStyleBackColor = true;
+            this.btnLoginLikeAdmin.UseVisualStyleBackColor = false;
             this.btnLoginLikeAdmin.Click += new System.EventHandler(this.btnLoginLikeAdmin_Click);
             // 
             // timer

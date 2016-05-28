@@ -35,16 +35,17 @@ namespace ClassRequest.DAL
         }
 
         #region TableSelect
+
         public List<TableStaffPosition> GetSingleTable()
         {
             TableStaffPosition tableStaffPosition;
             var tableStaffPositionList = new List<TableStaffPosition>();
 
-            string commPart =
-                "SELECT *" +
-                " FROM \"hotel\".\"StaffPosition\";";
             try
             {
+                string commPart =
+                    "SELECT *" +
+                    " FROM \"hotel\".\"StaffPosition\";";
                 // открываем соединение
                 //sqlConnect.GetInstance().OpenConn();
 
@@ -72,13 +73,17 @@ namespace ClassRequest.DAL
             }
             return tableStaffPositionList;
         }
+
         #endregion
+
         #region TableInsert
 
         #endregion
+
         #region TableDelete
 
         #endregion
+
         #region Other
 
         #endregion

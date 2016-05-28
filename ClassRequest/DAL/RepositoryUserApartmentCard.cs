@@ -43,15 +43,16 @@ namespace ClassRequest.DAL
 
             //MessageBox.Show(filterDate);
 
-            string commPart =
-                "SELECT *" +
-                " FROM \"hotel\".\"Client\" c, \"hotel\".\"ACard\" a, \"hotel\".\"Apartment\" ap" +
-                " WHERE c.client_id = a.client_id" +
-                " AND ap.ap_id = a.ap_id" +
-                " AND a.CheckInDate <= @filterDate::timestamp with time zone" +
-                " AND a.CheckOutDate > @filterDate::timestamp with time zone ;";
             try
             {
+                string commPart =
+                    "SELECT *" +
+                    " FROM \"hotel\".\"Client\" c, \"hotel\".\"ACard\" a, \"hotel\".\"Apartment\" ap" +
+                    " WHERE c.client_id = a.client_id" +
+                    " AND ap.ap_id = a.ap_id" +
+                    " AND a.CheckInDate <= @filterDate::timestamp with time zone" +
+                    " AND a.CheckOutDate > @filterDate::timestamp with time zone " +
+                    " ORDER BY a.CheckInDate ;";
                 // открываем соединение
                 //sqlConnect.GetInstance().OpenConn();
 
@@ -86,6 +87,55 @@ namespace ClassRequest.DAL
             }
             return userAppartmentCardList;
         }
+        public List<TableUserAppartmentCard> GetUserListFull()
+        {
+            TableUserAppartmentCard userAppartmentCard;
+            var userAppartmentCardList = new List<TableUserAppartmentCard>();
+
+            //MessageBox.Show(filterDate);
+
+            try
+            {
+                string commPart =
+                    "SELECT *" +
+                    " FROM \"hotel\".\"Client\" c, \"hotel\".\"ACard\" a, \"hotel\".\"Apartment\" ap" +
+                    " WHERE c.client_id = a.client_id" +
+                    " AND ap.ap_id = a.ap_id" +
+                    " ORDER BY a.CheckInDate;";
+                // открываем соединение
+                //sqlConnect.GetInstance().OpenConn();
+
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+
+                NpgsqlDataReader readerUserTable = command.ExecuteReader();
+                foreach (DbDataRecord dbDataRecord in readerUserTable)
+                {
+                    userAppartmentCard = new TableUserAppartmentCard(
+                        dbDataRecord["Client_ID"].ToString(),
+                        dbDataRecord["Ap_ID"].ToString(),
+                        dbDataRecord["FirstName"].ToString(),
+                        dbDataRecord["SecondName"].ToString(),
+                        dbDataRecord["Gender"].ToString(),
+                        dbDataRecord["CheckInDate"].ToString(),
+                        dbDataRecord["CheckOutDate"].ToString());
+
+                    userAppartmentCardList.Add(userAppartmentCard);
+                }
+                readerUserTable.Close();
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+            finally
+            {
+                // соединение закрыто принудительно
+                //sqlConnect.GetInstance().CloseConn();
+            }
+            return userAppartmentCardList;
+        }
+
 
         #endregion
 

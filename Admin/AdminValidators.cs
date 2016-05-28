@@ -21,9 +21,9 @@ using Npgsql;
 using ClassRequest;
 using ClassRequest.DAL;
 
-namespace Client
+namespace Admin
 {
-    public class ClientValidators
+    public class AdminValidators
     {
         #region Global Values
 
@@ -32,7 +32,7 @@ namespace Client
 
         #endregion
 
-        public ClientValidators()
+        public AdminValidators()
         {
             ValidKey = true;
             ErrorString = "--- Введите корректные значения ---\n" +
@@ -41,11 +41,11 @@ namespace Client
 
         #region mainForm
 
-        public bool ValidNumOutput(DateTimePicker dateTPUser)
+        public bool ValidUserOutput(DateTimePicker dtp)
         {
             try
             {
-                if (dateTPUser.Text == string.Empty)
+                if (dtp.Text == string.Empty)
                 {
                     ErrorString += "-- Дата не может быть пуcтой\n";
                     ValidKey = false;
@@ -69,13 +69,13 @@ namespace Client
             }
         }
 
-        public bool ValidLogOutput(string loginId)
+        public bool ValidNumOutput(DateTimePicker dtp)
         {
             try
             {
-                if (loginId == string.Empty)
+                if (dtp.Text == string.Empty)
                 {
-                    ErrorString += "-- LogIn не может быть пуcтой\n";
+                    ErrorString += "-- Дата не может быть пуcтой\n";
                     ValidKey = false;
                 }
 
@@ -96,14 +96,36 @@ namespace Client
                               "-----------------------------------------\n";
             }
         }
-
-        public bool ValidNowOutput(string loginId)
+        public bool ValidNumCostOutput()
         {
             try
             {
-                if (loginId == string.Empty)
+                if (ValidKey)
                 {
-                    ErrorString += "-- LogIn не может быть пуcтой\n";
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
+        public bool ValidUserDelete(int dgvIndex)
+        {
+            try
+            {
+                if (dgvIndex < 0)
+                {
+                    ErrorString += "-- Индекс не может быть отрицательным\n";
+                    MessageBox.Show(@"Как вы получили отрицательный индекс?");
                     ValidKey = false;
                 }
 
@@ -124,16 +146,38 @@ namespace Client
                               "-----------------------------------------\n";
             }
         }
-
-        public bool ValidDelete(string loginId, int dgvIndex)
+        public bool ValidEnterFirstBox(int dgvIndex)
         {
             try
             {
-                if (loginId == string.Empty)
+                if (dgvIndex < 0)
                 {
-                    ErrorString += "-- LogIn не может быть пуcтой\n";
+                    ErrorString += "-- Индекс не может быть отрицательным\n";
+                    MessageBox.Show(@"Как вы получили отрицательный индекс?");
                     ValidKey = false;
                 }
+
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+        public bool ValidEnterSecondBox(int dgvIndex)
+        {
+            try
+            {
                 if (dgvIndex < 0)
                 {
                     ErrorString += "-- Индекс не может быть отрицательным\n";
@@ -159,12 +203,154 @@ namespace Client
             }
         }
 
+        public bool ValidEditSecondBox(string numClass, string numClassCost)
+        {
+            try
+            {
+                numClassCost = numClassCost.Replace('.', ',');
+                if (numClass == string.Empty)
+                {
+                    ErrorString += "-- Сначало выберите класс\n";
+                    ValidKey = false;
+                }
+
+                if (numClassCost == string.Empty)
+                {
+                    ErrorString += "-- Поле стоимости не может быть пустым\n";
+                    ValidKey = false;
+                }
+                else
+                {
+                    if (Convert.ToDouble(numClassCost) < 0)
+                    {
+                        ErrorString += "-- Стоимость не может быть меньше нуля\n";
+                        ValidKey = false;
+                    }
+                }
+                
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
         #endregion
 
-        #region addForm
+        #region AddUserForm
 
-        public bool ValidSelectStatInfo(string comboBoxApId, DateTimePicker dtpCheckIn, DateTimePicker dtpCheckOut,
-            Label labelRoomT)
+        public bool ValidGetUserIdList(TextBox textBoxPass)
+        {
+            try
+            {
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
+        public bool ValidUpdateComboBoxApId(ComboBox comboBox, DateTimePicker dtpIn)
+        {
+            try
+            {
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
+        public bool ValidAddUser(TextBox textBoxPass, TextBox textBoxFirstName, TextBox textBoxSecondName,
+            ComboBox comboBoxGender, DateTimePicker dtpBirth, TextBox textBoxPhone, ComboBox comboBoxApId,
+            DateTimePicker dtpCheckIn, DateTimePicker dtpCheckOut, RichTextBox textBoxComm)
+        {
+            try
+            {
+                if (textBoxPass.Text == string.Empty)
+                {
+                    ErrorString += "-- Код паспорта не может быть пустым\n";
+                    ValidKey = false;
+                }
+                if (textBoxFirstName.Text == string.Empty)
+                {
+                    ErrorString += "-- Поле имени не может быть пустым\n";
+                    ValidKey = false;
+                }
+                if (textBoxSecondName.Text == string.Empty)
+                {
+                    ErrorString += "-- Поле фамилии не может быть пустым\n";
+                    ValidKey = false;
+                }
+                if (comboBoxGender.Text == string.Empty)
+                {
+                    ErrorString += "-- Пол человека не может быть пустым\n";
+                    ValidKey = false;
+                }
+                //if (comboBoxApId.Text != string.Empty)
+                //{
+                //    ErrorString += "-- Номер комнаты не может быть пустым\n";
+                //    ValidKey = false;
+                //}
+                if (dtpCheckOut.Value < dtpCheckIn.Value)
+                {
+                    ErrorString += "-- Дата выселения не может быть раньше даты вселения в номер\n";
+                    ValidKey = false;
+                }
+
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
+        public bool ValidSelectStatInfo(ComboBox comboBoxApId, DateTimePicker dtpCheckIn, DateTimePicker dtpCheckOut,
+            Label labelRoomN, Label labelRoomQ, Label labelRoomT, Label labelRoomC)
         {
             try
             {
@@ -194,39 +380,6 @@ namespace Client
             }
         }
 
-        public bool ValidAddUser(string comboBoxApId, DateTimePicker dtpCheckIn, DateTimePicker dtpCheckOut,
-            RichTextBox textBoxComm)
-        {
-            try
-            {
-                if (dtpCheckOut.Value < dtpCheckIn.Value)
-                {
-                    ErrorString += "-- Дата выселения не может быть раньше даты вселения в номер\n";
-                    ValidKey = false;
-                }
-
-                if (ValidKey)
-                {
-                    return ValidKey;
-                }
-                else
-                {
-                    MessageBox.Show(ErrorString);
-                    return ValidKey;
-                }
-            }
-            finally
-            {
-                ValidKey = true;
-                ErrorString = "--- Введите корректные значения ---\n" +
-                              "-----------------------------------------\n";
-            }
-        }
-
-        #endregion
-
-        #region editForm
-
         public bool ValidInputAllClientFields(TextBox textBoxPass, TextBox textBoxFirstName,
             TextBox textBoxSecondName, ComboBox comboBoxGender, DateTimePicker dtpBirth, TextBox textBoxPhone)
         {
@@ -250,50 +403,7 @@ namespace Client
             }
         }
 
-        public bool ValidUpdateUser(TextBox textBoxPass, TextBox textBoxFirstName, TextBox textBoxSecondName,
-            ComboBox comboBoxGender, DateTimePicker dtpBirth, TextBox textBoxPhone)
-        {
-            try
-            {
-                if (textBoxPass.Text == string.Empty)
-                {
-                    ErrorString += "-- Код паспорта не может быть пустым\n";
-                    ValidKey = false;
-                }
-                if (textBoxFirstName.Text == string.Empty)
-                {
-                    ErrorString += "-- Поле имени не может быть пустым\n";
-                    ValidKey = false;
-                }
-                if (textBoxSecondName.Text == string.Empty)
-                {
-                    ErrorString += "-- Поле фамилии не может быть пустым\n";
-                    ValidKey = false;
-                }
-                if (comboBoxGender.Text == string.Empty)
-                {
-                    ErrorString += "-- Пол человека не может быть пустым\n";
-                    ValidKey = false;
-                }
-
-                if (ValidKey)
-                {
-                    return ValidKey;
-                }
-                else
-                {
-                    MessageBox.Show(ErrorString);
-                    return ValidKey;
-                }
-            }
-            finally
-            {
-                ValidKey = true;
-                ErrorString = "--- Введите корректные значения ---\n" +
-                              "-----------------------------------------\n";
-            }
-        }
-
         #endregion
+
     }
 }

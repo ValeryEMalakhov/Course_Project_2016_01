@@ -35,16 +35,19 @@ namespace ClassRequest.DAL
         }
 
         #region TableSelect
+
         public List<TableAClass> GetSingleTable()
         {
             TableAClass tableAClass;
             var tableAClassList = new List<TableAClass>();
 
-            string commPart =
-                "SELECT *" +
-                " FROM \"hotel\".\"AClass\";";
             try
             {
+                string commPart =
+                    "SELECT *" +
+                    " FROM \"hotel\".\"AClass\"" +
+                    " ORDER BY Class_ID;";
+
                 // открываем соединение
                 //sqlConnect.GetInstance().OpenConn();
 
@@ -72,13 +75,50 @@ namespace ClassRequest.DAL
             }
             return tableAClassList;
         }
+
         #endregion
+
         #region TableInsert
 
         #endregion
+
+        #region TableUpdate
+
+        public void EditClassCost(string textBoxClass, string textBoxClassCost)
+        {
+            try
+            {
+                // открываем соединение
+                //sqlConnect.GetInstance().OpenConn();
+                string commPart =
+                    "UPDATE \"hotel\".\"AClass\"" +
+                    " SET ClassCost = @textBoxClassCost" +
+                    " WHERE Class_ID = @textBoxClass ;";
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+
+                command.Parameters.AddWithValue("@textBoxClassCost", Convert.ToDouble(textBoxClassCost));
+                command.Parameters.AddWithValue("@textBoxClass", Convert.ToInt32(textBoxClass));
+
+                command.ExecuteNonQuery();
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+            finally
+            {
+                // соединение закрыто принудительно
+                //sqlConnect.GetInstance().CloseConn();
+            }
+        }
+
+        #endregion
+
         #region TableDelete
 
         #endregion
+
         #region Other
 
         #endregion

@@ -15,7 +15,7 @@ namespace ClassRequest
         RepositoryStaff RepositoryStaff { set; get; }
         RepositoryStaffPosition RepositoryStaffPosition { set; get; }
         RepositoryUserApartmentCard RepositoryUserApartmentCard { set; get; }
-        private RepositoryUserApartmentCardCost RepositoryUserApartmentCardCost { set; get; }
+        RepositoryUserApartmentCardCost RepositoryUserApartmentCardCost { set; get; }
 
         private NpgsqlConnection npgsql;
         private SqlConnect sqlConnect;
