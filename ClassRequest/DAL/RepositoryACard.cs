@@ -309,6 +309,32 @@ namespace ClassRequest.DAL
             }
         }
 
+        public void RequestDeleteSqlForApartment(string textBoxNum)
+        {
+            try
+            {
+                // открываем соединение
+                //sqlConnect.GetInstance().OpenConn();
+                string commPart =
+                    "DELETE FROM \"hotel\".\"ACard\"" +
+                    " WHERE Ap_ID = @textBoxNum ;";
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+
+                command.Parameters.AddWithValue("@textBoxNum", Convert.ToInt32(textBoxNum));
+                command.ExecuteNonQuery();
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+            finally
+            {
+                // соединение закрыто принудительно
+                //sqlConnect.GetInstance().CloseConn();
+            }
+        }
+
         #endregion
 
         #region Other

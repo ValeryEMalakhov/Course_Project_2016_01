@@ -17,6 +17,7 @@ using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using Admin.Sided_Form;
 using Npgsql;
 using ClassRequest;
 using ClassRequest.DAL;
@@ -96,7 +97,7 @@ namespace Admin
                 int colorKey = 0;
                 foreach (var v in reposFactory.GetApartmentAClass().GetNumList(filterDate))
                 {
-                    dgvNum.Rows.Add(v.ApId, v.PlaceQuantity, v.ClassId, v.ClassCost);
+                    dgvNum.Rows.Add(v.ApId, v.HotelId, v.PlaceQuantity, v.ClassId);
                     if (colorKey%2 == 0)
                     {
                         for (int i = 0; i < dgvNum.ColumnCount; ++i)
@@ -122,7 +123,7 @@ namespace Admin
                 int colorKey = 0;
                 foreach (var v in reposFactory.GetApartmentAClass().GetNumListFull())
                 {
-                    dgvNum.Rows.Add(v.ApId, v.PlaceQuantity, v.ClassId, v.ClassCost);
+                    dgvNum.Rows.Add(v.ApId, v.HotelId, v.PlaceQuantity, v.ClassId);
                     if (colorKey%2 == 0)
                     {
                         for (int i = 0; i < dgvNum.ColumnCount; ++i)
@@ -164,13 +165,14 @@ namespace Admin
         }
 
         // записываем выбранный номер в TextBox-сы
-        public void EnterFirstBox(TextBox textBoxNum, TextBox textBoxPlace, TextBox textBoxNumClass,
-            TextBox textBoxNumCost, DataGridView dgvNum, int dgvIndex)
+        public void EnterFirstBox(TextBox textBoxNum, TextBox textBoxNumHotel, TextBox textBoxPlace,
+            TextBox textBoxNumClass,
+            DataGridView dgvNum, int dgvIndex)
         {
             textBoxNum.Text = dgvNum.Rows[dgvIndex].Cells[0].Value.ToString();
-            textBoxPlace.Text = dgvNum.Rows[dgvIndex].Cells[1].Value.ToString();
-            textBoxNumClass.Text = dgvNum.Rows[dgvIndex].Cells[2].Value.ToString();
-            textBoxNumCost.Text = dgvNum.Rows[dgvIndex].Cells[3].Value.ToString();
+            textBoxNumHotel.Text = dgvNum.Rows[dgvIndex].Cells[1].Value.ToString();
+            textBoxPlace.Text = dgvNum.Rows[dgvIndex].Cells[2].Value.ToString();
+            textBoxNumClass.Text = dgvNum.Rows[dgvIndex].Cells[3].Value.ToString();
         }
 
         // записываем выбранный класс в TextBox-сы
@@ -322,8 +324,130 @@ namespace Admin
             {
                 textBoxClassCost.Text = textBoxClassCost.Text.Replace('.', ',');
                 reposFactory.GetAClass().EditClassCost(textBoxClass.Text, textBoxClassCost.Text);
+
                 textBoxClass.Text = string.Empty;
+                textBoxClass.Enabled = true;
                 textBoxClassCost.Text = string.Empty;
+                textBoxClassCost.Enabled = true;
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+
+        public void AddFirstBox(ReposFactory reposFactory, TextBox textBoxNum, TextBox textBoxNumHotel,
+            TextBox textBoxPlace, TextBox textBoxNumClass)
+        {
+            try
+            {
+                bool key = false;
+                foreach (var v in reposFactory.GetHotel().GetSingleTable())
+                {
+                    if (v.HotelId == textBoxNumHotel.Text)
+                        key = true;
+
+                }
+                if (key)
+                {
+                    reposFactory.GetApartment().AddApartment(textBoxNum.Text, textBoxNumHotel.Text, textBoxPlace.Text,
+                        textBoxNumClass.Text);
+
+                    textBoxNum.Text = string.Empty;
+                    textBoxNum.Enabled = true;
+                    textBoxNumHotel.Text = string.Empty;
+                    textBoxNumHotel.Enabled = true;
+                    textBoxPlace.Text = string.Empty;
+                    textBoxPlace.Enabled = true;
+                    textBoxNumClass.Text = string.Empty;
+                    textBoxNumClass.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show(@"Отель в базе не найден");
+                }
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+
+        public void EditFirstBox(ReposFactory reposFactory, TextBox textBoxNum, TextBox textBoxNumHotel,
+            TextBox textBoxPlace, TextBox textBoxNumClass)
+        {
+            try
+            {
+                reposFactory.GetApartment().EditApartment(textBoxNum.Text, textBoxNumHotel.Text, textBoxPlace.Text,
+                    textBoxNumClass.Text);
+
+                textBoxNum.Text = string.Empty;
+                textBoxNum.Enabled = true;
+                textBoxNumHotel.Text = string.Empty;
+                textBoxNumHotel.Enabled = true;
+                textBoxPlace.Text = string.Empty;
+                textBoxPlace.Enabled = true;
+                textBoxNumClass.Text = string.Empty;
+                textBoxNumClass.Enabled = true;
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+
+        public void DeleteFirstBox(ReposFactory reposFactory, TextBox textBoxNum, TextBox textBoxNumHotel,
+            TextBox textBoxPlace,
+            TextBox textBoxNumClass)
+        {
+            try
+            {
+                bool keyAll = false;
+                bool keyNew = false;
+
+                foreach (var v in reposFactory.GetACard().GetSingleTable())
+                {
+                    if (v.ApId == textBoxNum.Text)
+                    {
+                        keyAll = true;
+                        if (Convert.ToDateTime(v.CheckInDate) >= DateTime.Today ||
+                            Convert.ToDateTime(v.CheckOutDate) >= DateTime.Today)
+                        {
+                            keyNew = true;
+                        }
+                    }
+                }
+                if (keyAll)
+                {
+                    DeleteNumForm deleteNumForm = new DeleteNumForm(reposFactory, keyNew,
+                        textBoxNum, textBoxNumHotel, textBoxPlace, textBoxNumClass);
+                    deleteNumForm.ShowDialog();
+                }
+                else
+                {
+                    reposFactory.GetApartment().DeleteApartment(textBoxNum.Text);
+
+                    textBoxNum.Text = string.Empty;
+                    textBoxNum.Enabled = true;
+                    textBoxNumHotel.Text = string.Empty;
+                    textBoxNumHotel.Enabled = true;
+                    textBoxPlace.Text = string.Empty;
+                    textBoxPlace.Enabled = true;
+                    textBoxNumClass.Text = string.Empty;
+                    textBoxNumClass.Enabled = true;
+                }
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+
+        public void DeleteFirstBoxFromForm(ReposFactory reposFactory, TextBox textBoxNum)
+        {
+            try
+            {
+                reposFactory.GetACard().RequestDeleteSqlForApartment(textBoxNum.Text);
             }
             catch (Exception exp)
             {

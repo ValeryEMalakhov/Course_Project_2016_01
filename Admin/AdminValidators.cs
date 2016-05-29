@@ -246,6 +246,204 @@ namespace Admin
             }
         }
 
+        public bool ValidEditFirstBox(string textBoxNum, string textBoxNumHotel, string textBoxNumPlace, string textBoxNumClass)
+        {
+            try
+            {
+                if (textBoxNum == string.Empty)
+                {
+                    ErrorString += "-- Сначало выберите номер\n";
+                    ValidKey = false;
+                }
+
+                if (textBoxNumHotel == string.Empty)
+                {
+                    ErrorString += "-- Поле отеля не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (textBoxNumPlace == string.Empty)
+                {
+                    ErrorString += "-- Поле количества комнат не может быть пустым\n";
+                    ValidKey = false;
+                }
+                else
+                {
+                    if (Convert.ToInt32(textBoxNumPlace) <= 0)
+                    {
+                        ErrorString += "-- Количество комнат не может быть меньше или равняться нулю\n";
+                        ValidKey = false;
+                    }
+                }
+
+                if (textBoxNumClass == string.Empty)
+                {
+                    if (Convert.ToInt32(textBoxNumClass) <= 0 || Convert.ToInt32(textBoxNumClass) > 5)
+                    {
+                        ErrorString += "-- Клас не находиться в диапазоне (0-5)\n";
+                        ValidKey = false;
+                    }
+                    else
+                    {
+                        ErrorString += "-- Поле класса номера не может быть пустым\n";
+                        ValidKey = false;
+                    }
+                }
+
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
+        public bool ValidDeleteFirstBox(string textBoxNum, string textBoxNumHotel, string textBoxNumPlace, string textBoxNumClass)
+        {
+            try
+            {
+                if (textBoxNum == string.Empty)
+                {
+                    ErrorString += "-- Сначало выберите номер\n";
+                    ValidKey = false;
+                }
+
+                if (textBoxNumHotel == string.Empty)
+                {
+                    ErrorString += "-- Поле отеля не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (textBoxNumPlace == string.Empty)
+                {
+                    ErrorString += "-- Поле количества комнат не может быть пустым\n";
+                    ValidKey = false;
+                }
+                else
+                {
+                    if (Convert.ToInt32(textBoxNumPlace) <= 0)
+                    {
+                        ErrorString += "-- Количество комнат не может быть меньше или равняться нулю\n";
+                        ValidKey = false;
+                    }
+                }
+
+                if (textBoxNumClass == string.Empty)
+                {
+                    if (Convert.ToInt32(textBoxNumClass) <= 0 || Convert.ToInt32(textBoxNumClass) > 5)
+                    {
+                        ErrorString += "-- Клас не находиться в диапазоне (0-5)\n";
+                        ValidKey = false;
+                    }
+                    else
+                    {
+                        ErrorString += "-- Поле класса номера не может быть пустым\n";
+                        ValidKey = false;
+                    }
+                }
+
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
+        public bool ValidAddFirstBox(string textBoxNum, string textBoxNumHotel, string textBoxNumPlace, 
+            string textBoxNumClass, DataGridView dgvNum)
+        {
+            try
+            {
+                if (textBoxNum == string.Empty)
+                {
+                    ErrorString += "-- Сначало выберите номер\n";
+                    ValidKey = false;
+                }
+                else
+                {
+                    for (int i = 0; i < dgvNum.RowCount; i++)
+                    {
+                        if (textBoxNum == dgvNum.Rows[i].Cells[0].Value.ToString())
+                        {
+                            ErrorString += "-- Номер уже есть в отеле\n";
+                            ValidKey = false;
+                        }
+                    }
+                }
+
+                if (textBoxNumHotel == string.Empty)
+                {
+                    ErrorString += "-- Поле отеля не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (textBoxNumPlace == string.Empty)
+                {
+                    ErrorString += "-- Поле количества комнат не может быть пустым\n";
+                    ValidKey = false;
+                }
+                else
+                {
+                    if (Convert.ToInt32(textBoxNumPlace) <= 0)
+                    {
+                        ErrorString += "-- Количество комнат не может быть меньше или равняться нулю\n";
+                        ValidKey = false;
+                    }
+                }
+
+                if (textBoxNumClass == string.Empty)
+                {
+                    if (Convert.ToInt32(textBoxNumClass) <= 0 || Convert.ToInt32(textBoxNumClass) > 5)
+                    {
+                        ErrorString += "-- Клас не находиться в диапазоне (0-5)\n";
+                        ValidKey = false;
+                    }
+                    else
+                    {
+                        ErrorString += "-- Поле класса номера не может быть пустым\n";
+                        ValidKey = false;
+                    }
+                }
+
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
         #endregion
 
         #region AddUserForm

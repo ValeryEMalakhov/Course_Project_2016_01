@@ -89,6 +89,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sided_Form\AddUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sided_Form\AddUserForm.Designer.cs">
+      <DependentUpon>AddUserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sided_Form\DeleteNumForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sided_Form\DeleteNumForm.Designer.cs">
+      <DependentUpon>DeleteNumForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdminWinForm.resx">
       <DependentUpon>AdminWinForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -101,6 +113,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Sided_Form\AddUserForm.resx">
+      <DependentUpon>AddUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sided_Form\DeleteNumForm.resx">
+      <DependentUpon>DeleteNumForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -121,9 +139,7 @@
       <Name>ClassRequest</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Sided_Form\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

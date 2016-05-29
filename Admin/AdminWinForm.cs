@@ -16,6 +16,7 @@ using System.Collections;
 using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using Admin.Sided_Form;
 using Npgsql;
 using ClassRequest;
 using ClassRequest.DAL;
@@ -54,17 +55,17 @@ namespace Admin
         {
             _adminRequest.UserOutputFull(_reposFactory, dgvUser);
             _adminRequest.NumOutputFull(_reposFactory, dgvNum);
-
             if (_adminValidators.ValidNumCostOutput())
             {
                 _adminRequest.NumCostOutput(_reposFactory, dgvNumClass);
             }
 
-            dgvUser.Rows[0].Selected = false;
+
+            if (dgvUser.CurrentRow != null) dgvUser.Rows[dgvUser.CurrentRow.Index].Selected = false;
             dgvUser.AllowUserToAddRows = false;
-            dgvNum.Rows[0].Selected = false;
+            if (dgvNum.CurrentRow != null) dgvNum.Rows[dgvNum.CurrentRow.Index].Selected = false;
             dgvNum.AllowUserToAddRows = false;
-            dgvNumClass.Rows[0].Selected = false;
+            if (dgvNumClass.CurrentRow != null) dgvNumClass.Rows[dgvNumClass.CurrentRow.Index].Selected = false;
             dgvNumClass.AllowUserToAddRows = false;
         }
 
@@ -81,18 +82,18 @@ namespace Admin
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            //AddUserForm addUser = new AddUserForm(_reposFactory);
-            //addUser.ShowDialog();
+            AddUserForm addUser = new AddUserForm(_reposFactory);
+            addUser.ShowDialog();
 
-            //// обновляем таблицу
-            //if (_adminValidators.ValidUserOutput(dateTPUser))
-            //{
-            //    _adminRequest.UserOutput(_reposFactory, dgvUser, dateTPUser);
-            //}
-            //if (_adminValidators.ValidNumOutput(dateTPUser))
-            //{
-            //    _adminRequest.NumOutput(_reposFactory, dgvNum, dateTPUser);
-            //}
+            // обновляем таблицу
+            if (_adminValidators.ValidUserOutput(dateTPUser))
+            {
+                _adminRequest.UserOutput(_reposFactory, dgvUser, dateTPUser);
+            }
+            if (_adminValidators.ValidNumOutput(dateTPUser))
+            {
+                _adminRequest.NumOutput(_reposFactory, dgvNum, dateTPUser);
+            }
         }
 
         private void btnUpdateNum_Click(object sender, EventArgs e)
@@ -151,6 +152,7 @@ namespace Admin
             if (_adminValidators.ValidNumOutput(dateTPUser))
             {
                 _adminRequest.NumOutput(_reposFactory, dgvNum, dateTPNum);
+                if (dgvNum.CurrentRow != null) dgvNum.Rows[dgvNum.CurrentRow.Index].Selected = false;
             }
         }
 
@@ -158,6 +160,7 @@ namespace Admin
         {
             if (dgvNumClass.CurrentRow != null && _adminValidators.ValidEnterSecondBox(dgvNumClass.CurrentRow.Index))
             {
+                textBoxClass.Enabled = false;
                 _adminRequest.EnterSecondBox(textBoxClass, textBoxClassCost, dgvNumClass, dgvNumClass.CurrentRow.Index);
             }
         }
@@ -169,6 +172,7 @@ namespace Admin
             {
                 if (dgvNumClass.CurrentRow != null && _adminValidators.ValidEnterSecondBox(dgvNumClass.CurrentRow.Index))
                 {
+                    textBoxClass.Enabled = false;
                     _adminRequest.EnterSecondBox(textBoxClass, textBoxClassCost, dgvNumClass,
                         dgvNumClass.CurrentRow.Index);
                 }
@@ -179,7 +183,8 @@ namespace Admin
         {
             if (dgvNum.CurrentRow != null && _adminValidators.ValidEnterFirstBox(dgvNum.CurrentRow.Index))
             {
-                _adminRequest.EnterFirstBox(textBoxNum, textBoxPlace, textBoxNumClass, textBoxNumCost, dgvNum,
+                textBoxNum.Enabled = false;
+                _adminRequest.EnterFirstBox(textBoxNum, textBoxNumHotel, textBoxPlace, textBoxNumClass, dgvNum,
                     dgvNum.CurrentRow.Index);
             }
         }
@@ -191,7 +196,8 @@ namespace Admin
             {
                 if (dgvNum.CurrentRow != null && _adminValidators.ValidEnterFirstBox(dgvNum.CurrentRow.Index))
                 {
-                    _adminRequest.EnterFirstBox(textBoxNum, textBoxPlace, textBoxNumClass, textBoxNumCost, dgvNum,
+                    textBoxNum.Enabled = false;
+                    _adminRequest.EnterFirstBox(textBoxNum, textBoxNumHotel, textBoxPlace, textBoxNumClass, dgvNum,
                         dgvNum.CurrentRow.Index);
                 }
             }
@@ -200,9 +206,13 @@ namespace Admin
         private void btnClear1_Click(object sender, EventArgs e)
         {
             textBoxNum.Text = string.Empty;
+            textBoxNum.Enabled = true;
+            textBoxNumHotel.Text = string.Empty;
+            textBoxNumHotel.Enabled = true;
             textBoxPlace.Text = string.Empty;
+            textBoxPlace.Enabled = true;
             textBoxNumClass.Text = string.Empty;
-            textBoxNumCost.Text = string.Empty;
+            textBoxNumClass.Enabled = true;
 
             if (dgvNum.CurrentRow != null) dgvNum.Rows[dgvNum.CurrentRow.Index].Selected = false;
         }
@@ -210,7 +220,9 @@ namespace Admin
         private void btnClear2_Click(object sender, EventArgs e)
         {
             textBoxClass.Text = string.Empty;
+            textBoxClass.Enabled = true;
             textBoxClassCost.Text = string.Empty;
+            textBoxClassCost.Enabled = true;
 
             if (dgvNumClass.CurrentRow != null) dgvNumClass.Rows[dgvNumClass.CurrentRow.Index].Selected = false;
         }
@@ -245,6 +257,57 @@ namespace Admin
                     if (dgvNum.CurrentRow != null) dgvNum.Rows[dgvNum.CurrentRow.Index].Selected = false;
                     if (dgvNumClass.CurrentRow != null) dgvNumClass.Rows[dgvNumClass.CurrentRow.Index].Selected = false;
                 }
+            }
+        }
+
+        private void btnEditNum_Click(object sender, EventArgs e)
+        {
+            if (_adminValidators.ValidEditFirstBox(textBoxNum.Text, textBoxNumHotel.Text, textBoxPlace.Text,
+                textBoxNumClass.Text))
+            {
+                _adminRequest.EditFirstBox(_reposFactory, textBoxNum, textBoxNumHotel, textBoxPlace,
+                textBoxNumClass);
+
+                _adminRequest.UserOutputFull(_reposFactory, dgvUser);
+                _adminRequest.NumOutputFull(_reposFactory, dgvNum);
+                _adminRequest.NumCostOutput(_reposFactory, dgvNumClass);
+
+                if (dgvNum.CurrentRow != null) dgvNum.Rows[dgvNum.CurrentRow.Index].Selected = false;
+                if (dgvNumClass.CurrentRow != null) dgvNumClass.Rows[dgvNumClass.CurrentRow.Index].Selected = false;
+            }
+        }
+
+        private void btnDeleteNum_Click(object sender, EventArgs e)
+        {
+            if (_adminValidators.ValidDeleteFirstBox(textBoxNum.Text, textBoxNumHotel.Text, textBoxPlace.Text,
+                textBoxNumClass.Text))
+            {
+                _adminRequest.DeleteFirstBox(_reposFactory, textBoxNum, textBoxNumHotel, textBoxPlace,
+                textBoxNumClass);
+
+                _adminRequest.UserOutputFull(_reposFactory, dgvUser);
+                _adminRequest.NumOutputFull(_reposFactory, dgvNum);
+                _adminRequest.NumCostOutput(_reposFactory, dgvNumClass);
+
+                if (dgvNum.CurrentRow != null) dgvNum.Rows[dgvNum.CurrentRow.Index].Selected = false;
+                if (dgvNumClass.CurrentRow != null) dgvNumClass.Rows[dgvNumClass.CurrentRow.Index].Selected = false;
+            }
+        }
+
+        private void btnAddNum_Click(object sender, EventArgs e)
+        {
+            if (_adminValidators.ValidAddFirstBox(textBoxNum.Text, textBoxNumHotel.Text, textBoxPlace.Text,
+                textBoxNumClass.Text, dgvNum))
+            {
+                _adminRequest.AddFirstBox(_reposFactory, textBoxNum, textBoxNumHotel, textBoxPlace,
+                textBoxNumClass);
+
+                _adminRequest.UserOutputFull(_reposFactory, dgvUser);
+                _adminRequest.NumOutputFull(_reposFactory, dgvNum);
+                _adminRequest.NumCostOutput(_reposFactory, dgvNumClass);
+
+                if (dgvNum.CurrentRow != null) dgvNum.Rows[dgvNum.CurrentRow.Index].Selected = false;
+                if (dgvNumClass.CurrentRow != null) dgvNumClass.Rows[dgvNumClass.CurrentRow.Index].Selected = false;
             }
         }
     }

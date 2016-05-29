@@ -45,7 +45,8 @@ namespace ClassRequest.DAL
             {
                 string commPart =
                     "SELECT *" +
-                    " FROM \"hotel\".\"Apartment\";";
+                    " FROM \"hotel\".\"Apartment\"" +
+                    " ORDER BY (Ap_ID) ;";
                 // открываем соединение
                 //sqlConnect.GetInstance().OpenConn();
 
@@ -79,11 +80,121 @@ namespace ClassRequest.DAL
 
         #endregion
 
+        #region TableUpdate
+
+        public void EditApartment(string textBoxNum, string textBoxNumHotel, string textBoxPlace,
+            string textBoxNumClass)
+        {
+            try
+            {
+                // открываем соединение
+                //sqlConnect.GetInstance().OpenConn();
+                string commPart =
+                    "UPDATE \"hotel\".\"Apartment\"" +
+                    " SET Hotel_ID = @textBoxNumHotel," +
+                    " PlaceQuantity = @textBoxPlace," +
+                    " Class_ID = @textBoxNumClass" +
+                    " WHERE Ap_ID = @textBoxNum " +
+                    ";";
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+
+                command.Parameters.AddWithValue("@textBoxNumHotel", Convert.ToInt32(textBoxNumHotel));
+                command.Parameters.AddWithValue("@textBoxPlace", Convert.ToInt32(textBoxPlace));
+                command.Parameters.AddWithValue("@textBoxNumClass", Convert.ToInt32(textBoxNumClass));
+                command.Parameters.AddWithValue("@textBoxNum", Convert.ToInt32(textBoxNum));
+
+                command.ExecuteNonQuery();
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+            finally
+            {
+                // соединение закрыто принудительно
+                //sqlConnect.GetInstance().CloseConn();
+            }
+        }
+
+        #endregion
+
         #region TableInsert
+
+        public void AddApartment(string textBoxNum, string textBoxNumHotel, string textBoxPlace,
+            string textBoxNumClass)
+        {
+            // открываем соединение
+            //sqlConnect.GetInstance().OpenConn();
+            try
+            {
+                // открываем соединение
+                //sqlConnect.GetInstance().OpenConn();
+                string commPart =
+                    "INSERT INTO \"hotel\".\"Apartment\"" +
+                    " (Ap_ID, Hotel_ID, PlaceQuantity, Class_ID)" +
+                    " VALUES" +
+                    " (@textBoxNum, @textBoxNumHotel, @textBoxPlace, @textBoxNumClass) ;";
+
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+
+                command.Parameters.AddWithValue("@textBoxNum", Convert.ToInt32(textBoxNum));
+                command.Parameters.AddWithValue("@textBoxNumHotel", Convert.ToInt32(textBoxNumHotel));
+                command.Parameters.AddWithValue("@textBoxPlace", Convert.ToInt32(textBoxPlace));
+                command.Parameters.AddWithValue("@textBoxNumClass", Convert.ToInt32(textBoxNumClass));
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (NpgsqlException exp)
+                {
+                    MessageBox.Show(Convert.ToString(exp));
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+            finally
+            {
+                // соединение закрыто принудительно
+                //sqlConnect.GetInstance().CloseConn();
+            }
+        }
 
         #endregion
 
         #region TableDelete
+
+        public void DeleteApartment(string textBoxNum)
+        {
+            try
+            {
+                // открываем соединение
+                //sqlConnect.GetInstance().OpenConn();
+                string commPart =
+                    "DELETE FROM \"hotel\".\"Apartment\"" +
+                    " WHERE Ap_ID = @textBoxNum ;";
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+
+                command.Parameters.AddWithValue("@textBoxNum", Convert.ToInt32(textBoxNum));
+                command.ExecuteNonQuery();
+
+                MessageBox.Show(@"Успешно удалено!");
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+            finally
+            {
+                // соединение закрыто принудительно
+                //sqlConnect.GetInstance().CloseConn();
+            }
+        }
 
         #endregion
 

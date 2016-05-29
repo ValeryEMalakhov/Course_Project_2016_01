@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminWinForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabUser = new System.Windows.Forms.TabPage();
             this.gBUserAction = new System.Windows.Forms.GroupBox();
@@ -58,6 +58,28 @@
             this.cOutDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CPasp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabNumb = new System.Windows.Forms.TabPage();
+            this.btnClear2 = new System.Windows.Forms.Button();
+            this.btnClear1 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxNumHotel = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxNumClass = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxPlace = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxNum = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBoxClassCost = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxClass = new System.Windows.Forms.TextBox();
+            this.dgvNumClass = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnEditClass = new System.Windows.Forms.Button();
+            this.btnAddNum = new System.Windows.Forms.Button();
+            this.btnDeleteNum = new System.Windows.Forms.Button();
+            this.btnEditNum = new System.Windows.Forms.Button();
             this.gBNum = new System.Windows.Forms.GroupBox();
             this.dateTPNum = new System.Windows.Forms.DateTimePicker();
             this.btnUpdateNum = new System.Windows.Forms.Button();
@@ -65,42 +87,20 @@
             this.dgvNum = new System.Windows.Forms.DataGridView();
             this.tabHotel = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnDeleteNum = new System.Windows.Forms.Button();
-            this.btnEditNum = new System.Windows.Forms.Button();
-            this.btnAddNum = new System.Windows.Forms.Button();
-            this.dgvNumClass = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CNumb = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CPlace = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CClass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnEditClass = new System.Windows.Forms.Button();
-            this.textBoxClass = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBoxClassCost = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBoxPlace = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBoxNum = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBoxNumCost = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBoxNumClass = new System.Windows.Forms.TextBox();
-            this.btnClear1 = new System.Windows.Forms.Button();
-            this.btnClear2 = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabUser.SuspendLayout();
             this.gBUserAction.SuspendLayout();
             this.gBUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUser)).BeginInit();
             this.tabNumb.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNumClass)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.gBNum.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNum)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvNumClass)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -134,28 +134,28 @@
             this.gBUserAction.Controls.Add(this.btnAddUser);
             this.gBUserAction.Location = new System.Drawing.Point(5, 275);
             this.gBUserAction.Name = "gBUserAction";
-            this.gBUserAction.Size = new System.Drawing.Size(197, 191);
+            this.gBUserAction.Size = new System.Drawing.Size(197, 252);
             this.gBUserAction.TabIndex = 6;
             this.gBUserAction.TabStop = false;
             this.gBUserAction.Text = "Действия";
             // 
             // btnDeleteUser
             // 
-            this.btnDeleteUser.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteUser.Image")));
             this.btnDeleteUser.Location = new System.Drawing.Point(104, 19);
             this.btnDeleteUser.Name = "btnDeleteUser";
             this.btnDeleteUser.Size = new System.Drawing.Size(80, 80);
-            this.btnDeleteUser.TabIndex = 4;
+            this.btnDeleteUser.TabIndex = 2;
+            this.btnDeleteUser.Text = "Удалить клиента";
             this.btnDeleteUser.UseVisualStyleBackColor = true;
             this.btnDeleteUser.Click += new System.EventHandler(this.btnDeleteUser_Click);
             // 
             // btnAddUser
             // 
-            this.btnAddUser.Image = ((System.Drawing.Image)(resources.GetObject("btnAddUser.Image")));
             this.btnAddUser.Location = new System.Drawing.Point(13, 19);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(80, 80);
-            this.btnAddUser.TabIndex = 3;
+            this.btnAddUser.TabIndex = 1;
+            this.btnAddUser.Text = "Добавить клиента";
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
@@ -179,7 +179,7 @@
             this.dateTPUser.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateTPUser.Name = "dateTPUser";
             this.dateTPUser.Size = new System.Drawing.Size(128, 20);
-            this.dateTPUser.TabIndex = 0;
+            this.dateTPUser.TabIndex = 3;
             this.dateTPUser.ValueChanged += new System.EventHandler(this.dateTPUser_ValueChanged);
             // 
             // label2
@@ -196,21 +196,22 @@
             this.btnUpdateUser.Location = new System.Drawing.Point(6, 235);
             this.btnUpdateUser.Name = "btnUpdateUser";
             this.btnUpdateUser.Size = new System.Drawing.Size(185, 25);
-            this.btnUpdateUser.TabIndex = 1;
+            this.btnUpdateUser.TabIndex = 0;
             this.btnUpdateUser.Text = "Сбросить фильтр";
             this.btnUpdateUser.UseVisualStyleBackColor = true;
             this.btnUpdateUser.Click += new System.EventHandler(this.btnUpdateUser_Click);
             // 
             // dgvUser
             // 
-            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle39.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle39.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle39;
+            this.dgvUser.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cName,
@@ -223,7 +224,8 @@
             this.dgvUser.Location = new System.Drawing.Point(208, 6);
             this.dgvUser.Name = "dgvUser";
             this.dgvUser.Size = new System.Drawing.Size(723, 521);
-            this.dgvUser.TabIndex = 2;
+            this.dgvUser.TabIndex = 99;
+            this.dgvUser.TabStop = false;
             // 
             // cName
             // 
@@ -243,8 +245,8 @@
             // 
             // cGender
             // 
-            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cGender.DefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cGender.DefaultCellStyle = dataGridViewCellStyle2;
             this.cGender.HeaderText = "Пол";
             this.cGender.Name = "cGender";
             this.cGender.ReadOnly = true;
@@ -253,8 +255,8 @@
             // 
             // cNum
             // 
-            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cNum.DefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cNum.DefaultCellStyle = dataGridViewCellStyle3;
             this.cNum.HeaderText = "Номер";
             this.cNum.Name = "cNum";
             this.cNum.ReadOnly = true;
@@ -263,8 +265,8 @@
             // 
             // cInDate
             // 
-            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cInDate.DefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cInDate.DefaultCellStyle = dataGridViewCellStyle4;
             this.cInDate.HeaderText = "Дата вселения";
             this.cInDate.Name = "cInDate";
             this.cInDate.ReadOnly = true;
@@ -273,8 +275,8 @@
             // 
             // cOutDate
             // 
-            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cOutDate.DefaultCellStyle = dataGridViewCellStyle43;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cOutDate.DefaultCellStyle = dataGridViewCellStyle5;
             this.cOutDate.HeaderText = "Дата выселения";
             this.cOutDate.Name = "cOutDate";
             this.cOutDate.ReadOnly = true;
@@ -283,8 +285,8 @@
             // 
             // CPasp
             // 
-            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CPasp.DefaultCellStyle = dataGridViewCellStyle44;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CPasp.DefaultCellStyle = dataGridViewCellStyle6;
             this.CPasp.HeaderText = "Код паспорта";
             this.CPasp.Name = "CPasp";
             this.CPasp.ReadOnly = true;
@@ -295,7 +297,7 @@
             this.tabNumb.Controls.Add(this.btnClear2);
             this.tabNumb.Controls.Add(this.btnClear1);
             this.tabNumb.Controls.Add(this.label7);
-            this.tabNumb.Controls.Add(this.textBoxNumCost);
+            this.tabNumb.Controls.Add(this.textBoxNumHotel);
             this.tabNumb.Controls.Add(this.label8);
             this.tabNumb.Controls.Add(this.textBoxNumClass);
             this.tabNumb.Controls.Add(this.label5);
@@ -318,6 +320,225 @@
             this.tabNumb.Text = "Номера";
             this.tabNumb.UseVisualStyleBackColor = true;
             // 
+            // btnClear2
+            // 
+            this.btnClear2.Location = new System.Drawing.Point(326, 397);
+            this.btnClear2.Name = "btnClear2";
+            this.btnClear2.Size = new System.Drawing.Size(162, 24);
+            this.btnClear2.TabIndex = 10;
+            this.btnClear2.Text = "Очистить";
+            this.btnClear2.UseVisualStyleBackColor = true;
+            this.btnClear2.Click += new System.EventHandler(this.btnClear2_Click);
+            // 
+            // btnClear1
+            // 
+            this.btnClear1.Location = new System.Drawing.Point(326, 170);
+            this.btnClear1.Name = "btnClear1";
+            this.btnClear1.Size = new System.Drawing.Size(162, 24);
+            this.btnClear1.TabIndex = 4;
+            this.btnClear1.Text = "Очистить";
+            this.btnClear1.UseVisualStyleBackColor = true;
+            this.btnClear1.Click += new System.EventHandler(this.btnClear1_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(323, 50);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(38, 13);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Отель";
+            // 
+            // textBoxNumHotel
+            // 
+            this.textBoxNumHotel.Location = new System.Drawing.Point(326, 66);
+            this.textBoxNumHotel.Name = "textBoxNumHotel";
+            this.textBoxNumHotel.Size = new System.Drawing.Size(162, 20);
+            this.textBoxNumHotel.TabIndex = 1;
+            this.textBoxNumHotel.Tag = "";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(323, 128);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(86, 13);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "Класс комнаты";
+            // 
+            // textBoxNumClass
+            // 
+            this.textBoxNumClass.Location = new System.Drawing.Point(326, 144);
+            this.textBoxNumClass.Name = "textBoxNumClass";
+            this.textBoxNumClass.Size = new System.Drawing.Size(162, 20);
+            this.textBoxNumClass.TabIndex = 3;
+            this.textBoxNumClass.Tag = "";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(323, 89);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(69, 13);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Кол-во мест";
+            // 
+            // textBoxPlace
+            // 
+            this.textBoxPlace.Location = new System.Drawing.Point(326, 105);
+            this.textBoxPlace.Name = "textBoxPlace";
+            this.textBoxPlace.Size = new System.Drawing.Size(162, 20);
+            this.textBoxPlace.TabIndex = 2;
+            this.textBoxPlace.Tag = "";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(323, 11);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(18, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "№";
+            // 
+            // textBoxNum
+            // 
+            this.textBoxNum.Location = new System.Drawing.Point(326, 27);
+            this.textBoxNum.Name = "textBoxNum";
+            this.textBoxNum.Size = new System.Drawing.Size(162, 20);
+            this.textBoxNum.TabIndex = 0;
+            this.textBoxNum.Tag = "";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(323, 355);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Цена класса";
+            // 
+            // textBoxClassCost
+            // 
+            this.textBoxClassCost.Location = new System.Drawing.Point(326, 371);
+            this.textBoxClassCost.Name = "textBoxClassCost";
+            this.textBoxClassCost.Size = new System.Drawing.Size(162, 20);
+            this.textBoxClassCost.TabIndex = 9;
+            this.textBoxClassCost.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxClassCost_KeyDown);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(323, 316);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Класс комнаты";
+            // 
+            // textBoxClass
+            // 
+            this.textBoxClass.Location = new System.Drawing.Point(326, 332);
+            this.textBoxClass.Name = "textBoxClass";
+            this.textBoxClass.Size = new System.Drawing.Size(162, 20);
+            this.textBoxClass.TabIndex = 8;
+            // 
+            // dgvNumClass
+            // 
+            this.dgvNumClass.AllowUserToResizeRows = false;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvNumClass.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNumClass.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvNumClass.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvNumClass.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
+            this.dgvNumClass.Location = new System.Drawing.Point(494, 316);
+            this.dgvNumClass.Name = "dgvNumClass";
+            this.dgvNumClass.ReadOnly = true;
+            this.dgvNumClass.Size = new System.Drawing.Size(436, 211);
+            this.dgvNumClass.TabIndex = 99;
+            this.dgvNumClass.TabStop = false;
+            this.dgvNumClass.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNumClass_CellContentClick);
+            this.dgvNumClass.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvNumClass_KeyUp);
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Класс комнаты";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn3.Width = 195;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Цена";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 195;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnEditClass);
+            this.groupBox1.Controls.Add(this.btnAddNum);
+            this.groupBox1.Controls.Add(this.btnDeleteNum);
+            this.groupBox1.Controls.Add(this.btnEditNum);
+            this.groupBox1.Location = new System.Drawing.Point(5, 200);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(315, 327);
+            this.groupBox1.TabIndex = 99;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Действия";
+            // 
+            // btnEditClass
+            // 
+            this.btnEditClass.Location = new System.Drawing.Point(92, 105);
+            this.btnEditClass.Name = "btnEditClass";
+            this.btnEditClass.Size = new System.Drawing.Size(131, 80);
+            this.btnEditClass.TabIndex = 11;
+            this.btnEditClass.Text = "Редактировать стоимость класс";
+            this.btnEditClass.UseVisualStyleBackColor = true;
+            this.btnEditClass.Click += new System.EventHandler(this.btnEditClass_Click);
+            // 
+            // btnAddNum
+            // 
+            this.btnAddNum.Location = new System.Drawing.Point(6, 19);
+            this.btnAddNum.Name = "btnAddNum";
+            this.btnAddNum.Size = new System.Drawing.Size(80, 80);
+            this.btnAddNum.TabIndex = 5;
+            this.btnAddNum.Text = "Добавить номер";
+            this.btnAddNum.UseVisualStyleBackColor = true;
+            this.btnAddNum.Click += new System.EventHandler(this.btnAddNum_Click);
+            // 
+            // btnDeleteNum
+            // 
+            this.btnDeleteNum.Location = new System.Drawing.Point(229, 19);
+            this.btnDeleteNum.Name = "btnDeleteNum";
+            this.btnDeleteNum.Size = new System.Drawing.Size(80, 80);
+            this.btnDeleteNum.TabIndex = 7;
+            this.btnDeleteNum.Text = "Удалить номер";
+            this.btnDeleteNum.UseVisualStyleBackColor = true;
+            this.btnDeleteNum.Click += new System.EventHandler(this.btnDeleteNum_Click);
+            // 
+            // btnEditNum
+            // 
+            this.btnEditNum.Location = new System.Drawing.Point(92, 19);
+            this.btnEditNum.Name = "btnEditNum";
+            this.btnEditNum.Size = new System.Drawing.Size(131, 80);
+            this.btnEditNum.TabIndex = 6;
+            this.btnEditNum.Text = "Редактировать номер";
+            this.btnEditNum.UseVisualStyleBackColor = true;
+            this.btnEditNum.Click += new System.EventHandler(this.btnEditNum_Click);
+            // 
             // gBNum
             // 
             this.gBNum.Controls.Add(this.dateTPNum);
@@ -326,7 +547,7 @@
             this.gBNum.Location = new System.Drawing.Point(5, 3);
             this.gBNum.Name = "gBNum";
             this.gBNum.Size = new System.Drawing.Size(315, 191);
-            this.gBNum.TabIndex = 4;
+            this.gBNum.TabIndex = 99;
             this.gBNum.TabStop = false;
             this.gBNum.Text = "Фильтры";
             // 
@@ -338,7 +559,7 @@
             this.dateTPNum.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateTPNum.Name = "dateTPNum";
             this.dateTPNum.Size = new System.Drawing.Size(247, 20);
-            this.dateTPNum.TabIndex = 1;
+            this.dateTPNum.TabIndex = 12;
             this.dateTPNum.ValueChanged += new System.EventHandler(this.dateTPNum_ValueChanged);
             // 
             // btnUpdateNum
@@ -346,7 +567,7 @@
             this.btnUpdateNum.Location = new System.Drawing.Point(6, 160);
             this.btnUpdateNum.Name = "btnUpdateNum";
             this.btnUpdateNum.Size = new System.Drawing.Size(304, 25);
-            this.btnUpdateNum.TabIndex = 2;
+            this.btnUpdateNum.TabIndex = 13;
             this.btnUpdateNum.Text = "Сбросить фильтр";
             this.btnUpdateNum.UseVisualStyleBackColor = true;
             this.btnUpdateNum.Click += new System.EventHandler(this.btnUpdateNum_Click);
@@ -362,14 +583,15 @@
             // 
             // dgvNum
             // 
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle38.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNum.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle38;
+            this.dgvNum.AllowUserToResizeRows = false;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNum.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgvNum.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNum.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CNumb,
@@ -380,7 +602,8 @@
             this.dgvNum.Name = "dgvNum";
             this.dgvNum.ReadOnly = true;
             this.dgvNum.Size = new System.Drawing.Size(437, 304);
-            this.dgvNum.TabIndex = 5;
+            this.dgvNum.TabIndex = 99;
+            this.dgvNum.TabStop = false;
             this.dgvNum.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNum_CellClick);
             this.dgvNum.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvNum_KeyUp);
             // 
@@ -404,89 +627,6 @@
             this.tabPage1.Text = "Сотрудники";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnEditClass);
-            this.groupBox1.Controls.Add(this.btnAddNum);
-            this.groupBox1.Controls.Add(this.btnDeleteNum);
-            this.groupBox1.Controls.Add(this.btnEditNum);
-            this.groupBox1.Location = new System.Drawing.Point(5, 200);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(315, 327);
-            this.groupBox1.TabIndex = 9;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Действия";
-            // 
-            // btnDeleteNum
-            // 
-            this.btnDeleteNum.Location = new System.Drawing.Point(229, 19);
-            this.btnDeleteNum.Name = "btnDeleteNum";
-            this.btnDeleteNum.Size = new System.Drawing.Size(80, 80);
-            this.btnDeleteNum.TabIndex = 9;
-            this.btnDeleteNum.Text = "Удалить номер";
-            this.btnDeleteNum.UseVisualStyleBackColor = true;
-            // 
-            // btnEditNum
-            // 
-            this.btnEditNum.Location = new System.Drawing.Point(92, 19);
-            this.btnEditNum.Name = "btnEditNum";
-            this.btnEditNum.Size = new System.Drawing.Size(131, 80);
-            this.btnEditNum.TabIndex = 8;
-            this.btnEditNum.Text = "Редактировать номер";
-            this.btnEditNum.UseVisualStyleBackColor = true;
-            // 
-            // btnAddNum
-            // 
-            this.btnAddNum.Location = new System.Drawing.Point(6, 19);
-            this.btnAddNum.Name = "btnAddNum";
-            this.btnAddNum.Size = new System.Drawing.Size(80, 80);
-            this.btnAddNum.TabIndex = 7;
-            this.btnAddNum.Text = "Добавить номер";
-            this.btnAddNum.UseVisualStyleBackColor = true;
-            // 
-            // dgvNumClass
-            // 
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvNumClass.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle34;
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle35.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNumClass.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle35;
-            this.dgvNumClass.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvNumClass.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
-            this.dgvNumClass.Location = new System.Drawing.Point(494, 316);
-            this.dgvNumClass.Name = "dgvNumClass";
-            this.dgvNumClass.ReadOnly = true;
-            this.dgvNumClass.Size = new System.Drawing.Size(436, 211);
-            this.dgvNumClass.TabIndex = 6;
-            this.dgvNumClass.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNumClass_CellContentClick);
-            this.dgvNumClass.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvNumClass_KeyUp);
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle36;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Класс комнаты";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn3.Width = 195;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle37;
-            this.dataGridViewTextBoxColumn4.HeaderText = "Цена";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 195;
-            // 
             // CNumb
             // 
             this.CNumb.HeaderText = "№";
@@ -497,151 +637,23 @@
             // 
             // CPlace
             // 
-            this.CPlace.HeaderText = "Кол-во мест";
+            this.CPlace.HeaderText = "Отель";
             this.CPlace.Name = "CPlace";
             this.CPlace.ReadOnly = true;
             this.CPlace.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // CClass
             // 
-            this.CClass.HeaderText = "Класс комнаты";
+            this.CClass.HeaderText = "Кол-во мест";
             this.CClass.Name = "CClass";
             this.CClass.ReadOnly = true;
             this.CClass.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // CCost
             // 
-            this.CCost.HeaderText = "Цена";
+            this.CCost.HeaderText = "Класс комнаты";
             this.CCost.Name = "CCost";
             this.CCost.ReadOnly = true;
-            // 
-            // btnEditClass
-            // 
-            this.btnEditClass.Location = new System.Drawing.Point(92, 105);
-            this.btnEditClass.Name = "btnEditClass";
-            this.btnEditClass.Size = new System.Drawing.Size(131, 80);
-            this.btnEditClass.TabIndex = 10;
-            this.btnEditClass.Text = "Редактировать стоимость класс";
-            this.btnEditClass.UseVisualStyleBackColor = true;
-            this.btnEditClass.Click += new System.EventHandler(this.btnEditClass_Click);
-            // 
-            // textBoxClass
-            // 
-            this.textBoxClass.Enabled = false;
-            this.textBoxClass.Location = new System.Drawing.Point(326, 332);
-            this.textBoxClass.Name = "textBoxClass";
-            this.textBoxClass.Size = new System.Drawing.Size(162, 20);
-            this.textBoxClass.TabIndex = 11;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(323, 316);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 13);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Класс комнаты";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(323, 355);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 13);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Цена класса";
-            // 
-            // textBoxClassCost
-            // 
-            this.textBoxClassCost.Location = new System.Drawing.Point(326, 371);
-            this.textBoxClassCost.Name = "textBoxClassCost";
-            this.textBoxClassCost.Size = new System.Drawing.Size(162, 20);
-            this.textBoxClassCost.TabIndex = 13;
-            this.textBoxClassCost.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxClassCost_KeyDown);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(323, 50);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 13);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "Кол-во мест";
-            // 
-            // textBoxPlace
-            // 
-            this.textBoxPlace.Location = new System.Drawing.Point(326, 66);
-            this.textBoxPlace.Name = "textBoxPlace";
-            this.textBoxPlace.Size = new System.Drawing.Size(162, 20);
-            this.textBoxPlace.TabIndex = 17;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(323, 11);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(18, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "№";
-            // 
-            // textBoxNum
-            // 
-            this.textBoxNum.Location = new System.Drawing.Point(326, 27);
-            this.textBoxNum.Name = "textBoxNum";
-            this.textBoxNum.Size = new System.Drawing.Size(162, 20);
-            this.textBoxNum.TabIndex = 15;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(323, 128);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 13);
-            this.label7.TabIndex = 22;
-            this.label7.Text = "Цена класса";
-            // 
-            // textBoxNumCost
-            // 
-            this.textBoxNumCost.Location = new System.Drawing.Point(326, 144);
-            this.textBoxNumCost.Name = "textBoxNumCost";
-            this.textBoxNumCost.Size = new System.Drawing.Size(162, 20);
-            this.textBoxNumCost.TabIndex = 21;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(323, 89);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 13);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "Класс комнаты";
-            // 
-            // textBoxNumClass
-            // 
-            this.textBoxNumClass.Location = new System.Drawing.Point(326, 105);
-            this.textBoxNumClass.Name = "textBoxNumClass";
-            this.textBoxNumClass.Size = new System.Drawing.Size(162, 20);
-            this.textBoxNumClass.TabIndex = 19;
-            // 
-            // btnClear1
-            // 
-            this.btnClear1.Location = new System.Drawing.Point(326, 170);
-            this.btnClear1.Name = "btnClear1";
-            this.btnClear1.Size = new System.Drawing.Size(162, 24);
-            this.btnClear1.TabIndex = 3;
-            this.btnClear1.Text = "Очистить";
-            this.btnClear1.UseVisualStyleBackColor = true;
-            this.btnClear1.Click += new System.EventHandler(this.btnClear1_Click);
-            // 
-            // btnClear2
-            // 
-            this.btnClear2.Location = new System.Drawing.Point(326, 397);
-            this.btnClear2.Name = "btnClear2";
-            this.btnClear2.Size = new System.Drawing.Size(162, 24);
-            this.btnClear2.TabIndex = 4;
-            this.btnClear2.Text = "Очистить";
-            this.btnClear2.UseVisualStyleBackColor = true;
-            this.btnClear2.Click += new System.EventHandler(this.btnClear2_Click);
             // 
             // AdminWinForm
             // 
@@ -665,11 +677,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvUser)).EndInit();
             this.tabNumb.ResumeLayout(false);
             this.tabNumb.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNumClass)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.gBNum.ResumeLayout(false);
             this.gBNum.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNum)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvNumClass)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -708,13 +720,9 @@
         protected internal System.Windows.Forms.DataGridView dgvNumClass;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CNumb;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CPlace;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CClass;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CCost;
         private System.Windows.Forms.Button btnEditClass;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBoxNumCost;
+        private System.Windows.Forms.TextBox textBoxNumHotel;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBoxNumClass;
         private System.Windows.Forms.Label label5;
@@ -727,6 +735,10 @@
         private System.Windows.Forms.TextBox textBoxClass;
         private System.Windows.Forms.Button btnClear2;
         private System.Windows.Forms.Button btnClear1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CNumb;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CPlace;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CClass;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CCost;
     }
 }
 
