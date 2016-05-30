@@ -42,8 +42,9 @@ namespace Admin
             _adminValidators = new AdminValidators();
 
             dgvUser.ScrollBars = ScrollBars.Both;
-            dgvNum.ScrollBars = ScrollBars.Horizontal;
-            dgvNumClass.ScrollBars = ScrollBars.Horizontal;
+            dgvNum.ScrollBars = ScrollBars.Vertical;
+            dgvNumClass.ScrollBars = ScrollBars.Vertical;
+            dgvHotel.ScrollBars = ScrollBars.Vertical;
         }
 
         public AdminWinForm()
@@ -55,10 +56,8 @@ namespace Admin
         {
             _adminRequest.UserOutputFull(_reposFactory, dgvUser);
             _adminRequest.NumOutputFull(_reposFactory, dgvNum);
-            if (_adminValidators.ValidNumCostOutput())
-            {
-                _adminRequest.NumCostOutput(_reposFactory, dgvNumClass);
-            }
+            _adminRequest.NumCostOutput(_reposFactory, dgvNumClass);
+            _adminRequest.HotelOutput(_reposFactory, dgvHotel);
 
 
             if (dgvUser.CurrentRow != null) dgvUser.Rows[dgvUser.CurrentRow.Index].Selected = false;
@@ -67,6 +66,8 @@ namespace Admin
             dgvNum.AllowUserToAddRows = false;
             if (dgvNumClass.CurrentRow != null) dgvNumClass.Rows[dgvNumClass.CurrentRow.Index].Selected = false;
             dgvNumClass.AllowUserToAddRows = false;
+            if (dgvHotel.CurrentRow != null) dgvHotel.Rows[dgvHotel.CurrentRow.Index].Selected = false;
+            dgvHotel.AllowUserToAddRows = false;
         }
 
         private void AdminWinForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -266,7 +267,7 @@ namespace Admin
                 textBoxNumClass.Text))
             {
                 _adminRequest.EditFirstBox(_reposFactory, textBoxNum, textBoxNumHotel, textBoxPlace,
-                textBoxNumClass);
+                    textBoxNumClass);
 
                 _adminRequest.UserOutputFull(_reposFactory, dgvUser);
                 _adminRequest.NumOutputFull(_reposFactory, dgvNum);
@@ -283,7 +284,7 @@ namespace Admin
                 textBoxNumClass.Text))
             {
                 _adminRequest.DeleteFirstBox(_reposFactory, textBoxNum, textBoxNumHotel, textBoxPlace,
-                textBoxNumClass);
+                    textBoxNumClass);
 
                 _adminRequest.UserOutputFull(_reposFactory, dgvUser);
                 _adminRequest.NumOutputFull(_reposFactory, dgvNum);
@@ -300,7 +301,7 @@ namespace Admin
                 textBoxNumClass.Text, dgvNum))
             {
                 _adminRequest.AddFirstBox(_reposFactory, textBoxNum, textBoxNumHotel, textBoxPlace,
-                textBoxNumClass);
+                    textBoxNumClass);
 
                 _adminRequest.UserOutputFull(_reposFactory, dgvUser);
                 _adminRequest.NumOutputFull(_reposFactory, dgvNum);
@@ -308,6 +309,75 @@ namespace Admin
 
                 if (dgvNum.CurrentRow != null) dgvNum.Rows[dgvNum.CurrentRow.Index].Selected = false;
                 if (dgvNumClass.CurrentRow != null) dgvNumClass.Rows[dgvNumClass.CurrentRow.Index].Selected = false;
+            }
+        }
+
+        private void btnClear3_Click(object sender, EventArgs e)
+        {
+            textBoxHotelNum.Text = string.Empty;
+            textBoxHotelNum.Enabled = true;
+            textBoxHotelName.Text = string.Empty;
+            textBoxHotelName.Enabled = true;
+            textBoxHotelOrg.Text = string.Empty;
+            textBoxHotelOrg.Enabled = true;
+            textBoxHotelC.Text = string.Empty;
+            textBoxHotelC.Enabled = true;
+            textBoxHotelS.Text = string.Empty;
+            textBoxHotelS.Enabled = true;
+            textBoxHotelPhone.Text = string.Empty;
+            textBoxHotelPhone.Enabled = true;
+            textBoxHotelClass.Text = string.Empty;
+            textBoxHotelClass.Enabled = true;
+            textBoxHotelWeb.Text = string.Empty;
+            textBoxHotelWeb.Enabled = true;
+
+            //groupBoxStat, labelAllUser, labelNewUser
+            groupBoxStat.Text = @"Статистика {empty}";
+            labelAllUser.Text = @"0";
+            labelNewUser.Text = @"0";
+
+
+            if (dgvHotel.CurrentRow != null) dgvHotel.Rows[dgvHotel.CurrentRow.Index].Selected = false;
+        }
+
+        private void btnDeleteHotel_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(@"Снос отелей временно недоступен");
+        }
+
+        private void btnAddHotel_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(@"Постройка отелей временно недоступна");
+        }
+
+        private void btnEditHotel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvHotel_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvHotel.CurrentRow != null && _adminValidators.ValidEnterThirdBox(dgvHotel.CurrentRow.Index))
+            {
+                textBoxHotelNum.Enabled = false;
+                _adminRequest.EnterThirdBox(_reposFactory, textBoxHotelNum, textBoxHotelName, textBoxHotelOrg, textBoxHotelC,
+                    textBoxHotelS, textBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb, 
+                    dgvHotel, dgvHotel.CurrentRow.Index, groupBoxStat, labelAllUser, labelNewUser);
+            }
+        }
+
+        private void dgvHotel_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Left || e.KeyCode == Keys.Up ||
+                e.KeyCode == Keys.Right)
+            {
+                if (dgvHotel.CurrentRow != null && _adminValidators.ValidEnterThirdBox(dgvHotel.CurrentRow.Index))
+                {
+                    textBoxHotelNum.Enabled = false;
+                    _adminRequest.EnterThirdBox(_reposFactory, textBoxHotelNum, textBoxHotelName, textBoxHotelOrg, textBoxHotelC,
+                        textBoxHotelS, textBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb,
+                        dgvHotel, dgvHotel.CurrentRow.Index, groupBoxStat, labelAllUser, labelNewUser);
+                }
             }
         }
     }

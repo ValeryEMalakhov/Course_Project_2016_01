@@ -202,6 +202,34 @@ namespace Admin
                               "-----------------------------------------\n";
             }
         }
+        public bool ValidEnterThirdBox(int dgvIndex)
+        {
+            try
+            {
+                if (dgvIndex < 0)
+                {
+                    ErrorString += "-- Индекс не может быть отрицательным\n";
+                    MessageBox.Show(@"Как вы получили отрицательный индекс?");
+                    ValidKey = false;
+                }
+
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
 
         public bool ValidEditSecondBox(string numClass, string numClassCost)
         {

@@ -86,12 +86,17 @@
     <Compile Include="DAL\RepositoryApartmentAClass.cs" />
     <Compile Include="DAL\RepositoryClient.cs" />
     <Compile Include="DAL\RepositoryHotel.cs" />
+    <Compile Include="DAL\RepositoryHotelACardApartment.cs" />
     <Compile Include="DAL\RepositoryStaff.cs" />
     <Compile Include="DAL\RepositoryStaffPosition.cs" />
     <Compile Include="DAL\RepositoryUserApartmentCard.cs" />
     <Compile Include="DAL\RepositoryUserApartmentCardCost.cs" />
+    <Compile Include="Login\LoginReposFactory.cs" />
+    <Compile Include="Login\RepositoryLogin.cs" />
+    <Compile Include="Login\TableLogin.cs" />
     <Compile Include="ReposFactory.cs" />
     <Compile Include="SingleTable\TableApartmentAClass.cs" />
+    <Compile Include="SingleTable\TableHotelACardApartment.cs" />
     <Compile Include="SingleTable\TableUserApartmentCard.cs" />
     <Compile Include="SingleTable\TableACard.cs" />
     <Compile Include="SingleTable\TableAClass.cs" />

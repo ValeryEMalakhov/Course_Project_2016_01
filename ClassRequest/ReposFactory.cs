@@ -16,6 +16,7 @@ namespace ClassRequest
         RepositoryStaffPosition RepositoryStaffPosition { set; get; }
         RepositoryUserApartmentCard RepositoryUserApartmentCard { set; get; }
         RepositoryUserApartmentCardCost RepositoryUserApartmentCardCost { set; get; }
+        RepositoryHotelACardApartment RepositoryHotelACardApartment { set; get; }
 
         private NpgsqlConnection npgsql;
         private SqlConnect sqlConnect;
@@ -49,6 +50,7 @@ namespace ClassRequest
             RepositoryStaffPosition = new RepositoryStaffPosition(sqlConnect);
             RepositoryUserApartmentCard = new RepositoryUserApartmentCard(sqlConnect);
             RepositoryUserApartmentCardCost = new RepositoryUserApartmentCardCost(sqlConnect);
+            RepositoryHotelACardApartment = new RepositoryHotelACardApartment(sqlConnect);
         }
 
         public void OpenConnection()
@@ -100,6 +102,10 @@ namespace ClassRequest
         public RepositoryUserApartmentCardCost GetUserApartmentCardCost()
         {
             return RepositoryUserApartmentCardCost;
+        }
+        public RepositoryHotelACardApartment GetHotelACardApartment()
+        {
+            return RepositoryHotelACardApartment;
         }
     }
 }

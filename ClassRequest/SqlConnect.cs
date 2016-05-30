@@ -51,11 +51,16 @@ namespace ClassRequest
 
         public SqlConnect GetInstance()
         {
-            if (_instance == null)
-            {
-                _instance = new SqlConnect(_conn);
-            }
-            return (_instance);
+            // Невозможность использовать синглтон в связи с необходимотью множества подключений
+            //if (_instance == null)
+            //{
+            //    _instance = new SqlConnect(_conn);
+            //}
+            //return (_instance);
+
+            // TODO: заменить во всём коде обращение к этому методу на создание объекта класса
+            // метод остаёться, так как слишком много обращений
+            return (_instance = new SqlConnect(_conn));
         }
 
         public NpgsqlConnection GetConn => _conn;

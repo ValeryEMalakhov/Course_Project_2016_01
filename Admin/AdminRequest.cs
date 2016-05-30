@@ -163,6 +163,30 @@ namespace Admin
                 MessageBox.Show(Convert.ToString(exp));
             }
         }
+        // вывод списка классов
+        public void HotelOutput(ReposFactory reposFactory, DataGridView dgvHotel)
+        {
+            dgvHotel.Rows.Clear();
+            try
+            {
+                int colorKey = 0;
+                foreach (var v in reposFactory.GetHotel().GetSingleTable())
+                {
+                    dgvHotel.Rows.Add(v.HotelId, v.OrgName, v.HotelName, v.City, v.Street, v.Phone, v.HotelClass, v.HotelLink);
+                    if (colorKey % 2 == 0)
+                    {
+                        for (int i = 0; i < dgvHotel.ColumnCount; ++i)
+                            dgvHotel.Rows[colorKey].Cells[i].Style.BackColor = Color.Lavender;
+                    }
+                    colorKey++;
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
 
         // записываем выбранный номер в TextBox-сы
         public void EnterFirstBox(TextBox textBoxNum, TextBox textBoxNumHotel, TextBox textBoxPlace,
@@ -181,6 +205,42 @@ namespace Admin
         {
             textBoxClass.Text = dgvNumClass.Rows[dgvIndex].Cells[0].Value.ToString();
             textBoxClassCost.Text = dgvNumClass.Rows[dgvIndex].Cells[1].Value.ToString();
+        }
+        // записываем выбранный отель в TextBox-сы
+        public void EnterThirdBox(ReposFactory reposFactory, TextBox textBoxHotelNum, TextBox textBoxHotelName, TextBox textBoxHotelOrg,
+            TextBox textBoxHotelC, TextBox textBoxHotelS, TextBox textBoxHotelPhone, TextBox textBoxHotelClass,
+            TextBox textBoxHotelWeb, DataGridView dgvHotel, int dgvIndex, GroupBox groupBox, Label labelAll, Label labelNew)
+        {
+            //textBoxHotelNum, textBoxHotelName, textBoxHotelOrg, textBoxHotelC,
+            //textBoxHotelS, textBoxHotelPhone, textBoxHotelWeb
+
+            int tickAll = 0;
+            int tickNew = 0;
+            foreach (var v in reposFactory.GetHotelACardApartment().GetSingleTable())
+            {
+                if (v.HotelId == dgvHotel.Rows[dgvIndex].Cells[0].Value.ToString())
+                {
+                    tickAll++;
+                    if (Convert.ToDateTime(v.CheckInDate) <= DateTime.Today &
+                        Convert.ToDateTime(v.CheckOutDate) >= DateTime.Today)
+                    {
+                        tickNew++;
+                    }
+                }
+            }
+
+            groupBox.Text = @"Статистика " + dgvHotel.Rows[dgvIndex].Cells[2].Value.ToString();
+            labelAll.Text = Convert.ToString(tickAll);
+            labelNew.Text = Convert.ToString(tickNew);
+
+            textBoxHotelNum.Text = dgvHotel.Rows[dgvIndex].Cells[0].Value.ToString();
+            textBoxHotelOrg.Text = dgvHotel.Rows[dgvIndex].Cells[1].Value.ToString();
+            textBoxHotelName.Text = dgvHotel.Rows[dgvIndex].Cells[2].Value.ToString();
+            textBoxHotelC.Text = dgvHotel.Rows[dgvIndex].Cells[3].Value.ToString();
+            textBoxHotelS.Text = dgvHotel.Rows[dgvIndex].Cells[4].Value.ToString();
+            textBoxHotelPhone.Text = dgvHotel.Rows[dgvIndex].Cells[5].Value.ToString();
+            textBoxHotelClass.Text = dgvHotel.Rows[dgvIndex].Cells[6].Value.ToString();
+            textBoxHotelWeb.Text = dgvHotel.Rows[dgvIndex].Cells[7].Value.ToString();
         }
 
         // запрос списка свободных комнат
