@@ -51,9 +51,9 @@ namespace ClassRequest.DAL
                     " ORDER BY ac.CheckInDate ;";
 
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
 
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
                 NpgsqlDataReader readerUserTable = command.ExecuteReader();
 
                 foreach (DbDataRecord dbDataRecord in readerUserTable)
@@ -75,7 +75,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
             return tableHotelACardApartmentList;
         }

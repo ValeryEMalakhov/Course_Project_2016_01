@@ -1,34 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
-using System.Threading;
-using System.Reflection;
-using System.Collections;
-using System.Configuration;
-using System.Data.Entity.SqlServer;
 using System.Security.Cryptography;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using Npgsql;
-using ClassRequest;
-using ClassRequest.DAL;
-using ClassRequest.Login;
-using Staff.Sided_Form;
-using Configuration = System.Configuration.Configuration;
+using System.Text;
 
-namespace LogIn
+namespace ClassRequest
 {
-    static class Protection
+    public static class Protection
     {
+
+        ////КРИПТОГРАФИЯ АЛГОРИТМ AES
+        
         //// HashAlgorithm может быть SHA1 или MD5. 
         //// InitialVector должен быть строкой размерностью 16 ASCII символов.
         //// KeySize может быть 128, 192, или 256.
@@ -48,14 +29,13 @@ namespace LogIn
             byte[] saltValueBytes = Encoding.ASCII.GetBytes(salt);
             byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
 
-            PasswordDeriveBytes derivedPassword = new PasswordDeriveBytes(password, saltValueBytes, hashAlgorithm,
-                passwordIterations);
+            PasswordDeriveBytes derivedPassword = new PasswordDeriveBytes(password, saltValueBytes, hashAlgorithm, passwordIterations);
             byte[] keyBytes = derivedPassword.GetBytes(keySize / 8);
+
             RijndaelManaged symmetricKey = new RijndaelManaged();
             symmetricKey.Mode = CipherMode.CBC;
 
             byte[] cipherTextBytes = null;
-
             using (ICryptoTransform encryptor = symmetricKey.CreateEncryptor(keyBytes, initialVectorBytes))
             {
                 using (MemoryStream memStream = new MemoryStream())
@@ -70,11 +50,13 @@ namespace LogIn
                     }
                 }
             }
-
             symmetricKey.Clear();
+
             return Convert.ToBase64String(cipherTextBytes);
         }
-        
+
+
+
         //дешифрование
         public static string Decrypt(string cipherText, string password,
             string salt = "Addmin", string hashAlgorithm = "SHA1",
@@ -88,8 +70,7 @@ namespace LogIn
             byte[] saltValueBytes = Encoding.ASCII.GetBytes(salt);
             byte[] cipherTextBytes = Convert.FromBase64String(cipherText);
 
-            PasswordDeriveBytes derivedPassword = new PasswordDeriveBytes(password, saltValueBytes, hashAlgorithm,
-                passwordIterations);
+            PasswordDeriveBytes derivedPassword = new PasswordDeriveBytes(password, saltValueBytes, hashAlgorithm, passwordIterations);
             byte[] keyBytes = derivedPassword.GetBytes(keySize / 8);
 
             RijndaelManaged symmetricKey = new RijndaelManaged();
@@ -97,7 +78,6 @@ namespace LogIn
 
             byte[] plainTextBytes = new byte[cipherTextBytes.Length];
             int byteCount = 0;
-
             using (ICryptoTransform decryptor = symmetricKey.CreateDecryptor(keyBytes, initialVectorBytes))
             {
                 using (MemoryStream memStream = new MemoryStream(cipherTextBytes))
@@ -110,9 +90,17 @@ namespace LogIn
                     }
                 }
             }
-
             symmetricKey.Clear();
+
             return Encoding.UTF8.GetString(plainTextBytes, 0, byteCount);
+        }
+
+
+        public static string EncryptMD5(string plainText)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] checkSum1 = md5.ComputeHash(Encoding.UTF8.GetBytes(plainText));
+            return (BitConverter.ToString(checkSum1).Replace("-", string.Empty));
         }
     }
 }

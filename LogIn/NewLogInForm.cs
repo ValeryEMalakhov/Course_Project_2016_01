@@ -29,19 +29,23 @@ using Client;
 
 namespace LogIn
 {
-    public partial class WfLogin : Form
+    public partial class NewLogInForm : Form
     {
         private LoginReposFactory _loginReposFactory;
         private ReposFactory _reposFactory;
-
         private LogInValidators _logInValidators;
         private LogInRequest _logInRequest;
 
+        private string _login;
+        private string _pass;
         private ConnectConfig cc;
-        private string _loginName;
-        private string _loginPass;
 
-        public WfLogin(LoginReposFactory loginReposFactory)
+        public NewLogInForm()
+        {
+            InitializeComponent();
+        }
+
+        public NewLogInForm(LoginReposFactory loginReposFactory)
         {
             InitializeComponent();
             _loginReposFactory = loginReposFactory;
@@ -49,69 +53,43 @@ namespace LogIn
             _logInValidators = new LogInValidators();
             _logInRequest = new LogInRequest();
 
-            //string str1 = Convert.ToString(Protection.Encrypt("admin", "VEM"));
-            //string str2 = Convert.ToString(Protection.Encrypt("1507", "VEM"));
-            //string str3 = Convert.ToString(Protection.Encrypt("A", "VEM"));
-
-            //string str4 = Convert.ToString(Protection.Encrypt("staff", "VEM"));
-            //string str5 = Convert.ToString(Protection.Encrypt("1111", "VEM"));
-            //string str6 = Convert.ToString(Protection.Encrypt("S", "VEM"));
+            textBoxPass.UseSystemPasswordChar = true;
         }
 
-        public WfLogin()
+        private void NemLogInForm_Load(object sender, EventArgs e)
         {
-        }
-
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            if (label.Left > -label.Width)
-            {
-                label.Left -= 2;
-            }
-            else
-            {
-                label.Left = panel.Width;
-            }
-        }
-
-        private void WfLogin_Load(object sender, EventArgs e)
-        {
-            timer.Start();
 
         }
 
-        private void WfLogin_FormClosing(object sender, FormClosingEventArgs e)
+        private void NemLogInForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             _reposFactory?.Dispose();
             _loginReposFactory?.Dispose();
         }
 
-        private void btnLoginLikeAdmin_Click(object sender, EventArgs e)
+        private void btnEnter_Click(object sender, EventArgs e)
         {
-            _loginName = "admin";
-            _loginPass = "1507";
+            _login = textBoxID.Text;
+            textBoxID.Text = string.Empty;
+            _pass = textBoxPass.Text;
+            textBoxPass.Text = string.Empty;
+
+            // тестовый блок
+            //_login = @"admin";
+            //_pass = @"1507";
+            //_login = @"staff";
+            //_pass = @"1111";
+            //_login = @"user-1106";
+            //_pass = @"1106";
 
             EnterLogIn();
+            //textBoxTest.Text = Protection.EncryptMD5(textBoxID.Text);
         }
 
-        private void btnLoginLikeStaff_Click(object sender, EventArgs e)
+        private void btnReg_Click(object sender, EventArgs e)
         {
-            _loginName = "staff";
-            _loginPass = "1111";
-
-            EnterLogIn();
-        }
-
-        private void btnLoginLikeUser_Click(object sender, EventArgs e)
-        {
-            LoginLikeUser();
-
-            ClientWinForm client = new ClientWinForm(_reposFactory, textBoxLoginId.Text);
-            Hide();
-            client.ShowDialog();
-            Show();
-
-            LoginLikeLogin();
+            RegForm regForm = new RegForm(_loginReposFactory);
+            regForm.Show();
         }
 
         #region Параметры входа
@@ -170,49 +148,76 @@ namespace LogIn
 
         private void EnterLogIn()
         {
-            if (_logInValidators.ValidFormNamePass(_loginName, _loginPass))
+            if (_logInValidators.ValidFormNamePass(_login, _pass))
             {
-                if (_logInRequest.GoodUser(_loginReposFactory, _loginName, _loginPass) == 0)
+                switch (_logInRequest.GoodUser(_loginReposFactory, _login, _pass))
                 {
-                    LoginLikeAdmin();
+                    case 0:
+                    {
+                        LoginLikeAdmin();
 
-                    AdminWinForm admin = new AdminWinForm(_reposFactory);
-                    Hide();
-                    admin.ShowDialog();
-                    Show();
+                        AdminWinForm admin = new AdminWinForm(_reposFactory);
+                        Hide();
+                        admin.ShowDialog();
+                        Show();
 
-                    LoginLikeLogin();
-                }
-                if (_logInRequest.GoodUser(_loginReposFactory, _loginName, _loginPass) == 1)
-                {
-                    LoginLikeStaff();
+                        LoginLikeLogin();
+                        break;
+                    }
+                    case 1:
+                    {
+                        LoginLikeStaff();
 
-                    StaffWinForm staff = new StaffWinForm(_reposFactory);
-                    Hide();
-                    staff.ShowDialog();
-                    Show();
+                        StaffWinForm staff = new StaffWinForm(_reposFactory);
+                        Hide();
+                        staff.ShowDialog();
+                        Show();
 
-                    LoginLikeLogin();
-                }
-                if (_logInRequest.GoodUser(_loginReposFactory, _loginName, _loginPass) == 2)
-                {
-                    LoginLikeUser();
+                        LoginLikeLogin();
+                        break;
+                    }
+                    case 2:
+                    {
+                        LoginLikeUser();
 
-                    ClientWinForm client = new ClientWinForm(_reposFactory, textBoxLoginId.Text);
-                    Hide();
-                    client.ShowDialog();
-                    Show();
+                        ClientWinForm client = new ClientWinForm(_reposFactory, Protection.Encrypt(_login, "VEM"));
+                        Hide();
+                        client.ShowDialog();
+                        Show();
 
-                    LoginLikeLogin();
-                }
-                if (_logInRequest.GoodUser(_loginReposFactory, _loginName, _loginPass) == 99)
-                {
-                    MessageBox.Show(@"Неверно введён логин/пароль");
-
+                        LoginLikeLogin();
+                        break;
+                    }
+                    case 99:
+                    {
+                        MessageBox.Show(@"Неверно введён логин/пароль");
+                        break;
+                    }
+                    default:
+                    {
+                        MessageBox.Show(@"Неверно введён логин/пароль");
+                        break;
+                    }
                 }
             }
         }
 
         #endregion
+
+        private void textBoxID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void btnEnter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                EnterLogIn();
+            }
+        }
     }
 }

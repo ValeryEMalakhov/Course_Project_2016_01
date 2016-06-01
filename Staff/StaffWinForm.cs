@@ -31,7 +31,7 @@ namespace Staff
         StaffValidators _staffValidators;
         StaffRequest _staffRequest;
         ReposFactory _reposFactory;
-        
+
         #endregion
 
         public StaffWinForm(ReposFactory reposFactory)
@@ -44,6 +44,7 @@ namespace Staff
 
             dgvUser.ScrollBars = ScrollBars.Both;
             dgvNum.ScrollBars = ScrollBars.Horizontal;
+            dgvHotel.ScrollBars = ScrollBars.Vertical;
         }
 
         public StaffWinForm()
@@ -62,11 +63,15 @@ namespace Staff
             {
                 _staffRequest.NumOutput(_reposFactory, dgvNum, dateTPUser);
             }
+            _staffRequest.HotelOutput(_reposFactory, dgvHotel);
 
-            dgvUser.Rows[0].Selected = false;
+
+            if (dgvUser.CurrentRow != null) dgvUser.Rows[dgvUser.CurrentRow.Index].Selected = false;
             dgvUser.AllowUserToAddRows = false;
-            dgvNum.Rows[0].Selected = false;
-            dgvNum.AllowUserToAddRows = false; 
+            if (dgvNum.CurrentRow != null) dgvNum.Rows[dgvNum.CurrentRow.Index].Selected = false;
+            dgvNum.AllowUserToAddRows = false;
+            if (dgvHotel.CurrentRow != null) dgvHotel.Rows[dgvHotel.CurrentRow.Index].Selected = false;
+            dgvHotel.AllowUserToAddRows = false;
         }
 
         private void StaffWinForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -109,7 +114,9 @@ namespace Staff
                 {
                     if (_staffValidators.ValidUserDelete(dgvUser.CurrentRow.Index))
                     {
-                        _staffRequest.FakedUserDelete(_reposFactory, dgvUser.Rows[dgvUser.CurrentRow.Index].Cells[6].Value.ToString(), dgvUser.Rows[dgvUser.CurrentRow.Index].Cells[4].Value.ToString());
+                        _staffRequest.FakedUserDelete(_reposFactory,
+                            dgvUser.Rows[dgvUser.CurrentRow.Index].Cells[6].Value.ToString(),
+                            dgvUser.Rows[dgvUser.CurrentRow.Index].Cells[4].Value.ToString());
                     }
                 }
             }
@@ -139,11 +146,68 @@ namespace Staff
                 _staffRequest.UserOutput(_reposFactory, dgvUser, dateTPUser);
             }
         }
+
         private void dateTPNum_ValueChanged(object sender, EventArgs e)
         {
             if (_staffValidators.ValidNumOutput(dateTPUser))
             {
                 _staffRequest.NumOutput(_reposFactory, dgvNum, dateTPNum);
+            }
+        }
+
+        private void btnClear3_Click(object sender, EventArgs e)
+        {
+            textBoxHotelNum.Text = string.Empty;
+            textBoxHotelNum.Enabled = true;
+            textBoxHotelName.Text = string.Empty;
+            textBoxHotelName.Enabled = true;
+            textBoxHotelOrg.Text = string.Empty;
+            textBoxHotelOrg.Enabled = true;
+            textBoxHotelC.Text = string.Empty;
+            textBoxHotelC.Enabled = true;
+            textBoxHotelS.Text = string.Empty;
+            textBoxHotelS.Enabled = true;
+            textBoxHotelPhone.Text = string.Empty;
+            textBoxHotelPhone.Enabled = true;
+            textBoxHotelClass.Text = string.Empty;
+            textBoxHotelClass.Enabled = true;
+            textBoxHotelWeb.Text = string.Empty;
+            textBoxHotelWeb.Enabled = true;
+
+            //groupBoxStat, labelAllUser, labelNewUser
+            groupBoxStat.Text = @"Статистика {empty}";
+            labelAllUser.Text = @"0";
+            labelNewUser.Text = @"0";
+
+
+            if (dgvHotel.CurrentRow != null) dgvHotel.Rows[dgvHotel.CurrentRow.Index].Selected = false;
+        }
+
+        private void dgvHotel_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvHotel.CurrentRow != null && _staffValidators.ValidEnterThirdBox(dgvHotel.CurrentRow.Index))
+            {
+                textBoxHotelNum.Enabled = false;
+                _staffRequest.EnterThirdBox(_reposFactory, textBoxHotelNum, textBoxHotelName, textBoxHotelOrg,
+                    textBoxHotelC,
+                    textBoxHotelS, textBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb,
+                    dgvHotel, dgvHotel.CurrentRow.Index, groupBoxStat, labelAllUser, labelNewUser);
+            }
+        }
+
+        private void dgvHotel_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Left || e.KeyCode == Keys.Up ||
+                e.KeyCode == Keys.Right)
+            {
+                if (dgvHotel.CurrentRow != null && _staffValidators.ValidEnterThirdBox(dgvHotel.CurrentRow.Index))
+                {
+                    textBoxHotelNum.Enabled = false;
+                    _staffRequest.EnterThirdBox(_reposFactory, textBoxHotelNum, textBoxHotelName, textBoxHotelOrg,
+                        textBoxHotelC,
+                        textBoxHotelS, textBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb,
+                        dgvHotel, dgvHotel.CurrentRow.Index, groupBoxStat, labelAllUser, labelNewUser);
+                }
             }
         }
     }

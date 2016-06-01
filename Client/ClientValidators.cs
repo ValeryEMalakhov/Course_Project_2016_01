@@ -293,6 +293,33 @@ namespace Client
                               "-----------------------------------------\n";
             }
         }
+        public bool ValidUpdatePass(TextBox textNewPass)
+        {
+            try
+            {
+                if (textNewPass.Text == string.Empty)
+                {
+                    ErrorString += "-- Пароль не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
 
         #endregion
     }

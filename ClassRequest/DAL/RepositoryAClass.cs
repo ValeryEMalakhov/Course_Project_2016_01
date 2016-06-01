@@ -49,9 +49,9 @@ namespace ClassRequest.DAL
                     " ORDER BY Class_ID;";
 
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
 
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
                 NpgsqlDataReader readerUserTable = command.ExecuteReader();
 
                 foreach (DbDataRecord dbDataRecord in readerUserTable)
@@ -71,7 +71,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
             return tableAClassList;
         }
@@ -89,12 +89,12 @@ namespace ClassRequest.DAL
             try
             {
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
                 string commPart =
                     "UPDATE \"hotel\".\"AClass\"" +
                     " SET ClassCost = @textBoxClassCost" +
                     " WHERE Class_ID = @textBoxClass ;";
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
                 command.Parameters.AddWithValue("@textBoxClassCost", Convert.ToDouble(textBoxClassCost));
                 command.Parameters.AddWithValue("@textBoxClass", Convert.ToInt32(textBoxClass));
@@ -109,7 +109,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
         }
 

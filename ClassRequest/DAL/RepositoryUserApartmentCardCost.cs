@@ -51,9 +51,9 @@ namespace ClassRequest.DAL
                     " AND ap.class_id = ac.class_id ;";
 
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
 
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
                 command.Parameters.AddWithValue("@loginId", loginId);
 
                 NpgsqlDataReader readerUserTable = command.ExecuteReader();
@@ -81,7 +81,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
             return userAppartmentCardCostList;
         }
@@ -101,9 +101,9 @@ namespace ClassRequest.DAL
                     " AND a.CheckInDate >= @filterDate::timestamp with time zone;";
 
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
 
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
                 command.Parameters.AddWithValue("@loginId", loginId);
                 command.Parameters.AddWithValue("@filterDate", DateTime.Today);
 
@@ -132,7 +132,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
             return userAppartmentCardCostList;
         }

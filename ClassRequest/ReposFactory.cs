@@ -1,5 +1,6 @@
 ﻿using System;
 using ClassRequest.DAL;
+using ClassRequest.Login;
 using Npgsql;
 
 namespace ClassRequest
@@ -17,6 +18,7 @@ namespace ClassRequest
         RepositoryUserApartmentCard RepositoryUserApartmentCard { set; get; }
         RepositoryUserApartmentCardCost RepositoryUserApartmentCardCost { set; get; }
         RepositoryHotelACardApartment RepositoryHotelACardApartment { set; get; }
+        RepositoryLogin RepositoryLogin { set; get; }
 
         private NpgsqlConnection npgsql;
         private SqlConnect sqlConnect;
@@ -51,18 +53,23 @@ namespace ClassRequest
             RepositoryUserApartmentCard = new RepositoryUserApartmentCard(sqlConnect);
             RepositoryUserApartmentCardCost = new RepositoryUserApartmentCardCost(sqlConnect);
             RepositoryHotelACardApartment = new RepositoryHotelACardApartment(sqlConnect);
+            RepositoryLogin = new RepositoryLogin(sqlConnect);
         }
 
         public void OpenConnection()
         {
-            sqlConnect.GetInstance().OpenConn();
+            sqlConnect.GetNewSqlConn().OpenConn();
         }
 
         public void Dispose()
         {
-            sqlConnect.GetInstance().CloseConn();
+            sqlConnect.GetNewSqlConn().CloseConn();
         }
 
+        public RepositoryLogin GetLogin()
+        {
+            return RepositoryLogin;
+        }
         public RepositoryACard GetACard()
         {
             return RepositoryACard;

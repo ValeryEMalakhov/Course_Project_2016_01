@@ -163,7 +163,8 @@ namespace Admin
                 MessageBox.Show(Convert.ToString(exp));
             }
         }
-        // вывод списка классов
+
+        // вывод списка отелей
         public void HotelOutput(ReposFactory reposFactory, DataGridView dgvHotel)
         {
             dgvHotel.Rows.Clear();
@@ -172,8 +173,9 @@ namespace Admin
                 int colorKey = 0;
                 foreach (var v in reposFactory.GetHotel().GetSingleTable())
                 {
-                    dgvHotel.Rows.Add(v.HotelId, v.OrgName, v.HotelName, v.City, v.Street, v.Phone, v.HotelClass, v.HotelLink);
-                    if (colorKey % 2 == 0)
+                    dgvHotel.Rows.Add(v.HotelId, v.OrgName, v.HotelName, v.City, v.Street, v.Phone, v.HotelClass,
+                        v.HotelLink);
+                    if (colorKey%2 == 0)
                     {
                         for (int i = 0; i < dgvHotel.ColumnCount; ++i)
                             dgvHotel.Rows[colorKey].Cells[i].Style.BackColor = Color.Lavender;
@@ -206,10 +208,13 @@ namespace Admin
             textBoxClass.Text = dgvNumClass.Rows[dgvIndex].Cells[0].Value.ToString();
             textBoxClassCost.Text = dgvNumClass.Rows[dgvIndex].Cells[1].Value.ToString();
         }
+
         // записываем выбранный отель в TextBox-сы
-        public void EnterThirdBox(ReposFactory reposFactory, TextBox textBoxHotelNum, TextBox textBoxHotelName, TextBox textBoxHotelOrg,
+        public void EnterThirdBox(ReposFactory reposFactory, TextBox textBoxHotelNum, TextBox textBoxHotelName,
+            TextBox textBoxHotelOrg,
             TextBox textBoxHotelC, TextBox textBoxHotelS, TextBox textBoxHotelPhone, TextBox textBoxHotelClass,
-            TextBox textBoxHotelWeb, DataGridView dgvHotel, int dgvIndex, GroupBox groupBox, Label labelAll, Label labelNew)
+            TextBox textBoxHotelWeb, DataGridView dgvHotel, int dgvIndex, GroupBox groupBox, Label labelAll,
+            Label labelNew)
         {
             //textBoxHotelNum, textBoxHotelName, textBoxHotelOrg, textBoxHotelC,
             //textBoxHotelS, textBoxHotelPhone, textBoxHotelWeb
@@ -354,10 +359,20 @@ namespace Admin
         {
             try
             {
+                string newPass = @"12345";
+
+                int key = 1100;
+                foreach (var v in reposFactory.GetLogin().GetSingleTable())
+                {
+                    key++;
+                }
+                string newLogIn = @"user-" + Convert.ToString(key);
+
                 reposFactory.GetACard().AddUser(textBoxPass.Text, textBoxFirstName.Text,
                     textBoxSecondName.Text, comboBoxGender.Text,
                     dtpBirth.Text, textBoxPhone.Text,
-                    comboBoxApId.Text, dtpCheckIn.Text, dtpCheckOut.Text, textBoxComm.Text);
+                    comboBoxApId.Text, dtpCheckIn.Text, dtpCheckOut.Text, textBoxComm.Text,
+                    newLogIn, newPass);
             }
             catch (Exception exp)
             {
@@ -508,6 +523,38 @@ namespace Admin
             try
             {
                 reposFactory.GetACard().RequestDeleteSqlForApartment(textBoxNum.Text);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+
+        public void EditThirdBox(ReposFactory reposFactory, TextBox textBoxHotelNum, TextBox textBoxHotelName,
+            TextBox textBoxHotelOrg, TextBox textBoxHotelC,
+            TextBox textBoxHotelS, TextBox textBoxHotelPhone, TextBox textBoxHotelClass, TextBox textBoxHotelWeb)
+        {
+            try
+            {
+                reposFactory.GetHotel().EditHotel(textBoxHotelNum.Text, textBoxHotelName.Text, textBoxHotelOrg.Text,
+                    textBoxHotelC.Text, textBoxHotelS.Text, textBoxHotelPhone.Text, textBoxHotelClass.Text, textBoxHotelWeb.Text);
+
+                textBoxHotelNum.Text = string.Empty;
+                textBoxHotelNum.Enabled = true;
+                textBoxHotelName.Text = string.Empty;
+                textBoxHotelName.Enabled = true;
+                textBoxHotelOrg.Text = string.Empty;
+                textBoxHotelOrg.Enabled = true;
+                textBoxHotelC.Text = string.Empty;
+                textBoxHotelC.Enabled = true;
+                textBoxHotelS.Text = string.Empty;
+                textBoxHotelS.Enabled = true;
+                textBoxHotelPhone.Text = string.Empty;
+                textBoxHotelPhone.Enabled = true;
+                textBoxHotelClass.Text = string.Empty;
+                textBoxHotelClass.Enabled = true;
+                textBoxHotelWeb.Text = string.Empty;
+                textBoxHotelWeb.Enabled = true;
             }
             catch (Exception exp)
             {

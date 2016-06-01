@@ -55,9 +55,9 @@ namespace ClassRequest.DAL
                     " AND c.CheckOutDate > @filterDate::timestamp with time zone" +
                     " ORDER BY (Ap_ID) ;";
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
 
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
                 command.Parameters.AddWithValue("@filterDate", filterDate);
 
                 NpgsqlDataReader readerUserTable = command.ExecuteReader();
@@ -82,7 +82,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
             return tableApartmentList;
         }
@@ -99,9 +99,9 @@ namespace ClassRequest.DAL
                     " WHERE a.Class_ID = s.Class_ID" +
                     " ORDER BY (Ap_ID) ;";
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
 
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
                 NpgsqlDataReader readerUserTable = command.ExecuteReader();
                 foreach (DbDataRecord dbDataRecord in readerUserTable)
@@ -125,7 +125,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
             return tableApartmentList;
         }
@@ -143,9 +143,9 @@ namespace ClassRequest.DAL
                     " WHERE a.Class_ID = s.Class_ID";
 
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
 
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
                 NpgsqlDataReader readerUserTable = command.ExecuteReader();
 
                 foreach (DbDataRecord dbDataRecord in readerUserTable)
@@ -169,7 +169,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
             return tableApartmentList;
         }

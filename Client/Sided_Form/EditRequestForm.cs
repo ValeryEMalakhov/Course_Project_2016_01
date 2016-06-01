@@ -31,6 +31,7 @@ namespace Client.Sided_Form
         ClientRequest _clientRequest;
         ClientValidators _clientValidators;
 
+        private string _clientId;
         private string _loginId;
 
         #endregion
@@ -41,19 +42,23 @@ namespace Client.Sided_Form
             InitializeComponent();
         }
 
-        public EditRequestForm(ReposFactory reposFactory, string loginId)
+        public EditRequestForm(ReposFactory reposFactory, string clientId, string loginId)
         {
             InitializeComponent();
             _clientValidators = new ClientValidators();
             _clientRequest = new ClientRequest();
 
             _reposFactory = reposFactory;
-            _loginId = loginId;
+            _clientId = clientId;
+            _loginId = Protection.Decrypt(loginId, "VEM");
+
+            textBoxNewPass.UseSystemPasswordChar = true;
         }
 
         private void EditRequestForm_Load(object sender, EventArgs e)
         {
-            textBoxPass.Text = _loginId;
+            textBoxPass.Text = _clientId;
+            textBoxID.Text = _loginId;
 
             if (textBoxPass.Text != string.Empty)
             {
@@ -84,6 +89,10 @@ namespace Client.Sided_Form
                 _clientRequest.UserEdit(_reposFactory, textBoxPass.Text, textBoxFirstName,
                     textBoxSecondName, comboBoxGender, dtpBirth, textBoxPhone);
             }
+            if (_clientValidators.ValidUpdatePass(textBoxNewPass))
+            {
+                _clientRequest.UserEditPass(_reposFactory, _loginId, textBoxNewPass);
+            }
         }
 
         private void btnDeleteUser_Click(object sender, EventArgs e)
@@ -101,7 +110,16 @@ namespace Client.Sided_Form
                     _clientRequest.UserEdit(_reposFactory, textBoxPass.Text, textBoxFirstName,
                         textBoxSecondName, comboBoxGender, dtpBirth, textBoxPhone);
                 }
+                if (_clientValidators.ValidUpdatePass(textBoxNewPass))
+                {
+                    _clientRequest.UserEditPass(_reposFactory, _loginId, textBoxNewPass);
+                }
             }
+        }
+
+        private void checkBoxPass_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxNewPass.UseSystemPasswordChar = !textBoxNewPass.UseSystemPasswordChar;
         }
     }
 }

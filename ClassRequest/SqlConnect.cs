@@ -31,7 +31,7 @@ namespace ClassRequest
 
         //private string _connParam;
         private NpgsqlConnection _conn;
-        private static SqlConnect _instance = null;
+        private static SqlConnect _newConnect = null;
 
         public SqlConnect(NpgsqlConnection conn)
         {
@@ -49,18 +49,16 @@ namespace ClassRequest
             _conn = conn;
         }
 
-        public SqlConnect GetInstance()
+        public SqlConnect GetNewSqlConn()
         {
             // Невозможность использовать синглтон в связи с необходимотью множества подключений
-            //if (_instance == null)
+            //if (_newConnect == null)
             //{
-            //    _instance = new SqlConnect(_conn);
+            //    _newConnect = new SqlConnect(_conn);
             //}
-            //return (_instance);
+            //return (_newConnect);
 
-            // TODO: заменить во всём коде обращение к этому методу на создание объекта класса
-            // метод остаёться, так как слишком много обращений
-            return (_instance = new SqlConnect(_conn));
+            return (_newConnect = new SqlConnect(_conn));
         }
 
         public NpgsqlConnection GetConn => _conn;

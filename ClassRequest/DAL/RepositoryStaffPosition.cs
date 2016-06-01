@@ -47,14 +47,15 @@ namespace ClassRequest.DAL
                     "SELECT *" +
                     " FROM \"hotel\".\"StaffPosition\";";
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
 
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
                 NpgsqlDataReader readerUserTable = command.ExecuteReader();
 
                 foreach (DbDataRecord dbDataRecord in readerUserTable)
                 {
                     tableStaffPosition = new TableStaffPosition(
+                        dbDataRecord["SvacantKey"].ToString(),
                         dbDataRecord["SVacant"].ToString(),
                         dbDataRecord["Salary"].ToString());
                     tableStaffPositionList.Add(tableStaffPosition);
@@ -69,7 +70,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
             return tableStaffPositionList;
         }

@@ -27,12 +27,14 @@ namespace ClassRequest.Login
         #region Global Values
 
         private SqlConnect sqlConnect;
+        private RepositoryClient repositoryClient;
 
         #endregion
 
         public RepositoryLogin(SqlConnect _sqlConnect)
         {
             sqlConnect = _sqlConnect;
+            repositoryClient = new RepositoryClient(sqlConnect);
         }
 
         #region TableSelect
@@ -49,9 +51,9 @@ namespace ClassRequest.Login
                     " FROM \"login\".\"UserPass\" ;";
 
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
 
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
                 NpgsqlDataReader readerUserTable = command.ExecuteReader();
 
                 foreach (DbDataRecord dbDataRecord in readerUserTable)
@@ -72,7 +74,7 @@ namespace ClassRequest.Login
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
             return tableLoginList;
         }
@@ -81,13 +83,143 @@ namespace ClassRequest.Login
 
         #region TableInsert
 
+        public void AddUser(string textBoxLogIn, string textBoxPass, string textBoxUserId, string textBoxFirstName, string textBoxSecondName,
+            string textBoxGender, string dtpBirth, string textBoxPhone)
+        {
+            int keyClientInBd = 0;
+            foreach (var v in repositoryClient.GetSingleTable())
+            {
+                // проверяем наличие постояльца в БД
+                if (v.ClientId == textBoxUserId) keyClientInBd = 1;
+            }
+            if (keyClientInBd == 0)
+            {
+                // блок добавления нового пользователя в базу логинов
+                try
+                {
+                    // открываем соединение
+                    //sqlConnect.GetNewSqlConn().OpenConn();
+                    string commPart =
+                        //INSERT INTO "login"."UserPass" (Login_ID, Pass, Vacant) VALUES
+
+                        "INSERT INTO \"login\".\"UserPass\"" +
+                        " (Login_ID, Pass, Vacant)" +
+                        " VALUES" +
+                        " (@Login_ID, @Pass, @Vacant)";
+
+                    NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
+
+                    command.Parameters.AddWithValue("@Login_ID", Protection.Encrypt(textBoxLogIn, "VEM"));
+                    command.Parameters.AddWithValue("@Pass", Protection.EncryptMD5(textBoxPass));
+                    command.Parameters.AddWithValue("@Vacant", Protection.EncryptMD5("C"));
+
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch (NpgsqlException exp)
+                    {
+                        MessageBox.Show(Convert.ToString(exp));
+                    }
+                }
+                catch (NpgsqlException exp)
+                {
+                    // MessageBox.Show("Не удалось выполнить запрос!");
+                    MessageBox.Show(Convert.ToString(exp));
+                }
+                finally
+                {
+                    // соединение закрыто принудительно
+                    //sqlConnect.GetNewSqlConn().CloseConn();
+                }
+                // блок добавления нового пользователя в базу
+                try
+                {
+                    // открываем соединение
+                    //sqlConnect.GetNewSqlConn().OpenConn();
+                    string commPart =
+                        "INSERT INTO \"hotel\".\"Client\"" +
+                        " (Client_ID, Login_ID, FirstName, SecondName, Gender, DateOfBirth, Phone)" +
+                        " VALUES" +
+                        " (@Client_ID, @Login_ID, @FirstName, @SecondName, @Gender, @DateOfBirth::timestamp with time zone, @Phone)";
+
+                    NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
+
+                    command.Parameters.AddWithValue("@Client_ID", textBoxUserId);
+                    command.Parameters.AddWithValue("@Login_ID", Protection.Encrypt(textBoxLogIn, "VEM"));
+                    command.Parameters.AddWithValue("@FirstName", textBoxFirstName);
+                    command.Parameters.AddWithValue("@SecondName", textBoxSecondName);
+                    command.Parameters.AddWithValue("@Gender", textBoxGender);
+                    command.Parameters.AddWithValue("@DateOfBirth", dtpBirth);
+                    if (textBoxPhone.Length == 0)
+                    {
+                        textBoxPhone = @"";
+                    }
+                    command.Parameters.AddWithValue("@Phone", textBoxPhone);
+
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        MessageBox.Show(@"Успешно добавлено!");
+                    }
+                    catch (NpgsqlException exp)
+                    {
+                        MessageBox.Show(Convert.ToString(exp));
+                    }
+                }
+                catch (NpgsqlException exp)
+                {
+                    // MessageBox.Show("Не удалось выполнить запрос!");
+                    MessageBox.Show(Convert.ToString(exp));
+                }
+                finally
+                {
+                    // соединение закрыто принудительно
+                    //sqlConnect.GetNewSqlConn().CloseConn();
+                }
+            }
+            else
+            {
+                MessageBox.Show(@"Такой пользователь уже есть в системе");
+            }
+        }
+
+
         #endregion
 
         #region TableUpdate
 
+
+
         #endregion
 
         #region TableDelete
+
+        public void RequestDeleteLogIn(string logIn)
+        {
+            try
+            {
+                // открываем соединение
+                //sqlConnect.GetNewSqlConn().OpenConn();
+                string commPart =
+                    "DELETE FROM \"login\".\"UserPass\"" +
+                    " WHERE Login_ID = @logIn ;";
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
+
+                command.Parameters.AddWithValue("@logIn", Protection.Encrypt(logIn, "VEM"));
+                command.ExecuteNonQuery();
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+            finally
+            {
+                // соединение закрыто принудительно
+                //sqlConnect.GetNewSqlConn().CloseConn();
+            }
+        }
 
         #endregion
 

@@ -31,6 +31,7 @@ namespace Client
         ClientRequest _clientRequest;
         ClientValidators _clientValidators;
 
+        private string _clientId;
         private string _loginId;
 
         #endregion
@@ -44,6 +45,7 @@ namespace Client
             _clientValidators = new ClientValidators();
 
             _loginId = loginId;
+            _clientId = _clientRequest.GetId(_reposFactory, _loginId);
 
             dgvNum.ScrollBars = ScrollBars.Horizontal;
             dgvLog.ScrollBars = ScrollBars.Horizontal;
@@ -68,13 +70,13 @@ namespace Client
             {
                 _clientRequest.NumOutput(_reposFactory, dgvNum, dateTPNum);
             }
-            if (_clientValidators.ValidLogOutput(_loginId))
+            if (_clientValidators.ValidLogOutput(_clientId))
             {
-                _clientRequest.LogOutput(_reposFactory, dgvLog, _loginId);
+                _clientRequest.LogOutput(_reposFactory, dgvLog, _clientId);
             }
-            if (_clientValidators.ValidNowOutput(_loginId))
+            if (_clientValidators.ValidNowOutput(_clientId))
             {
-                _clientRequest.NowOutput(_reposFactory, dgvNow, _loginId);
+                _clientRequest.NowOutput(_reposFactory, dgvNow, _clientId);
             }
 
             //toolTipUserEdit.ToolTipIcon = ToolTipIcon.Info;
@@ -82,7 +84,7 @@ namespace Client
             toolTipUserEdit.SetToolTip(btnEditRequest, @"Редактировать профиль пользователя");
             toolTipDeleteRequest.SetToolTip(btnDeleteRequest, @"Удалить бронь");
 
-            _clientRequest.InputGroupBoxName(_reposFactory, _loginId, groupBoxUserInfo);
+            _clientRequest.InputGroupBoxName(_reposFactory, _clientId, groupBoxUserInfo);
             _clientRequest.InputHotelName(_reposFactory, lLabelHotelName);
         }
 
@@ -112,7 +114,7 @@ namespace Client
         {
             if (dgvNum.CurrentRow != null)
             {
-                AddForm addUser = new AddForm(_reposFactory, _loginId, dgvNum.Rows[dgvNum.CurrentRow.Index].Cells[0].Value.ToString());
+                AddForm addUser = new AddForm(_reposFactory, _clientId, dgvNum.Rows[dgvNum.CurrentRow.Index].Cells[0].Value.ToString());
                 addUser.ShowDialog();
             }
 
@@ -121,13 +123,13 @@ namespace Client
             {
                 _clientRequest.NumOutput(_reposFactory, dgvNum, dateTPNum);
             }
-            if (_clientValidators.ValidLogOutput(_loginId))
+            if (_clientValidators.ValidLogOutput(_clientId))
             {
-                _clientRequest.LogOutput(_reposFactory, dgvLog, _loginId);
+                _clientRequest.LogOutput(_reposFactory, dgvLog, _clientId);
             }
-            if (_clientValidators.ValidNowOutput(_loginId))
+            if (_clientValidators.ValidNowOutput(_clientId))
             {
-                _clientRequest.NowOutput(_reposFactory, dgvNow, _loginId);
+                _clientRequest.NowOutput(_reposFactory, dgvNow, _clientId);
             }
         }
 
@@ -138,9 +140,9 @@ namespace Client
             {
                 if (dgvNow.CurrentRow != null)
                 {
-                    if (_clientValidators.ValidDelete(_loginId, dgvNow.CurrentRow.Index))
+                    if (_clientValidators.ValidDelete(_clientId, dgvNow.CurrentRow.Index))
                     {
-                        _clientRequest.RequestDelete(_reposFactory, _loginId, dgvNow.Rows[dgvNow.CurrentRow.Index].Cells[0].Value.ToString(), dgvNow.Rows[dgvNow.CurrentRow.Index].Cells[1].Value.ToString());
+                        _clientRequest.RequestDelete(_reposFactory, _clientId, dgvNow.Rows[dgvNow.CurrentRow.Index].Cells[0].Value.ToString(), dgvNow.Rows[dgvNow.CurrentRow.Index].Cells[1].Value.ToString());
                     }
                 }
             }
@@ -156,22 +158,22 @@ namespace Client
                 {
                     _clientRequest.NumOutput(_reposFactory, dgvNum, dateTPNum);
                 }
-                if (_clientValidators.ValidLogOutput(_loginId))
+                if (_clientValidators.ValidLogOutput(_clientId))
                 {
-                    _clientRequest.LogOutput(_reposFactory, dgvLog, _loginId);
+                    _clientRequest.LogOutput(_reposFactory, dgvLog, _clientId);
                 }
-                if (_clientValidators.ValidNowOutput(_loginId))
+                if (_clientValidators.ValidNowOutput(_clientId))
                 {
-                    _clientRequest.NowOutput(_reposFactory, dgvNow, _loginId);
+                    _clientRequest.NowOutput(_reposFactory, dgvNow, _clientId);
                 }
             }
         }
 
         private void btnEditRequest_Click(object sender, EventArgs e)
         {
-            if (_loginId != null)
+            if (_clientId != null)
             {
-                EditRequestForm editRequestForm = new EditRequestForm(_reposFactory, _loginId);
+                EditRequestForm editRequestForm = new EditRequestForm(_reposFactory, _clientId, _loginId);
                 editRequestForm.ShowDialog();
             }
 
@@ -180,14 +182,19 @@ namespace Client
             {
                 _clientRequest.NumOutput(_reposFactory, dgvNum, dateTPNum);
             }
-            if (_clientValidators.ValidLogOutput(_loginId))
+            if (_clientValidators.ValidLogOutput(_clientId))
             {
-                _clientRequest.LogOutput(_reposFactory, dgvLog, _loginId);
+                _clientRequest.LogOutput(_reposFactory, dgvLog, _clientId);
             }
-            if (_clientValidators.ValidNowOutput(_loginId))
+            if (_clientValidators.ValidNowOutput(_clientId))
             {
-                _clientRequest.NowOutput(_reposFactory, dgvNow, _loginId);
+                _clientRequest.NowOutput(_reposFactory, dgvNow, _clientId);
             }
+        }
+
+        private void lLabelHotelName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            _clientRequest.OpenLink(_reposFactory, lLabelHotelName);
         }
     }
 }

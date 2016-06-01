@@ -66,6 +66,10 @@
       <HintPath>..\packages\Npgsql.3.1.2\lib\net451\Npgsql.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PasswordHash, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PasswordHash.1.1\lib\net40\PasswordHash.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -94,6 +98,7 @@
     <Compile Include="Login\LoginReposFactory.cs" />
     <Compile Include="Login\RepositoryLogin.cs" />
     <Compile Include="Login\TableLogin.cs" />
+    <Compile Include="Protection.cs" />
     <Compile Include="ReposFactory.cs" />
     <Compile Include="SingleTable\TableApartmentAClass.cs" />
     <Compile Include="SingleTable\TableHotelACardApartment.cs" />

@@ -88,7 +88,8 @@ namespace LogIn
 
             LoginReposFactory loginReposFactory = new LoginReposFactory(cc.Server, cc.Port, cc.UserId, cc.Password, cc.Database);
 
-            Application.Run(new WfLogin(loginReposFactory));
+            //Application.Run(new WfLogin(loginReposFactory));
+            Application.Run(new NewLogInForm(loginReposFactory));
         }
 
         #region Защита old

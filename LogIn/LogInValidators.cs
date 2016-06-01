@@ -56,5 +56,54 @@ namespace LogIn
             }
         }
 
+        public bool ValidAddUser(TextBox pass, TextBox textBoxUserId, TextBox textBoxFirstName, TextBox textBoxSecondName,
+            ComboBox comboBoxGender, DateTimePicker dtpBirth, TextBox textBoxPhone)
+        {
+            try
+            {
+                if (pass.Text == string.Empty)
+                {
+                    ErrorString += "-- Пароль не может быть пустым\n";
+                    ValidKey = false;
+                }
+                if (textBoxUserId.Text == string.Empty)
+                {
+                    ErrorString += "-- Код паспорта не может быть пустым\n";
+                    ValidKey = false;
+                }
+                if (textBoxFirstName.Text == string.Empty)
+                {
+                    ErrorString += "-- Поле имени не может быть пустым\n";
+                    ValidKey = false;
+                }
+                if (textBoxSecondName.Text == string.Empty)
+                {
+                    ErrorString += "-- Поле фамилии не может быть пустым\n";
+                    ValidKey = false;
+                }
+                if (comboBoxGender.Text == string.Empty)
+                {
+                    ErrorString += "-- Пол человека не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
     }
 }

@@ -48,9 +48,9 @@ namespace ClassRequest.DAL
                     " FROM \"hotel\".\"Apartment\"" +
                     " ORDER BY (Ap_ID) ;";
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
 
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
                 NpgsqlDataReader readerUserTable = command.ExecuteReader();
 
                 foreach (DbDataRecord dbDataRecord in readerUserTable)
@@ -73,7 +73,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
             return tableApartmentList;
         }
@@ -88,7 +88,7 @@ namespace ClassRequest.DAL
             try
             {
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
                 string commPart =
                     "UPDATE \"hotel\".\"Apartment\"" +
                     " SET Hotel_ID = @textBoxNumHotel," +
@@ -96,7 +96,7 @@ namespace ClassRequest.DAL
                     " Class_ID = @textBoxNumClass" +
                     " WHERE Ap_ID = @textBoxNum " +
                     ";";
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
                 command.Parameters.AddWithValue("@textBoxNumHotel", Convert.ToInt32(textBoxNumHotel));
                 command.Parameters.AddWithValue("@textBoxPlace", Convert.ToInt32(textBoxPlace));
@@ -113,7 +113,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
         }
 
@@ -125,18 +125,18 @@ namespace ClassRequest.DAL
             string textBoxNumClass)
         {
             // открываем соединение
-            //sqlConnect.GetInstance().OpenConn();
+            //sqlConnect.GetNewSqlConn().OpenConn();
             try
             {
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
                 string commPart =
                     "INSERT INTO \"hotel\".\"Apartment\"" +
                     " (Ap_ID, Hotel_ID, PlaceQuantity, Class_ID)" +
                     " VALUES" +
                     " (@textBoxNum, @textBoxNumHotel, @textBoxPlace, @textBoxNumClass) ;";
 
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
                 command.Parameters.AddWithValue("@textBoxNum", Convert.ToInt32(textBoxNum));
                 command.Parameters.AddWithValue("@textBoxNumHotel", Convert.ToInt32(textBoxNumHotel));
@@ -160,7 +160,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
         }
 
@@ -173,11 +173,11 @@ namespace ClassRequest.DAL
             try
             {
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
                 string commPart =
                     "DELETE FROM \"hotel\".\"Apartment\"" +
                     " WHERE Ap_ID = @textBoxNum ;";
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
                 command.Parameters.AddWithValue("@textBoxNum", Convert.ToInt32(textBoxNum));
                 command.ExecuteNonQuery();
@@ -192,7 +192,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
         }
 

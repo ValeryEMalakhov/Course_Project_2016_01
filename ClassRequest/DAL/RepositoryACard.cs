@@ -16,6 +16,7 @@ using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using ClassRequest.DAL;
+using ClassRequest.Login;
 using ClassRequest.SingleTable;
 using Npgsql;
 
@@ -27,6 +28,7 @@ namespace ClassRequest.DAL
 
         private RepositoryClient repositoryClient;
         private RepositoryUserApartmentCard repositoryUserApartmentCard;
+        private RepositoryLogin repositoryLogin;
         private SqlConnect sqlConnect;
 
         #endregion
@@ -36,6 +38,7 @@ namespace ClassRequest.DAL
             sqlConnect = _sqlConnect;
             repositoryClient = new RepositoryClient(_sqlConnect);
             repositoryUserApartmentCard = new RepositoryUserApartmentCard(_sqlConnect);
+            repositoryLogin = new RepositoryLogin(sqlConnect);
         }
 
         #region TableSelect
@@ -51,9 +54,9 @@ namespace ClassRequest.DAL
                     "SELECT *" +
                     " FROM \"hotel\".\"ACard\";";
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
 
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
                 NpgsqlDataReader readerUserTable = command.ExecuteReader();
 
                 foreach (DbDataRecord dbDataRecord in readerUserTable)
@@ -76,7 +79,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
             return tableACardList;
         }
@@ -87,7 +90,8 @@ namespace ClassRequest.DAL
 
         public void AddUser(string textBoxPass, string textBoxFirstName, string textBoxSecondName,
             string textBoxGender, string dtpBirth, string textBoxPhone,
-            string comboBoxApId, string dtpCheckIn, string dtpCheckOut, string textBoxComm)
+            string comboBoxApId, string dtpCheckIn, string dtpCheckOut, string textBoxComm,
+            string newLogIn, string newPass)
         {
             int keyClientJustInHotel = 0;
             foreach (var v in repositoryUserApartmentCard.GetUserList(Convert.ToString(DateTime.Today)))
@@ -105,20 +109,60 @@ namespace ClassRequest.DAL
                 }
                 if (keyClientInBd == 0)
                 {
+                    // блок добавления в базу нового логина/пароля
+                    try
+                    {
+                        // открываем соединение
+                        //sqlConnect.GetNewSqlConn().OpenConn();
+                        string commPart =
+                            //INSERT INTO "login"."UserPass" (Login_ID, Pass, Vacant) VALUES
+
+                            "INSERT INTO \"login\".\"UserPass\"" +
+                            " (Login_ID, Pass, Vacant)" +
+                            " VALUES" +
+                            " (@Login_ID, @Pass, @Vacant)";
+
+                        NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
+
+                        command.Parameters.AddWithValue("@Login_ID", Protection.Encrypt(newLogIn, "VEM"));
+                        command.Parameters.AddWithValue("@Pass", Protection.EncryptMD5(newPass));
+                        command.Parameters.AddWithValue("@Vacant", Protection.EncryptMD5("C"));
+
+                        try
+                        {
+                            command.ExecuteNonQuery();
+                            MessageBox.Show("Новый логин: " + newLogIn + "\nНовый пароль: " + newPass);
+                        }
+                        catch (NpgsqlException exp)
+                        {
+                            MessageBox.Show(Convert.ToString(exp));
+                        }
+                    }
+                    catch (NpgsqlException exp)
+                    {
+                        // MessageBox.Show("Не удалось выполнить запрос!");
+                        MessageBox.Show(Convert.ToString(exp));
+                    }
+                    finally
+                    {
+                        // соединение закрыто принудительно
+                        //sqlConnect.GetNewSqlConn().CloseConn();
+                    }
                     // блок добавления нового пользователя в базу
                     try
                     {
                         // открываем соединение
-                        //sqlConnect.GetInstance().OpenConn();
+                        //sqlConnect.GetNewSqlConn().OpenConn();
                         string commPart =
                             "INSERT INTO \"hotel\".\"Client\"" +
                             " (Client_ID, FirstName, SecondName, Gender, DateOfBirth, Phone)" +
                             " VALUES" +
-                            " (@Client_ID, @FirstName, @SecondName, @Gender, @DateOfBirth::timestamp with time zone, @Phone)";
+                            " (@Client_ID, @Login_ID, @FirstName, @SecondName, @Gender, @DateOfBirth::timestamp with time zone, @Phone)";
 
-                        NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                        NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
                         command.Parameters.AddWithValue("@Client_ID", textBoxPass);
+                        command.Parameters.AddWithValue("@Login_ID", Protection.Encrypt(newLogIn, "VEM"));
                         command.Parameters.AddWithValue("@FirstName", textBoxFirstName);
                         command.Parameters.AddWithValue("@SecondName", textBoxSecondName);
                         command.Parameters.AddWithValue("@Gender", textBoxGender);
@@ -136,6 +180,7 @@ namespace ClassRequest.DAL
                         catch (NpgsqlException exp)
                         {
                             MessageBox.Show(Convert.ToString(exp));
+                            repositoryLogin.RequestDeleteLogIn(newLogIn);
                         }
                     }
                     catch (NpgsqlException exp)
@@ -146,20 +191,20 @@ namespace ClassRequest.DAL
                     finally
                     {
                         // соединение закрыто принудительно
-                        //sqlConnect.GetInstance().CloseConn();
+                        //sqlConnect.GetNewSqlConn().CloseConn();
                     }
                     // блок добавления человека в карту регистрации
                     try
                     {
                         // открываем соединение
-                        //sqlConnect.GetInstance().OpenConn();
+                        //sqlConnect.GetNewSqlConn().OpenConn();
                         string commPart =
                             "INSERT INTO \"hotel\".\"ACard\"" +
                             " (Client_ID, Ap_ID, CheckInDate, CheckOutDate, StComment)" +
                             " VALUES" +
                             " (@Client_ID, @Ap_ID, @CheckInDate::timestamp with time zone, @CheckOutDate::timestamp with time zone, @StComment)";
 
-                        NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                        NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
                         command.Parameters.AddWithValue("@Client_ID", textBoxPass);
                         command.Parameters.AddWithValue("@Ap_ID", Convert.ToInt32(comboBoxApId));
@@ -189,7 +234,7 @@ namespace ClassRequest.DAL
                     finally
                     {
                         // соединение закрыто принудительно
-                        //sqlConnect.GetInstance().CloseConn();
+                        //sqlConnect.GetNewSqlConn().CloseConn();
                     }
                 }
                 else
@@ -198,14 +243,14 @@ namespace ClassRequest.DAL
                     try
                     {
                         // открываем соединение
-                        //sqlConnect.GetInstance().OpenConn();
+                        //sqlConnect.GetNewSqlConn().OpenConn();
                         string commPart =
                             "INSERT INTO \"hotel\".\"ACard\"" +
                             " (Client_ID, Ap_ID, CheckInDate, CheckOutDate, StComment)" +
                             " VALUES" +
                             " (@Client_ID, @Ap_ID, @CheckInDate::timestamp with time zone, @CheckOutDate::timestamp with time zone, @StComment)";
 
-                        NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                        NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
                         command.Parameters.AddWithValue("@Client_ID", textBoxPass);
                         command.Parameters.AddWithValue("@Ap_ID", Convert.ToInt32(comboBoxApId));
@@ -235,7 +280,7 @@ namespace ClassRequest.DAL
                     finally
                     {
                         // соединение закрыто принудительно
-                        //sqlConnect.GetInstance().CloseConn();
+                        //sqlConnect.GetNewSqlConn().CloseConn();
                     }
                 }
             }
@@ -255,13 +300,13 @@ namespace ClassRequest.DAL
             try
             {
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
                 string commPart =
                     "UPDATE \"hotel\".\"ACard\"" +
                     " SET CheckOutDate = '" + DateTime.Now + "'" +
                     " WHERE Client_Id = @client_Id " +
                     " AND CheckInDate = @checkInDate::timestamp with time zone ;";
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
                 command.Parameters.AddWithValue("@client_Id", clientId);
                 command.Parameters.AddWithValue("@checkInDate", checkInDate);
@@ -276,7 +321,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
         }
 
@@ -285,12 +330,12 @@ namespace ClassRequest.DAL
             try
             {
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
                 string commPart =
                     "DELETE FROM \"hotel\".\"ACard\"" +
                     " WHERE Client_Id = @client_Id " +
                     " AND CheckInDate = @checkInDate::timestamp with time zone ;";
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
                 command.Parameters.AddWithValue("@client_Id", clientId);
                 command.Parameters.AddWithValue("@checkInDate", checkInDate);
@@ -305,7 +350,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
         }
 
@@ -314,11 +359,11 @@ namespace ClassRequest.DAL
             try
             {
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
                 string commPart =
                     "DELETE FROM \"hotel\".\"ACard\"" +
                     " WHERE Ap_ID = @textBoxNum ;";
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
                 command.Parameters.AddWithValue("@textBoxNum", Convert.ToInt32(textBoxNum));
                 command.ExecuteNonQuery();
@@ -331,7 +376,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
         }
 

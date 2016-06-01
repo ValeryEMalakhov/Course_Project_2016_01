@@ -13,7 +13,7 @@ namespace ClassRequest.SingleTable
         public string SecondName { private set; get; }
         public string Gender { private set; get; }
         public string DateOfBirth { private set; get; }
-        public string SVacant { private set; get; }
+        public string SVacantKey { private set; get; }
         public string Supervisor { private set; get; }
         public string RegBuilding { private set; get; }
 
@@ -21,14 +21,14 @@ namespace ClassRequest.SingleTable
         { }
         
         public TableStaff(string staffId, string firstName, string secondName, string gender,
-            string dateOfBirth, string sVacant, string supervisor, string regBuilding)
+            string dateOfBirth, string sVacantKey, string supervisor, string regBuilding)
         {
             StaffId = staffId;
             FirstName = firstName;
             SecondName = secondName;
             Gender = gender;
             DateOfBirth = dateOfBirth;
-            SVacant = sVacant;
+            SVacantKey = sVacantKey;
             Supervisor = supervisor;
             RegBuilding = regBuilding;
         }

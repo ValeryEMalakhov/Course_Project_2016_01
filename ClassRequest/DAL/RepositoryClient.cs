@@ -47,15 +47,16 @@ namespace ClassRequest.DAL
                     "SELECT *" +
                     " FROM \"hotel\".\"Client\";";
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
 
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
                 NpgsqlDataReader readerUserTable = command.ExecuteReader();
 
                 foreach (DbDataRecord dbDataRecord in readerUserTable)
                 {
                     tableClient = new TableClient(
                         dbDataRecord["Client_ID"].ToString(),
+                        dbDataRecord["Login_ID"].ToString(),
                         dbDataRecord["FirstName"].ToString(),
                         dbDataRecord["SecondName"].ToString(),
                         dbDataRecord["Gender"].ToString(),
@@ -73,7 +74,7 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
             return tableClientList;
         }
@@ -92,7 +93,7 @@ namespace ClassRequest.DAL
             try
             {
                 // открываем соединение
-                //sqlConnect.GetInstance().OpenConn();
+                //sqlConnect.GetNewSqlConn().OpenConn();
                 string commPart =
                     "UPDATE \"hotel\".\"Client\"" +
                     " SET FirstName = @textBoxFirstName," +
@@ -101,7 +102,7 @@ namespace ClassRequest.DAL
                     " DateOfBirth = @dateTimePicker::timestamp with time zone ," +
                     " Phone = @textBoxPhone" +
                     " WHERE Client_Id = @client_Id ;";
-                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetInstance().GetConn);
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
                 command.Parameters.AddWithValue("@textBoxFirstName", textBoxFirstName);
                 command.Parameters.AddWithValue("@textBoxSecondName", textBoxSecondName);
@@ -126,7 +127,37 @@ namespace ClassRequest.DAL
             finally
             {
                 // соединение закрыто принудительно
-                //sqlConnect.GetInstance().CloseConn();
+                //sqlConnect.GetNewSqlConn().CloseConn();
+            }
+        }
+
+        public void UserEditPass(string loginId, string newPass)
+        {
+            try
+            {
+                // открываем соединение
+                //sqlConnect.GetNewSqlConn().OpenConn();
+                string commPart =
+                    "UPDATE \"login\".\"UserPass\"" +
+                    " SET Pass = @newPass" +
+                    " WHERE Login_ID = @loginId ;";
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
+
+                command.Parameters.AddWithValue("@newPass", Protection.EncryptMD5(newPass));
+                command.Parameters.AddWithValue("@loginId", Protection.Encrypt(loginId, "VEM"));
+
+                command.ExecuteNonQuery();
+                MessageBox.Show(@"Данные успешно измененны");
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+            finally
+            {
+                // соединение закрыто принудительно
+                //sqlConnect.GetNewSqlConn().CloseConn();
             }
         }
 

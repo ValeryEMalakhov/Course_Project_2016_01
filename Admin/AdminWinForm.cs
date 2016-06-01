@@ -340,11 +340,6 @@ namespace Admin
             if (dgvHotel.CurrentRow != null) dgvHotel.Rows[dgvHotel.CurrentRow.Index].Selected = false;
         }
 
-        private void btnDeleteHotel_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(@"Снос отелей временно недоступен");
-        }
-
         private void btnAddHotel_Click(object sender, EventArgs e)
         {
             MessageBox.Show(@"Постройка отелей временно недоступна");
@@ -352,7 +347,24 @@ namespace Admin
 
         private void btnEditHotel_Click(object sender, EventArgs e)
         {
+            if (_adminValidators.ValidEditThirdBox(textBoxHotelNum.Text, textBoxHotelName.Text, textBoxHotelOrg.Text, textBoxHotelC.Text,
+                    textBoxHotelS.Text, textBoxHotelPhone.Text, textBoxHotelClass.Text, textBoxHotelWeb.Text))
+            {
+                _adminRequest.EditThirdBox(_reposFactory, textBoxHotelNum, textBoxHotelName, textBoxHotelOrg, textBoxHotelC,
+                    textBoxHotelS, textBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb);
 
+                _adminRequest.UserOutputFull(_reposFactory, dgvUser);
+                _adminRequest.NumOutputFull(_reposFactory, dgvNum);
+                _adminRequest.NumCostOutput(_reposFactory, dgvNumClass);
+                _adminRequest.HotelOutput(_reposFactory, dgvHotel);
+
+                //groupBoxStat, labelAllUser, labelNewUser
+                groupBoxStat.Text = @"Статистика {empty}";
+                labelAllUser.Text = @"0";
+                labelNewUser.Text = @"0";
+
+                if (dgvHotel.CurrentRow != null) dgvHotel.Rows[dgvHotel.CurrentRow.Index].Selected = false;
+            }
         }
 
         private void dgvHotel_CellClick(object sender, DataGridViewCellEventArgs e)

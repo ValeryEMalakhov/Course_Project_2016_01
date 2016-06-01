@@ -107,6 +107,31 @@ namespace Staff
             }
         }
 
+        // вывод списка отелей
+        public void HotelOutput(ReposFactory reposFactory, DataGridView dgvHotel)
+        {
+            dgvHotel.Rows.Clear();
+            try
+            {
+                int colorKey = 0;
+                foreach (var v in reposFactory.GetHotel().GetSingleTable())
+                {
+                    dgvHotel.Rows.Add(v.HotelId, v.OrgName, v.HotelName, v.City, v.Street, v.Phone, v.HotelClass, v.HotelLink);
+                    if (colorKey % 2 == 0)
+                    {
+                        for (int i = 0; i < dgvHotel.ColumnCount; ++i)
+                            dgvHotel.Rows[colorKey].Cells[i].Style.BackColor = Color.Lavender;
+                    }
+                    colorKey++;
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+
         // запрос зареганых клиентов
         public void GetUserIdList(ReposFactory reposFactory, TextBox textBoxPass)
         {
@@ -197,10 +222,21 @@ namespace Staff
         {
             try
             {
+                string newLogIn;
+                string newPass = @"12345";
+
+                int key = 1100;
+                foreach (var v in reposFactory.GetLogin().GetSingleTable())
+                {
+                    key++;
+                }
+                newLogIn = @"user-" + Convert.ToString(key);
+
                 reposFactory.GetACard().AddUser(textBoxPass.Text, textBoxFirstName.Text,
                     textBoxSecondName.Text, comboBoxGender.Text,
                     dtpBirth.Text, textBoxPhone.Text,
-                    comboBoxApId.Text, dtpCheckIn.Text, dtpCheckOut.Text, textBoxComm.Text);
+                    comboBoxApId.Text, dtpCheckIn.Text, dtpCheckOut.Text, textBoxComm.Text,
+                    newLogIn, newPass);
             }
             catch (Exception exp)
             {
@@ -219,6 +255,42 @@ namespace Staff
                 comboBoxApId.Text = string.Empty;
                 textBoxComm.Clear();
             }
+        }
+        // записываем выбранный отель в TextBox-сы
+        public void EnterThirdBox(ReposFactory reposFactory, TextBox textBoxHotelNum, TextBox textBoxHotelName, TextBox textBoxHotelOrg,
+            TextBox textBoxHotelC, TextBox textBoxHotelS, TextBox textBoxHotelPhone, TextBox textBoxHotelClass,
+            TextBox textBoxHotelWeb, DataGridView dgvHotel, int dgvIndex, GroupBox groupBox, Label labelAll, Label labelNew)
+        {
+            //textBoxHotelNum, textBoxHotelName, textBoxHotelOrg, textBoxHotelC,
+            //textBoxHotelS, textBoxHotelPhone, textBoxHotelWeb
+
+            int tickAll = 0;
+            int tickNew = 0;
+            foreach (var v in reposFactory.GetHotelACardApartment().GetSingleTable())
+            {
+                if (v.HotelId == dgvHotel.Rows[dgvIndex].Cells[0].Value.ToString())
+                {
+                    tickAll++;
+                    if (Convert.ToDateTime(v.CheckInDate) <= DateTime.Today &
+                        Convert.ToDateTime(v.CheckOutDate) >= DateTime.Today)
+                    {
+                        tickNew++;
+                    }
+                }
+            }
+
+            groupBox.Text = @"Статистика " + dgvHotel.Rows[dgvIndex].Cells[2].Value.ToString();
+            labelAll.Text = Convert.ToString(tickAll);
+            labelNew.Text = Convert.ToString(tickNew);
+
+            textBoxHotelNum.Text = dgvHotel.Rows[dgvIndex].Cells[0].Value.ToString();
+            textBoxHotelOrg.Text = dgvHotel.Rows[dgvIndex].Cells[1].Value.ToString();
+            textBoxHotelName.Text = dgvHotel.Rows[dgvIndex].Cells[2].Value.ToString();
+            textBoxHotelC.Text = dgvHotel.Rows[dgvIndex].Cells[3].Value.ToString();
+            textBoxHotelS.Text = dgvHotel.Rows[dgvIndex].Cells[4].Value.ToString();
+            textBoxHotelPhone.Text = dgvHotel.Rows[dgvIndex].Cells[5].Value.ToString();
+            textBoxHotelClass.Text = dgvHotel.Rows[dgvIndex].Cells[6].Value.ToString();
+            textBoxHotelWeb.Text = dgvHotel.Rows[dgvIndex].Cells[7].Value.ToString();
         }
     }
 }

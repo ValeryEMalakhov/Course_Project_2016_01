@@ -7,6 +7,7 @@ namespace ClassRequest.Login
     public class LoginReposFactory : IDisposable
     {
         RepositoryLogin RepositoryLogin { set; get; }
+        RepositoryClient RepositoryClient { set; get; }
 
         private NpgsqlConnection npgsql;
         private SqlConnect sqlConnect;
@@ -22,21 +23,26 @@ namespace ClassRequest.Login
             OpenConnection();
 
             RepositoryLogin = new RepositoryLogin(sqlConnect);
+            RepositoryClient = new RepositoryClient(sqlConnect);
         }
 
         public void OpenConnection()
         {
-            sqlConnect.GetInstance().OpenConn();
+            sqlConnect.GetNewSqlConn().OpenConn();
         }
 
         public void Dispose()
         {
-            sqlConnect.GetInstance().CloseConn();
+            sqlConnect.GetNewSqlConn().CloseConn();
         }
 
         public RepositoryLogin GetLogin()
         {
             return RepositoryLogin;
+        }
+        public RepositoryClient GetClient()
+        {
+            return RepositoryClient;
         }
     }
 }

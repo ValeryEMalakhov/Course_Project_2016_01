@@ -29,6 +29,17 @@ namespace Client
 
         #endregion
 
+        // получение паспорта клиента
+        public string GetId(ReposFactory reposFactory, string loginId)
+        {
+            foreach (var v in reposFactory.GetClient().GetSingleTable())
+            {
+                if (v.LoginId == loginId)
+                    return (v.ClientId);
+            }
+            return @"ERROR";
+        }
+
         // вывод списка свободных номеров
         public void NumOutput(ReposFactory reposFactory, DataGridView dgvNum, DateTimePicker dateTpNum)
         {
@@ -139,9 +150,19 @@ namespace Client
                 {
                     if (v.ClientId == loginId)
                     {
+                        string newPass = @"12345";
+
+                        int key = 1100;
+                        foreach (var w in reposFactory.GetLogin().GetSingleTable())
+                        {
+                            key++;
+                        }
+                        string newLogIn = @"user-" + Convert.ToString(key);
+
                         reposFactory.GetACard().AddUser(loginId, v.FirstName, v.SecondName,
                             v.Gender, v.DateOfBirth, v.Phone,
-                            apId, dtpCheckIn.Text, dtpCheckOut.Text, textBoxComm.Text);
+                            apId, dtpCheckIn.Text, dtpCheckOut.Text, textBoxComm.Text,
+                            newLogIn, newPass);
                     }
                 }
             }
@@ -220,6 +241,17 @@ namespace Client
                 MessageBox.Show(Convert.ToString(exp));
             }
         }
+        public void UserEditPass(ReposFactory reposFactory, string loginId, TextBox textBoxNewPass)
+        {
+            try
+            {
+                reposFactory.GetClient().UserEditPass(loginId, textBoxNewPass.Text);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
 
         #endregion
 
@@ -230,6 +262,15 @@ namespace Client
             foreach (var v in reposFactory.GetHotel().GetSingleTable())
             {
                 lLabelHotelName.Text = v.OrgName;
+            }
+        }
+
+        public void OpenLink(ReposFactory reposFactory, LinkLabel lLabelHotelName)
+        {
+            foreach (var v in reposFactory.GetHotel().GetSingleTable())
+            {
+                if (v.OrgName == lLabelHotelName.Text)
+                    Process.Start(v.HotelLink);
             }
         }
 

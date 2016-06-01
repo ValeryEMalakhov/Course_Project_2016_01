@@ -91,32 +91,32 @@
             this.CClass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabHotel = new System.Windows.Forms.TabPage();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnDeleteHotel = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.textBoxHotelName = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBoxHotelC = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBoxHotelOrg = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBoxHotelNum = new System.Windows.Forms.TextBox();
-            this.dgvHotel = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.textBoxHotelS = new System.Windows.Forms.TextBox();
-            this.textBoxHotelWeb = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBoxHotelPhone = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.btnAddHotel = new System.Windows.Forms.Button();
-            this.btnClear3 = new System.Windows.Forms.Button();
-            this.btnEditHotel = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.textBoxHotelClass = new System.Windows.Forms.TextBox();
             this.groupBoxStat = new System.Windows.Forms.GroupBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.labelAllUser = new System.Windows.Forms.Label();
             this.labelNewUser = new System.Windows.Forms.Label();
+            this.labelAllUser = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBoxHotelNum = new System.Windows.Forms.TextBox();
+            this.btnClear3 = new System.Windows.Forms.Button();
+            this.btnAddHotel = new System.Windows.Forms.Button();
+            this.btnEditHotel = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBoxHotelS = new System.Windows.Forms.TextBox();
+            this.textBoxHotelC = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBoxHotelPhone = new System.Windows.Forms.TextBox();
+            this.textBoxHotelName = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBoxHotelWeb = new System.Windows.Forms.TextBox();
+            this.textBoxHotelOrg = new System.Windows.Forms.TextBox();
+            this.dgvHotel = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HotelOrgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -125,8 +125,7 @@
             this.HotelPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HotelClass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HotelWeb = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label18 = new System.Windows.Forms.Label();
-            this.textBoxHotelClass = new System.Windows.Forms.TextBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.tabUser.SuspendLayout();
             this.gBUserAction.SuspendLayout();
@@ -138,9 +137,9 @@
             this.gBNum.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNum)).BeginInit();
             this.tabHotel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHotel)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBoxStat.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHotel)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -687,77 +686,139 @@
             this.tabHotel.Text = "Отель";
             this.tabHotel.UseVisualStyleBackColor = true;
             // 
-            // tabPage1
+            // groupBox2
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(936, 533);
-            this.tabPage1.TabIndex = 3;
-            this.tabPage1.Text = "Сотрудники";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.groupBox2.Controls.Add(this.label18);
+            this.groupBox2.Controls.Add(this.textBoxHotelClass);
+            this.groupBox2.Controls.Add(this.groupBoxStat);
+            this.groupBox2.Controls.Add(this.textBoxHotelNum);
+            this.groupBox2.Controls.Add(this.btnClear3);
+            this.groupBox2.Controls.Add(this.btnAddHotel);
+            this.groupBox2.Controls.Add(this.btnEditHotel);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.textBoxHotelS);
+            this.groupBox2.Controls.Add(this.textBoxHotelC);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.label15);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.textBoxHotelPhone);
+            this.groupBox2.Controls.Add(this.textBoxHotelName);
+            this.groupBox2.Controls.Add(this.label14);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.textBoxHotelWeb);
+            this.groupBox2.Controls.Add(this.textBoxHotelOrg);
+            this.groupBox2.Location = new System.Drawing.Point(6, 344);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(924, 183);
+            this.groupBox2.TabIndex = 110;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Об отеле";
             // 
-            // btnDeleteHotel
+            // label18
             // 
-            this.btnDeleteHotel.Enabled = false;
-            this.btnDeleteHotel.Location = new System.Drawing.Point(13, 133);
-            this.btnDeleteHotel.Name = "btnDeleteHotel";
-            this.btnDeleteHotel.Size = new System.Drawing.Size(153, 36);
-            this.btnDeleteHotel.TabIndex = 104;
-            this.btnDeleteHotel.Text = "Удалить";
-            this.btnDeleteHotel.UseVisualStyleBackColor = true;
-            this.btnDeleteHotel.Click += new System.EventHandler(this.btnDeleteHotel_Click);
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(430, 55);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(70, 13);
+            this.label18.TabIndex = 111;
+            this.label18.Text = "Класс отеля";
             // 
-            // label9
+            // textBoxHotelClass
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(169, 16);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(61, 13);
-            this.label9.TabIndex = 108;
-            this.label9.Text = "Имя отеля";
+            this.textBoxHotelClass.Location = new System.Drawing.Point(433, 71);
+            this.textBoxHotelClass.Name = "textBoxHotelClass";
+            this.textBoxHotelClass.Size = new System.Drawing.Size(255, 20);
+            this.textBoxHotelClass.TabIndex = 110;
+            this.textBoxHotelClass.Tag = "";
             // 
-            // textBoxHotelName
+            // groupBoxStat
             // 
-            this.textBoxHotelName.Location = new System.Drawing.Point(172, 32);
-            this.textBoxHotelName.Name = "textBoxHotelName";
-            this.textBoxHotelName.Size = new System.Drawing.Size(255, 20);
-            this.textBoxHotelName.TabIndex = 101;
-            this.textBoxHotelName.Tag = "";
+            this.groupBoxStat.Controls.Add(this.labelNewUser);
+            this.groupBoxStat.Controls.Add(this.labelAllUser);
+            this.groupBoxStat.Controls.Add(this.label17);
+            this.groupBoxStat.Controls.Add(this.label16);
+            this.groupBoxStat.Location = new System.Drawing.Point(694, 16);
+            this.groupBoxStat.Name = "groupBoxStat";
+            this.groupBoxStat.Size = new System.Drawing.Size(224, 153);
+            this.groupBoxStat.TabIndex = 109;
+            this.groupBoxStat.TabStop = false;
+            this.groupBoxStat.Text = "Статистика {HotelName}";
             // 
-            // label10
+            // labelNewUser
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(169, 94);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(37, 13);
-            this.label10.TabIndex = 107;
-            this.label10.Text = "Город";
+            this.labelNewUser.Location = new System.Drawing.Point(120, 69);
+            this.labelNewUser.Name = "labelNewUser";
+            this.labelNewUser.Size = new System.Drawing.Size(98, 13);
+            this.labelNewUser.TabIndex = 3;
+            this.labelNewUser.Text = "{StatNewUser}";
+            this.labelNewUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBoxHotelC
+            // labelAllUser
             // 
-            this.textBoxHotelC.Location = new System.Drawing.Point(172, 110);
-            this.textBoxHotelC.Name = "textBoxHotelC";
-            this.textBoxHotelC.Size = new System.Drawing.Size(255, 20);
-            this.textBoxHotelC.TabIndex = 103;
-            this.textBoxHotelC.Tag = "";
+            this.labelAllUser.Location = new System.Drawing.Point(120, 30);
+            this.labelAllUser.Name = "labelAllUser";
+            this.labelAllUser.Size = new System.Drawing.Size(98, 13);
+            this.labelAllUser.TabIndex = 2;
+            this.labelAllUser.Text = "{StatAllUser}";
+            this.labelAllUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label11
+            // label17
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(169, 55);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(97, 13);
-            this.label11.TabIndex = 106;
-            this.label11.Text = "Имя организации";
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(6, 69);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(104, 13);
+            this.label17.TabIndex = 1;
+            this.label17.Text = "Сейчас проживает:";
             // 
-            // textBoxHotelOrg
+            // label16
             // 
-            this.textBoxHotelOrg.Location = new System.Drawing.Point(172, 71);
-            this.textBoxHotelOrg.Name = "textBoxHotelOrg";
-            this.textBoxHotelOrg.Size = new System.Drawing.Size(255, 20);
-            this.textBoxHotelOrg.TabIndex = 102;
-            this.textBoxHotelOrg.Tag = "";
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 30);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(108, 13);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Всего постояльцев:";
+            // 
+            // textBoxHotelNum
+            // 
+            this.textBoxHotelNum.Location = new System.Drawing.Point(13, 32);
+            this.textBoxHotelNum.Name = "textBoxHotelNum";
+            this.textBoxHotelNum.Size = new System.Drawing.Size(153, 20);
+            this.textBoxHotelNum.TabIndex = 100;
+            this.textBoxHotelNum.Tag = "";
+            // 
+            // btnClear3
+            // 
+            this.btnClear3.Location = new System.Drawing.Point(433, 133);
+            this.btnClear3.Name = "btnClear3";
+            this.btnClear3.Size = new System.Drawing.Size(255, 36);
+            this.btnClear3.TabIndex = 104;
+            this.btnClear3.Text = "Очистить";
+            this.btnClear3.UseVisualStyleBackColor = true;
+            this.btnClear3.Click += new System.EventHandler(this.btnClear3_Click);
+            // 
+            // btnAddHotel
+            // 
+            this.btnAddHotel.Enabled = false;
+            this.btnAddHotel.Location = new System.Drawing.Point(13, 55);
+            this.btnAddHotel.Name = "btnAddHotel";
+            this.btnAddHotel.Size = new System.Drawing.Size(153, 36);
+            this.btnAddHotel.TabIndex = 104;
+            this.btnAddHotel.Text = "Добавить";
+            this.btnAddHotel.UseVisualStyleBackColor = true;
+            this.btnAddHotel.Click += new System.EventHandler(this.btnAddHotel_Click);
+            // 
+            // btnEditHotel
+            // 
+            this.btnEditHotel.Location = new System.Drawing.Point(13, 94);
+            this.btnEditHotel.Name = "btnEditHotel";
+            this.btnEditHotel.Size = new System.Drawing.Size(153, 36);
+            this.btnEditHotel.TabIndex = 104;
+            this.btnEditHotel.Text = "Редактировать";
+            this.btnEditHotel.UseVisualStyleBackColor = true;
+            this.btnEditHotel.Click += new System.EventHandler(this.btnEditHotel_Click);
             // 
             // label12
             // 
@@ -768,13 +829,107 @@
             this.label12.TabIndex = 105;
             this.label12.Text = "№";
             // 
-            // textBoxHotelNum
+            // textBoxHotelS
             // 
-            this.textBoxHotelNum.Location = new System.Drawing.Point(13, 32);
-            this.textBoxHotelNum.Name = "textBoxHotelNum";
-            this.textBoxHotelNum.Size = new System.Drawing.Size(153, 20);
-            this.textBoxHotelNum.TabIndex = 100;
-            this.textBoxHotelNum.Tag = "";
+            this.textBoxHotelS.Location = new System.Drawing.Point(172, 149);
+            this.textBoxHotelS.Name = "textBoxHotelS";
+            this.textBoxHotelS.Size = new System.Drawing.Size(255, 20);
+            this.textBoxHotelS.TabIndex = 103;
+            this.textBoxHotelS.Tag = "";
+            // 
+            // textBoxHotelC
+            // 
+            this.textBoxHotelC.Location = new System.Drawing.Point(172, 110);
+            this.textBoxHotelC.Name = "textBoxHotelC";
+            this.textBoxHotelC.Size = new System.Drawing.Size(255, 20);
+            this.textBoxHotelC.TabIndex = 103;
+            this.textBoxHotelC.Tag = "";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(169, 133);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(39, 13);
+            this.label13.TabIndex = 107;
+            this.label13.Text = "Улица";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(169, 94);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(37, 13);
+            this.label10.TabIndex = 107;
+            this.label10.Text = "Город";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(430, 16);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(84, 13);
+            this.label15.TabIndex = 108;
+            this.label15.Text = "Телефон отеля";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(169, 16);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(61, 13);
+            this.label9.TabIndex = 108;
+            this.label9.Text = "Имя отеля";
+            // 
+            // textBoxHotelPhone
+            // 
+            this.textBoxHotelPhone.Location = new System.Drawing.Point(433, 32);
+            this.textBoxHotelPhone.Name = "textBoxHotelPhone";
+            this.textBoxHotelPhone.Size = new System.Drawing.Size(255, 20);
+            this.textBoxHotelPhone.TabIndex = 101;
+            this.textBoxHotelPhone.Tag = "";
+            // 
+            // textBoxHotelName
+            // 
+            this.textBoxHotelName.Location = new System.Drawing.Point(172, 32);
+            this.textBoxHotelName.Name = "textBoxHotelName";
+            this.textBoxHotelName.Size = new System.Drawing.Size(255, 20);
+            this.textBoxHotelName.TabIndex = 101;
+            this.textBoxHotelName.Tag = "";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(430, 94);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(63, 13);
+            this.label14.TabIndex = 106;
+            this.label14.Text = "Сайт отеля";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(169, 55);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(97, 13);
+            this.label11.TabIndex = 106;
+            this.label11.Text = "Имя организации";
+            // 
+            // textBoxHotelWeb
+            // 
+            this.textBoxHotelWeb.Location = new System.Drawing.Point(433, 110);
+            this.textBoxHotelWeb.Name = "textBoxHotelWeb";
+            this.textBoxHotelWeb.Size = new System.Drawing.Size(255, 20);
+            this.textBoxHotelWeb.TabIndex = 102;
+            this.textBoxHotelWeb.Tag = "";
+            // 
+            // textBoxHotelOrg
+            // 
+            this.textBoxHotelOrg.Location = new System.Drawing.Point(172, 71);
+            this.textBoxHotelOrg.Name = "textBoxHotelOrg";
+            this.textBoxHotelOrg.Size = new System.Drawing.Size(255, 20);
+            this.textBoxHotelOrg.TabIndex = 102;
+            this.textBoxHotelOrg.Tag = "";
             // 
             // dgvHotel
             // 
@@ -805,167 +960,6 @@
             this.dgvHotel.TabStop = false;
             this.dgvHotel.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHotel_CellClick);
             this.dgvHotel.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvHotel_KeyUp);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label18);
-            this.groupBox2.Controls.Add(this.textBoxHotelClass);
-            this.groupBox2.Controls.Add(this.groupBoxStat);
-            this.groupBox2.Controls.Add(this.textBoxHotelNum);
-            this.groupBox2.Controls.Add(this.btnClear3);
-            this.groupBox2.Controls.Add(this.btnAddHotel);
-            this.groupBox2.Controls.Add(this.btnEditHotel);
-            this.groupBox2.Controls.Add(this.btnDeleteHotel);
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.textBoxHotelS);
-            this.groupBox2.Controls.Add(this.textBoxHotelC);
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.textBoxHotelPhone);
-            this.groupBox2.Controls.Add(this.textBoxHotelName);
-            this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.textBoxHotelWeb);
-            this.groupBox2.Controls.Add(this.textBoxHotelOrg);
-            this.groupBox2.Location = new System.Drawing.Point(6, 344);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(924, 183);
-            this.groupBox2.TabIndex = 110;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Об отеле";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(169, 133);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(39, 13);
-            this.label13.TabIndex = 107;
-            this.label13.Text = "Улица";
-            // 
-            // textBoxHotelS
-            // 
-            this.textBoxHotelS.Location = new System.Drawing.Point(172, 149);
-            this.textBoxHotelS.Name = "textBoxHotelS";
-            this.textBoxHotelS.Size = new System.Drawing.Size(255, 20);
-            this.textBoxHotelS.TabIndex = 103;
-            this.textBoxHotelS.Tag = "";
-            // 
-            // textBoxHotelWeb
-            // 
-            this.textBoxHotelWeb.Location = new System.Drawing.Point(433, 110);
-            this.textBoxHotelWeb.Name = "textBoxHotelWeb";
-            this.textBoxHotelWeb.Size = new System.Drawing.Size(255, 20);
-            this.textBoxHotelWeb.TabIndex = 102;
-            this.textBoxHotelWeb.Tag = "";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(430, 94);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(63, 13);
-            this.label14.TabIndex = 106;
-            this.label14.Text = "Сайт отеля";
-            // 
-            // textBoxHotelPhone
-            // 
-            this.textBoxHotelPhone.Location = new System.Drawing.Point(433, 32);
-            this.textBoxHotelPhone.Name = "textBoxHotelPhone";
-            this.textBoxHotelPhone.Size = new System.Drawing.Size(255, 20);
-            this.textBoxHotelPhone.TabIndex = 101;
-            this.textBoxHotelPhone.Tag = "";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(430, 16);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(84, 13);
-            this.label15.TabIndex = 108;
-            this.label15.Text = "Телефон отеля";
-            // 
-            // btnAddHotel
-            // 
-            this.btnAddHotel.Enabled = false;
-            this.btnAddHotel.Location = new System.Drawing.Point(13, 55);
-            this.btnAddHotel.Name = "btnAddHotel";
-            this.btnAddHotel.Size = new System.Drawing.Size(153, 36);
-            this.btnAddHotel.TabIndex = 104;
-            this.btnAddHotel.Text = "Добавить";
-            this.btnAddHotel.UseVisualStyleBackColor = true;
-            this.btnAddHotel.Click += new System.EventHandler(this.btnAddHotel_Click);
-            // 
-            // btnClear3
-            // 
-            this.btnClear3.Location = new System.Drawing.Point(433, 133);
-            this.btnClear3.Name = "btnClear3";
-            this.btnClear3.Size = new System.Drawing.Size(255, 36);
-            this.btnClear3.TabIndex = 104;
-            this.btnClear3.Text = "Очистить";
-            this.btnClear3.UseVisualStyleBackColor = true;
-            this.btnClear3.Click += new System.EventHandler(this.btnClear3_Click);
-            // 
-            // btnEditHotel
-            // 
-            this.btnEditHotel.Location = new System.Drawing.Point(13, 94);
-            this.btnEditHotel.Name = "btnEditHotel";
-            this.btnEditHotel.Size = new System.Drawing.Size(153, 36);
-            this.btnEditHotel.TabIndex = 104;
-            this.btnEditHotel.Text = "Редактировать";
-            this.btnEditHotel.UseVisualStyleBackColor = true;
-            this.btnEditHotel.Click += new System.EventHandler(this.btnEditHotel_Click);
-            // 
-            // groupBoxStat
-            // 
-            this.groupBoxStat.Controls.Add(this.labelNewUser);
-            this.groupBoxStat.Controls.Add(this.labelAllUser);
-            this.groupBoxStat.Controls.Add(this.label17);
-            this.groupBoxStat.Controls.Add(this.label16);
-            this.groupBoxStat.Location = new System.Drawing.Point(694, 16);
-            this.groupBoxStat.Name = "groupBoxStat";
-            this.groupBoxStat.Size = new System.Drawing.Size(224, 153);
-            this.groupBoxStat.TabIndex = 109;
-            this.groupBoxStat.TabStop = false;
-            this.groupBoxStat.Text = "Статистика {HotelName}";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 30);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(108, 13);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "Всего постояльцев:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 69);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(104, 13);
-            this.label17.TabIndex = 1;
-            this.label17.Text = "Сейчас проживает:";
-            // 
-            // labelAllUser
-            // 
-            this.labelAllUser.Location = new System.Drawing.Point(120, 30);
-            this.labelAllUser.Name = "labelAllUser";
-            this.labelAllUser.Size = new System.Drawing.Size(98, 13);
-            this.labelAllUser.TabIndex = 2;
-            this.labelAllUser.Text = "{StatAllUser}";
-            this.labelAllUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // labelNewUser
-            // 
-            this.labelNewUser.Location = new System.Drawing.Point(120, 69);
-            this.labelNewUser.Name = "labelNewUser";
-            this.labelNewUser.Size = new System.Drawing.Size(98, 13);
-            this.labelNewUser.TabIndex = 3;
-            this.labelNewUser.Text = "{StatNewUser}";
-            this.labelNewUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -1031,22 +1025,15 @@
             this.HotelWeb.ReadOnly = true;
             this.HotelWeb.Width = 175;
             // 
-            // label18
+            // tabPage1
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(430, 55);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(70, 13);
-            this.label18.TabIndex = 111;
-            this.label18.Text = "Класс отеля";
-            // 
-            // textBoxHotelClass
-            // 
-            this.textBoxHotelClass.Location = new System.Drawing.Point(433, 71);
-            this.textBoxHotelClass.Name = "textBoxHotelClass";
-            this.textBoxHotelClass.Size = new System.Drawing.Size(255, 20);
-            this.textBoxHotelClass.TabIndex = 110;
-            this.textBoxHotelClass.Tag = "";
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(936, 533);
+            this.tabPage1.TabIndex = 3;
+            this.tabPage1.Text = "Сотрудники";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // AdminWinForm
             // 
@@ -1076,11 +1063,11 @@
             this.gBNum.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNum)).EndInit();
             this.tabHotel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHotel)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBoxStat.ResumeLayout(false);
             this.groupBoxStat.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHotel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1140,7 +1127,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CCost;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox textBoxHotelNum;
-        private System.Windows.Forms.Button btnDeleteHotel;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBoxHotelS;
         private System.Windows.Forms.TextBox textBoxHotelC;
