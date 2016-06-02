@@ -303,7 +303,7 @@ namespace ClassRequest.DAL
                 //sqlConnect.GetNewSqlConn().OpenConn();
                 string commPart =
                     "UPDATE \"hotel\".\"ACard\"" +
-                    " SET CheckOutDate = '" + DateTime.Now + "'" +
+                    " SET CheckOutDate = '" + DateTime.Today + "'" +
                     " WHERE Client_Id = @client_Id " +
                     " AND CheckInDate = @checkInDate::timestamp with time zone ;";
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);

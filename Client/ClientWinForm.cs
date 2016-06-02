@@ -80,12 +80,11 @@ namespace Client
             }
 
             //toolTipUserEdit.ToolTipIcon = ToolTipIcon.Info;
-            toolTipAddRequest.SetToolTip(btnAddRequest, @"Забронировать номер");
             toolTipUserEdit.SetToolTip(btnEditRequest, @"Редактировать профиль пользователя");
             toolTipDeleteRequest.SetToolTip(btnDeleteRequest, @"Удалить бронь");
 
             _clientRequest.InputGroupBoxName(_reposFactory, _clientId, groupBoxUserInfo);
-            _clientRequest.InputHotelName(_reposFactory, lLabelHotelName);
+            _clientRequest.InputHotelName(_reposFactory, lLabelHotelName, labelHotelPhone);
         }
 
         private void ClientWinForm_FormClosing(object sender, FormClosingEventArgs e)

@@ -205,7 +205,7 @@ namespace Staff
         }
 
         public bool ValidAddUser(TextBox textBoxPass, TextBox textBoxFirstName, TextBox textBoxSecondName,
-            ComboBox comboBoxGender, DateTimePicker dtpBirth, TextBox textBoxPhone, ComboBox comboBoxApId,
+            ComboBox comboBoxGender, DateTimePicker dtpBirth, MaskedTextBox textBoxPhone, ComboBox comboBoxApId,
             DateTimePicker dtpCheckIn, DateTimePicker dtpCheckOut, RichTextBox textBoxComm)
         {
             try
@@ -291,7 +291,7 @@ namespace Staff
         }
 
         public bool ValidInputAllClientFields(TextBox textBoxPass, TextBox textBoxFirstName,
-            TextBox textBoxSecondName, ComboBox comboBoxGender, DateTimePicker dtpBirth, TextBox textBoxPhone)
+            TextBox textBoxSecondName, ComboBox comboBoxGender, DateTimePicker dtpBirth, MaskedTextBox textBoxPhone)
         {
             try
             {

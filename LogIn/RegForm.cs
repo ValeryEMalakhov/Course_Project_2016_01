@@ -76,37 +76,112 @@ namespace LogIn
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            testEnter();
+            if(textBoxID.Text == "user-1102")
+                TestEnter();
             this.Close();
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (_logInValidators.ValidAddUser(textBoxPass, textBoxCodeID, textBoxFirstName, textBoxSecondName,
-                comboBoxGender, dtpBirth, textBoxPhone))
+                comboBoxGender, dtpBirth, maskedTextBoxPhone))
             {
                 _logInRequest.AddUserFirstPart(_loginReposFactory, textBoxID, textBoxPass, textBoxCodeID,
                     textBoxFirstName, textBoxSecondName,
-                    comboBoxGender, dtpBirth, textBoxPhone);
+                    comboBoxGender, dtpBirth, maskedTextBoxPhone);
                 this.Close();
             }
         }
 
-        private void testEnter()
+        private void TestEnter()
         {
-            textBoxPass.Text = "1100";
-            textBoxCodeID.Text = "1100";
-            textBoxCodeID.Text = "1100";
-            textBoxFirstName.Text = "1100";
-            textBoxSecondName.Text = "1100";
-            comboBoxGender.Text = "1100";
-            dtpBirth.Text = "1100";
-            textBoxPhone.Text = "1100";
+
+            textBoxPass.Text = "1102";
+            textBoxCodeID.Text = "GB 00 000 000";
+            textBoxFirstName.Text = "Сабрина";
+            textBoxSecondName.Text = "МакГи";
+            comboBoxGender.Text = "жен";
+            dtpBirth.Text = "06.06.1996";
+            maskedTextBoxPhone.Text = "(777) 745-5913";
             _logInRequest.AddUserFirstPart(_loginReposFactory, textBoxID, textBoxPass, textBoxCodeID,
-                textBoxFirstName, textBoxSecondName,
-                comboBoxGender, dtpBirth, textBoxPhone);
+                textBoxFirstName, textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone);
 
             _logInRequest.GiveUser(_loginReposFactory, textBoxID);
+            textBoxPass.Text = "1103";
+            textBoxCodeID.Text = "GB 11 111 111";
+            textBoxFirstName.Text = "Кэтрин";
+            textBoxSecondName.Text = "Далтон";
+            comboBoxGender.Text = "жен";
+            dtpBirth.Text = "12.07.1990";
+            maskedTextBoxPhone.Text = "(777) 654-2353";
+            _logInRequest.AddUserFirstPart(_loginReposFactory, textBoxID, textBoxPass, textBoxCodeID,
+                textBoxFirstName, textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone);
+
+            _logInRequest.GiveUser(_loginReposFactory, textBoxID);
+            textBoxPass.Text = "1104";
+            textBoxCodeID.Text = "GB 33 444 444";
+            textBoxFirstName.Text = "Томас";
+            textBoxSecondName.Text = "Саттони";
+            comboBoxGender.Text = "муж";
+            dtpBirth.Text = "13.06.1992";
+            maskedTextBoxPhone.Text = "(777) 746-6914";
+            _logInRequest.AddUserFirstPart(_loginReposFactory, textBoxID, textBoxPass, textBoxCodeID,
+                textBoxFirstName, textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone);
+
+            _logInRequest.GiveUser(_loginReposFactory, textBoxID);
+            textBoxPass.Text = "1105";
+            textBoxCodeID.Text = "GB 44 555 555";
+            textBoxFirstName.Text = "Мерси";
+            textBoxSecondName.Text = "Дженкинс";
+            comboBoxGender.Text = "жен";
+            dtpBirth.Text = "09.08.1987";
+            maskedTextBoxPhone.Text = "(777) 545-5333";
+            _logInRequest.AddUserFirstPart(_loginReposFactory, textBoxID, textBoxPass, textBoxCodeID,
+                textBoxFirstName, textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone);
+
+            _logInRequest.GiveUser(_loginReposFactory, textBoxID);
+            textBoxPass.Text = "1106";
+            textBoxCodeID.Text = "RU 66 777 777";
+            textBoxFirstName.Text = "Дмитрий";
+            textBoxSecondName.Text = "Лисов";
+            comboBoxGender.Text = "муж";
+            dtpBirth.Text = "08.06.1996";
+            maskedTextBoxPhone.Text = "(444) 506-7877";
+            _logInRequest.AddUserFirstPart(_loginReposFactory, textBoxID, textBoxPass, textBoxCodeID,
+                textBoxFirstName, textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone);
+
+            _logInRequest.GiveUser(_loginReposFactory, textBoxID);
+            textBoxPass.Text = "1107";
+            textBoxCodeID.Text = "US 77 888 888";
+            textBoxFirstName.Text = "Питер";
+            textBoxSecondName.Text = "Бут";
+            comboBoxGender.Text = "муж";
+            dtpBirth.Text = "22.02.1985";
+            maskedTextBoxPhone.Text = "(656) 875-4233";
+            _logInRequest.AddUserFirstPart(_loginReposFactory, textBoxID, textBoxPass, textBoxCodeID,
+                textBoxFirstName, textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone);
+
+            _logInRequest.GiveUser(_loginReposFactory, textBoxID);
+            textBoxPass.Text = "1108";
+            textBoxCodeID.Text = "GB 99 000 000";
+            textBoxFirstName.Text = "Дэвид";
+            textBoxSecondName.Text = "Роджерс";
+            comboBoxGender.Text = "муж";
+            dtpBirth.Text = "01.03.1983";
+            maskedTextBoxPhone.Text = "(777) 742-2741";
+            _logInRequest.AddUserFirstPart(_loginReposFactory, textBoxID, textBoxPass, textBoxCodeID,
+                textBoxFirstName, textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone);
+
+            _logInRequest.GiveUser(_loginReposFactory, textBoxID);
+            textBoxPass.Text = "1109";
+            textBoxCodeID.Text = "GB 22 333 333";
+            textBoxFirstName.Text = "Джефф";
+            textBoxSecondName.Text = "Моро";
+            comboBoxGender.Text = "муж";
+            dtpBirth.Text = "01.01.2155";
+            maskedTextBoxPhone.Text = "(777) 424-2564";
+            _logInRequest.AddUserFirstPart(_loginReposFactory, textBoxID, textBoxPass, textBoxCodeID,
+                textBoxFirstName, textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone);
 
         }
     }

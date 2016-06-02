@@ -68,10 +68,10 @@ namespace Admin.Sided_Form
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (_adminValidators.ValidAddUser(textBoxPass, textBoxFirstName, textBoxSecondName, comboBoxGender,
-                dtpBirth, textBoxPhone, comboBoxApId, dtpCheckIn, dtpCheckOut, textBoxComm))
+                dtpBirth, maskedTextBoxPhone, comboBoxApId, dtpCheckIn, dtpCheckOut, textBoxComm))
             {
                 _adminRequest.AddUser(_reposFactory, textBoxPass, textBoxFirstName, textBoxSecondName, comboBoxGender,
-                    dtpBirth, textBoxPhone, comboBoxApId, dtpCheckIn, dtpCheckOut, textBoxComm);
+                    dtpBirth, maskedTextBoxPhone, comboBoxApId, dtpCheckIn, dtpCheckOut, textBoxComm);
             }
 
             // обновляем список свободных комнат
@@ -118,10 +118,10 @@ namespace Admin.Sided_Form
             if (textBoxPass.Text != string.Empty)
             {
                 if (_adminValidators.ValidInputAllClientFields(textBoxPass, textBoxFirstName,
-                    textBoxSecondName, comboBoxGender, dtpBirth, textBoxPhone))
+                    textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone))
                 {
                     _adminRequest.InputAllClientFields(_reposFactory, textBoxPass.Text, textBoxFirstName,
-                        textBoxSecondName, comboBoxGender, dtpBirth, textBoxPhone);
+                        textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone);
                 }
             }
         }
@@ -133,10 +133,10 @@ namespace Admin.Sided_Form
                 if (textBoxPass.Text != string.Empty)
                 {
                     if (_adminValidators.ValidInputAllClientFields(textBoxPass, textBoxFirstName,
-                        textBoxSecondName, comboBoxGender, dtpBirth, textBoxPhone))
+                        textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone))
                     {
                         _adminRequest.InputAllClientFields(_reposFactory, textBoxPass.Text, textBoxFirstName,
-                            textBoxSecondName, comboBoxGender, dtpBirth, textBoxPhone);
+                            textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone);
                     }
                 }
             }
@@ -173,6 +173,14 @@ namespace Admin.Sided_Form
                             labelRoomQ, labelRoomT, labelRoomC);
                     }
                 }
+            }
+        }
+
+        private void comboBoxApId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

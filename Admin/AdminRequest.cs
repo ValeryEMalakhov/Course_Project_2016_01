@@ -212,7 +212,7 @@ namespace Admin
         // записываем выбранный отель в TextBox-сы
         public void EnterThirdBox(ReposFactory reposFactory, TextBox textBoxHotelNum, TextBox textBoxHotelName,
             TextBox textBoxHotelOrg,
-            TextBox textBoxHotelC, TextBox textBoxHotelS, TextBox textBoxHotelPhone, TextBox textBoxHotelClass,
+            TextBox textBoxHotelC, TextBox textBoxHotelS, MaskedTextBox maskedTextBoxHotelPhone, TextBox textBoxHotelClass,
             TextBox textBoxHotelWeb, DataGridView dgvHotel, int dgvIndex, GroupBox groupBox, Label labelAll,
             Label labelNew)
         {
@@ -243,7 +243,7 @@ namespace Admin
             textBoxHotelName.Text = dgvHotel.Rows[dgvIndex].Cells[2].Value.ToString();
             textBoxHotelC.Text = dgvHotel.Rows[dgvIndex].Cells[3].Value.ToString();
             textBoxHotelS.Text = dgvHotel.Rows[dgvIndex].Cells[4].Value.ToString();
-            textBoxHotelPhone.Text = dgvHotel.Rows[dgvIndex].Cells[5].Value.ToString();
+            maskedTextBoxHotelPhone.Text = dgvHotel.Rows[dgvIndex].Cells[5].Value.ToString();
             textBoxHotelClass.Text = dgvHotel.Rows[dgvIndex].Cells[6].Value.ToString();
             textBoxHotelWeb.Text = dgvHotel.Rows[dgvIndex].Cells[7].Value.ToString();
         }
@@ -291,7 +291,7 @@ namespace Admin
         // запрос на все поля клиента если он уже есть в базе
         public void InputAllClientFields(ReposFactory reposFactory, string textBoxPass, TextBox textBoxFirstName,
             TextBox textBoxSecondName,
-            ComboBox comboBoxGender, DateTimePicker dateTimePicker, TextBox textBoxPhone)
+            ComboBox comboBoxGender, DateTimePicker dateTimePicker, MaskedTextBox textBoxPhone)
         {
             foreach (var v in reposFactory.GetClient().GetSingleTable())
             {
@@ -354,7 +354,7 @@ namespace Admin
         // добавление клиента
         public void AddUser(ReposFactory reposFactory, TextBox textBoxPass, TextBox textBoxFirstName,
             TextBox textBoxSecondName,
-            ComboBox comboBoxGender, DateTimePicker dtpBirth, TextBox textBoxPhone, ComboBox comboBoxApId,
+            ComboBox comboBoxGender, DateTimePicker dtpBirth, MaskedTextBox textBoxPhone, ComboBox comboBoxApId,
             DateTimePicker dtpCheckIn, DateTimePicker dtpCheckOut, RichTextBox textBoxComm)
         {
             try
@@ -532,12 +532,12 @@ namespace Admin
 
         public void EditThirdBox(ReposFactory reposFactory, TextBox textBoxHotelNum, TextBox textBoxHotelName,
             TextBox textBoxHotelOrg, TextBox textBoxHotelC,
-            TextBox textBoxHotelS, TextBox textBoxHotelPhone, TextBox textBoxHotelClass, TextBox textBoxHotelWeb)
+            TextBox textBoxHotelS, MaskedTextBox maskedTextBoxHotelPhone, TextBox textBoxHotelClass, TextBox textBoxHotelWeb)
         {
             try
             {
                 reposFactory.GetHotel().EditHotel(textBoxHotelNum.Text, textBoxHotelName.Text, textBoxHotelOrg.Text,
-                    textBoxHotelC.Text, textBoxHotelS.Text, textBoxHotelPhone.Text, textBoxHotelClass.Text, textBoxHotelWeb.Text);
+                    textBoxHotelC.Text, textBoxHotelS.Text, maskedTextBoxHotelPhone.Text, textBoxHotelClass.Text, textBoxHotelWeb.Text);
 
                 textBoxHotelNum.Text = string.Empty;
                 textBoxHotelNum.Enabled = true;
@@ -549,8 +549,8 @@ namespace Admin
                 textBoxHotelC.Enabled = true;
                 textBoxHotelS.Text = string.Empty;
                 textBoxHotelS.Enabled = true;
-                textBoxHotelPhone.Text = string.Empty;
-                textBoxHotelPhone.Enabled = true;
+                maskedTextBoxHotelPhone.Text = string.Empty;
+                maskedTextBoxHotelPhone.Enabled = true;
                 textBoxHotelClass.Text = string.Empty;
                 textBoxHotelClass.Enabled = true;
                 textBoxHotelWeb.Text = string.Empty;

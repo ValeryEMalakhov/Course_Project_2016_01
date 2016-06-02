@@ -40,6 +40,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminWinForm));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabUser = new System.Windows.Forms.TabPage();
@@ -59,28 +64,30 @@
             this.cOutDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CPasp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabNumb = new System.Windows.Forms.TabPage();
-            this.btnClear2 = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.textBoxNum = new System.Windows.Forms.TextBox();
+            this.textBoxNumClass = new System.Windows.Forms.TextBox();
+            this.btnAddNum = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnDeleteNum = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             this.btnClear1 = new System.Windows.Forms.Button();
+            this.textBoxPlace = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxNumHotel = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBoxNumClass = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBoxPlace = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBoxNum = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBoxClassCost = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBoxClass = new System.Windows.Forms.TextBox();
+            this.btnEditNum = new System.Windows.Forms.Button();
             this.dgvNumClass = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnEditClass = new System.Windows.Forms.Button();
-            this.btnAddNum = new System.Windows.Forms.Button();
-            this.btnDeleteNum = new System.Windows.Forms.Button();
-            this.btnEditNum = new System.Windows.Forms.Button();
+            this.textBoxClass = new System.Windows.Forms.TextBox();
+            this.textBoxClassCost = new System.Windows.Forms.TextBox();
+            this.btnClear2 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.gBNum = new System.Windows.Forms.GroupBox();
             this.dateTPNum = new System.Windows.Forms.DateTimePicker();
             this.btnUpdateNum = new System.Windows.Forms.Button();
@@ -110,7 +117,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBoxHotelPhone = new System.Windows.Forms.TextBox();
             this.textBoxHotelName = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -126,20 +132,63 @@
             this.HotelClass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HotelWeb = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.textBoxStaffId = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBoxStaffSirName = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.textBoxStaffName = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.dgvStaffPosition = new System.Windows.Forms.DataGridView();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.dgvStaff = new System.Windows.Forms.DataGridView();
+            this.maskedTextBoxHotelPhone = new System.Windows.Forms.MaskedTextBox();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnVacantCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StaffBirth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vacant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SuperUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RegistrBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.comboBoxGender = new System.Windows.Forms.ComboBox();
+            this.dtpBirth = new System.Windows.Forms.DateTimePicker();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabUser.SuspendLayout();
             this.gBUserAction.SuspendLayout();
             this.gBUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUser)).BeginInit();
             this.tabNumb.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNumClass)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.gBNum.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNum)).BeginInit();
             this.tabHotel.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBoxStat.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHotel)).BeginInit();
+            this.tabPage1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStaffPosition)).BeginInit();
+            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStaff)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -333,20 +382,7 @@
             // 
             // tabNumb
             // 
-            this.tabNumb.Controls.Add(this.btnClear2);
-            this.tabNumb.Controls.Add(this.btnClear1);
-            this.tabNumb.Controls.Add(this.label7);
-            this.tabNumb.Controls.Add(this.textBoxNumHotel);
-            this.tabNumb.Controls.Add(this.label8);
-            this.tabNumb.Controls.Add(this.textBoxNumClass);
-            this.tabNumb.Controls.Add(this.label5);
-            this.tabNumb.Controls.Add(this.textBoxPlace);
-            this.tabNumb.Controls.Add(this.label6);
-            this.tabNumb.Controls.Add(this.textBoxNum);
-            this.tabNumb.Controls.Add(this.label4);
-            this.tabNumb.Controls.Add(this.textBoxClassCost);
-            this.tabNumb.Controls.Add(this.label3);
-            this.tabNumb.Controls.Add(this.textBoxClass);
+            this.tabNumb.Controls.Add(this.groupBox4);
             this.tabNumb.Controls.Add(this.dgvNumClass);
             this.tabNumb.Controls.Add(this.groupBox1);
             this.tabNumb.Controls.Add(this.gBNum);
@@ -359,30 +395,106 @@
             this.tabNumb.Text = "Номера";
             this.tabNumb.UseVisualStyleBackColor = true;
             // 
-            // btnClear2
+            // groupBox4
             // 
-            this.btnClear2.Location = new System.Drawing.Point(326, 397);
-            this.btnClear2.Name = "btnClear2";
-            this.btnClear2.Size = new System.Drawing.Size(162, 24);
-            this.btnClear2.TabIndex = 10;
-            this.btnClear2.Text = "Очистить";
-            this.btnClear2.UseVisualStyleBackColor = true;
-            this.btnClear2.Click += new System.EventHandler(this.btnClear2_Click);
+            this.groupBox4.Controls.Add(this.textBoxNum);
+            this.groupBox4.Controls.Add(this.textBoxNumClass);
+            this.groupBox4.Controls.Add(this.btnAddNum);
+            this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Controls.Add(this.btnDeleteNum);
+            this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Controls.Add(this.btnClear1);
+            this.groupBox4.Controls.Add(this.textBoxPlace);
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Controls.Add(this.textBoxNumHotel);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.btnEditNum);
+            this.groupBox4.Location = new System.Drawing.Point(11, 219);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(273, 302);
+            this.groupBox4.TabIndex = 24;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Номер";
+            // 
+            // textBoxNum
+            // 
+            this.textBoxNum.Location = new System.Drawing.Point(11, 30);
+            this.textBoxNum.Name = "textBoxNum";
+            this.textBoxNum.Size = new System.Drawing.Size(256, 20);
+            this.textBoxNum.TabIndex = 0;
+            this.textBoxNum.Tag = "";
+            this.textBoxNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNum_KeyPress);
+            // 
+            // textBoxNumClass
+            // 
+            this.textBoxNumClass.Location = new System.Drawing.Point(11, 147);
+            this.textBoxNumClass.Name = "textBoxNumClass";
+            this.textBoxNumClass.Size = new System.Drawing.Size(256, 20);
+            this.textBoxNumClass.TabIndex = 3;
+            this.textBoxNumClass.Tag = "";
+            this.textBoxNumClass.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNum_KeyPress);
+            // 
+            // btnAddNum
+            // 
+            this.btnAddNum.Location = new System.Drawing.Point(11, 235);
+            this.btnAddNum.Name = "btnAddNum";
+            this.btnAddNum.Size = new System.Drawing.Size(256, 25);
+            this.btnAddNum.TabIndex = 5;
+            this.btnAddNum.Text = "Добавить номер";
+            this.btnAddNum.UseVisualStyleBackColor = true;
+            this.btnAddNum.Click += new System.EventHandler(this.btnAddNum_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 92);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(69, 13);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Кол-во мест";
+            // 
+            // btnDeleteNum
+            // 
+            this.btnDeleteNum.Location = new System.Drawing.Point(11, 266);
+            this.btnDeleteNum.Name = "btnDeleteNum";
+            this.btnDeleteNum.Size = new System.Drawing.Size(256, 25);
+            this.btnDeleteNum.TabIndex = 7;
+            this.btnDeleteNum.Text = "Удалить номер";
+            this.btnDeleteNum.UseVisualStyleBackColor = true;
+            this.btnDeleteNum.Click += new System.EventHandler(this.btnDeleteNum_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(8, 131);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(86, 13);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "Класс комнаты";
             // 
             // btnClear1
             // 
-            this.btnClear1.Location = new System.Drawing.Point(326, 170);
+            this.btnClear1.Location = new System.Drawing.Point(11, 204);
             this.btnClear1.Name = "btnClear1";
-            this.btnClear1.Size = new System.Drawing.Size(162, 24);
+            this.btnClear1.Size = new System.Drawing.Size(256, 25);
             this.btnClear1.TabIndex = 4;
             this.btnClear1.Text = "Очистить";
             this.btnClear1.UseVisualStyleBackColor = true;
             this.btnClear1.Click += new System.EventHandler(this.btnClear1_Click);
             // 
+            // textBoxPlace
+            // 
+            this.textBoxPlace.Location = new System.Drawing.Point(11, 108);
+            this.textBoxPlace.Name = "textBoxPlace";
+            this.textBoxPlace.Size = new System.Drawing.Size(256, 20);
+            this.textBoxPlace.TabIndex = 2;
+            this.textBoxPlace.Tag = "";
+            this.textBoxPlace.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNum_KeyPress);
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(323, 50);
+            this.label7.Location = new System.Drawing.Point(8, 53);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(38, 13);
             this.label7.TabIndex = 22;
@@ -390,95 +502,31 @@
             // 
             // textBoxNumHotel
             // 
-            this.textBoxNumHotel.Location = new System.Drawing.Point(326, 66);
+            this.textBoxNumHotel.Location = new System.Drawing.Point(11, 69);
             this.textBoxNumHotel.Name = "textBoxNumHotel";
-            this.textBoxNumHotel.Size = new System.Drawing.Size(162, 20);
+            this.textBoxNumHotel.Size = new System.Drawing.Size(256, 20);
             this.textBoxNumHotel.TabIndex = 1;
             this.textBoxNumHotel.Tag = "";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(323, 128);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 13);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "Класс комнаты";
-            // 
-            // textBoxNumClass
-            // 
-            this.textBoxNumClass.Location = new System.Drawing.Point(326, 144);
-            this.textBoxNumClass.Name = "textBoxNumClass";
-            this.textBoxNumClass.Size = new System.Drawing.Size(162, 20);
-            this.textBoxNumClass.TabIndex = 3;
-            this.textBoxNumClass.Tag = "";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(323, 89);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 13);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "Кол-во мест";
-            // 
-            // textBoxPlace
-            // 
-            this.textBoxPlace.Location = new System.Drawing.Point(326, 105);
-            this.textBoxPlace.Name = "textBoxPlace";
-            this.textBoxPlace.Size = new System.Drawing.Size(162, 20);
-            this.textBoxPlace.TabIndex = 2;
-            this.textBoxPlace.Tag = "";
+            this.textBoxNumHotel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNum_KeyPress);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(323, 11);
+            this.label6.Location = new System.Drawing.Point(8, 14);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(18, 13);
             this.label6.TabIndex = 16;
             this.label6.Text = "№";
             // 
-            // textBoxNum
+            // btnEditNum
             // 
-            this.textBoxNum.Location = new System.Drawing.Point(326, 27);
-            this.textBoxNum.Name = "textBoxNum";
-            this.textBoxNum.Size = new System.Drawing.Size(162, 20);
-            this.textBoxNum.TabIndex = 0;
-            this.textBoxNum.Tag = "";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(323, 355);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 13);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Цена класса";
-            // 
-            // textBoxClassCost
-            // 
-            this.textBoxClassCost.Location = new System.Drawing.Point(326, 371);
-            this.textBoxClassCost.Name = "textBoxClassCost";
-            this.textBoxClassCost.Size = new System.Drawing.Size(162, 20);
-            this.textBoxClassCost.TabIndex = 9;
-            this.textBoxClassCost.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxClassCost_KeyDown);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(323, 316);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 13);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Класс комнаты";
-            // 
-            // textBoxClass
-            // 
-            this.textBoxClass.Location = new System.Drawing.Point(326, 332);
-            this.textBoxClass.Name = "textBoxClass";
-            this.textBoxClass.Size = new System.Drawing.Size(162, 20);
-            this.textBoxClass.TabIndex = 8;
+            this.btnEditNum.Location = new System.Drawing.Point(11, 173);
+            this.btnEditNum.Name = "btnEditNum";
+            this.btnEditNum.Size = new System.Drawing.Size(256, 25);
+            this.btnEditNum.TabIndex = 6;
+            this.btnEditNum.Text = "Редактировать номер";
+            this.btnEditNum.UseVisualStyleBackColor = true;
+            this.btnEditNum.Click += new System.EventHandler(this.btnEditNum_Click);
             // 
             // dgvNumClass
             // 
@@ -527,56 +575,82 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnEditClass);
-            this.groupBox1.Controls.Add(this.btnAddNum);
-            this.groupBox1.Controls.Add(this.btnDeleteNum);
-            this.groupBox1.Controls.Add(this.btnEditNum);
+            this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Location = new System.Drawing.Point(5, 200);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(315, 327);
+            this.groupBox1.Size = new System.Drawing.Size(483, 327);
             this.groupBox1.TabIndex = 99;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Действия";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.btnEditClass);
+            this.groupBox3.Controls.Add(this.textBoxClass);
+            this.groupBox3.Controls.Add(this.textBoxClassCost);
+            this.groupBox3.Controls.Add(this.btnClear2);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Location = new System.Drawing.Point(285, 19);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(192, 302);
+            this.groupBox3.TabIndex = 23;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Класс";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Класс комнаты";
             // 
             // btnEditClass
             // 
-            this.btnEditClass.Location = new System.Drawing.Point(92, 105);
+            this.btnEditClass.Location = new System.Drawing.Point(16, 219);
             this.btnEditClass.Name = "btnEditClass";
-            this.btnEditClass.Size = new System.Drawing.Size(131, 80);
+            this.btnEditClass.Size = new System.Drawing.Size(162, 34);
             this.btnEditClass.TabIndex = 11;
-            this.btnEditClass.Text = "Редактировать стоимость класс";
+            this.btnEditClass.Text = "Редактировать стоимость класса";
             this.btnEditClass.UseVisualStyleBackColor = true;
             this.btnEditClass.Click += new System.EventHandler(this.btnEditClass_Click);
             // 
-            // btnAddNum
+            // textBoxClass
             // 
-            this.btnAddNum.Location = new System.Drawing.Point(6, 19);
-            this.btnAddNum.Name = "btnAddNum";
-            this.btnAddNum.Size = new System.Drawing.Size(80, 80);
-            this.btnAddNum.TabIndex = 5;
-            this.btnAddNum.Text = "Добавить номер";
-            this.btnAddNum.UseVisualStyleBackColor = true;
-            this.btnAddNum.Click += new System.EventHandler(this.btnAddNum_Click);
+            this.textBoxClass.Location = new System.Drawing.Point(16, 36);
+            this.textBoxClass.Name = "textBoxClass";
+            this.textBoxClass.Size = new System.Drawing.Size(162, 20);
+            this.textBoxClass.TabIndex = 8;
+            this.textBoxClass.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNum_KeyPress);
             // 
-            // btnDeleteNum
+            // textBoxClassCost
             // 
-            this.btnDeleteNum.Location = new System.Drawing.Point(229, 19);
-            this.btnDeleteNum.Name = "btnDeleteNum";
-            this.btnDeleteNum.Size = new System.Drawing.Size(80, 80);
-            this.btnDeleteNum.TabIndex = 7;
-            this.btnDeleteNum.Text = "Удалить номер";
-            this.btnDeleteNum.UseVisualStyleBackColor = true;
-            this.btnDeleteNum.Click += new System.EventHandler(this.btnDeleteNum_Click);
+            this.textBoxClassCost.Location = new System.Drawing.Point(16, 75);
+            this.textBoxClassCost.Name = "textBoxClassCost";
+            this.textBoxClassCost.Size = new System.Drawing.Size(162, 20);
+            this.textBoxClassCost.TabIndex = 9;
+            this.textBoxClassCost.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxClassCost_KeyDown);
+            this.textBoxClassCost.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNum_KeyPress);
             // 
-            // btnEditNum
+            // btnClear2
             // 
-            this.btnEditNum.Location = new System.Drawing.Point(92, 19);
-            this.btnEditNum.Name = "btnEditNum";
-            this.btnEditNum.Size = new System.Drawing.Size(131, 80);
-            this.btnEditNum.TabIndex = 6;
-            this.btnEditNum.Text = "Редактировать номер";
-            this.btnEditNum.UseVisualStyleBackColor = true;
-            this.btnEditNum.Click += new System.EventHandler(this.btnEditNum_Click);
+            this.btnClear2.Location = new System.Drawing.Point(16, 259);
+            this.btnClear2.Name = "btnClear2";
+            this.btnClear2.Size = new System.Drawing.Size(162, 33);
+            this.btnClear2.TabIndex = 10;
+            this.btnClear2.Text = "Очистить";
+            this.btnClear2.UseVisualStyleBackColor = true;
+            this.btnClear2.Click += new System.EventHandler(this.btnClear2_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 59);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Цена класса";
             // 
             // gBNum
             // 
@@ -585,7 +659,7 @@
             this.gBNum.Controls.Add(this.label1);
             this.gBNum.Location = new System.Drawing.Point(5, 3);
             this.gBNum.Name = "gBNum";
-            this.gBNum.Size = new System.Drawing.Size(315, 191);
+            this.gBNum.Size = new System.Drawing.Size(483, 191);
             this.gBNum.TabIndex = 99;
             this.gBNum.TabStop = false;
             this.gBNum.Text = "Фильтры";
@@ -593,7 +667,7 @@
             // dateTPNum
             // 
             this.dateTPNum.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTPNum.Location = new System.Drawing.Point(63, 20);
+            this.dateTPNum.Location = new System.Drawing.Point(138, 13);
             this.dateTPNum.MaxDate = new System.DateTime(2999, 12, 31, 0, 0, 0, 0);
             this.dateTPNum.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateTPNum.Name = "dateTPNum";
@@ -603,9 +677,9 @@
             // 
             // btnUpdateNum
             // 
-            this.btnUpdateNum.Location = new System.Drawing.Point(6, 160);
+            this.btnUpdateNum.Location = new System.Drawing.Point(85, 152);
             this.btnUpdateNum.Name = "btnUpdateNum";
-            this.btnUpdateNum.Size = new System.Drawing.Size(304, 25);
+            this.btnUpdateNum.Size = new System.Drawing.Size(300, 33);
             this.btnUpdateNum.TabIndex = 13;
             this.btnUpdateNum.Text = "Сбросить фильтр";
             this.btnUpdateNum.UseVisualStyleBackColor = true;
@@ -614,7 +688,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 23);
+            this.label1.Location = new System.Drawing.Point(82, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 0;
@@ -688,6 +762,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.maskedTextBoxHotelPhone);
             this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Controls.Add(this.textBoxHotelClass);
             this.groupBox2.Controls.Add(this.groupBoxStat);
@@ -702,7 +777,6 @@
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.textBoxHotelPhone);
             this.groupBox2.Controls.Add(this.textBoxHotelName);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.label11);
@@ -731,6 +805,7 @@
             this.textBoxHotelClass.Size = new System.Drawing.Size(255, 20);
             this.textBoxHotelClass.TabIndex = 110;
             this.textBoxHotelClass.Tag = "";
+            this.textBoxHotelClass.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNum_KeyPress);
             // 
             // groupBoxStat
             // 
@@ -788,6 +863,7 @@
             this.textBoxHotelNum.Size = new System.Drawing.Size(153, 20);
             this.textBoxHotelNum.TabIndex = 100;
             this.textBoxHotelNum.Tag = "";
+            this.textBoxHotelNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNum_KeyPress);
             // 
             // btnClear3
             // 
@@ -881,14 +957,6 @@
             this.label9.TabIndex = 108;
             this.label9.Text = "Имя отеля";
             // 
-            // textBoxHotelPhone
-            // 
-            this.textBoxHotelPhone.Location = new System.Drawing.Point(433, 32);
-            this.textBoxHotelPhone.Name = "textBoxHotelPhone";
-            this.textBoxHotelPhone.Size = new System.Drawing.Size(255, 20);
-            this.textBoxHotelPhone.TabIndex = 101;
-            this.textBoxHotelPhone.Tag = "";
-            // 
             // textBoxHotelName
             // 
             this.textBoxHotelName.Location = new System.Drawing.Point(172, 32);
@@ -955,7 +1023,7 @@
             this.dgvHotel.Location = new System.Drawing.Point(6, 6);
             this.dgvHotel.Name = "dgvHotel";
             this.dgvHotel.ReadOnly = true;
-            this.dgvHotel.Size = new System.Drawing.Size(924, 332);
+            this.dgvHotel.Size = new System.Drawing.Size(924, 227);
             this.dgvHotel.TabIndex = 109;
             this.dgvHotel.TabStop = false;
             this.dgvHotel.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHotel_CellClick);
@@ -1027,6 +1095,10 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox7);
+            this.tabPage1.Controls.Add(this.groupBox5);
+            this.tabPage1.Controls.Add(this.dgvStaffPosition);
+            this.tabPage1.Controls.Add(this.dgvStaff);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -1034,6 +1106,377 @@
             this.tabPage1.TabIndex = 3;
             this.tabPage1.Text = "Сотрудники";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.comboBoxGender);
+            this.groupBox5.Controls.Add(this.dtpBirth);
+            this.groupBox5.Controls.Add(this.label26);
+            this.groupBox5.Controls.Add(this.label27);
+            this.groupBox5.Controls.Add(this.textBoxStaffId);
+            this.groupBox5.Controls.Add(this.button1);
+            this.groupBox5.Controls.Add(this.label19);
+            this.groupBox5.Controls.Add(this.button2);
+            this.groupBox5.Controls.Add(this.button3);
+            this.groupBox5.Controls.Add(this.textBoxStaffSirName);
+            this.groupBox5.Controls.Add(this.label21);
+            this.groupBox5.Controls.Add(this.textBoxStaffName);
+            this.groupBox5.Controls.Add(this.label22);
+            this.groupBox5.Controls.Add(this.button4);
+            this.groupBox5.Location = new System.Drawing.Point(6, 6);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(174, 521);
+            this.groupBox5.TabIndex = 100;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Номер";
+            // 
+            // textBoxStaffId
+            // 
+            this.textBoxStaffId.Location = new System.Drawing.Point(11, 30);
+            this.textBoxStaffId.Name = "textBoxStaffId";
+            this.textBoxStaffId.Size = new System.Drawing.Size(150, 20);
+            this.textBoxStaffId.TabIndex = 0;
+            this.textBoxStaffId.Tag = "";
+            this.textBoxStaffId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNum_KeyPress);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(10, 456);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(150, 25);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Добавить номер";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(8, 92);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(56, 13);
+            this.label19.TabIndex = 18;
+            this.label19.Text = "Фамилия";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(10, 487);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(150, 25);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Удалить номер";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(10, 425);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(150, 25);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Очистить";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // textBoxStaffSirName
+            // 
+            this.textBoxStaffSirName.Location = new System.Drawing.Point(11, 108);
+            this.textBoxStaffSirName.Name = "textBoxStaffSirName";
+            this.textBoxStaffSirName.Size = new System.Drawing.Size(150, 20);
+            this.textBoxStaffSirName.TabIndex = 2;
+            this.textBoxStaffSirName.Tag = "";
+            this.textBoxStaffSirName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNum_KeyPress);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(8, 53);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(29, 13);
+            this.label21.TabIndex = 22;
+            this.label21.Text = "Имя";
+            // 
+            // textBoxStaffName
+            // 
+            this.textBoxStaffName.Location = new System.Drawing.Point(11, 69);
+            this.textBoxStaffName.Name = "textBoxStaffName";
+            this.textBoxStaffName.Size = new System.Drawing.Size(150, 20);
+            this.textBoxStaffName.TabIndex = 1;
+            this.textBoxStaffName.Tag = "";
+            this.textBoxStaffName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNum_KeyPress);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(8, 14);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(79, 13);
+            this.label22.TabIndex = 16;
+            this.label22.Text = "ID сотрудника";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(10, 394);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(150, 25);
+            this.button4.TabIndex = 6;
+            this.button4.Text = "Редактировать номер";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // dgvStaffPosition
+            // 
+            this.dgvStaffPosition.AllowUserToResizeRows = false;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvStaffPosition.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStaffPosition.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            this.dgvStaffPosition.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStaffPosition.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.ColumnVacantCost});
+            this.dgvStaffPosition.Location = new System.Drawing.Point(395, 316);
+            this.dgvStaffPosition.Name = "dgvStaffPosition";
+            this.dgvStaffPosition.ReadOnly = true;
+            this.dgvStaffPosition.Size = new System.Drawing.Size(535, 211);
+            this.dgvStaffPosition.TabIndex = 101;
+            this.dgvStaffPosition.TabStop = false;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.textBox7);
+            this.groupBox7.Controls.Add(this.label25);
+            this.groupBox7.Controls.Add(this.label23);
+            this.groupBox7.Controls.Add(this.textBox5);
+            this.groupBox7.Controls.Add(this.textBox6);
+            this.groupBox7.Controls.Add(this.label24);
+            this.groupBox7.Location = new System.Drawing.Point(186, 316);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(192, 211);
+            this.groupBox7.TabIndex = 23;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Класс";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(13, 20);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(84, 13);
+            this.label23.TabIndex = 12;
+            this.label23.Text = "Код должности";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(16, 36);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(162, 20);
+            this.textBox5.TabIndex = 8;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(16, 75);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(162, 20);
+            this.textBox6.TabIndex = 9;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(13, 59);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(115, 13);
+            this.label24.TabIndex = 14;
+            this.label24.Text = "Название должности";
+            // 
+            // dgvStaff
+            // 
+            this.dgvStaff.AllowUserToResizeRows = false;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStaff.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            this.dgvStaff.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStaff.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10,
+            this.StaffBirth,
+            this.vacant,
+            this.SuperUser,
+            this.RegistrBuild});
+            this.dgvStaff.Location = new System.Drawing.Point(186, 6);
+            this.dgvStaff.Name = "dgvStaff";
+            this.dgvStaff.ReadOnly = true;
+            this.dgvStaff.Size = new System.Drawing.Size(745, 304);
+            this.dgvStaff.TabIndex = 103;
+            this.dgvStaff.TabStop = false;
+            // 
+            // maskedTextBoxHotelPhone
+            // 
+            this.maskedTextBoxHotelPhone.Location = new System.Drawing.Point(433, 32);
+            this.maskedTextBoxHotelPhone.Mask = "(999) 000-0000";
+            this.maskedTextBoxHotelPhone.Name = "maskedTextBoxHotelPhone";
+            this.maskedTextBoxHotelPhone.Size = new System.Drawing.Size(255, 20);
+            this.maskedTextBoxHotelPhone.TabIndex = 112;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle15;
+            this.dataGridViewTextBoxColumn5.Frozen = true;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Код должности";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn5.Width = 110;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle16;
+            this.dataGridViewTextBoxColumn6.Frozen = true;
+            this.dataGridViewTextBoxColumn6.HeaderText = "Название";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 250;
+            // 
+            // ColumnVacantCost
+            // 
+            this.ColumnVacantCost.Frozen = true;
+            this.ColumnVacantCost.HeaderText = "Зарплата";
+            this.ColumnVacantCost.Name = "ColumnVacantCost";
+            this.ColumnVacantCost.ReadOnly = true;
+            this.ColumnVacantCost.Width = 130;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.Frozen = true;
+            this.dataGridViewTextBoxColumn7.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn7.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.Frozen = true;
+            this.dataGridViewTextBoxColumn8.HeaderText = "Имя";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn8.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.Frozen = true;
+            this.dataGridViewTextBoxColumn9.HeaderText = "Фамилия";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn9.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.Frozen = true;
+            this.dataGridViewTextBoxColumn10.HeaderText = "Пол";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Width = 80;
+            // 
+            // StaffBirth
+            // 
+            this.StaffBirth.Frozen = true;
+            this.StaffBirth.HeaderText = "Дата рождения";
+            this.StaffBirth.Name = "StaffBirth";
+            this.StaffBirth.ReadOnly = true;
+            this.StaffBirth.Width = 110;
+            // 
+            // vacant
+            // 
+            this.vacant.Frozen = true;
+            this.vacant.HeaderText = "Должность";
+            this.vacant.Name = "vacant";
+            this.vacant.ReadOnly = true;
+            this.vacant.Width = 110;
+            // 
+            // SuperUser
+            // 
+            this.SuperUser.Frozen = true;
+            this.SuperUser.HeaderText = "Начальник";
+            this.SuperUser.Name = "SuperUser";
+            this.SuperUser.ReadOnly = true;
+            this.SuperUser.Width = 65;
+            // 
+            // RegistrBuild
+            // 
+            this.RegistrBuild.Frozen = true;
+            this.RegistrBuild.HeaderText = "Отель";
+            this.RegistrBuild.Name = "RegistrBuild";
+            this.RegistrBuild.ReadOnly = true;
+            this.RegistrBuild.Width = 65;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(16, 114);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(162, 20);
+            this.textBox7.TabIndex = 15;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(13, 98);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(113, 13);
+            this.label25.TabIndex = 16;
+            this.label25.Text = "Зарплата должности";
+            // 
+            // comboBoxGender
+            // 
+            this.comboBoxGender.FormattingEnabled = true;
+            this.comboBoxGender.Items.AddRange(new object[] {
+            "муж",
+            "жен"});
+            this.comboBoxGender.Location = new System.Drawing.Point(11, 147);
+            this.comboBoxGender.Name = "comboBoxGender";
+            this.comboBoxGender.Size = new System.Drawing.Size(150, 21);
+            this.comboBoxGender.TabIndex = 25;
+            // 
+            // dtpBirth
+            // 
+            this.dtpBirth.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpBirth.Location = new System.Drawing.Point(11, 187);
+            this.dtpBirth.Name = "dtpBirth";
+            this.dtpBirth.Size = new System.Drawing.Size(150, 20);
+            this.dtpBirth.TabIndex = 26;
+            this.dtpBirth.Value = new System.DateTime(1995, 1, 1, 0, 0, 0, 0);
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(8, 171);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(86, 13);
+            this.label26.TabIndex = 23;
+            this.label26.Text = "Дата рождения";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(8, 131);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(27, 13);
+            this.label27.TabIndex = 24;
+            this.label27.Text = "Пол";
             // 
             // AdminWinForm
             // 
@@ -1056,9 +1499,12 @@
             this.gBUser.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUser)).EndInit();
             this.tabNumb.ResumeLayout(false);
-            this.tabNumb.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNumClass)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.gBNum.ResumeLayout(false);
             this.gBNum.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNum)).EndInit();
@@ -1068,6 +1514,13 @@
             this.groupBoxStat.ResumeLayout(false);
             this.groupBoxStat.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHotel)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStaffPosition)).EndInit();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStaff)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1134,7 +1587,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBoxHotelPhone;
         private System.Windows.Forms.TextBox textBoxHotelName;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label11;
@@ -1159,6 +1611,44 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HotelWeb;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox textBoxHotelClass;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox textBoxStaffId;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBoxStaffSirName;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox textBoxStaffName;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button button4;
+        protected internal System.Windows.Forms.DataGridView dgvStaffPosition;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label24;
+        protected internal System.Windows.Forms.DataGridView dgvStaff;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxHotelPhone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnVacantCost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StaffBirth;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vacant;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SuperUser;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RegistrBuild;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.ComboBox comboBoxGender;
+        private System.Windows.Forms.DateTimePicker dtpBirth;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
     }
 }
 

@@ -154,7 +154,7 @@ namespace Staff
         // запрос на все поля клиента если он уже есть в базе
         public void InputAllClientFields(ReposFactory reposFactory, string textBoxPass, TextBox textBoxFirstName,
             TextBox textBoxSecondName,
-            ComboBox comboBoxGender, DateTimePicker dateTimePicker, TextBox textBoxPhone)
+            ComboBox comboBoxGender, DateTimePicker dateTimePicker, MaskedTextBox textBoxPhone)
         {
             foreach (var v in reposFactory.GetClient().GetSingleTable())
             {
@@ -217,7 +217,7 @@ namespace Staff
         // добавление клиента
         public void AddUser(ReposFactory reposFactory, TextBox textBoxPass, TextBox textBoxFirstName,
             TextBox textBoxSecondName,
-            ComboBox comboBoxGender, DateTimePicker dtpBirth, TextBox textBoxPhone, ComboBox comboBoxApId,
+            ComboBox comboBoxGender, DateTimePicker dtpBirth, MaskedTextBox textBoxPhone, ComboBox comboBoxApId,
             DateTimePicker dtpCheckIn, DateTimePicker dtpCheckOut, RichTextBox textBoxComm)
         {
             try
@@ -258,7 +258,7 @@ namespace Staff
         }
         // записываем выбранный отель в TextBox-сы
         public void EnterThirdBox(ReposFactory reposFactory, TextBox textBoxHotelNum, TextBox textBoxHotelName, TextBox textBoxHotelOrg,
-            TextBox textBoxHotelC, TextBox textBoxHotelS, TextBox textBoxHotelPhone, TextBox textBoxHotelClass,
+            TextBox textBoxHotelC, TextBox textBoxHotelS, MaskedTextBox textBoxHotelPhone, TextBox textBoxHotelClass,
             TextBox textBoxHotelWeb, DataGridView dgvHotel, int dgvIndex, GroupBox groupBox, Label labelAll, Label labelNew)
         {
             //textBoxHotelNum, textBoxHotelName, textBoxHotelOrg, textBoxHotelC,

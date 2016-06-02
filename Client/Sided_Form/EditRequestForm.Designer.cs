@@ -34,7 +34,6 @@
             this.comboBoxGender = new System.Windows.Forms.ComboBox();
             this.textBoxPass = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBoxPhone = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.textBoxSecondName = new System.Windows.Forms.TextBox();
             this.dtpBirth = new System.Windows.Forms.DateTimePicker();
@@ -45,11 +44,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.checkBoxPass = new System.Windows.Forms.CheckBox();
             this.textBoxNewPass = new System.Windows.Forms.TextBox();
             this.textBoxID = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.maskedTextBoxPhone = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -102,14 +102,6 @@
             this.label6.Size = new System.Drawing.Size(76, 13);
             this.label6.TabIndex = 16;
             this.label6.Text = "Код паспорта";
-            // 
-            // textBoxPhone
-            // 
-            this.textBoxPhone.Location = new System.Drawing.Point(98, 144);
-            this.textBoxPhone.Name = "textBoxPhone";
-            this.textBoxPhone.Size = new System.Drawing.Size(150, 20);
-            this.textBoxPhone.TabIndex = 5;
-            this.textBoxPhone.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditRequestForm_KeyDown);
             // 
             // textBoxFirstName
             // 
@@ -184,6 +176,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.maskedTextBoxPhone);
             this.groupBox1.Controls.Add(this.dtpBirth);
             this.groupBox1.Controls.Add(this.comboBoxGender);
             this.groupBox1.Controls.Add(this.label3);
@@ -191,7 +184,6 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBoxPhone);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.textBoxFirstName);
             this.groupBox1.Controls.Add(this.label5);
@@ -214,6 +206,24 @@
             this.groupBox2.Size = new System.Drawing.Size(254, 95);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 48);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(80, 13);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Новый пароль";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(38, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Логин";
             // 
             // checkBoxPass
             // 
@@ -243,23 +253,13 @@
             this.textBoxID.TabIndex = 12;
             this.textBoxID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label7
+            // maskedTextBoxPhone
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 22);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 13);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Логин";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 48);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(80, 13);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Новый пароль";
+            this.maskedTextBoxPhone.Location = new System.Drawing.Point(98, 144);
+            this.maskedTextBoxPhone.Mask = "(999) 000-0000";
+            this.maskedTextBoxPhone.Name = "maskedTextBoxPhone";
+            this.maskedTextBoxPhone.Size = new System.Drawing.Size(150, 20);
+            this.maskedTextBoxPhone.TabIndex = 17;
             // 
             // EditRequestForm
             // 
@@ -294,7 +294,6 @@
         private System.Windows.Forms.ComboBox comboBoxGender;
         private System.Windows.Forms.TextBox textBoxPass;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBoxPhone;
         private System.Windows.Forms.TextBox textBoxFirstName;
         private System.Windows.Forms.TextBox textBoxSecondName;
         private System.Windows.Forms.DateTimePicker dtpBirth;
@@ -310,5 +309,6 @@
         private System.Windows.Forms.TextBox textBoxID;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxPhone;
     }
 }

@@ -228,7 +228,7 @@ namespace Client
         #region editForm
 
         public bool ValidInputAllClientFields(TextBox textBoxPass, TextBox textBoxFirstName,
-            TextBox textBoxSecondName, ComboBox comboBoxGender, DateTimePicker dtpBirth, TextBox textBoxPhone)
+            TextBox textBoxSecondName, ComboBox comboBoxGender, DateTimePicker dtpBirth, MaskedTextBox textBoxPhone)
         {
             try
             {
@@ -251,7 +251,7 @@ namespace Client
         }
 
         public bool ValidUpdateUser(TextBox textBoxPass, TextBox textBoxFirstName, TextBox textBoxSecondName,
-            ComboBox comboBoxGender, DateTimePicker dtpBirth, TextBox textBoxPhone)
+            ComboBox comboBoxGender, DateTimePicker dtpBirth, MaskedTextBox textBoxPhone)
         {
             try
             {

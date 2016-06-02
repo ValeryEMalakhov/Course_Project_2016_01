@@ -57,7 +57,7 @@ namespace LogIn
         }
 
         public bool ValidAddUser(TextBox pass, TextBox textBoxUserId, TextBox textBoxFirstName, TextBox textBoxSecondName,
-            ComboBox comboBoxGender, DateTimePicker dtpBirth, TextBox textBoxPhone)
+            ComboBox comboBoxGender, DateTimePicker dtpBirth, MaskedTextBox textBoxPhone)
         {
             try
             {

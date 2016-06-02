@@ -54,7 +54,7 @@ namespace LogIn
         public void GiveUser(LoginReposFactory loginReposFactory, TextBox name)
         {
             int key = 1100;
-            foreach (var v in loginReposFactory.GetClient().GetSingleTable())
+            foreach (var v in loginReposFactory.GetLogin().GetSingleTable())
             {
                 key++;
             }
@@ -62,7 +62,7 @@ namespace LogIn
         }
 
         public void AddUserFirstPart(LoginReposFactory loginReposFactory, TextBox name, TextBox pass, TextBox textBoxUserId, TextBox textBoxFirstName,
-            TextBox textBoxSecondName, ComboBox comboBoxGender, DateTimePicker dtpBirth, TextBox textBoxPhone)
+            TextBox textBoxSecondName, ComboBox comboBoxGender, DateTimePicker dtpBirth, MaskedTextBox textBoxPhone)
         {
             try
             {

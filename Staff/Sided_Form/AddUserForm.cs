@@ -68,10 +68,10 @@ namespace Staff.Sided_Form
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (_staffValidators.ValidAddUser(textBoxPass, textBoxFirstName, textBoxSecondName, comboBoxGender,
-                dtpBirth, textBoxPhone, comboBoxApId, dtpCheckIn, dtpCheckOut, textBoxComm))
+                dtpBirth, maskedTextBoxPhone, comboBoxApId, dtpCheckIn, dtpCheckOut, textBoxComm))
             {
                 _staffRequest.AddUser(_reposFactory, textBoxPass, textBoxFirstName, textBoxSecondName, comboBoxGender,
-                    dtpBirth, textBoxPhone, comboBoxApId, dtpCheckIn, dtpCheckOut, textBoxComm);
+                    dtpBirth, maskedTextBoxPhone, comboBoxApId, dtpCheckIn, dtpCheckOut, textBoxComm);
             }
 
             // обновляем список свободных комнат
@@ -119,10 +119,10 @@ namespace Staff.Sided_Form
             {
 
                 if (_staffValidators.ValidInputAllClientFields(textBoxPass, textBoxFirstName,
-                    textBoxSecondName, comboBoxGender, dtpBirth, textBoxPhone))
+                    textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone))
                 {
                     _staffRequest.InputAllClientFields(_reposFactory, textBoxPass.Text, textBoxFirstName,
-                        textBoxSecondName, comboBoxGender, dtpBirth, textBoxPhone);
+                        textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone);
                 }
             }
         }
@@ -134,10 +134,10 @@ namespace Staff.Sided_Form
                 if (textBoxPass.Text != string.Empty)
                 {
                     if (_staffValidators.ValidInputAllClientFields(textBoxPass, textBoxFirstName,
-                        textBoxSecondName, comboBoxGender, dtpBirth, textBoxPhone))
+                        textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone))
                     {
                         _staffRequest.InputAllClientFields(_reposFactory, textBoxPass.Text, textBoxFirstName,
-                            textBoxSecondName, comboBoxGender, dtpBirth, textBoxPhone);
+                            textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone);
                     }
                 }
             }

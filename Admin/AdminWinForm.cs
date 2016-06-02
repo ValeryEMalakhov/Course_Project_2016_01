@@ -324,8 +324,8 @@ namespace Admin
             textBoxHotelC.Enabled = true;
             textBoxHotelS.Text = string.Empty;
             textBoxHotelS.Enabled = true;
-            textBoxHotelPhone.Text = string.Empty;
-            textBoxHotelPhone.Enabled = true;
+            maskedTextBoxHotelPhone.Text = string.Empty;
+            maskedTextBoxHotelPhone.Enabled = true;
             textBoxHotelClass.Text = string.Empty;
             textBoxHotelClass.Enabled = true;
             textBoxHotelWeb.Text = string.Empty;
@@ -348,10 +348,10 @@ namespace Admin
         private void btnEditHotel_Click(object sender, EventArgs e)
         {
             if (_adminValidators.ValidEditThirdBox(textBoxHotelNum.Text, textBoxHotelName.Text, textBoxHotelOrg.Text, textBoxHotelC.Text,
-                    textBoxHotelS.Text, textBoxHotelPhone.Text, textBoxHotelClass.Text, textBoxHotelWeb.Text))
+                    textBoxHotelS.Text, maskedTextBoxHotelPhone.Text, textBoxHotelClass.Text, textBoxHotelWeb.Text))
             {
                 _adminRequest.EditThirdBox(_reposFactory, textBoxHotelNum, textBoxHotelName, textBoxHotelOrg, textBoxHotelC,
-                    textBoxHotelS, textBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb);
+                    textBoxHotelS, maskedTextBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb);
 
                 _adminRequest.UserOutputFull(_reposFactory, dgvUser);
                 _adminRequest.NumOutputFull(_reposFactory, dgvNum);
@@ -373,7 +373,7 @@ namespace Admin
             {
                 textBoxHotelNum.Enabled = false;
                 _adminRequest.EnterThirdBox(_reposFactory, textBoxHotelNum, textBoxHotelName, textBoxHotelOrg, textBoxHotelC,
-                    textBoxHotelS, textBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb, 
+                    textBoxHotelS, maskedTextBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb, 
                     dgvHotel, dgvHotel.CurrentRow.Index, groupBoxStat, labelAllUser, labelNewUser);
             }
         }
@@ -387,9 +387,17 @@ namespace Admin
                 {
                     textBoxHotelNum.Enabled = false;
                     _adminRequest.EnterThirdBox(_reposFactory, textBoxHotelNum, textBoxHotelName, textBoxHotelOrg, textBoxHotelC,
-                        textBoxHotelS, textBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb,
+                        textBoxHotelS, maskedTextBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb,
                         dgvHotel, dgvHotel.CurrentRow.Index, groupBoxStat, labelAllUser, labelNewUser);
                 }
+            }
+        }
+
+        private void textBoxNum_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

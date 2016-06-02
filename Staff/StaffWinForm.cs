@@ -167,8 +167,8 @@ namespace Staff
             textBoxHotelC.Enabled = true;
             textBoxHotelS.Text = string.Empty;
             textBoxHotelS.Enabled = true;
-            textBoxHotelPhone.Text = string.Empty;
-            textBoxHotelPhone.Enabled = true;
+            maskedTextBoxHotelPhone.Text = string.Empty;
+            maskedTextBoxHotelPhone.Enabled = true;
             textBoxHotelClass.Text = string.Empty;
             textBoxHotelClass.Enabled = true;
             textBoxHotelWeb.Text = string.Empty;
@@ -190,7 +190,7 @@ namespace Staff
                 textBoxHotelNum.Enabled = false;
                 _staffRequest.EnterThirdBox(_reposFactory, textBoxHotelNum, textBoxHotelName, textBoxHotelOrg,
                     textBoxHotelC,
-                    textBoxHotelS, textBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb,
+                    textBoxHotelS, maskedTextBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb,
                     dgvHotel, dgvHotel.CurrentRow.Index, groupBoxStat, labelAllUser, labelNewUser);
             }
         }
@@ -205,9 +205,17 @@ namespace Staff
                     textBoxHotelNum.Enabled = false;
                     _staffRequest.EnterThirdBox(_reposFactory, textBoxHotelNum, textBoxHotelName, textBoxHotelOrg,
                         textBoxHotelC,
-                        textBoxHotelS, textBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb,
+                        textBoxHotelS, maskedTextBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb,
                         dgvHotel, dgvHotel.CurrentRow.Index, groupBoxStat, labelAllUser, labelNewUser);
                 }
+            }
+        }
+
+        private void textBoxHotelNum_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

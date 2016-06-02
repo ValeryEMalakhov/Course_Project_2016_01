@@ -41,7 +41,6 @@
             this.comboBoxGender = new System.Windows.Forms.ComboBox();
             this.textBoxCodeID = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBoxPhone = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.textBoxSecondName = new System.Windows.Forms.TextBox();
             this.dtpBirth = new System.Windows.Forms.DateTimePicker();
@@ -51,6 +50,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
+            this.maskedTextBoxPhone = new System.Windows.Forms.MaskedTextBox();
             this.groupBoxLogPass.SuspendLayout();
             this.groupBoxInfo.SuspendLayout();
             this.SuspendLayout();
@@ -142,10 +142,10 @@
             // 
             // groupBoxInfo
             // 
+            this.groupBoxInfo.Controls.Add(this.maskedTextBoxPhone);
             this.groupBoxInfo.Controls.Add(this.comboBoxGender);
             this.groupBoxInfo.Controls.Add(this.textBoxCodeID);
             this.groupBoxInfo.Controls.Add(this.label6);
-            this.groupBoxInfo.Controls.Add(this.textBoxPhone);
             this.groupBoxInfo.Controls.Add(this.textBoxFirstName);
             this.groupBoxInfo.Controls.Add(this.textBoxSecondName);
             this.groupBoxInfo.Controls.Add(this.dtpBirth);
@@ -190,13 +190,6 @@
             this.label6.Size = new System.Drawing.Size(76, 15);
             this.label6.TabIndex = 21;
             this.label6.Text = "Код паспорта";
-            // 
-            // textBoxPhone
-            // 
-            this.textBoxPhone.Location = new System.Drawing.Point(98, 153);
-            this.textBoxPhone.Name = "textBoxPhone";
-            this.textBoxPhone.Size = new System.Drawing.Size(258, 22);
-            this.textBoxPhone.TabIndex = 8;
             // 
             // textBoxFirstName
             // 
@@ -278,6 +271,14 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // maskedTextBoxPhone
+            // 
+            this.maskedTextBoxPhone.Location = new System.Drawing.Point(98, 153);
+            this.maskedTextBoxPhone.Mask = "(999) 000-0000";
+            this.maskedTextBoxPhone.Name = "maskedTextBoxPhone";
+            this.maskedTextBoxPhone.Size = new System.Drawing.Size(258, 22);
+            this.maskedTextBoxPhone.TabIndex = 8;
+            // 
             // RegForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -315,7 +316,6 @@
         private System.Windows.Forms.ComboBox comboBoxGender;
         private System.Windows.Forms.TextBox textBoxCodeID;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBoxPhone;
         private System.Windows.Forms.TextBox textBoxFirstName;
         private System.Windows.Forms.TextBox textBoxSecondName;
         private System.Windows.Forms.DateTimePicker dtpBirth;
@@ -325,5 +325,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox checkBoxPass;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxPhone;
     }
 }

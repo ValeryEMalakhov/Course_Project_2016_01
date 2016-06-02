@@ -211,7 +211,7 @@ namespace Client
         #region editForm
 
         public void InputAllClientFields(ReposFactory reposFactory, string textBoxPass, TextBox textBoxFirstName,
-            TextBox textBoxSecondName, ComboBox comboBoxGender, DateTimePicker dateTimePicker, TextBox textBoxPhone)
+            TextBox textBoxSecondName, ComboBox comboBoxGender, DateTimePicker dateTimePicker, MaskedTextBox textBoxPhone)
         {
             foreach (var v in reposFactory.GetClient().GetSingleTable())
             {
@@ -228,7 +228,7 @@ namespace Client
 
         // редактирование клента из таблицы
         public void UserEdit(ReposFactory reposFactory, string clientId, TextBox textBoxFirstName,
-            TextBox textBoxSecondName, ComboBox comboBoxGender, DateTimePicker dateTimePicker, TextBox textBoxPhone)
+            TextBox textBoxSecondName, ComboBox comboBoxGender, DateTimePicker dateTimePicker, MaskedTextBox textBoxPhone)
         {
             try
             {
@@ -257,11 +257,16 @@ namespace Client
 
         #region other
 
-        public void InputHotelName(ReposFactory reposFactory, LinkLabel lLabelHotelName)
+        public void InputHotelName(ReposFactory reposFactory, LinkLabel lLabelHotelName, Label labelHotelPhone)
         {
+            int currentHotel = 1;
             foreach (var v in reposFactory.GetHotel().GetSingleTable())
             {
-                lLabelHotelName.Text = v.OrgName;
+                if (Convert.ToInt32(v.HotelId) == currentHotel)
+                {
+                    lLabelHotelName.Text = v.OrgName;
+                    labelHotelPhone.Text = v.Phone;
+                }
             }
         }
 

@@ -63,10 +63,10 @@ namespace Client.Sided_Form
             if (textBoxPass.Text != string.Empty)
             {
                 if (_clientValidators.ValidInputAllClientFields(textBoxPass, textBoxFirstName,
-                    textBoxSecondName, comboBoxGender, dtpBirth, textBoxPhone))
+                    textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone))
                 {
                     _clientRequest.InputAllClientFields(_reposFactory, textBoxPass.Text, textBoxFirstName,
-                        textBoxSecondName, comboBoxGender, dtpBirth, textBoxPhone);
+                        textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone);
                 }
             }
         }
@@ -84,10 +84,10 @@ namespace Client.Sided_Form
         private void btnEdit_Click(object sender, EventArgs e)
         {
             if (_clientValidators.ValidUpdateUser(textBoxPass, textBoxFirstName, textBoxSecondName, comboBoxGender,
-                dtpBirth, textBoxPhone))
+                dtpBirth, maskedTextBoxPhone))
             {
                 _clientRequest.UserEdit(_reposFactory, textBoxPass.Text, textBoxFirstName,
-                    textBoxSecondName, comboBoxGender, dtpBirth, textBoxPhone);
+                    textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone);
             }
             if (_clientValidators.ValidUpdatePass(textBoxNewPass))
             {
@@ -95,20 +95,15 @@ namespace Client.Sided_Form
             }
         }
 
-        private void btnDeleteUser_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(@"Временно недоступно");
-        }
-
         private void EditRequestForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 if (_clientValidators.ValidUpdateUser(textBoxPass, textBoxFirstName, textBoxSecondName, comboBoxGender,
-                    dtpBirth, textBoxPhone))
+                    dtpBirth, maskedTextBoxPhone))
                 {
                     _clientRequest.UserEdit(_reposFactory, textBoxPass.Text, textBoxFirstName,
-                        textBoxSecondName, comboBoxGender, dtpBirth, textBoxPhone);
+                        textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone);
                 }
                 if (_clientValidators.ValidUpdatePass(textBoxNewPass))
                 {
