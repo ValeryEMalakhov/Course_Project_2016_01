@@ -45,6 +45,8 @@ namespace Admin
             dgvNum.ScrollBars = ScrollBars.Vertical;
             dgvNumClass.ScrollBars = ScrollBars.Vertical;
             dgvHotel.ScrollBars = ScrollBars.Vertical;
+            dgvStaff.ScrollBars = ScrollBars.Vertical;
+            dgvStaffPosition.ScrollBars = ScrollBars.Vertical;
         }
 
         public AdminWinForm()
@@ -58,7 +60,9 @@ namespace Admin
             _adminRequest.NumOutputFull(_reposFactory, dgvNum);
             _adminRequest.NumCostOutput(_reposFactory, dgvNumClass);
             _adminRequest.HotelOutput(_reposFactory, dgvHotel);
-
+            _adminRequest.StaffOutput(_reposFactory, dgvStaff);
+            _adminRequest.UpdateComboBoxes(_reposFactory, comboBoxSvacant, comboBoxLeader, comboBoxStaffHotel);
+            _adminRequest.StaffPositionOutput(_reposFactory, dgvStaffPosition);
 
             if (dgvUser.CurrentRow != null) dgvUser.Rows[dgvUser.CurrentRow.Index].Selected = false;
             dgvUser.AllowUserToAddRows = false;
@@ -68,6 +72,10 @@ namespace Admin
             dgvNumClass.AllowUserToAddRows = false;
             if (dgvHotel.CurrentRow != null) dgvHotel.Rows[dgvHotel.CurrentRow.Index].Selected = false;
             dgvHotel.AllowUserToAddRows = false;
+            if (dgvStaff.CurrentRow != null) dgvStaff.Rows[dgvStaff.CurrentRow.Index].Selected = false;
+            dgvStaff.AllowUserToAddRows = false;
+            if (dgvStaffPosition.CurrentRow != null) dgvStaffPosition.Rows[dgvStaffPosition.CurrentRow.Index].Selected = false;
+            dgvStaffPosition.AllowUserToAddRows = false;
         }
 
         private void AdminWinForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -396,6 +404,24 @@ namespace Admin
         private void textBoxNum_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void dgvStaff_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvStaff_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void textBoxStaffName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }

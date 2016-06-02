@@ -42,9 +42,19 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminWinForm));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabUser = new System.Windows.Forms.TabPage();
@@ -146,11 +156,23 @@
             this.dgvStaffPosition = new System.Windows.Forms.DataGridView();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.label23 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBoxSvacantId = new System.Windows.Forms.TextBox();
+            this.textBoxSvacantName = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.dgvStaff = new System.Windows.Forms.DataGridView();
             this.maskedTextBoxHotelPhone = new System.Windows.Forms.MaskedTextBox();
+            this.textBoxSvacantPay = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.comboBoxGender = new System.Windows.Forms.ComboBox();
+            this.dtpBirth = new System.Windows.Forms.DateTimePicker();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.comboBoxSvacant = new System.Windows.Forms.ComboBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.comboBoxLeader = new System.Windows.Forms.ComboBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.comboBoxStaffHotel = new System.Windows.Forms.ComboBox();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnVacantCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -162,12 +184,6 @@
             this.vacant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SuperUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RegistrBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.comboBoxGender = new System.Windows.Forms.ComboBox();
-            this.dtpBirth = new System.Windows.Forms.DateTimePicker();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabUser.SuspendLayout();
             this.gBUserAction.SuspendLayout();
@@ -233,7 +249,7 @@
             this.btnDeleteUser.Name = "btnDeleteUser";
             this.btnDeleteUser.Size = new System.Drawing.Size(80, 80);
             this.btnDeleteUser.TabIndex = 2;
-            this.btnDeleteUser.Text = "Удалить клиента";
+            this.btnDeleteUser.Text = "Удалить гостя";
             this.btnDeleteUser.UseVisualStyleBackColor = true;
             this.btnDeleteUser.Click += new System.EventHandler(this.btnDeleteUser_Click);
             // 
@@ -243,7 +259,7 @@
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(80, 80);
             this.btnAddUser.TabIndex = 1;
-            this.btnAddUser.Text = "Добавить клиента";
+            this.btnAddUser.Text = "Добавить гостя";
             this.btnAddUser.UseVisualStyleBackColor = true;
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
@@ -964,6 +980,7 @@
             this.textBoxHotelName.Size = new System.Drawing.Size(255, 20);
             this.textBoxHotelName.TabIndex = 101;
             this.textBoxHotelName.Tag = "";
+            this.textBoxHotelName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxStaffName_KeyPress);
             // 
             // label14
             // 
@@ -998,6 +1015,7 @@
             this.textBoxHotelOrg.Size = new System.Drawing.Size(255, 20);
             this.textBoxHotelOrg.TabIndex = 102;
             this.textBoxHotelOrg.Tag = "";
+            this.textBoxHotelOrg.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxStaffName_KeyPress);
             // 
             // dgvHotel
             // 
@@ -1109,6 +1127,12 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.label29);
+            this.groupBox5.Controls.Add(this.comboBoxStaffHotel);
+            this.groupBox5.Controls.Add(this.label28);
+            this.groupBox5.Controls.Add(this.comboBoxLeader);
+            this.groupBox5.Controls.Add(this.label20);
+            this.groupBox5.Controls.Add(this.comboBoxSvacant);
             this.groupBox5.Controls.Add(this.comboBoxGender);
             this.groupBox5.Controls.Add(this.dtpBirth);
             this.groupBox5.Controls.Add(this.label26);
@@ -1141,11 +1165,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(10, 456);
+            this.button1.Location = new System.Drawing.Point(11, 448);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(150, 25);
             this.button1.TabIndex = 5;
-            this.button1.Text = "Добавить номер";
+            this.button1.Text = "Добавить сотрудника";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // label19
@@ -1159,16 +1183,16 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(10, 487);
+            this.button2.Location = new System.Drawing.Point(11, 479);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(150, 25);
             this.button2.TabIndex = 7;
-            this.button2.Text = "Удалить номер";
+            this.button2.Text = "Удалить сотрудника";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(10, 425);
+            this.button3.Location = new System.Drawing.Point(11, 417);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(150, 25);
             this.button3.TabIndex = 4;
@@ -1182,7 +1206,7 @@
             this.textBoxStaffSirName.Size = new System.Drawing.Size(150, 20);
             this.textBoxStaffSirName.TabIndex = 2;
             this.textBoxStaffSirName.Tag = "";
-            this.textBoxStaffSirName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNum_KeyPress);
+            this.textBoxStaffSirName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxStaffName_KeyPress);
             // 
             // label21
             // 
@@ -1200,7 +1224,7 @@
             this.textBoxStaffName.Size = new System.Drawing.Size(150, 20);
             this.textBoxStaffName.TabIndex = 1;
             this.textBoxStaffName.Tag = "";
-            this.textBoxStaffName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNum_KeyPress);
+            this.textBoxStaffName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxStaffName_KeyPress);
             // 
             // label22
             // 
@@ -1213,11 +1237,11 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(10, 394);
+            this.button4.Location = new System.Drawing.Point(11, 377);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(150, 25);
+            this.button4.Size = new System.Drawing.Size(150, 34);
             this.button4.TabIndex = 6;
-            this.button4.Text = "Редактировать номер";
+            this.button4.Text = "Редактировать сотрудника";
             this.button4.UseVisualStyleBackColor = true;
             // 
             // dgvStaffPosition
@@ -1247,11 +1271,11 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.textBox7);
+            this.groupBox7.Controls.Add(this.textBoxSvacantPay);
             this.groupBox7.Controls.Add(this.label25);
             this.groupBox7.Controls.Add(this.label23);
-            this.groupBox7.Controls.Add(this.textBox5);
-            this.groupBox7.Controls.Add(this.textBox6);
+            this.groupBox7.Controls.Add(this.textBoxSvacantId);
+            this.groupBox7.Controls.Add(this.textBoxSvacantName);
             this.groupBox7.Controls.Add(this.label24);
             this.groupBox7.Location = new System.Drawing.Point(186, 316);
             this.groupBox7.Name = "groupBox7";
@@ -1269,19 +1293,20 @@
             this.label23.TabIndex = 12;
             this.label23.Text = "Код должности";
             // 
-            // textBox5
+            // textBoxSvacantId
             // 
-            this.textBox5.Location = new System.Drawing.Point(16, 36);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(162, 20);
-            this.textBox5.TabIndex = 8;
+            this.textBoxSvacantId.Location = new System.Drawing.Point(16, 36);
+            this.textBoxSvacantId.Name = "textBoxSvacantId";
+            this.textBoxSvacantId.Size = new System.Drawing.Size(162, 20);
+            this.textBoxSvacantId.TabIndex = 8;
+            this.textBoxSvacantId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNum_KeyPress);
             // 
-            // textBox6
+            // textBoxSvacantName
             // 
-            this.textBox6.Location = new System.Drawing.Point(16, 75);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(162, 20);
-            this.textBox6.TabIndex = 9;
+            this.textBoxSvacantName.Location = new System.Drawing.Point(16, 75);
+            this.textBoxSvacantName.Name = "textBoxSvacantName";
+            this.textBoxSvacantName.Size = new System.Drawing.Size(162, 20);
+            this.textBoxSvacantName.TabIndex = 9;
             // 
             // label24
             // 
@@ -1295,14 +1320,14 @@
             // dgvStaff
             // 
             this.dgvStaff.AllowUserToResizeRows = false;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvStaff.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStaff.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.dgvStaff.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStaff.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn7,
@@ -1313,12 +1338,23 @@
             this.vacant,
             this.SuperUser,
             this.RegistrBuild});
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle27.NullValue = null;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvStaff.DefaultCellStyle = dataGridViewCellStyle27;
             this.dgvStaff.Location = new System.Drawing.Point(186, 6);
             this.dgvStaff.Name = "dgvStaff";
             this.dgvStaff.ReadOnly = true;
             this.dgvStaff.Size = new System.Drawing.Size(745, 304);
             this.dgvStaff.TabIndex = 103;
             this.dgvStaff.TabStop = false;
+            this.dgvStaff.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaff_CellClick);
+            this.dgvStaff.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvStaff_KeyUp);
             // 
             // maskedTextBoxHotelPhone
             // 
@@ -1328,108 +1364,13 @@
             this.maskedTextBoxHotelPhone.Size = new System.Drawing.Size(255, 20);
             this.maskedTextBoxHotelPhone.TabIndex = 112;
             // 
-            // dataGridViewTextBoxColumn5
+            // textBoxSvacantPay
             // 
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle15;
-            this.dataGridViewTextBoxColumn5.Frozen = true;
-            this.dataGridViewTextBoxColumn5.HeaderText = "Код должности";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn5.Width = 110;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle16;
-            this.dataGridViewTextBoxColumn6.Frozen = true;
-            this.dataGridViewTextBoxColumn6.HeaderText = "Название";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 250;
-            // 
-            // ColumnVacantCost
-            // 
-            this.ColumnVacantCost.Frozen = true;
-            this.ColumnVacantCost.HeaderText = "Зарплата";
-            this.ColumnVacantCost.Name = "ColumnVacantCost";
-            this.ColumnVacantCost.ReadOnly = true;
-            this.ColumnVacantCost.Width = 130;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.Frozen = true;
-            this.dataGridViewTextBoxColumn7.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn7.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.Frozen = true;
-            this.dataGridViewTextBoxColumn8.HeaderText = "Имя";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            this.dataGridViewTextBoxColumn8.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn8.Width = 120;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.Frozen = true;
-            this.dataGridViewTextBoxColumn9.HeaderText = "Фамилия";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            this.dataGridViewTextBoxColumn9.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn9.Width = 120;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.Frozen = true;
-            this.dataGridViewTextBoxColumn10.HeaderText = "Пол";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.ReadOnly = true;
-            this.dataGridViewTextBoxColumn10.Width = 80;
-            // 
-            // StaffBirth
-            // 
-            this.StaffBirth.Frozen = true;
-            this.StaffBirth.HeaderText = "Дата рождения";
-            this.StaffBirth.Name = "StaffBirth";
-            this.StaffBirth.ReadOnly = true;
-            this.StaffBirth.Width = 110;
-            // 
-            // vacant
-            // 
-            this.vacant.Frozen = true;
-            this.vacant.HeaderText = "Должность";
-            this.vacant.Name = "vacant";
-            this.vacant.ReadOnly = true;
-            this.vacant.Width = 110;
-            // 
-            // SuperUser
-            // 
-            this.SuperUser.Frozen = true;
-            this.SuperUser.HeaderText = "Начальник";
-            this.SuperUser.Name = "SuperUser";
-            this.SuperUser.ReadOnly = true;
-            this.SuperUser.Width = 65;
-            // 
-            // RegistrBuild
-            // 
-            this.RegistrBuild.Frozen = true;
-            this.RegistrBuild.HeaderText = "Отель";
-            this.RegistrBuild.Name = "RegistrBuild";
-            this.RegistrBuild.ReadOnly = true;
-            this.RegistrBuild.Width = 65;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(16, 114);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(162, 20);
-            this.textBox7.TabIndex = 15;
+            this.textBoxSvacantPay.Location = new System.Drawing.Point(16, 114);
+            this.textBoxSvacantPay.Name = "textBoxSvacantPay";
+            this.textBoxSvacantPay.Size = new System.Drawing.Size(162, 20);
+            this.textBoxSvacantPay.TabIndex = 15;
+            this.textBoxSvacantPay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNum_KeyPress);
             // 
             // label25
             // 
@@ -1450,6 +1391,7 @@
             this.comboBoxGender.Name = "comboBoxGender";
             this.comboBoxGender.Size = new System.Drawing.Size(150, 21);
             this.comboBoxGender.TabIndex = 25;
+            this.comboBoxGender.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxStaffName_KeyPress);
             // 
             // dtpBirth
             // 
@@ -1477,6 +1419,171 @@
             this.label27.Size = new System.Drawing.Size(27, 13);
             this.label27.TabIndex = 24;
             this.label27.Text = "Пол";
+            // 
+            // comboBoxSvacant
+            // 
+            this.comboBoxSvacant.FormattingEnabled = true;
+            this.comboBoxSvacant.Location = new System.Drawing.Point(11, 226);
+            this.comboBoxSvacant.Name = "comboBoxSvacant";
+            this.comboBoxSvacant.Size = new System.Drawing.Size(150, 21);
+            this.comboBoxSvacant.TabIndex = 27;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(8, 210);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(65, 13);
+            this.label20.TabIndex = 28;
+            this.label20.Text = "Должность";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(8, 250);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(62, 13);
+            this.label28.TabIndex = 30;
+            this.label28.Text = "Начальник";
+            // 
+            // comboBoxLeader
+            // 
+            this.comboBoxLeader.FormattingEnabled = true;
+            this.comboBoxLeader.Location = new System.Drawing.Point(11, 266);
+            this.comboBoxLeader.Name = "comboBoxLeader";
+            this.comboBoxLeader.Size = new System.Drawing.Size(150, 21);
+            this.comboBoxLeader.TabIndex = 29;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(8, 290);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(38, 13);
+            this.label29.TabIndex = 32;
+            this.label29.Text = "Отель";
+            // 
+            // comboBoxStaffHotel
+            // 
+            this.comboBoxStaffHotel.FormattingEnabled = true;
+            this.comboBoxStaffHotel.Location = new System.Drawing.Point(11, 306);
+            this.comboBoxStaffHotel.Name = "comboBoxStaffHotel";
+            this.comboBoxStaffHotel.Size = new System.Drawing.Size(150, 21);
+            this.comboBoxStaffHotel.TabIndex = 31;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle15;
+            this.dataGridViewTextBoxColumn5.Frozen = true;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Код должности";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn5.Width = 110;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle16;
+            this.dataGridViewTextBoxColumn6.Frozen = true;
+            this.dataGridViewTextBoxColumn6.HeaderText = "Название";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 250;
+            // 
+            // ColumnVacantCost
+            // 
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ColumnVacantCost.DefaultCellStyle = dataGridViewCellStyle17;
+            this.ColumnVacantCost.Frozen = true;
+            this.ColumnVacantCost.HeaderText = "Зарплата";
+            this.ColumnVacantCost.Name = "ColumnVacantCost";
+            this.ColumnVacantCost.ReadOnly = true;
+            this.ColumnVacantCost.Width = 130;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle19;
+            this.dataGridViewTextBoxColumn7.Frozen = true;
+            this.dataGridViewTextBoxColumn7.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn7.Width = 25;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle20;
+            this.dataGridViewTextBoxColumn8.Frozen = true;
+            this.dataGridViewTextBoxColumn8.HeaderText = "Имя";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn8.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle21;
+            this.dataGridViewTextBoxColumn9.Frozen = true;
+            this.dataGridViewTextBoxColumn9.HeaderText = "Фамилия";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn9.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle22;
+            this.dataGridViewTextBoxColumn10.Frozen = true;
+            this.dataGridViewTextBoxColumn10.HeaderText = "Пол";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Width = 45;
+            // 
+            // StaffBirth
+            // 
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.StaffBirth.DefaultCellStyle = dataGridViewCellStyle23;
+            this.StaffBirth.Frozen = true;
+            this.StaffBirth.HeaderText = "Дата рождения";
+            this.StaffBirth.Name = "StaffBirth";
+            this.StaffBirth.ReadOnly = true;
+            this.StaffBirth.Width = 110;
+            // 
+            // vacant
+            // 
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.vacant.DefaultCellStyle = dataGridViewCellStyle24;
+            this.vacant.Frozen = true;
+            this.vacant.HeaderText = "Должность";
+            this.vacant.Name = "vacant";
+            this.vacant.ReadOnly = true;
+            this.vacant.Width = 150;
+            // 
+            // SuperUser
+            // 
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.SuperUser.DefaultCellStyle = dataGridViewCellStyle25;
+            this.SuperUser.Frozen = true;
+            this.SuperUser.HeaderText = "Начальник";
+            this.SuperUser.Name = "SuperUser";
+            this.SuperUser.ReadOnly = true;
+            this.SuperUser.Width = 65;
+            // 
+            // RegistrBuild
+            // 
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.RegistrBuild.DefaultCellStyle = dataGridViewCellStyle26;
+            this.RegistrBuild.Frozen = true;
+            this.RegistrBuild.HeaderText = "Отель";
+            this.RegistrBuild.Name = "RegistrBuild";
+            this.RegistrBuild.ReadOnly = true;
+            this.RegistrBuild.Width = 65;
             // 
             // AdminWinForm
             // 
@@ -1627,11 +1734,23 @@
         protected internal System.Windows.Forms.DataGridView dgvStaffPosition;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBoxSvacantId;
+        private System.Windows.Forms.TextBox textBoxSvacantName;
         private System.Windows.Forms.Label label24;
         protected internal System.Windows.Forms.DataGridView dgvStaff;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxHotelPhone;
+        private System.Windows.Forms.TextBox textBoxSvacantPay;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.ComboBox comboBoxGender;
+        private System.Windows.Forms.DateTimePicker dtpBirth;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ComboBox comboBoxSvacant;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.ComboBox comboBoxStaffHotel;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.ComboBox comboBoxLeader;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnVacantCost;
@@ -1643,12 +1762,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn vacant;
         private System.Windows.Forms.DataGridViewTextBoxColumn SuperUser;
         private System.Windows.Forms.DataGridViewTextBoxColumn RegistrBuild;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.ComboBox comboBoxGender;
-        private System.Windows.Forms.DateTimePicker dtpBirth;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label27;
     }
 }
 

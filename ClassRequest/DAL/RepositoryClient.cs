@@ -60,7 +60,7 @@ namespace ClassRequest.DAL
                         dbDataRecord["FirstName"].ToString(),
                         dbDataRecord["SecondName"].ToString(),
                         dbDataRecord["Gender"].ToString(),
-                        dbDataRecord["DateOfBirth"].ToString(),
+                        Convert.ToDateTime(dbDataRecord["DateOfBirth"]).ToString("dd/MM/yyyy"),
                         dbDataRecord["Phone"].ToString());
                     tableClientList.Add(tableClient);
                 }

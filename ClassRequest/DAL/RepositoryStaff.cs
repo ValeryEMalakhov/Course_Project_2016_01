@@ -45,7 +45,9 @@ namespace ClassRequest.DAL
             {
                 string commPart =
                     "SELECT *" +
-                    " FROM \"hotel\".\"Staff\";";
+                    " FROM \"hotel\".\"Staff\"" +
+                    " ORDER BY Staff_ID" +
+                    " ;";
                 // открываем соединение
                 //sqlConnect.GetNewSqlConn().OpenConn();
 
@@ -59,10 +61,58 @@ namespace ClassRequest.DAL
                         dbDataRecord["FirstName"].ToString(),
                         dbDataRecord["SecondName"].ToString(),
                         dbDataRecord["Gender"].ToString(),
-                        dbDataRecord["DateOfBirth"].ToString(),
+                        Convert.ToDateTime(dbDataRecord["DateOfBirth"]).ToString("dd/MM/yyyy"),
                         dbDataRecord["SVacantKey"].ToString(),
                         dbDataRecord["Supervisor"].ToString(),
                         dbDataRecord["RegBuilding"].ToString());
+                    tableStaffList.Add(tableStaff);
+                }
+                readerUserTable.Close();
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+            finally
+            {
+                // соединение закрыто принудительно
+                //sqlConnect.GetNewSqlConn().CloseConn();
+            }
+            return tableStaffList;
+        }
+
+        public List<TableStaff> GetSingleTableWithPosition()
+        {
+            TableStaff tableStaff;
+            var tableStaffList = new List<TableStaff>();
+
+            try
+            {
+                string commPart =
+                    "SELECT s.Staff_Id, s.FirstName, s.SecondName, s.Gender, s.DateOfBirth, sv.SVacant, s.Supervisor, h.HotelName" +
+                    " FROM \"hotel\".\"Staff\" s, \"hotel\".\"StaffPosition\" sv, \"hotel\".\"Hotel\" h" +
+                    " WHERE s.SVacantKey = sv.SVacantKey" +
+                    "  AND s.RegBuilding = h.Hotel_Id" +
+                    " ORDER BY s.Staff_Id" +
+                    ";";
+                // открываем соединение
+                //sqlConnect.GetNewSqlConn().OpenConn();
+
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
+                NpgsqlDataReader readerUserTable = command.ExecuteReader();
+
+                foreach (DbDataRecord dbDataRecord in readerUserTable)
+                {
+                    tableStaff = new TableStaff(
+                        dbDataRecord["Staff_ID"].ToString(),
+                        dbDataRecord["FirstName"].ToString(),
+                        dbDataRecord["SecondName"].ToString(),
+                        dbDataRecord["Gender"].ToString(),
+                        Convert.ToDateTime(dbDataRecord["DateOfBirth"]).ToString("dd/MM/yyyy"),
+                        dbDataRecord["SVacant"].ToString(),
+                        dbDataRecord["Supervisor"].ToString(),
+                        dbDataRecord["HotelName"].ToString());
                     tableStaffList.Add(tableStaff);
                 }
                 readerUserTable.Close();

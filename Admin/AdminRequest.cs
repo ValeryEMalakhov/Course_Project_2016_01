@@ -190,6 +190,56 @@ namespace Admin
             }
         }
 
+        // вывод списка сотрудников
+        public void StaffOutput(ReposFactory reposFactory, DataGridView dgvStaff)
+        {
+            dgvStaff.Rows.Clear();
+            try
+            {
+                int colorKey = 0;
+                foreach (var v in reposFactory.GetStaff().GetSingleTableWithPosition())
+                {
+                    dgvStaff.Rows.Add(v.StaffId, v.FirstName, v.SecondName, v.Gender, v.DateOfBirth,
+                        v.SVacantKey, v.Supervisor, v.RegBuilding);
+                    if (colorKey % 2 == 0)
+                    {
+                        for (int i = 0; i < dgvStaff.ColumnCount; ++i)
+                            dgvStaff.Rows[colorKey].Cells[i].Style.BackColor = Color.Lavender;
+                    }
+                    colorKey++;
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+        // вывод списка сотрудников
+        public void StaffPositionOutput(ReposFactory reposFactory, DataGridView dgvStaffPosition)
+        {
+            dgvStaffPosition.Rows.Clear();
+            try
+            {
+                int colorKey = 0;
+                foreach (var v in reposFactory.GetStaffPosition().GetSingleTable())
+                {
+                    dgvStaffPosition.Rows.Add(v.SvacantKey, v.SVacant, v.Salary);
+                    if (colorKey % 2 == 0)
+                    {
+                        for (int i = 0; i < dgvStaffPosition.ColumnCount; ++i)
+                            dgvStaffPosition.Rows[colorKey].Cells[i].Style.BackColor = Color.Lavender;
+                    }
+                    colorKey++;
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+
         // записываем выбранный номер в TextBox-сы
         public void EnterFirstBox(TextBox textBoxNum, TextBox textBoxNumHotel, TextBox textBoxPlace,
             TextBox textBoxNumClass,
@@ -561,5 +611,53 @@ namespace Admin
                 MessageBox.Show(Convert.ToString(exp));
             }
         }
+
+        // для сотрудников
+        // запрос списка свободных комнат
+        public void UpdateComboBoxes(ReposFactory reposFactory, ComboBox comboBoxSvacant, ComboBox comboBoxLeader,
+            ComboBox comboBoxStaffHotel)
+        {
+            comboBoxSvacant.Items.Clear();
+            comboBoxLeader.Items.Clear();
+            comboBoxStaffHotel.Items.Clear();
+            try
+            {
+                foreach (var v in reposFactory.GetStaffPosition().GetSingleTable())
+                {
+                    comboBoxSvacant.Items.Add(v.SVacant);
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+            try
+            {
+                foreach (var v in reposFactory.GetStaff().GetSingleTable())
+                {
+                    comboBoxLeader.Items.Add(v.StaffId);
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+            try
+            {
+                foreach (var v in reposFactory.GetHotel().GetSingleTable())
+                {
+                    comboBoxStaffHotel.Items.Add(v.HotelName);
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+
+
     }
 }

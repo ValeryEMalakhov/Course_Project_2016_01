@@ -45,7 +45,8 @@ namespace ClassRequest.DAL
             {
                 string commPart =
                     "SELECT *" +
-                    " FROM \"hotel\".\"StaffPosition\";";
+                    " FROM \"hotel\".\"StaffPosition\"" +
+                    " ORDER BY SvacantKey ;";
                 // открываем соединение
                 //sqlConnect.GetNewSqlConn().OpenConn();
 

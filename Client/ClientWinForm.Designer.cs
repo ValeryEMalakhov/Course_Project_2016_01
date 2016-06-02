@@ -59,6 +59,8 @@
             this.CCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabHotel = new System.Windows.Forms.TabPage();
             this.groupBoxUserInfo = new System.Windows.Forms.GroupBox();
+            this.labelHotelPhone = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.lLabelHotelName = new System.Windows.Forms.LinkLabel();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -79,8 +81,6 @@
             this.CSessionCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolTipUserEdit = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipDeleteRequest = new System.Windows.Forms.ToolTip(this.components);
-            this.labelHotelPhone = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabNumb.SuspendLayout();
             this.gBUserAction.SuspendLayout();
@@ -281,6 +281,25 @@
             this.groupBoxUserInfo.TabStop = false;
             this.groupBoxUserInfo.Text = "UserName";
             // 
+            // labelHotelPhone
+            // 
+            this.labelHotelPhone.Location = new System.Drawing.Point(11, 197);
+            this.labelHotelPhone.Name = "labelHotelPhone";
+            this.labelHotelPhone.Size = new System.Drawing.Size(196, 26);
+            this.labelHotelPhone.TabIndex = 4;
+            this.labelHotelPhone.Text = "{phoneNum}";
+            this.labelHotelPhone.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Monotype Corsiva", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(17, 168);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(145, 18);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "Контактный телефон";
+            // 
             // lLabelHotelName
             // 
             this.lLabelHotelName.Font = new System.Drawing.Font("Monotype Corsiva", 18F, System.Drawing.FontStyle.Italic);
@@ -477,25 +496,6 @@
             this.CSessionCost.ReadOnly = true;
             this.CSessionCost.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.CSessionCost.Width = 110;
-            // 
-            // labelHotelPhone
-            // 
-            this.labelHotelPhone.Location = new System.Drawing.Point(11, 197);
-            this.labelHotelPhone.Name = "labelHotelPhone";
-            this.labelHotelPhone.Size = new System.Drawing.Size(196, 26);
-            this.labelHotelPhone.TabIndex = 4;
-            this.labelHotelPhone.Text = "{phoneNum}";
-            this.labelHotelPhone.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Monotype Corsiva", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(17, 168);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(145, 18);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "Контактный телефон";
             // 
             // ClientWinForm
             // 
