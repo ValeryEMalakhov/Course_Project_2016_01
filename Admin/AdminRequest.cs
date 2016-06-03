@@ -201,7 +201,7 @@ namespace Admin
                 {
                     dgvStaff.Rows.Add(v.StaffId, v.FirstName, v.SecondName, v.Gender, v.DateOfBirth,
                         v.SVacantKey, v.Supervisor, v.RegBuilding);
-                    if (colorKey % 2 == 0)
+                    if (colorKey%2 == 0)
                     {
                         for (int i = 0; i < dgvStaff.ColumnCount; ++i)
                             dgvStaff.Rows[colorKey].Cells[i].Style.BackColor = Color.Lavender;
@@ -215,6 +215,7 @@ namespace Admin
                 MessageBox.Show(Convert.ToString(exp));
             }
         }
+
         // вывод списка сотрудников
         public void StaffPositionOutput(ReposFactory reposFactory, DataGridView dgvStaffPosition)
         {
@@ -225,7 +226,7 @@ namespace Admin
                 foreach (var v in reposFactory.GetStaffPosition().GetSingleTable())
                 {
                     dgvStaffPosition.Rows.Add(v.SvacantKey, v.SVacant, v.Salary);
-                    if (colorKey % 2 == 0)
+                    if (colorKey%2 == 0)
                     {
                         for (int i = 0; i < dgvStaffPosition.ColumnCount; ++i)
                             dgvStaffPosition.Rows[colorKey].Cells[i].Style.BackColor = Color.Lavender;
@@ -262,7 +263,8 @@ namespace Admin
         // записываем выбранный отель в TextBox-сы
         public void EnterThirdBox(ReposFactory reposFactory, TextBox textBoxHotelNum, TextBox textBoxHotelName,
             TextBox textBoxHotelOrg,
-            TextBox textBoxHotelC, TextBox textBoxHotelS, MaskedTextBox maskedTextBoxHotelPhone, TextBox textBoxHotelClass,
+            TextBox textBoxHotelC, TextBox textBoxHotelS, MaskedTextBox maskedTextBoxHotelPhone,
+            TextBox textBoxHotelClass,
             TextBox textBoxHotelWeb, DataGridView dgvHotel, int dgvIndex, GroupBox groupBox, Label labelAll,
             Label labelNew)
         {
@@ -420,7 +422,7 @@ namespace Admin
 
                 reposFactory.GetACard().AddUser(textBoxPass.Text, textBoxFirstName.Text,
                     textBoxSecondName.Text, comboBoxGender.Text,
-                    dtpBirth.Text, textBoxPhone.Text,
+                    dtpBirth.Value.ToString("dd/MM/yyyy"), textBoxPhone.Text,
                     comboBoxApId.Text, dtpCheckIn.Text, dtpCheckOut.Text, textBoxComm.Text,
                     newLogIn, newPass);
             }
@@ -582,12 +584,14 @@ namespace Admin
 
         public void EditThirdBox(ReposFactory reposFactory, TextBox textBoxHotelNum, TextBox textBoxHotelName,
             TextBox textBoxHotelOrg, TextBox textBoxHotelC,
-            TextBox textBoxHotelS, MaskedTextBox maskedTextBoxHotelPhone, TextBox textBoxHotelClass, TextBox textBoxHotelWeb)
+            TextBox textBoxHotelS, MaskedTextBox maskedTextBoxHotelPhone, TextBox textBoxHotelClass,
+            TextBox textBoxHotelWeb)
         {
             try
             {
                 reposFactory.GetHotel().EditHotel(textBoxHotelNum.Text, textBoxHotelName.Text, textBoxHotelOrg.Text,
-                    textBoxHotelC.Text, textBoxHotelS.Text, maskedTextBoxHotelPhone.Text, textBoxHotelClass.Text, textBoxHotelWeb.Text);
+                    textBoxHotelC.Text, textBoxHotelS.Text, maskedTextBoxHotelPhone.Text, textBoxHotelClass.Text,
+                    textBoxHotelWeb.Text);
 
                 textBoxHotelNum.Text = string.Empty;
                 textBoxHotelNum.Enabled = true;
@@ -658,6 +662,187 @@ namespace Admin
             }
         }
 
+        /*textBoxStaffId, textBoxStaffName, textBoxStaffSirName,
+                    comboBoxStaffGender, StaffBirth, comboBoxSvacant, comboBoxLeader, comboBoxStaffHotel,
+                    dgvStaff, dgvStaff.CurrentRow.Index*/
 
+        public void EnterStaffBox(ReposFactory reposFactory, TextBox textBoxStaffId,
+            TextBox textBoxStaffName, TextBox textBoxStaffSirName,
+            ComboBox comboBoxStaffGender, DateTimePicker staffBirth, ComboBox comboBoxSvacant, ComboBox comboBoxLeader,
+            ComboBox comboBoxStaffHotel,
+            DataGridView dgvStaff, int dgvIndex)
+        {
+            textBoxStaffId.Text = dgvStaff.Rows[dgvIndex].Cells[0].Value.ToString();
+            textBoxStaffName.Text = dgvStaff.Rows[dgvIndex].Cells[1].Value.ToString();
+            textBoxStaffSirName.Text = dgvStaff.Rows[dgvIndex].Cells[2].Value.ToString();
+            comboBoxStaffGender.Text = dgvStaff.Rows[dgvIndex].Cells[3].Value.ToString();
+            staffBirth.Text = dgvStaff.Rows[dgvIndex].Cells[4].Value.ToString();
+            comboBoxSvacant.Text = dgvStaff.Rows[dgvIndex].Cells[5].Value.ToString();
+            comboBoxLeader.Text = dgvStaff.Rows[dgvIndex].Cells[6].Value.ToString();
+            comboBoxStaffHotel.Text = dgvStaff.Rows[dgvIndex].Cells[7].Value.ToString();
+        }
+
+        public void EditStaffBox(ReposFactory reposFactory, TextBox textBoxStaffId,
+            TextBox textBoxStaffName, TextBox textBoxStaffSirName,
+            ComboBox comboBoxStaffGender, DateTimePicker staffBirth, ComboBox comboBoxSvacant, ComboBox comboBoxLeader,
+            ComboBox comboBoxStaffHotel)
+        {
+            try
+            {
+                reposFactory.GetStaff().EditStaff(textBoxStaffId.Text, textBoxStaffName.Text, textBoxStaffSirName.Text,
+                    comboBoxStaffGender.Text, staffBirth.Value.ToString("dd/MM/yyyy"),
+                    comboBoxSvacant.Text, comboBoxLeader.Text, comboBoxStaffHotel.Text);
+
+                textBoxStaffId.Text = string.Empty;
+                textBoxStaffName.Text = string.Empty;
+                textBoxStaffName.Enabled = true;
+                textBoxStaffSirName.Text = string.Empty;
+                textBoxStaffSirName.Enabled = true;
+                comboBoxStaffGender.Text = string.Empty;
+                comboBoxStaffGender.Enabled = true;
+                comboBoxSvacant.Text = string.Empty;
+                comboBoxSvacant.Enabled = true;
+                comboBoxLeader.Text = string.Empty;
+                comboBoxLeader.Enabled = true;
+                comboBoxStaffHotel.Text = string.Empty;
+                comboBoxStaffHotel.Enabled = true;
+
+                //staffBirth.Text = string.Empty;
+                //staffBirth.Enabled = true;
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+
+        public void AddStaff(ReposFactory reposFactory, TextBox textBoxStaffId,
+            TextBox textBoxStaffName, TextBox textBoxStaffSirName,
+            ComboBox comboBoxStaffGender, DateTimePicker staffBirth, ComboBox comboBoxSvacant, ComboBox comboBoxLeader,
+            ComboBox comboBoxStaffHotel)
+        {
+            try
+            {
+                reposFactory.GetStaff().AddStaff(textBoxStaffId.Text, textBoxStaffName.Text, textBoxStaffSirName.Text,
+                    comboBoxStaffGender.Text, staffBirth.Value.ToString("dd/MM/yyyy"),
+                    comboBoxSvacant.Text, comboBoxLeader.Text, comboBoxStaffHotel.Text);
+
+                textBoxStaffId.Text = string.Empty;
+                textBoxStaffName.Text = string.Empty;
+                textBoxStaffName.Enabled = true;
+                textBoxStaffSirName.Text = string.Empty;
+                textBoxStaffSirName.Enabled = true;
+                comboBoxStaffGender.Text = string.Empty;
+                comboBoxStaffGender.Enabled = true;
+                comboBoxSvacant.Text = string.Empty;
+                comboBoxSvacant.Enabled = true;
+                comboBoxLeader.Text = string.Empty;
+                comboBoxLeader.Enabled = true;
+                comboBoxStaffHotel.Text = string.Empty;
+                comboBoxStaffHotel.Enabled = true;
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+
+        public void DeleteStaff(ReposFactory reposFactory, TextBox textBoxStaffId,
+            TextBox textBoxStaffName, TextBox textBoxStaffSirName,
+            ComboBox comboBoxStaffGender, DateTimePicker staffBirth, ComboBox comboBoxSvacant, ComboBox comboBoxLeader,
+            ComboBox comboBoxStaffHotel)
+        {
+            try
+            {
+                reposFactory.GetStaff().DeleteStaff(textBoxStaffId.Text);
+
+                textBoxStaffId.Text = string.Empty;
+                textBoxStaffName.Text = string.Empty;
+                textBoxStaffName.Enabled = true;
+                textBoxStaffSirName.Text = string.Empty;
+                textBoxStaffSirName.Enabled = true;
+                comboBoxStaffGender.Text = string.Empty;
+                comboBoxStaffGender.Enabled = true;
+                comboBoxSvacant.Text = string.Empty;
+                comboBoxSvacant.Enabled = true;
+                comboBoxLeader.Text = string.Empty;
+                comboBoxLeader.Enabled = true;
+                comboBoxStaffHotel.Text = string.Empty;
+                comboBoxStaffHotel.Enabled = true;
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+
+        // должность
+        public void EnterVacantBox(TextBox textBoxSvacantId, TextBox textBoxSvacantName, TextBox textBoxSvacantPay,
+            DataGridView dgvStaffPosition, int dgvIndex)
+        {
+            textBoxSvacantId.Text = dgvStaffPosition.Rows[dgvIndex].Cells[0].Value.ToString();
+            textBoxSvacantName.Text = dgvStaffPosition.Rows[dgvIndex].Cells[1].Value.ToString();
+            textBoxSvacantPay.Text = dgvStaffPosition.Rows[dgvIndex].Cells[2].Value.ToString();
+        }
+
+        public void EditStaffBoxVacant(ReposFactory reposFactory, TextBox textBoxSvacantId,
+            TextBox textBoxSvacantName, TextBox textBoxSvacantPay)
+        {
+            try
+            {
+                reposFactory.GetStaffPosition().EditStaffVacant(textBoxSvacantId.Text, textBoxSvacantName.Text, textBoxSvacantPay.Text);
+
+                textBoxSvacantId.Text = string.Empty;
+                textBoxSvacantId.Enabled = true;
+                textBoxSvacantName.Text = string.Empty;
+                textBoxSvacantName.Enabled = true;
+                textBoxSvacantPay.Text = string.Empty;
+                textBoxSvacantPay.Enabled = true;
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+
+        public void AddStaffVacant(ReposFactory reposFactory, TextBox textBoxSvacantId,
+            TextBox textBoxSvacantName, TextBox textBoxSvacantPay)
+        {
+            try
+            {
+                reposFactory.GetStaffPosition().AddStaffVacant(textBoxSvacantId.Text, textBoxSvacantName.Text, textBoxSvacantPay.Text);
+
+                textBoxSvacantId.Text = string.Empty;
+                textBoxSvacantId.Enabled = true;
+                textBoxSvacantName.Text = string.Empty;
+                textBoxSvacantName.Enabled = true;
+                textBoxSvacantPay.Text = string.Empty;
+                textBoxSvacantPay.Enabled = true;
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+
+        public void DeleteStaffVacant(ReposFactory reposFactory, TextBox textBoxSvacantId,
+            TextBox textBoxSvacantName, TextBox textBoxSvacantPay)
+        {
+            try
+            {
+                reposFactory.GetStaffPosition().DeleteStaffVacant(textBoxSvacantId.Text);
+
+                textBoxSvacantId.Text = string.Empty;
+                textBoxSvacantId.Enabled = true;
+                textBoxSvacantName.Text = string.Empty;
+                textBoxSvacantName.Enabled = true;
+                textBoxSvacantPay.Text = string.Empty;
+                textBoxSvacantPay.Enabled = true;
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
     }
 }

@@ -96,6 +96,7 @@ namespace Admin
                               "-----------------------------------------\n";
             }
         }
+
         public bool ValidNumCostOutput()
         {
             try
@@ -146,6 +147,7 @@ namespace Admin
                               "-----------------------------------------\n";
             }
         }
+
         public bool ValidEnterFirstBox(int dgvIndex)
         {
             try
@@ -174,6 +176,7 @@ namespace Admin
                               "-----------------------------------------\n";
             }
         }
+
         public bool ValidEnterSecondBox(int dgvIndex)
         {
             try
@@ -202,6 +205,7 @@ namespace Admin
                               "-----------------------------------------\n";
             }
         }
+
         public bool ValidEnterThirdBox(int dgvIndex)
         {
             try
@@ -231,8 +235,67 @@ namespace Admin
             }
         }
 
-        public bool ValidEditThirdBox(string textBoxHotelNum, string textBoxHotelName, string textBoxHotelOrg, string textBoxHotelC,
-                    string textBoxHotelS, string textBoxHotelPhone, string textBoxHotelClass, string textBoxHotelWeb)
+        public bool ValidEnterStaffBox(int dgvIndex)
+        {
+            try
+            {
+                if (dgvIndex < 0)
+                {
+                    ErrorString += "-- Индекс не может быть отрицательным\n";
+                    MessageBox.Show(@"Как вы получили отрицательный индекс?");
+                    ValidKey = false;
+                }
+
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
+        public bool ValidEnterVacantBox(int dgvIndex)
+        {
+            try
+            {
+                if (dgvIndex < 0)
+                {
+                    ErrorString += "-- Индекс не может быть отрицательным\n";
+                    MessageBox.Show(@"Как вы получили отрицательный индекс?");
+                    ValidKey = false;
+                }
+
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
+        public bool ValidEditThirdBox(string textBoxHotelNum, string textBoxHotelName, string textBoxHotelOrg,
+            string textBoxHotelC,
+            string textBoxHotelS, string textBoxHotelPhone, string textBoxHotelClass, string textBoxHotelWeb)
         {
             try
             {
@@ -304,6 +367,7 @@ namespace Admin
                               "-----------------------------------------\n";
             }
         }
+
         public bool ValidEditSecondBox(string numClass, string numClassCost)
         {
             try
@@ -328,7 +392,7 @@ namespace Admin
                         ValidKey = false;
                     }
                 }
-                
+
                 if (ValidKey)
                 {
                     return ValidKey;
@@ -347,7 +411,8 @@ namespace Admin
             }
         }
 
-        public bool ValidEditFirstBox(string textBoxNum, string textBoxNumHotel, string textBoxNumPlace, string textBoxNumClass)
+        public bool ValidEditFirstBox(string textBoxNum, string textBoxNumHotel, string textBoxNumPlace,
+            string textBoxNumClass)
         {
             try
             {
@@ -410,7 +475,8 @@ namespace Admin
             }
         }
 
-        public bool ValidDeleteFirstBox(string textBoxNum, string textBoxNumHotel, string textBoxNumPlace, string textBoxNumClass)
+        public bool ValidDeleteFirstBox(string textBoxNum, string textBoxNumHotel, string textBoxNumPlace,
+            string textBoxNumClass)
         {
             try
             {
@@ -472,7 +538,7 @@ namespace Admin
             }
         }
 
-        public bool ValidAddFirstBox(string textBoxNum, string textBoxNumHotel, string textBoxNumPlace, 
+        public bool ValidAddFirstBox(string textBoxNum, string textBoxNumHotel, string textBoxNumPlace,
             string textBoxNumClass, DataGridView dgvNum)
         {
             try
@@ -556,6 +622,242 @@ namespace Admin
                               "-----------------------------------------\n";
             }
         }
+
+        public bool ValidAddStaff(string textBoxStaffId, string textBoxStaffName, string textBoxStaffSirName,
+            string comboBoxStaffGender, string staffBirth, string comboBoxSvacant,
+            string comboBoxLeader, string comboBoxStaffHotel)
+        {
+            try
+            {
+                if (textBoxStaffId != string.Empty)
+                {
+                    ErrorString += "-- Поле ID должно быть пустым!\n";
+                    ValidKey = false;
+                }
+
+                if (textBoxStaffName == string.Empty)
+                {
+                    ErrorString += "-- Поле имени не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (textBoxStaffSirName == string.Empty)
+                {
+                    ErrorString += "-- Поле фамилии не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (comboBoxStaffGender == string.Empty)
+                {
+                    ErrorString += "-- Поле gender не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (staffBirth == string.Empty)
+                {
+                    ErrorString += "-- Поле даты рождения не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (comboBoxSvacant == string.Empty)
+                {
+                    ErrorString += "-- Поле должности не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (comboBoxLeader != string.Empty)
+                {
+                    if (Convert.ToInt32(comboBoxLeader) < 0)
+                    {
+                        ErrorString += "-- Лидер не может быть меньше нуля\n";
+                        ValidKey = false;
+                    }
+                }
+
+                if (comboBoxStaffHotel == string.Empty)
+                {
+                    ErrorString += "-- Поле отеля не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
+        public bool ValidEditStaff(string textBoxStaffId, string textBoxStaffName, string textBoxStaffSirName,
+            string comboBoxStaffGender, string staffBirth, string comboBoxSvacant,
+            string comboBoxLeader, string comboBoxStaffHotel)
+        {
+            try
+            {
+                if (textBoxStaffId == string.Empty)
+                {
+                    ErrorString += "-- Поле ID не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (textBoxStaffName == string.Empty)
+                {
+                    ErrorString += "-- Поле имени не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (textBoxStaffSirName == string.Empty)
+                {
+                    ErrorString += "-- Поле фамилии не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (comboBoxStaffGender == string.Empty)
+                {
+                    ErrorString += "-- Поле gender не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (staffBirth == string.Empty)
+                {
+                    ErrorString += "-- Поле даты рождения не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (comboBoxSvacant == string.Empty)
+                {
+                    ErrorString += "-- Поле должности не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (comboBoxLeader != string.Empty)
+                {
+                    if (Convert.ToInt32(comboBoxLeader) < 0)
+                    {
+                        ErrorString += "-- Лидер не может быть меньше нуля\n";
+                        ValidKey = false;
+                    }
+                }
+
+                if (comboBoxStaffHotel == string.Empty)
+                {
+                    ErrorString += "-- Поле отеля не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
+        public bool ValidDeleteStaff(string textBoxStaffId)
+        {
+            try
+            {
+                if (textBoxStaffId == string.Empty)
+                {
+                    ErrorString += "-- Поле ID не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
+        public bool ValidVacant(string textBoxSvacantId, string textBoxSvacantName, string textBoxSvacantPay)
+        {
+            try
+            {
+                if (textBoxSvacantId == string.Empty)
+                {
+                    ErrorString += "-- Поле ID не может быть пустым\n";
+                    ValidKey = false;
+                }
+                else
+                {
+                    if (Convert.ToInt32(textBoxSvacantId) <= 0)
+                    {
+                        ErrorString += "-- ID не может быть меньше или равняться нулю\n";
+                        ValidKey = false;
+                    }
+                }
+
+                if (textBoxSvacantName == string.Empty)
+                {
+                    ErrorString += "-- Поле названия должности не может быть пустым\n";
+                    ValidKey = false;
+                }
+
+                if (textBoxSvacantPay == string.Empty)
+                {
+                    ErrorString += "-- Поле стоимости не может быть пустым\n";
+                    ValidKey = false;
+                }
+                else
+                {
+                    if (Convert.ToInt32(textBoxSvacantId) < 0)
+                    {
+                        ErrorString += "-- Зарплата не может быть меньше нуля\n";
+                        ValidKey = false;
+                    }
+                }
+
+
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
 
         #endregion
 

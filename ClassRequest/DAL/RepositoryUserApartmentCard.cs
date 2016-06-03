@@ -59,8 +59,8 @@ namespace ClassRequest.DAL
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
                 command.Parameters.AddWithValue("@filterDate", filterDate);
 
-                NpgsqlDataReader readerUserTable = command.ExecuteReader();
-                foreach (DbDataRecord dbDataRecord in readerUserTable)
+                NpgsqlDataReader readerTable = command.ExecuteReader();
+                foreach (DbDataRecord dbDataRecord in readerTable)
                 {
                     userAppartmentCard = new TableUserAppartmentCard(
                         dbDataRecord["Client_ID"].ToString(),
@@ -73,7 +73,7 @@ namespace ClassRequest.DAL
 
                     userAppartmentCardList.Add(userAppartmentCard);
                 }
-                readerUserTable.Close();
+                readerTable.Close();
             }
             catch (NpgsqlException exp)
             {
@@ -107,8 +107,8 @@ namespace ClassRequest.DAL
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
-                NpgsqlDataReader readerUserTable = command.ExecuteReader();
-                foreach (DbDataRecord dbDataRecord in readerUserTable)
+                NpgsqlDataReader readerTable = command.ExecuteReader();
+                foreach (DbDataRecord dbDataRecord in readerTable)
                 {
                     userAppartmentCard = new TableUserAppartmentCard(
                         dbDataRecord["Client_ID"].ToString(),
@@ -121,7 +121,7 @@ namespace ClassRequest.DAL
 
                     userAppartmentCardList.Add(userAppartmentCard);
                 }
-                readerUserTable.Close();
+                readerTable.Close();
             }
             catch (NpgsqlException exp)
             {

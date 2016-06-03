@@ -74,7 +74,8 @@ namespace Admin
             dgvHotel.AllowUserToAddRows = false;
             if (dgvStaff.CurrentRow != null) dgvStaff.Rows[dgvStaff.CurrentRow.Index].Selected = false;
             dgvStaff.AllowUserToAddRows = false;
-            if (dgvStaffPosition.CurrentRow != null) dgvStaffPosition.Rows[dgvStaffPosition.CurrentRow.Index].Selected = false;
+            if (dgvStaffPosition.CurrentRow != null)
+                dgvStaffPosition.Rows[dgvStaffPosition.CurrentRow.Index].Selected = false;
             dgvStaffPosition.AllowUserToAddRows = false;
         }
 
@@ -355,10 +356,12 @@ namespace Admin
 
         private void btnEditHotel_Click(object sender, EventArgs e)
         {
-            if (_adminValidators.ValidEditThirdBox(textBoxHotelNum.Text, textBoxHotelName.Text, textBoxHotelOrg.Text, textBoxHotelC.Text,
-                    textBoxHotelS.Text, maskedTextBoxHotelPhone.Text, textBoxHotelClass.Text, textBoxHotelWeb.Text))
+            if (_adminValidators.ValidEditThirdBox(textBoxHotelNum.Text, textBoxHotelName.Text, textBoxHotelOrg.Text,
+                textBoxHotelC.Text,
+                textBoxHotelS.Text, maskedTextBoxHotelPhone.Text, textBoxHotelClass.Text, textBoxHotelWeb.Text))
             {
-                _adminRequest.EditThirdBox(_reposFactory, textBoxHotelNum, textBoxHotelName, textBoxHotelOrg, textBoxHotelC,
+                _adminRequest.EditThirdBox(_reposFactory, textBoxHotelNum, textBoxHotelName, textBoxHotelOrg,
+                    textBoxHotelC,
                     textBoxHotelS, maskedTextBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb);
 
                 _adminRequest.UserOutputFull(_reposFactory, dgvUser);
@@ -380,8 +383,9 @@ namespace Admin
             if (dgvHotel.CurrentRow != null && _adminValidators.ValidEnterThirdBox(dgvHotel.CurrentRow.Index))
             {
                 textBoxHotelNum.Enabled = false;
-                _adminRequest.EnterThirdBox(_reposFactory, textBoxHotelNum, textBoxHotelName, textBoxHotelOrg, textBoxHotelC,
-                    textBoxHotelS, maskedTextBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb, 
+                _adminRequest.EnterThirdBox(_reposFactory, textBoxHotelNum, textBoxHotelName, textBoxHotelOrg,
+                    textBoxHotelC,
+                    textBoxHotelS, maskedTextBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb,
                     dgvHotel, dgvHotel.CurrentRow.Index, groupBoxStat, labelAllUser, labelNewUser);
             }
         }
@@ -394,7 +398,8 @@ namespace Admin
                 if (dgvHotel.CurrentRow != null && _adminValidators.ValidEnterThirdBox(dgvHotel.CurrentRow.Index))
                 {
                     textBoxHotelNum.Enabled = false;
-                    _adminRequest.EnterThirdBox(_reposFactory, textBoxHotelNum, textBoxHotelName, textBoxHotelOrg, textBoxHotelC,
+                    _adminRequest.EnterThirdBox(_reposFactory, textBoxHotelNum, textBoxHotelName, textBoxHotelOrg,
+                        textBoxHotelC,
                         textBoxHotelS, maskedTextBoxHotelPhone, textBoxHotelClass, textBoxHotelWeb,
                         dgvHotel, dgvHotel.CurrentRow.Index, groupBoxStat, labelAllUser, labelNewUser);
                 }
@@ -411,17 +416,191 @@ namespace Admin
 
         private void dgvStaff_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (dgvStaff.CurrentRow != null && _adminValidators.ValidEnterStaffBox(dgvStaff.CurrentRow.Index))
+            {
+                textBoxStaffId.Enabled = false;
+                _adminRequest.EnterStaffBox(_reposFactory, textBoxStaffId, textBoxStaffName, textBoxStaffSirName,
+                    comboBoxStaffGender, dtpStaffBirth, comboBoxSvacant, comboBoxLeader, comboBoxStaffHotel,
+                    dgvStaff, dgvStaff.CurrentRow.Index);
+            }
         }
 
         private void dgvStaff_KeyUp(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Left || e.KeyCode == Keys.Up ||
+                e.KeyCode == Keys.Right)
+            {
+                if (dgvStaff.CurrentRow != null && _adminValidators.ValidEnterStaffBox(dgvStaff.CurrentRow.Index))
+                {
+                    textBoxStaffId.Enabled = false;
+                    _adminRequest.EnterStaffBox(_reposFactory, textBoxStaffId, textBoxStaffName, textBoxStaffSirName,
+                        comboBoxStaffGender, dtpStaffBirth, comboBoxSvacant, comboBoxLeader, comboBoxStaffHotel,
+                        dgvStaff, dgvStaff.CurrentRow.Index);
+                }
+            }
         }
 
         private void textBoxStaffName_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnClearFieldsStaff_Click(object sender, EventArgs e)
+        {
+            textBoxStaffId.Text = string.Empty;
+            textBoxStaffName.Text = string.Empty;
+            textBoxStaffName.Enabled = true;
+            textBoxStaffSirName.Text = string.Empty;
+            textBoxStaffSirName.Enabled = true;
+            comboBoxStaffGender.Text = string.Empty;
+            comboBoxStaffGender.Enabled = true;
+            comboBoxSvacant.Text = string.Empty;
+            comboBoxSvacant.Enabled = true;
+            comboBoxLeader.Text = string.Empty;
+            comboBoxLeader.Enabled = true;
+            comboBoxStaffHotel.Text = string.Empty;
+            comboBoxStaffHotel.Enabled = true;
+
+            _adminRequest.StaffOutput(_reposFactory, dgvStaff);
+            _adminRequest.UpdateComboBoxes(_reposFactory, comboBoxSvacant, comboBoxLeader, comboBoxStaffHotel);
+            if (dgvStaff.CurrentRow != null) dgvStaff.Rows[dgvStaff.CurrentRow.Index].Selected = false;
+        }
+
+        private void btnEditStaff_Click(object sender, EventArgs e)
+        {
+            if (_adminValidators.ValidEditStaff(textBoxStaffId.Text, textBoxStaffName.Text, textBoxStaffSirName.Text,
+                comboBoxStaffGender.Text, dtpStaffBirth.Text, comboBoxSvacant.Text, comboBoxLeader.Text,
+                comboBoxStaffHotel.Text))
+            {
+                _adminRequest.EditStaffBox(_reposFactory, textBoxStaffId, textBoxStaffName, textBoxStaffSirName,
+                    comboBoxStaffGender, dtpStaffBirth, comboBoxSvacant, comboBoxLeader, comboBoxStaffHotel);
+            }
+
+            _adminRequest.StaffOutput(_reposFactory, dgvStaff);
+            _adminRequest.UpdateComboBoxes(_reposFactory, comboBoxSvacant, comboBoxLeader, comboBoxStaffHotel);
+            if (dgvStaff.CurrentRow != null) dgvStaff.Rows[dgvStaff.CurrentRow.Index].Selected = false;
+        }
+
+        private void btnAddStaff_Click(object sender, EventArgs e)
+        {
+            //textBoxStaffId.Text = string.Empty;
+            if (_adminValidators.ValidAddStaff(textBoxStaffId.Text, textBoxStaffName.Text, textBoxStaffSirName.Text,
+                comboBoxStaffGender.Text, dtpStaffBirth.Text, comboBoxSvacant.Text, comboBoxLeader.Text,
+                comboBoxStaffHotel.Text))
+            {
+                _adminRequest.AddStaff(_reposFactory, textBoxStaffId, textBoxStaffName, textBoxStaffSirName,
+                    comboBoxStaffGender, dtpStaffBirth, comboBoxSvacant, comboBoxLeader, comboBoxStaffHotel);
+            }
+
+            _adminRequest.StaffOutput(_reposFactory, dgvStaff);
+            _adminRequest.UpdateComboBoxes(_reposFactory, comboBoxSvacant, comboBoxLeader, comboBoxStaffHotel);
+            if (dgvStaff.CurrentRow != null) dgvStaff.Rows[dgvStaff.CurrentRow.Index].Selected = false;
+        }
+
+        private void btnDeleteStaff_Click(object sender, EventArgs e)
+        {
+            if (_adminValidators.ValidDeleteStaff(textBoxStaffId.Text))
+            {
+                _adminRequest.DeleteStaff(_reposFactory, textBoxStaffId, textBoxStaffName, textBoxStaffSirName,
+                    comboBoxStaffGender, dtpStaffBirth, comboBoxSvacant, comboBoxLeader, comboBoxStaffHotel);
+            }
+
+            _adminRequest.StaffOutput(_reposFactory, dgvStaff);
+            _adminRequest.UpdateComboBoxes(_reposFactory, comboBoxSvacant, comboBoxLeader, comboBoxStaffHotel);
+            if (dgvStaff.CurrentRow != null) dgvStaff.Rows[dgvStaff.CurrentRow.Index].Selected = false;
+        }
+
+        private void btnClearFieldsVacant_Click(object sender, EventArgs e)
+        {
+            textBoxSvacantId.Text = string.Empty;
+            textBoxSvacantId.Enabled = true;
+            textBoxSvacantName.Text = string.Empty;
+            textBoxSvacantName.Enabled = true;
+            textBoxSvacantPay.Text = string.Empty;
+            textBoxSvacantPay.Enabled = true;
+
+            _adminRequest.StaffPositionOutput(_reposFactory, dgvStaffPosition);
+            if (dgvStaffPosition.CurrentRow != null)
+                dgvStaffPosition.Rows[dgvStaffPosition.CurrentRow.Index].Selected = false;
+        }
+
+        private void btnEditVacant_Click(object sender, EventArgs e)
+        {
+            if (_adminValidators.ValidVacant(textBoxSvacantId.Text, textBoxSvacantName.Text, textBoxSvacantPay.Text))
+            {
+                _adminRequest.EditStaffBoxVacant(_reposFactory, textBoxSvacantId, textBoxSvacantName,  textBoxSvacantPay);
+            }
+
+            _adminRequest.StaffPositionOutput(_reposFactory, dgvStaffPosition);
+            if (dgvStaffPosition.CurrentRow != null)
+                dgvStaffPosition.Rows[dgvStaffPosition.CurrentRow.Index].Selected = false;
+
+            _adminRequest.StaffOutput(_reposFactory, dgvStaff);
+            _adminRequest.UpdateComboBoxes(_reposFactory, comboBoxSvacant, comboBoxLeader, comboBoxStaffHotel);
+            if (dgvStaff.CurrentRow != null) dgvStaff.Rows[dgvStaff.CurrentRow.Index].Selected = false;
+        }
+
+        private void btnAddVacant_Click(object sender, EventArgs e)
+        {
+            if (_adminValidators.ValidVacant(textBoxSvacantId.Text, textBoxSvacantName.Text, textBoxSvacantPay.Text))
+            {
+                _adminRequest.AddStaffVacant(_reposFactory, textBoxSvacantId, textBoxSvacantName, textBoxSvacantPay);
+            }
+
+            _adminRequest.StaffPositionOutput(_reposFactory, dgvStaffPosition);
+            if (dgvStaffPosition.CurrentRow != null)
+                dgvStaffPosition.Rows[dgvStaffPosition.CurrentRow.Index].Selected = false;
+        }
+
+        private void btnDeleteVacant_Click(object sender, EventArgs e)
+        {
+            if (_adminValidators.ValidVacant(textBoxSvacantId.Text, textBoxSvacantName.Text, textBoxSvacantPay.Text))
+            {
+                _adminRequest.DeleteStaffVacant(_reposFactory, textBoxSvacantId, textBoxSvacantName, textBoxSvacantPay);
+            }
+
+            _adminRequest.StaffPositionOutput(_reposFactory, dgvStaffPosition);
+            if (dgvStaffPosition.CurrentRow != null)
+                dgvStaffPosition.Rows[dgvStaffPosition.CurrentRow.Index].Selected = false;
+
+            _adminRequest.StaffOutput(_reposFactory, dgvStaff);
+            _adminRequest.UpdateComboBoxes(_reposFactory, comboBoxSvacant, comboBoxLeader, comboBoxStaffHotel);
+            if (dgvStaff.CurrentRow != null) dgvStaff.Rows[dgvStaff.CurrentRow.Index].Selected = false;
+        }
+
+        private void dgvStaffPosition_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvStaffPosition.CurrentRow != null &&
+                _adminValidators.ValidEnterVacantBox(dgvStaffPosition.CurrentRow.Index))
+            {
+                textBoxSvacantId.Enabled = false;
+                _adminRequest.EnterVacantBox(textBoxSvacantId, textBoxSvacantName, textBoxSvacantPay, dgvStaffPosition,
+                    dgvStaffPosition.CurrentRow.Index);
+            }
+        }
+
+        private void dgvStaffPosition_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Left || e.KeyCode == Keys.Up ||
+                e.KeyCode == Keys.Right)
+            {
+                if (dgvStaffPosition.CurrentRow != null &&
+                    _adminValidators.ValidEnterVacantBox(dgvStaffPosition.CurrentRow.Index))
+                {
+                    textBoxSvacantId.Enabled = false;
+                    _adminRequest.EnterVacantBox(textBoxSvacantId, textBoxSvacantName, textBoxSvacantPay,
+                        dgvStaffPosition,
+                        dgvStaffPosition.CurrentRow.Index);
+                }
+            }
+        }
+
+        private void textBoxSvacantPay_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsPunctuation((e.KeyChar)))
             {
                 e.Handled = true;
             }

@@ -60,8 +60,8 @@ namespace ClassRequest.DAL
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
                 command.Parameters.AddWithValue("@filterDate", filterDate);
 
-                NpgsqlDataReader readerUserTable = command.ExecuteReader();
-                foreach (DbDataRecord dbDataRecord in readerUserTable)
+                NpgsqlDataReader readerTable = command.ExecuteReader();
+                foreach (DbDataRecord dbDataRecord in readerTable)
                 {
                     tableApartmentAClass = new TableApartmentAClass(
                         dbDataRecord["Ap_ID"].ToString(),
@@ -72,7 +72,7 @@ namespace ClassRequest.DAL
 
                     tableApartmentList.Add(tableApartmentAClass);
                 }
-                readerUserTable.Close();
+                readerTable.Close();
             }
             catch (NpgsqlException exp)
             {
@@ -103,8 +103,8 @@ namespace ClassRequest.DAL
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
-                NpgsqlDataReader readerUserTable = command.ExecuteReader();
-                foreach (DbDataRecord dbDataRecord in readerUserTable)
+                NpgsqlDataReader readerTable = command.ExecuteReader();
+                foreach (DbDataRecord dbDataRecord in readerTable)
                 {
                     tableApartmentAClass = new TableApartmentAClass(
                         dbDataRecord["Ap_ID"].ToString(),
@@ -115,7 +115,7 @@ namespace ClassRequest.DAL
 
                     tableApartmentList.Add(tableApartmentAClass);
                 }
-                readerUserTable.Close();
+                readerTable.Close();
             }
             catch (NpgsqlException exp)
             {
@@ -146,9 +146,9 @@ namespace ClassRequest.DAL
                 //sqlConnect.GetNewSqlConn().OpenConn();
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
-                NpgsqlDataReader readerUserTable = command.ExecuteReader();
+                NpgsqlDataReader readerTable = command.ExecuteReader();
 
-                foreach (DbDataRecord dbDataRecord in readerUserTable)
+                foreach (DbDataRecord dbDataRecord in readerTable)
                 {
                     tableApartmentAClass = new TableApartmentAClass(
                         dbDataRecord["Ap_ID"].ToString(),
@@ -159,7 +159,7 @@ namespace ClassRequest.DAL
 
                     tableApartmentList.Add(tableApartmentAClass);
                 }
-                readerUserTable.Close();
+                readerTable.Close();
             }
             catch (NpgsqlException exp)
             {

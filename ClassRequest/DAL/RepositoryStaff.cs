@@ -52,9 +52,9 @@ namespace ClassRequest.DAL
                 //sqlConnect.GetNewSqlConn().OpenConn();
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
-                NpgsqlDataReader readerUserTable = command.ExecuteReader();
+                NpgsqlDataReader readerTable = command.ExecuteReader();
 
-                foreach (DbDataRecord dbDataRecord in readerUserTable)
+                foreach (DbDataRecord dbDataRecord in readerTable)
                 {
                     tableStaff = new TableStaff(
                         dbDataRecord["Staff_ID"].ToString(),
@@ -67,7 +67,7 @@ namespace ClassRequest.DAL
                         dbDataRecord["RegBuilding"].ToString());
                     tableStaffList.Add(tableStaff);
                 }
-                readerUserTable.Close();
+                readerTable.Close();
             }
             catch (NpgsqlException exp)
             {
@@ -100,9 +100,9 @@ namespace ClassRequest.DAL
                 //sqlConnect.GetNewSqlConn().OpenConn();
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
-                NpgsqlDataReader readerUserTable = command.ExecuteReader();
+                NpgsqlDataReader readerTable = command.ExecuteReader();
 
-                foreach (DbDataRecord dbDataRecord in readerUserTable)
+                foreach (DbDataRecord dbDataRecord in readerTable)
                 {
                     tableStaff = new TableStaff(
                         dbDataRecord["Staff_ID"].ToString(),
@@ -115,7 +115,7 @@ namespace ClassRequest.DAL
                         dbDataRecord["HotelName"].ToString());
                     tableStaffList.Add(tableStaff);
                 }
-                readerUserTable.Close();
+                readerTable.Close();
             }
             catch (NpgsqlException exp)
             {
@@ -132,11 +132,211 @@ namespace ClassRequest.DAL
 
         #endregion
 
+        #region TableUpdate
+
+        public void EditStaff(string textBoxStaffId, string textBoxStaffName, string textBoxStaffSirName,
+            string comboBoxStaffGender, string staffBirth, string comboBoxSvacant,
+            string comboBoxLeader, string comboBoxStaffHotel)
+        {
+            if (comboBoxLeader != string.Empty)
+            {
+                try
+                {
+                    // открываем соединение
+                    //sqlConnect.GetNewSqlConn().OpenConn();
+                    string commPart =
+                        "SELECT * FROM \"hotel\".edit_staff_func_withSuper(" +
+                        " @textBoxStaffId, @textBoxStaffName, @textBoxStaffSirName, @comboBoxStaffGender," +
+                        " @staffBirth::date, @comboBoxSvacant, @comboBoxLeader, @comboBoxStaffHotel" +
+                        " );";
+                    NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
+
+                    command.Parameters.AddWithValue("@textBoxStaffId", Convert.ToInt32(textBoxStaffId));
+                    command.Parameters.AddWithValue("@textBoxStaffName", textBoxStaffName);
+                    command.Parameters.AddWithValue("@textBoxStaffSirName", textBoxStaffSirName);
+                    command.Parameters.AddWithValue("@comboBoxStaffGender", comboBoxStaffGender);
+                    command.Parameters.AddWithValue("@staffBirth", Convert.ToDateTime(staffBirth));
+                    command.Parameters.AddWithValue("@comboBoxSvacant", comboBoxSvacant);
+                    command.Parameters.AddWithValue("@comboBoxLeader", Convert.ToInt32(comboBoxLeader));
+                    command.Parameters.AddWithValue("@comboBoxStaffHotel", comboBoxStaffHotel);
+
+                    NpgsqlDataReader readerTable = command.ExecuteReader();
+                    readerTable.Close();
+
+                    MessageBox.Show(@"Данные успешно измененны");
+                }
+                catch
+                    (Npgsql.PostgresException
+                        exp)
+                {
+                    // MessageBox.Show("Не удалось выполнить запрос!");
+                    MessageBox.Show(Convert.ToString(exp));
+                }
+                finally
+                {
+                    // соединение закрыто принудительно
+                    //sqlConnect.GetNewSqlConn().CloseConn();
+                }
+            }
+            else
+            {
+                try
+                {
+                    // открываем соединение
+                    //sqlConnect.GetNewSqlConn().OpenConn();
+                    string commPart =
+                        "SELECT * FROM \"hotel\".edit_staff_func_withOutSuper(" +
+                        " @textBoxStaffId, @textBoxStaffName, @textBoxStaffSirName, @comboBoxStaffGender," +
+                        " @staffBirth::date, @comboBoxSvacant, @comboBoxStaffHotel" +
+                        " );";
+                    NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
+
+                    command.Parameters.AddWithValue("@textBoxStaffId", Convert.ToInt32(textBoxStaffId));
+                    command.Parameters.AddWithValue("@textBoxStaffName", textBoxStaffName);
+                    command.Parameters.AddWithValue("@textBoxStaffSirName", textBoxStaffSirName);
+                    command.Parameters.AddWithValue("@comboBoxStaffGender", comboBoxStaffGender);
+                    command.Parameters.AddWithValue("@staffBirth", Convert.ToDateTime(staffBirth));
+                    command.Parameters.AddWithValue("@comboBoxSvacant", comboBoxSvacant);
+                    command.Parameters.AddWithValue("@comboBoxStaffHotel", comboBoxStaffHotel);
+
+                    NpgsqlDataReader readerTable = command.ExecuteReader();
+                    readerTable.Close();
+
+                    MessageBox.Show(@"Данные успешно измененны");
+                }
+                catch
+                    (Npgsql.PostgresException
+                        exp)
+                {
+                    // MessageBox.Show("Не удалось выполнить запрос!");
+                    MessageBox.Show(Convert.ToString(exp));
+                }
+                finally
+                {
+                    // соединение закрыто принудительно
+                    //sqlConnect.GetNewSqlConn().CloseConn();
+                }
+            }
+        }
+
+        #endregion
+
         #region TableInsert
+
+        public void AddStaff(string textBoxStaffId, string textBoxStaffName, string textBoxStaffSirName,
+    string comboBoxStaffGender, string staffBirth, string comboBoxSvacant,
+    string comboBoxLeader, string comboBoxStaffHotel)
+        {
+            if (comboBoxLeader != string.Empty)
+            {
+                try
+                {
+                    // открываем соединение
+                    //sqlConnect.GetNewSqlConn().OpenConn();
+                    string commPart =
+                        "SELECT * FROM \"hotel\".add_staff_func_withSuper(" +
+                        " @textBoxStaffName, @textBoxStaffSirName, @comboBoxStaffGender," +
+                        " @staffBirth::date, @comboBoxSvacant, @comboBoxLeader, @comboBoxStaffHotel" +
+                        " );";
+                    NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
+
+                    command.Parameters.AddWithValue("@textBoxStaffName", textBoxStaffName);
+                    command.Parameters.AddWithValue("@textBoxStaffSirName", textBoxStaffSirName);
+                    command.Parameters.AddWithValue("@comboBoxStaffGender", comboBoxStaffGender);
+                    command.Parameters.AddWithValue("@staffBirth", Convert.ToDateTime(staffBirth));
+                    command.Parameters.AddWithValue("@comboBoxSvacant", comboBoxSvacant);
+                    command.Parameters.AddWithValue("@comboBoxLeader", Convert.ToInt32(comboBoxLeader));
+                    command.Parameters.AddWithValue("@comboBoxStaffHotel", comboBoxStaffHotel);
+
+                    NpgsqlDataReader readerTable = command.ExecuteReader();
+                    readerTable.Close();
+
+                    MessageBox.Show(@"Данные успешно измененны");
+                }
+                catch
+                    (Npgsql.PostgresException
+                        exp)
+                {
+                    // MessageBox.Show("Не удалось выполнить запрос!");
+                    MessageBox.Show(Convert.ToString(exp));
+                }
+                finally
+                {
+                    // соединение закрыто принудительно
+                    //sqlConnect.GetNewSqlConn().CloseConn();
+                }
+            }
+            else
+            {
+                try
+                {
+                    // открываем соединение
+                    //sqlConnect.GetNewSqlConn().OpenConn();
+                    string commPart =
+                        "SELECT * FROM \"hotel\".add_staff_func_withOutSuper(" +
+                        " @textBoxStaffName, @textBoxStaffSirName, @comboBoxStaffGender," +
+                        " @staffBirth::date, @comboBoxSvacant, @comboBoxStaffHotel" +
+                        " );";
+                    NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
+
+                    command.Parameters.AddWithValue("@textBoxStaffName", textBoxStaffName);
+                    command.Parameters.AddWithValue("@textBoxStaffSirName", textBoxStaffSirName);
+                    command.Parameters.AddWithValue("@comboBoxStaffGender", comboBoxStaffGender);
+                    command.Parameters.AddWithValue("@staffBirth", Convert.ToDateTime(staffBirth));
+                    command.Parameters.AddWithValue("@comboBoxSvacant", comboBoxSvacant);
+                    command.Parameters.AddWithValue("@comboBoxStaffHotel", comboBoxStaffHotel);
+
+                    NpgsqlDataReader readerTable = command.ExecuteReader();
+                    readerTable.Close();
+
+                    MessageBox.Show(@"Данные успешно измененны");
+                }
+                catch
+                    (Npgsql.PostgresException
+                        exp)
+                {
+                    // MessageBox.Show("Не удалось выполнить запрос!");
+                    MessageBox.Show(Convert.ToString(exp));
+                }
+                finally
+                {
+                    // соединение закрыто принудительно
+                    //sqlConnect.GetNewSqlConn().CloseConn();
+                }
+            }
+        }
 
         #endregion
 
         #region TableDelete
+
+        public void DeleteStaff(string textBoxNum)
+        {
+            try
+            {
+                // открываем соединение
+                //sqlConnect.GetNewSqlConn().OpenConn();
+                string commPart =
+                    "DELETE FROM \"hotel\".\"Staff\"" +
+                    " WHERE staff_id = @textBoxNum ;";
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
+
+                command.Parameters.AddWithValue("@textBoxNum", Convert.ToInt32(textBoxNum));
+                command.ExecuteNonQuery();
+
+                MessageBox.Show(@"Успешно удалено!");
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+            finally
+            {
+                // соединение закрыто принудительно
+                //sqlConnect.GetNewSqlConn().CloseConn();
+            }
+        }
 
         #endregion
 

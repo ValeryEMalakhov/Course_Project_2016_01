@@ -54,9 +54,9 @@ namespace ClassRequest.Login
                 //sqlConnect.GetNewSqlConn().OpenConn();
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
-                NpgsqlDataReader readerUserTable = command.ExecuteReader();
+                NpgsqlDataReader readerTable = command.ExecuteReader();
 
-                foreach (DbDataRecord dbDataRecord in readerUserTable)
+                foreach (DbDataRecord dbDataRecord in readerTable)
                 {
                     tableLogin = new TableLogin(
                         dbDataRecord["Login_ID"].ToString(),
@@ -64,7 +64,7 @@ namespace ClassRequest.Login
                         dbDataRecord["Vacant"].ToString());
                     tableLoginList.Add(tableLogin);
                 }
-                readerUserTable.Close();
+                readerTable.Close();
             }
             catch (NpgsqlException exp)
             {

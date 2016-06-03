@@ -57,9 +57,9 @@ namespace ClassRequest.DAL
                 //sqlConnect.GetNewSqlConn().OpenConn();
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
-                NpgsqlDataReader readerUserTable = command.ExecuteReader();
+                NpgsqlDataReader readerTable = command.ExecuteReader();
 
-                foreach (DbDataRecord dbDataRecord in readerUserTable)
+                foreach (DbDataRecord dbDataRecord in readerTable)
                 {
                     tableACard = new TableACard(
                         dbDataRecord["Client_ID"].ToString(),
@@ -69,7 +69,7 @@ namespace ClassRequest.DAL
                         dbDataRecord["StComment"].ToString());
                     tableACardList.Add(tableACard);
                 }
-                readerUserTable.Close();
+                readerTable.Close();
             }
             catch (NpgsqlException exp)
             {

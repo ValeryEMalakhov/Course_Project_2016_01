@@ -50,9 +50,9 @@ namespace ClassRequest.DAL
                 //sqlConnect.GetNewSqlConn().OpenConn();
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
-                NpgsqlDataReader readerUserTable = command.ExecuteReader();
+                NpgsqlDataReader readerTable = command.ExecuteReader();
 
-                foreach (DbDataRecord dbDataRecord in readerUserTable)
+                foreach (DbDataRecord dbDataRecord in readerTable)
                 {
                     tableClient = new TableClient(
                         dbDataRecord["Client_ID"].ToString(),
@@ -64,7 +64,7 @@ namespace ClassRequest.DAL
                         dbDataRecord["Phone"].ToString());
                     tableClientList.Add(tableClient);
                 }
-                readerUserTable.Close();
+                readerTable.Close();
             }
             catch (NpgsqlException exp)
             {

@@ -51,9 +51,9 @@ namespace ClassRequest.DAL
                 //sqlConnect.GetNewSqlConn().OpenConn();
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
-                NpgsqlDataReader readerUserTable = command.ExecuteReader();
+                NpgsqlDataReader readerTable = command.ExecuteReader();
 
-                foreach (DbDataRecord dbDataRecord in readerUserTable)
+                foreach (DbDataRecord dbDataRecord in readerTable)
                 {
                     tableApartment = new TableApartment(
                         dbDataRecord["Ap_ID"].ToString(),
@@ -63,7 +63,7 @@ namespace ClassRequest.DAL
 
                     tableApartmentList.Add(tableApartment);
                 }
-                readerUserTable.Close();
+                readerTable.Close();
             }
             catch (NpgsqlException exp)
             {
