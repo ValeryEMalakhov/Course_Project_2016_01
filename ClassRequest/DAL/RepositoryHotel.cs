@@ -1,21 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Reflection;
-using System.Collections;
 using System.Data.Common;
-using System.Data.Entity.SqlServer;
-using System.Security.Cryptography;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using ClassRequest.DAL;
 using ClassRequest.SingleTable;
 using Npgsql;
 
@@ -45,9 +31,8 @@ namespace ClassRequest.DAL
             {
                 string commPart =
                     "SELECT *" +
-                    " FROM \"hotel\".\"Hotel\";";
-                // открываем соединение
-                //sqlConnect.GetNewSqlConn().OpenConn();
+                    " FROM \"hotel\".\"Hotel\"" +
+                    " ORDER BY Hotel_ID;";
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
                 NpgsqlDataReader readerTable = command.ExecuteReader();
@@ -72,11 +57,6 @@ namespace ClassRequest.DAL
                 // MessageBox.Show("Не удалось выполнить запрос!");
                 MessageBox.Show(Convert.ToString(exp));
             }
-            finally
-            {
-                // соединение закрыто принудительно
-                //sqlConnect.GetNewSqlConn().CloseConn();
-            }
             return tableHotelList;
         }
 
@@ -89,8 +69,6 @@ namespace ClassRequest.DAL
         {
             try
             {
-                // открываем соединение
-                //sqlConnect.GetNewSqlConn().OpenConn();
                 string commPart =
                     "UPDATE \"hotel\".\"Hotel\"" +
                     " SET HotelName = @textBoxHotelName," +
@@ -124,24 +102,7 @@ namespace ClassRequest.DAL
                 // MessageBox.Show("Не удалось выполнить запрос!");
                 MessageBox.Show(Convert.ToString(exp));
             }
-            finally
-            {
-                // соединение закрыто принудительно
-                //sqlConnect.GetNewSqlConn().CloseConn();
-            }
         }
-
-        #endregion
-
-        #region TableInsert
-
-        #endregion
-
-        #region TableDelete
-
-        #endregion
-
-        #region Other
 
         #endregion
     }

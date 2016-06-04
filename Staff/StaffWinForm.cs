@@ -1,25 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
-using System.Threading;
-using System.Reflection;
-using System.Collections;
-using System.Data.Entity.SqlServer;
-using System.Security.Cryptography;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using Npgsql;
 using ClassRequest;
-using ClassRequest.DAL;
 using Staff.Sided_Form;
 
 namespace Staff
@@ -72,16 +53,14 @@ namespace Staff
             dgvNum.AllowUserToAddRows = false;
             if (dgvHotel.CurrentRow != null) dgvHotel.Rows[dgvHotel.CurrentRow.Index].Selected = false;
             dgvHotel.AllowUserToAddRows = false;
+
+            toolTipAddReq.SetToolTip(btnAddUser, @"Вселить нового гостя");
+            toolTipDeleteUser.SetToolTip(btnDeleteUser, @"Досрочно выселить гостя");
         }
 
         private void StaffWinForm_FormClosing(object sender, FormClosingEventArgs e)
         {
 
-        }
-
-        private void btnUpdateUser_Click(object sender, EventArgs e)
-        {
-            // Эта кнопка мертва
         }
 
         private void btnAddUser_Click(object sender, EventArgs e)
@@ -98,11 +77,6 @@ namespace Staff
             {
                 _staffRequest.NumOutput(_reposFactory, dgvNum, dateTPUser);
             }
-        }
-
-        private void btnUpdateNum_Click(object sender, EventArgs e)
-        {
-            // Эта кнопка мертва тоже
         }
 
         private void btnDeleteUser_Click(object sender, EventArgs e)
@@ -217,6 +191,12 @@ namespace Staff
             {
                 e.Handled = true;
             }
+        }
+
+        private void btnUpdateNum_Click_1(object sender, EventArgs e)
+        {
+            _staffRequest.NumOutputFull(_reposFactory, dgvNum);
+            if (dgvNum.CurrentRow != null) dgvNum.Rows[dgvNum.CurrentRow.Index].Selected = false;
         }
     }
 }

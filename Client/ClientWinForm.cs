@@ -1,24 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
-using System.Threading;
-using System.Reflection;
-using System.Collections;
-using System.Security.Cryptography;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using Npgsql;
 using ClassRequest;
-using ClassRequest.DAL;
 using Client.Sided_Form;
 
 namespace Client
@@ -66,9 +48,9 @@ namespace Client
 
         private void ClientWinForm_Load(object sender, EventArgs e)
         {
-            if (_clientValidators.ValidNumOutput(dateTPNum))
+            if (_clientValidators.ValidNumOutput(dtpCheckIn))
             {
-                _clientRequest.NumOutput(_reposFactory, dgvNum, dateTPNum);
+                _clientRequest.NumOutput(_reposFactory, dgvNum, dtpCheckIn, dtpCheckOut);
             }
             if (_clientValidators.ValidLogOutput(_clientId))
             {
@@ -85,6 +67,9 @@ namespace Client
 
             _clientRequest.InputGroupBoxName(_reposFactory, _clientId, groupBoxUserInfo);
             _clientRequest.InputHotelName(_reposFactory, lLabelHotelName, labelHotelPhone);
+
+            dtpCheckIn.Value = DateTime.Today;
+            dtpCheckOut.Value = DateTime.Today;
         }
 
         private void ClientWinForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -95,17 +80,26 @@ namespace Client
         private void btnUpdateNum_Click(object sender, EventArgs e)
         {
             // кнопка мертва
-            if (_clientValidators.ValidNumOutput(dateTPNum))
+            if (_clientValidators.ValidNumOutput(dtpCheckIn))
             {
-                _clientRequest.NumOutput(_reposFactory, dgvNum, dateTPNum);
+                _clientRequest.NumOutput(_reposFactory, dgvNum, dtpCheckIn, dtpCheckOut);
             }
         }
 
         private void dateTPNum_ValueChanged(object sender, EventArgs e)
         {
-            if (_clientValidators.ValidNumOutput(dateTPNum))
+            if (dtpCheckIn.Value < DateTime.Now)
             {
-                _clientRequest.NumOutput(_reposFactory, dgvNum, dateTPNum);
+                dtpCheckIn.Value = DateTime.Now;
+            }
+            if (dtpCheckOut.Value < dtpCheckIn.Value)
+            {
+                dtpCheckOut.Value = dtpCheckIn.Value.AddDays(1);
+            }
+
+            if (_clientValidators.ValidNumOutput(dtpCheckIn))
+            {
+                _clientRequest.NumOutput(_reposFactory, dgvNum, dtpCheckIn, dtpCheckOut);
             }
         }
 
@@ -113,14 +107,15 @@ namespace Client
         {
             if (dgvNum.CurrentRow != null)
             {
-                AddForm addUser = new AddForm(_reposFactory, _clientId, dgvNum.Rows[dgvNum.CurrentRow.Index].Cells[0].Value.ToString());
+                AddForm addUser = new AddForm(_reposFactory, _clientId, dgvNum.Rows[dgvNum.CurrentRow.Index].Cells[0].Value.ToString(),
+                    dtpCheckIn.Text, dtpCheckOut.Text);
                 addUser.ShowDialog();
             }
 
             // обновляем таблицу
-            if (_clientValidators.ValidNumOutput(dateTPNum))
+            if (_clientValidators.ValidNumOutput(dtpCheckIn))
             {
-                _clientRequest.NumOutput(_reposFactory, dgvNum, dateTPNum);
+                _clientRequest.NumOutput(_reposFactory, dgvNum, dtpCheckIn, dtpCheckOut);
             }
             if (_clientValidators.ValidLogOutput(_clientId))
             {
@@ -153,9 +148,9 @@ namespace Client
             finally
             {
                 // обновляем таблицу
-                if (_clientValidators.ValidNumOutput(dateTPNum))
+                if (_clientValidators.ValidNumOutput(dtpCheckIn))
                 {
-                    _clientRequest.NumOutput(_reposFactory, dgvNum, dateTPNum);
+                    _clientRequest.NumOutput(_reposFactory, dgvNum, dtpCheckIn, dtpCheckOut);
                 }
                 if (_clientValidators.ValidLogOutput(_clientId))
                 {
@@ -177,9 +172,9 @@ namespace Client
             }
 
             // обновляем таблицу
-            if (_clientValidators.ValidNumOutput(dateTPNum))
+            if (_clientValidators.ValidNumOutput(dtpCheckIn))
             {
-                _clientRequest.NumOutput(_reposFactory, dgvNum, dateTPNum);
+                _clientRequest.NumOutput(_reposFactory, dgvNum, dtpCheckIn, dtpCheckOut);
             }
             if (_clientValidators.ValidLogOutput(_clientId))
             {

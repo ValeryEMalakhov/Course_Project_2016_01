@@ -1,27 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
-using System.Threading;
-using System.Reflection;
-using System.Collections;
-using System.Data.Entity.SqlServer;
-using System.Data.OleDb;
-using System.Security.Cryptography;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using Npgsql;
 using ClassRequest;
-using ClassRequest.DAL;
-using ClassRequest.SingleTable;
 
 namespace Staff.Sided_Form
 {
@@ -77,7 +56,7 @@ namespace Staff.Sided_Form
             // обновляем список свободных комнат
             if (_staffValidators.ValidUpdateComboBoxApId(comboBoxApId, dtpCheckIn))
             {
-                _staffRequest.UpdateComboBoxApId(_reposFactory, comboBoxApId, dtpCheckIn);
+                _staffRequest.UpdateComboBoxApId(_reposFactory, comboBoxApId, dtpCheckIn, dtpCheckOut);
             }
             if (_staffValidators.ValidGetUserIdList(textBoxPass))
             {
@@ -99,7 +78,7 @@ namespace Staff.Sided_Form
 
             if (_staffValidators.ValidUpdateComboBoxApId(comboBoxApId, dtpCheckIn))
             {
-                _staffRequest.UpdateComboBoxApId(_reposFactory, comboBoxApId, dtpCheckIn);
+                _staffRequest.UpdateComboBoxApId(_reposFactory, comboBoxApId, dtpCheckIn, dtpCheckOut);
             }
             if (comboBoxApId.Text != string.Empty)
             {
@@ -174,6 +153,35 @@ namespace Staff.Sided_Form
                             labelRoomQ, labelRoomT, labelRoomC);
                     }
                 }
+            }
+        }
+
+        private void comboBoxApId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void textBoxFirstName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void maskedTextBoxPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

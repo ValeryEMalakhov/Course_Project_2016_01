@@ -1,21 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Reflection;
-using System.Collections;
 using System.Data.Common;
-using System.Data.Entity.SqlServer;
-using System.Security.Cryptography;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using ClassRequest.DAL;
 using ClassRequest.SingleTable;
 using Npgsql;
 
@@ -48,8 +34,6 @@ namespace ClassRequest.DAL
                     " FROM \"hotel\".\"Staff\"" +
                     " ORDER BY Staff_ID" +
                     " ;";
-                // открываем соединение
-                //sqlConnect.GetNewSqlConn().OpenConn();
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
                 NpgsqlDataReader readerTable = command.ExecuteReader();
@@ -74,11 +58,6 @@ namespace ClassRequest.DAL
                 // MessageBox.Show("Не удалось выполнить запрос!");
                 MessageBox.Show(Convert.ToString(exp));
             }
-            finally
-            {
-                // соединение закрыто принудительно
-                //sqlConnect.GetNewSqlConn().CloseConn();
-            }
             return tableStaffList;
         }
 
@@ -96,8 +75,6 @@ namespace ClassRequest.DAL
                     "  AND s.RegBuilding = h.Hotel_Id" +
                     " ORDER BY s.Staff_Id" +
                     ";";
-                // открываем соединение
-                //sqlConnect.GetNewSqlConn().OpenConn();
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
                 NpgsqlDataReader readerTable = command.ExecuteReader();
@@ -122,11 +99,6 @@ namespace ClassRequest.DAL
                 // MessageBox.Show("Не удалось выполнить запрос!");
                 MessageBox.Show(Convert.ToString(exp));
             }
-            finally
-            {
-                // соединение закрыто принудительно
-                //sqlConnect.GetNewSqlConn().CloseConn();
-            }
             return tableStaffList;
         }
 
@@ -142,8 +114,6 @@ namespace ClassRequest.DAL
             {
                 try
                 {
-                    // открываем соединение
-                    //sqlConnect.GetNewSqlConn().OpenConn();
                     string commPart =
                         "SELECT * FROM \"hotel\".edit_staff_func_withSuper(" +
                         " @textBoxStaffId, @textBoxStaffName, @textBoxStaffSirName, @comboBoxStaffGender," +
@@ -166,24 +136,16 @@ namespace ClassRequest.DAL
                     MessageBox.Show(@"Данные успешно измененны");
                 }
                 catch
-                    (Npgsql.PostgresException
-                        exp)
+                (Npgsql.PostgresException exp)
                 {
                     // MessageBox.Show("Не удалось выполнить запрос!");
                     MessageBox.Show(Convert.ToString(exp));
-                }
-                finally
-                {
-                    // соединение закрыто принудительно
-                    //sqlConnect.GetNewSqlConn().CloseConn();
                 }
             }
             else
             {
                 try
                 {
-                    // открываем соединение
-                    //sqlConnect.GetNewSqlConn().OpenConn();
                     string commPart =
                         "SELECT * FROM \"hotel\".edit_staff_func_withOutSuper(" +
                         " @textBoxStaffId, @textBoxStaffName, @textBoxStaffSirName, @comboBoxStaffGender," +
@@ -205,16 +167,10 @@ namespace ClassRequest.DAL
                     MessageBox.Show(@"Данные успешно измененны");
                 }
                 catch
-                    (Npgsql.PostgresException
-                        exp)
+                    (Npgsql.PostgresException exp)
                 {
                     // MessageBox.Show("Не удалось выполнить запрос!");
                     MessageBox.Show(Convert.ToString(exp));
-                }
-                finally
-                {
-                    // соединение закрыто принудительно
-                    //sqlConnect.GetNewSqlConn().CloseConn();
                 }
             }
         }
@@ -231,8 +187,6 @@ namespace ClassRequest.DAL
             {
                 try
                 {
-                    // открываем соединение
-                    //sqlConnect.GetNewSqlConn().OpenConn();
                     string commPart =
                         "SELECT * FROM \"hotel\".add_staff_func_withSuper(" +
                         " @textBoxStaffName, @textBoxStaffSirName, @comboBoxStaffGender," +
@@ -260,18 +214,11 @@ namespace ClassRequest.DAL
                     // MessageBox.Show("Не удалось выполнить запрос!");
                     MessageBox.Show(Convert.ToString(exp));
                 }
-                finally
-                {
-                    // соединение закрыто принудительно
-                    //sqlConnect.GetNewSqlConn().CloseConn();
-                }
             }
             else
             {
                 try
                 {
-                    // открываем соединение
-                    //sqlConnect.GetNewSqlConn().OpenConn();
                     string commPart =
                         "SELECT * FROM \"hotel\".add_staff_func_withOutSuper(" +
                         " @textBoxStaffName, @textBoxStaffSirName, @comboBoxStaffGender," +
@@ -298,11 +245,6 @@ namespace ClassRequest.DAL
                     // MessageBox.Show("Не удалось выполнить запрос!");
                     MessageBox.Show(Convert.ToString(exp));
                 }
-                finally
-                {
-                    // соединение закрыто принудительно
-                    //sqlConnect.GetNewSqlConn().CloseConn();
-                }
             }
         }
 
@@ -314,8 +256,6 @@ namespace ClassRequest.DAL
         {
             try
             {
-                // открываем соединение
-                //sqlConnect.GetNewSqlConn().OpenConn();
                 string commPart =
                     "DELETE FROM \"hotel\".\"Staff\"" +
                     " WHERE staff_id = @textBoxNum ;";
@@ -331,16 +271,7 @@ namespace ClassRequest.DAL
                 // MessageBox.Show("Не удалось выполнить запрос!");
                 MessageBox.Show(Convert.ToString(exp));
             }
-            finally
-            {
-                // соединение закрыто принудительно
-                //sqlConnect.GetNewSqlConn().CloseConn();
-            }
         }
-
-        #endregion
-
-        #region Other
 
         #endregion
     }

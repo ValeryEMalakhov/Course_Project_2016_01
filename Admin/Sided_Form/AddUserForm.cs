@@ -1,27 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
-using System.Threading;
-using System.Reflection;
-using System.Collections;
-using System.Data.Entity.SqlServer;
-using System.Data.OleDb;
-using System.Security.Cryptography;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using Npgsql;
 using ClassRequest;
-using ClassRequest.DAL;
-using ClassRequest.SingleTable;
 
 namespace Admin.Sided_Form
 {
@@ -57,7 +36,10 @@ namespace Admin.Sided_Form
             dtpCheckIn.Value = DateTime.Today;
             dtpCheckOut.Value = DateTime.Today;
 
-            _adminValidators.ValidUpdateComboBoxApId(comboBoxApId, dtpCheckIn);
+            if (_adminValidators.ValidUpdateComboBoxApId(comboBoxApId, dtpCheckIn))
+            {
+                _adminRequest.UpdateComboBoxApId(_reposFactory, comboBoxApId, dtpCheckIn, dtpCheckOut);
+            }
         }
 
         private void AddUserForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -77,12 +59,14 @@ namespace Admin.Sided_Form
             // обновляем список свободных комнат
             if (_adminValidators.ValidUpdateComboBoxApId(comboBoxApId, dtpCheckIn))
             {
-                _adminRequest.UpdateComboBoxApId(_reposFactory, comboBoxApId, dtpCheckIn);
+                _adminRequest.UpdateComboBoxApId(_reposFactory, comboBoxApId, dtpCheckIn, dtpCheckOut);
             }
             if (_adminValidators.ValidGetUserIdList(textBoxPass))
             {
                 _adminRequest.GetUserIdList(_reposFactory, textBoxPass);
             }
+
+            this.Close();
         }
 
         private void dtpCheckIn_ValueChanged(object sender, EventArgs e)
@@ -99,7 +83,7 @@ namespace Admin.Sided_Form
 
             if (_adminValidators.ValidUpdateComboBoxApId(comboBoxApId, dtpCheckIn))
             {
-                _adminRequest.UpdateComboBoxApId(_reposFactory, comboBoxApId, dtpCheckIn);
+                _adminRequest.UpdateComboBoxApId(_reposFactory, comboBoxApId, dtpCheckIn, dtpCheckOut);
             }
             if (comboBoxApId.Text != string.Empty)
             {
@@ -177,6 +161,27 @@ namespace Admin.Sided_Form
         }
 
         private void comboBoxApId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void textBoxFirstName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void maskedTextBoxPhone_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {

@@ -1,29 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
-using System.Threading;
-using System.Reflection;
-using System.Collections;
-using System.Data.Entity;
-using System.Data.Entity.SqlServer;
-using System.Security.Cryptography;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using System.Configuration;
 using Admin;
 using ClassRequest;
 using ClassRequest.Login;
-using WMPLib;
-using Npgsql;
 using Staff;
 using Client;
 
@@ -96,11 +76,11 @@ namespace LogIn
 
         private void LoginLikeAdmin()
         {
-            cc = new ConnectConfig(Protection.Decrypt(ConfigurationManager.AppSettings.Get("ip"), "VEM"),
-                Protection.Decrypt(ConfigurationManager.AppSettings.Get("port"), "VEM"),
-                Protection.Decrypt(ConfigurationManager.AppSettings.Get("userIdAdmin"), "VEM"),
-                Protection.Decrypt(ConfigurationManager.AppSettings.Get("passwdAdmin"), "VEM"),
-                Protection.Decrypt(ConfigurationManager.AppSettings.Get("dataBase"), "VEM"));
+            cc = new ConnectConfig(Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("ip")),
+                Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("port")),
+                Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("userIdAdmin")),
+                Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("passwdAdmin")),
+                Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("dataBase")));
             _reposFactory?.Dispose();
             _loginReposFactory?.Dispose();
             _reposFactory = new ReposFactory(cc.Server, cc.Port, cc.UserId, cc.Password, cc.Database);
@@ -108,11 +88,11 @@ namespace LogIn
 
         private void LoginLikeStaff()
         {
-            cc = new ConnectConfig(Protection.Decrypt(ConfigurationManager.AppSettings.Get("ip"), "VEM"),
-                Protection.Decrypt(ConfigurationManager.AppSettings.Get("port"), "VEM"),
-                Protection.Decrypt(ConfigurationManager.AppSettings.Get("userIdStaff"), "VEM"),
-                Protection.Decrypt(ConfigurationManager.AppSettings.Get("passwdStaff"), "VEM"),
-                Protection.Decrypt(ConfigurationManager.AppSettings.Get("dataBase"), "VEM"));
+            cc = new ConnectConfig(Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("ip")),
+                Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("port")),
+                Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("userIdStaff")),
+                Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("passwdStaff")),
+                Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("dataBase")));
             _reposFactory?.Dispose();
             _loginReposFactory?.Dispose();
             _reposFactory = new ReposFactory(cc.Server, cc.Port, cc.UserId, cc.Password, cc.Database);
@@ -120,11 +100,11 @@ namespace LogIn
 
         private void LoginLikeUser()
         {
-            cc = new ConnectConfig(Protection.Decrypt(ConfigurationManager.AppSettings.Get("ip"), "VEM"),
-                Protection.Decrypt(ConfigurationManager.AppSettings.Get("port"), "VEM"),
-                Protection.Decrypt(ConfigurationManager.AppSettings.Get("userIdUser"), "VEM"),
-                Protection.Decrypt(ConfigurationManager.AppSettings.Get("passwdUser"), "VEM"),
-                Protection.Decrypt(ConfigurationManager.AppSettings.Get("dataBase"), "VEM"));
+            cc = new ConnectConfig(Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("ip")),
+                Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("port")),
+                Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("userIdUser")),
+                Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("passwdUser")),
+                Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("dataBase")));
             _reposFactory?.Dispose();
             _loginReposFactory?.Dispose();
             _reposFactory = new ReposFactory(cc.Server, cc.Port, cc.UserId, cc.Password, cc.Database);
@@ -132,11 +112,11 @@ namespace LogIn
 
         private void LoginLikeLogin()
         {
-            cc = new ConnectConfig(Protection.Decrypt(ConfigurationManager.AppSettings.Get("ip"), "VEM"),
-                Protection.Decrypt(ConfigurationManager.AppSettings.Get("port"), "VEM"),
-                Protection.Decrypt(ConfigurationManager.AppSettings.Get("userIdLogin"), "VEM"),
-                Protection.Decrypt(ConfigurationManager.AppSettings.Get("passwdLogin"), "VEM"),
-                Protection.Decrypt(ConfigurationManager.AppSettings.Get("dataBase"), "VEM"));
+            cc = new ConnectConfig(Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("ip")),
+                Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("port")),
+                Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("userIdLogin")),
+                Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("passwdLogin")),
+                Protection.DESDecrypt(ConfigurationManager.AppSettings.Get("dataBase")));
             _reposFactory?.Dispose();
             _loginReposFactory?.Dispose();
             _loginReposFactory = new LoginReposFactory(cc.Server, cc.Port, cc.UserId, cc.Password, cc.Database);
@@ -180,7 +160,7 @@ namespace LogIn
                     {
                         LoginLikeUser();
 
-                        ClientWinForm client = new ClientWinForm(_reposFactory, Protection.Encrypt(_login, "VEM"));
+                        ClientWinForm client = new ClientWinForm(_reposFactory, Protection.DESEncrypt(_login));
                         Hide();
                         client.ShowDialog();
                         Show();

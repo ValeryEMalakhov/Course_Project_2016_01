@@ -1,26 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
-using System.Threading;
-using System.Reflection;
-using System.Collections;
-using System.Security.Cryptography;
-using System.Diagnostics;
 using System.Globalization;
-using System.Runtime.CompilerServices;
 using Admin.Sided_Form;
 using Npgsql;
 using ClassRequest;
-using ClassRequest.DAL;
 
 namespace Admin
 {
@@ -301,15 +285,17 @@ namespace Admin
         }
 
         // запрос списка свободных комнат
-        public void UpdateComboBoxApId(ReposFactory reposFactory, ComboBox comboBox, DateTimePicker dtpIn)
+        public void UpdateComboBoxApId(ReposFactory reposFactory, ComboBox comboBox, DateTimePicker dtpIn, DateTimePicker dtpOut)
         {
+            comboBox.Text = @"";
             comboBox.Items.Clear();
             try
             {
                 // фильтр даты
                 //var dateMinusDay = dtpIn.Value.AddDays(-1);
-                string filterDate = Convert.ToString(dtpIn.Value);
-                foreach (var v in reposFactory.GetApartmentAClass().GetNumList(filterDate))
+                string filterDateIn = Convert.ToString(dtpIn.Value);
+                string filterDateOut = Convert.ToString(dtpOut.Value);
+                foreach (var v in reposFactory.GetApartmentAClass().GetNumList(filterDateIn, filterDateOut))
                 {
                     comboBox.Items.Add(v.ApId);
                 }

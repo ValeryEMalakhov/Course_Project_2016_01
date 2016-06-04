@@ -1,26 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Reflection;
-using System.Collections;
-using System.Data.Common;
-using System.Security.Cryptography;
-using System.Diagnostics;
-using System.Drawing;
-using System.Globalization;
-using System.Runtime.CompilerServices;
 using ClassRequest;
-using ClassRequest.DAL;
-using ClassRequest.SingleTable;
 using ClassRequest.Login;
-using Npgsql;
 
 namespace LogIn
 {
@@ -31,7 +12,7 @@ namespace LogIn
 
             foreach (var v in loginReposFactory.GetLogin().GetSingleTable())
             {
-                if (v.LoginId == Protection.Encrypt(name, "VEM") &
+                if (v.LoginId == Protection.DESEncrypt(name) &
                     v.Pass == Protection.EncryptMD5(pass))
                 {
                     if (v.Vacant == Protection.EncryptMD5("A"))

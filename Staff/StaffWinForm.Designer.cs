@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffWinForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -45,7 +46,6 @@
             this.gBUser = new System.Windows.Forms.GroupBox();
             this.dateTPUser = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnUpdateUser = new System.Windows.Forms.Button();
             this.dgvUser = new System.Windows.Forms.DataGridView();
             this.cName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cSName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,7 +57,6 @@
             this.tabNumb = new System.Windows.Forms.TabPage();
             this.gBNum = new System.Windows.Forms.GroupBox();
             this.dateTPNum = new System.Windows.Forms.DateTimePicker();
-            this.btnUpdateNum = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvNum = new System.Windows.Forms.DataGridView();
             this.CNumb = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,6 +65,7 @@
             this.CCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabHotel = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.maskedTextBoxHotelPhone = new System.Windows.Forms.MaskedTextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.textBoxHotelClass = new System.Windows.Forms.TextBox();
             this.groupBoxStat = new System.Windows.Forms.GroupBox();
@@ -96,7 +96,9 @@
             this.HotelPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HotelClass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HotelWeb = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maskedTextBoxHotelPhone = new System.Windows.Forms.MaskedTextBox();
+            this.btnUpdateNum = new System.Windows.Forms.Button();
+            this.toolTipAddReq = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipDeleteUser = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl.SuspendLayout();
             this.tabUser.SuspendLayout();
             this.gBUserAction.SuspendLayout();
@@ -139,12 +141,11 @@
             // 
             this.gBUserAction.Controls.Add(this.btnDeleteUser);
             this.gBUserAction.Controls.Add(this.btnAddUser);
-            this.gBUserAction.Location = new System.Drawing.Point(5, 201);
+            this.gBUserAction.Location = new System.Drawing.Point(5, 336);
             this.gBUserAction.Name = "gBUserAction";
             this.gBUserAction.Size = new System.Drawing.Size(197, 191);
             this.gBUserAction.TabIndex = 6;
             this.gBUserAction.TabStop = false;
-            this.gBUserAction.Text = "Действия";
             // 
             // btnDeleteUser
             // 
@@ -170,10 +171,9 @@
             // 
             this.gBUser.Controls.Add(this.dateTPUser);
             this.gBUser.Controls.Add(this.label2);
-            this.gBUser.Controls.Add(this.btnUpdateUser);
             this.gBUser.Location = new System.Drawing.Point(5, 3);
             this.gBUser.Name = "gBUser";
-            this.gBUser.Size = new System.Drawing.Size(197, 191);
+            this.gBUser.Size = new System.Drawing.Size(197, 327);
             this.gBUser.TabIndex = 5;
             this.gBUser.TabStop = false;
             this.gBUser.Text = "Фильтры";
@@ -197,17 +197,6 @@
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "По дате:";
-            // 
-            // btnUpdateUser
-            // 
-            this.btnUpdateUser.Enabled = false;
-            this.btnUpdateUser.Location = new System.Drawing.Point(6, 160);
-            this.btnUpdateUser.Name = "btnUpdateUser";
-            this.btnUpdateUser.Size = new System.Drawing.Size(185, 25);
-            this.btnUpdateUser.TabIndex = 1;
-            this.btnUpdateUser.Text = "Обновить";
-            this.btnUpdateUser.UseVisualStyleBackColor = true;
-            this.btnUpdateUser.Click += new System.EventHandler(this.btnUpdateUser_Click);
             // 
             // dgvUser
             // 
@@ -312,8 +301,8 @@
             // 
             // gBNum
             // 
-            this.gBNum.Controls.Add(this.dateTPNum);
             this.gBNum.Controls.Add(this.btnUpdateNum);
+            this.gBNum.Controls.Add(this.dateTPNum);
             this.gBNum.Controls.Add(this.label1);
             this.gBNum.Location = new System.Drawing.Point(5, 3);
             this.gBNum.Name = "gBNum";
@@ -332,17 +321,6 @@
             this.dateTPNum.Size = new System.Drawing.Size(247, 20);
             this.dateTPNum.TabIndex = 1;
             this.dateTPNum.ValueChanged += new System.EventHandler(this.dateTPNum_ValueChanged);
-            // 
-            // btnUpdateNum
-            // 
-            this.btnUpdateNum.Enabled = false;
-            this.btnUpdateNum.Location = new System.Drawing.Point(6, 160);
-            this.btnUpdateNum.Name = "btnUpdateNum";
-            this.btnUpdateNum.Size = new System.Drawing.Size(304, 25);
-            this.btnUpdateNum.TabIndex = 3;
-            this.btnUpdateNum.Text = "Обновить";
-            this.btnUpdateNum.UseVisualStyleBackColor = true;
-            this.btnUpdateNum.Click += new System.EventHandler(this.btnUpdateNum_Click);
             // 
             // label1
             // 
@@ -442,6 +420,14 @@
             this.groupBox2.TabIndex = 111;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Об отеле";
+            // 
+            // maskedTextBoxHotelPhone
+            // 
+            this.maskedTextBoxHotelPhone.Location = new System.Drawing.Point(433, 32);
+            this.maskedTextBoxHotelPhone.Mask = "(999) 000-0000";
+            this.maskedTextBoxHotelPhone.Name = "maskedTextBoxHotelPhone";
+            this.maskedTextBoxHotelPhone.Size = new System.Drawing.Size(255, 20);
+            this.maskedTextBoxHotelPhone.TabIndex = 113;
             // 
             // label18
             // 
@@ -726,13 +712,15 @@
             this.HotelWeb.ReadOnly = true;
             this.HotelWeb.Width = 175;
             // 
-            // maskedTextBoxHotelPhone
+            // btnUpdateNum
             // 
-            this.maskedTextBoxHotelPhone.Location = new System.Drawing.Point(433, 32);
-            this.maskedTextBoxHotelPhone.Mask = "(999) 000-0000";
-            this.maskedTextBoxHotelPhone.Name = "maskedTextBoxHotelPhone";
-            this.maskedTextBoxHotelPhone.Size = new System.Drawing.Size(255, 20);
-            this.maskedTextBoxHotelPhone.TabIndex = 113;
+            this.btnUpdateNum.Location = new System.Drawing.Point(6, 159);
+            this.btnUpdateNum.Name = "btnUpdateNum";
+            this.btnUpdateNum.Size = new System.Drawing.Size(303, 26);
+            this.btnUpdateNum.TabIndex = 14;
+            this.btnUpdateNum.Text = "Сбросить фильтр";
+            this.btnUpdateNum.UseVisualStyleBackColor = true;
+            this.btnUpdateNum.Click += new System.EventHandler(this.btnUpdateNum_Click_1);
             // 
             // StaffWinForm
             // 
@@ -777,12 +765,10 @@
         private System.Windows.Forms.GroupBox gBUser;
         public System.Windows.Forms.DateTimePicker dateTPUser;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnUpdateUser;
         protected internal System.Windows.Forms.DataGridView dgvUser;
         private System.Windows.Forms.TabPage tabNumb;
         private System.Windows.Forms.GroupBox gBNum;
         private System.Windows.Forms.DateTimePicker dateTPNum;
-        private System.Windows.Forms.Button btnUpdateNum;
         private System.Windows.Forms.Label label1;
         protected internal System.Windows.Forms.DataGridView dgvNum;
         private System.Windows.Forms.TabPage tabHotel;
@@ -830,6 +816,9 @@
         private System.Windows.Forms.TextBox textBoxHotelWeb;
         private System.Windows.Forms.TextBox textBoxHotelOrg;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxHotelPhone;
+        private System.Windows.Forms.Button btnUpdateNum;
+        private System.Windows.Forms.ToolTip toolTipAddReq;
+        private System.Windows.Forms.ToolTip toolTipDeleteUser;
     }
 }
 

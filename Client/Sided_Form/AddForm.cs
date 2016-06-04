@@ -1,24 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
-using System.Threading;
-using System.Reflection;
-using System.Collections;
-using System.Security.Cryptography;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using Npgsql;
 using ClassRequest;
-using ClassRequest.DAL;
 
 namespace Client.Sided_Form
 {
@@ -42,7 +24,7 @@ namespace Client.Sided_Form
             InitializeComponent();
         }
 
-        public AddForm(ReposFactory reposFactory, string loginId, string currentApId)
+        public AddForm(ReposFactory reposFactory, string loginId, string currentApId, string dtpCheckIn, string dtpCheckOut)
         {
             InitializeComponent();
             _clientValidators = new ClientValidators();
@@ -51,12 +33,26 @@ namespace Client.Sided_Form
             _reposFactory = reposFactory;
             _loginId = loginId;
             _currentApId = currentApId;
+            this.dtpCheckIn.Text = dtpCheckIn;
+            this.dtpCheckOut.Text = dtpCheckOut;
         }
 
         private void AddForm_Load(object sender, EventArgs e)
         {
-            dtpCheckIn.Value = DateTime.Today;
-            dtpCheckOut.Value = DateTime.Today;
+            if (dtpCheckIn.Value < DateTime.Now)
+            {
+                dtpCheckIn.Value = DateTime.Now;
+            }
+            if (dtpCheckOut.Value < dtpCheckIn.Value)
+            {
+                dtpCheckOut.Value = dtpCheckIn.Value.AddDays(1);
+            }
+
+            if (_clientValidators.ValidUpdateComboBoxApId(comboBoxApId, dtpCheckIn))
+            {
+                _clientRequest.UpdateComboBoxApId(_reposFactory, comboBoxApId, dtpCheckIn, dtpCheckOut);
+            }
+            comboBoxApId.Text = _currentApId;
         }
 
         private void AddForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -66,11 +62,12 @@ namespace Client.Sided_Form
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (_clientValidators.ValidAddUser(_currentApId, dtpCheckIn, dtpCheckOut, textBoxComm))
+            if (_clientValidators.ValidAddUser(comboBoxApId.Text, dtpCheckIn, dtpCheckOut, textBoxComm))
             {
-                _clientRequest.RequestAdd(_reposFactory, _loginId, _currentApId, dtpCheckIn, dtpCheckOut, textBoxComm);
+                _clientRequest.RequestAdd(_reposFactory, _loginId, comboBoxApId.Text, dtpCheckIn, dtpCheckOut,
+                    textBoxComm);
+                this.Close();
             }
-            this.Close();
         }
 
         private void dtpCheckIn_ValueChanged(object sender, EventArgs e)
@@ -84,10 +81,25 @@ namespace Client.Sided_Form
                 dtpCheckOut.Value = dtpCheckIn.Value.AddDays(1);
             }
 
-            // обновляет автоматическую статистику в labels
-            if (_clientValidators.ValidSelectStatInfo(_currentApId, dtpCheckIn, dtpCheckOut, labelRoomT))
+            if (_clientValidators.ValidUpdateComboBoxApId(comboBoxApId, dtpCheckIn))
             {
-                _clientRequest.SelectStatInfo(_reposFactory, _currentApId, dtpCheckIn, dtpCheckOut, labelRoomN,
+                _clientRequest.UpdateComboBoxApId(_reposFactory, comboBoxApId, dtpCheckIn, dtpCheckOut);
+            }
+
+            // обновляет автоматическую статистику в labels
+            if (_clientValidators.ValidSelectStatInfo(comboBoxApId.Text, dtpCheckIn, dtpCheckOut, labelRoomT))
+            {
+                _clientRequest.SelectStatInfo(_reposFactory, comboBoxApId.Text, dtpCheckIn, dtpCheckOut,
+                    labelRoomQ, labelRoomT, labelRoomC);
+            }
+        }
+
+        private void comboBoxApId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // обновляет автоматическую статистику в labels
+            if (_clientValidators.ValidSelectStatInfo(comboBoxApId.Text, dtpCheckIn, dtpCheckOut, labelRoomT))
+            {
+                _clientRequest.SelectStatInfo(_reposFactory, comboBoxApId.Text, dtpCheckIn, dtpCheckOut,
                     labelRoomQ, labelRoomT, labelRoomC);
             }
         }

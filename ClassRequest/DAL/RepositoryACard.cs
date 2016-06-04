@@ -1,21 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Reflection;
-using System.Collections;
 using System.Data.Common;
-using System.Data.Entity.SqlServer;
-using System.Security.Cryptography;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using ClassRequest.DAL;
 using ClassRequest.Login;
 using ClassRequest.SingleTable;
 using Npgsql;
@@ -52,9 +38,8 @@ namespace ClassRequest.DAL
             {
                 string commPart =
                     "SELECT *" +
-                    " FROM \"hotel\".\"ACard\";";
-                // открываем соединение
-                //sqlConnect.GetNewSqlConn().OpenConn();
+                    " FROM \"hotel\".\"ACard\"" +
+                    " ORDER BY CheckInDate;";
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
                 NpgsqlDataReader readerTable = command.ExecuteReader();
@@ -75,11 +60,6 @@ namespace ClassRequest.DAL
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
                 MessageBox.Show(Convert.ToString(exp));
-            }
-            finally
-            {
-                // соединение закрыто принудительно
-                //sqlConnect.GetNewSqlConn().CloseConn();
             }
             return tableACardList;
         }
@@ -112,11 +92,7 @@ namespace ClassRequest.DAL
                     // блок добавления в базу нового логина/пароля
                     try
                     {
-                        // открываем соединение
-                        //sqlConnect.GetNewSqlConn().OpenConn();
                         string commPart =
-                            //INSERT INTO "login"."UserPass" (Login_ID, Pass, Vacant) VALUES
-
                             "INSERT INTO \"login\".\"UserPass\"" +
                             " (Login_ID, Pass, Vacant)" +
                             " VALUES" +
@@ -124,7 +100,7 @@ namespace ClassRequest.DAL
 
                         NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
-                        command.Parameters.AddWithValue("@Login_ID", Protection.Encrypt(newLogIn, "VEM"));
+                        command.Parameters.AddWithValue("@Login_ID", Protection.DESEncrypt(newLogIn));
                         command.Parameters.AddWithValue("@Pass", Protection.EncryptMD5(newPass));
                         command.Parameters.AddWithValue("@Vacant", Protection.EncryptMD5("C"));
 
@@ -143,16 +119,9 @@ namespace ClassRequest.DAL
                         // MessageBox.Show("Не удалось выполнить запрос!");
                         MessageBox.Show(Convert.ToString(exp));
                     }
-                    finally
-                    {
-                        // соединение закрыто принудительно
-                        //sqlConnect.GetNewSqlConn().CloseConn();
-                    }
                     // блок добавления нового пользователя в базу
                     try
                     {
-                        // открываем соединение
-                        //sqlConnect.GetNewSqlConn().OpenConn();
                         string commPart =
                             "INSERT INTO \"hotel\".\"Client\"" +
                             " (Client_ID, FirstName, SecondName, Gender, DateOfBirth, Phone)" +
@@ -162,7 +131,7 @@ namespace ClassRequest.DAL
                         NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
                         command.Parameters.AddWithValue("@Client_ID", textBoxPass);
-                        command.Parameters.AddWithValue("@Login_ID", Protection.Encrypt(newLogIn, "VEM"));
+                        command.Parameters.AddWithValue("@Login_ID", Protection.DESEncrypt(newLogIn));
                         command.Parameters.AddWithValue("@FirstName", textBoxFirstName);
                         command.Parameters.AddWithValue("@SecondName", textBoxSecondName);
                         command.Parameters.AddWithValue("@Gender", textBoxGender);
@@ -188,16 +157,9 @@ namespace ClassRequest.DAL
                         // MessageBox.Show("Не удалось выполнить запрос!");
                         MessageBox.Show(Convert.ToString(exp));
                     }
-                    finally
-                    {
-                        // соединение закрыто принудительно
-                        //sqlConnect.GetNewSqlConn().CloseConn();
-                    }
                     // блок добавления человека в карту регистрации
                     try
                     {
-                        // открываем соединение
-                        //sqlConnect.GetNewSqlConn().OpenConn();
                         string commPart =
                             "INSERT INTO \"hotel\".\"ACard\"" +
                             " (Client_ID, Ap_ID, CheckInDate, CheckOutDate, StComment)" +
@@ -230,11 +192,6 @@ namespace ClassRequest.DAL
                     {
                         // MessageBox.Show("Не удалось выполнить запрос!");
                         MessageBox.Show(Convert.ToString(exp));
-                    }
-                    finally
-                    {
-                        // соединение закрыто принудительно
-                        //sqlConnect.GetNewSqlConn().CloseConn();
                     }
                 }
                 else
@@ -242,8 +199,6 @@ namespace ClassRequest.DAL
                     // блок добавления человека в карту регистрации если он уже есть в базе
                     try
                     {
-                        // открываем соединение
-                        //sqlConnect.GetNewSqlConn().OpenConn();
                         string commPart =
                             "INSERT INTO \"hotel\".\"ACard\"" +
                             " (Client_ID, Ap_ID, CheckInDate, CheckOutDate, StComment)" +
@@ -277,16 +232,11 @@ namespace ClassRequest.DAL
                         // MessageBox.Show("Не удалось выполнить запрос!");
                         MessageBox.Show(Convert.ToString(exp));
                     }
-                    finally
-                    {
-                        // соединение закрыто принудительно
-                        //sqlConnect.GetNewSqlConn().CloseConn();
-                    }
                 }
             }
             else
             {
-                MessageBox.Show(@"Постоялец таки уже в отеле!");
+                MessageBox.Show(@"Гость уже в отеле!");
             }
         }
 
@@ -299,8 +249,6 @@ namespace ClassRequest.DAL
         {
             try
             {
-                // открываем соединение
-                //sqlConnect.GetNewSqlConn().OpenConn();
                 string commPart =
                     "UPDATE \"hotel\".\"ACard\"" +
                     " SET CheckOutDate = '" + DateTime.Today + "'" +
@@ -318,23 +266,17 @@ namespace ClassRequest.DAL
                 // MessageBox.Show("Не удалось выполнить запрос!");
                 MessageBox.Show(Convert.ToString(exp));
             }
-            finally
-            {
-                // соединение закрыто принудительно
-                //sqlConnect.GetNewSqlConn().CloseConn();
-            }
         }
 
         public void RequestDeleteSql(string clientId, string checkInDate)
         {
             try
             {
-                // открываем соединение
-                //sqlConnect.GetNewSqlConn().OpenConn();
                 string commPart =
                     "DELETE FROM \"hotel\".\"ACard\"" +
                     " WHERE Client_Id = @client_Id " +
                     " AND CheckInDate = @checkInDate::timestamp with time zone ;";
+
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
                 command.Parameters.AddWithValue("@client_Id", clientId);
@@ -347,19 +289,12 @@ namespace ClassRequest.DAL
                 // MessageBox.Show("Не удалось выполнить запрос!");
                 MessageBox.Show(Convert.ToString(exp));
             }
-            finally
-            {
-                // соединение закрыто принудительно
-                //sqlConnect.GetNewSqlConn().CloseConn();
-            }
         }
 
         public void RequestDeleteSqlForApartment(string textBoxNum)
         {
             try
             {
-                // открываем соединение
-                //sqlConnect.GetNewSqlConn().OpenConn();
                 string commPart =
                     "DELETE FROM \"hotel\".\"ACard\"" +
                     " WHERE Ap_ID = @textBoxNum ;";
@@ -373,16 +308,7 @@ namespace ClassRequest.DAL
                 // MessageBox.Show("Не удалось выполнить запрос!");
                 MessageBox.Show(Convert.ToString(exp));
             }
-            finally
-            {
-                // соединение закрыто принудительно
-                //sqlConnect.GetNewSqlConn().CloseConn();
-            }
         }
-
-        #endregion
-
-        #region Other
 
         #endregion
     }

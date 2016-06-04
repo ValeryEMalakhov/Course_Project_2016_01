@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddUserForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.maskedTextBoxPhone = new System.Windows.Forms.MaskedTextBox();
             this.comboBoxGender = new System.Windows.Forms.ComboBox();
             this.textBoxPass = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -52,6 +53,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnBack = new System.Windows.Forms.Button();
             this.labelRoomQ = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -62,7 +64,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.labelRoomN = new System.Windows.Forms.Label();
-            this.maskedTextBoxPhone = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -90,6 +91,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Информаци о клиенте";
             // 
+            // maskedTextBoxPhone
+            // 
+            this.maskedTextBoxPhone.Location = new System.Drawing.Point(98, 155);
+            this.maskedTextBoxPhone.Mask = "(999) 000-0000";
+            this.maskedTextBoxPhone.Name = "maskedTextBoxPhone";
+            this.maskedTextBoxPhone.Size = new System.Drawing.Size(150, 20);
+            this.maskedTextBoxPhone.TabIndex = 9;
+            this.maskedTextBoxPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBoxPhone_KeyPress);
+            // 
             // comboBoxGender
             // 
             this.comboBoxGender.FormattingEnabled = true;
@@ -100,6 +110,7 @@
             this.comboBoxGender.Name = "comboBoxGender";
             this.comboBoxGender.Size = new System.Drawing.Size(150, 21);
             this.comboBoxGender.TabIndex = 3;
+            this.comboBoxGender.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxFirstName_KeyPress);
             // 
             // textBoxPass
             // 
@@ -125,6 +136,7 @@
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(150, 20);
             this.textBoxFirstName.TabIndex = 1;
+            this.textBoxFirstName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxFirstName_KeyPress);
             // 
             // textBoxSecondName
             // 
@@ -132,6 +144,7 @@
             this.textBoxSecondName.Name = "textBoxSecondName";
             this.textBoxSecondName.Size = new System.Drawing.Size(150, 20);
             this.textBoxSecondName.TabIndex = 2;
+            this.textBoxSecondName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxFirstName_KeyPress);
             // 
             // dtpBirth
             // 
@@ -191,7 +204,7 @@
             // 
             this.btnAdd.Location = new System.Drawing.Point(16, 19);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(120, 30);
+            this.btnAdd.Size = new System.Drawing.Size(120, 25);
             this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "Добавить";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -230,7 +243,7 @@
             this.dtpCheckOut.Size = new System.Drawing.Size(150, 20);
             this.dtpCheckOut.TabIndex = 8;
             this.dtpCheckOut.Value = new System.DateTime(2016, 4, 14, 0, 0, 0, 0);
-            this.dtpCheckOut.ValueChanged += new System.EventHandler(this.comboBoxApId_TextChanged);
+            this.dtpCheckOut.ValueChanged += new System.EventHandler(this.dtpCheckIn_ValueChanged);
             // 
             // label8
             // 
@@ -291,6 +304,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnBack);
             this.groupBox3.Controls.Add(this.btnAdd);
             this.groupBox3.Location = new System.Drawing.Point(12, 220);
             this.groupBox3.Name = "groupBox3";
@@ -298,6 +312,16 @@
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Панель управления";
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(16, 50);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(120, 25);
+            this.btnBack.TabIndex = 3;
+            this.btnBack.Text = "Назад";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // labelRoomQ
             // 
@@ -400,14 +424,6 @@
             this.labelRoomN.TabIndex = 11;
             this.labelRoomN.Text = "0";
             // 
-            // maskedTextBoxPhone
-            // 
-            this.maskedTextBoxPhone.Location = new System.Drawing.Point(98, 155);
-            this.maskedTextBoxPhone.Mask = "(999) 000-0000";
-            this.maskedTextBoxPhone.Name = "maskedTextBoxPhone";
-            this.maskedTextBoxPhone.Size = new System.Drawing.Size(150, 20);
-            this.maskedTextBoxPhone.TabIndex = 9;
-            // 
             // AddUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -473,5 +489,6 @@
         private System.Windows.Forms.Label labelRoomC;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxPhone;
+        private System.Windows.Forms.Button btnBack;
     }
 }

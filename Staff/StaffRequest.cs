@@ -1,24 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Reflection;
-using System.Collections;
-using System.Data.Common;
-using System.Security.Cryptography;
-using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
-using System.Runtime.CompilerServices;
 using ClassRequest;
-using ClassRequest.DAL;
-using ClassRequest.SingleTable;
 using Npgsql;
 
 namespace Staff
@@ -86,16 +70,44 @@ namespace Staff
             }
         }
 
-        // запрос списка свободных комнат
-        public void UpdateComboBoxApId(ReposFactory reposFactory, ComboBox comboBox, DateTimePicker dtpIn)
+        public void NumOutputFull(ReposFactory reposFactory, DataGridView dgvNum)
         {
+            dgvNum.Rows.Clear();
+            try
+            {
+                // фильтр даты
+                //var dateMinusDay = dateTpNum.Value.AddDays(-1);
+                int colorKey = 0;
+                foreach (var v in reposFactory.GetApartmentAClass().GetNumListFull())
+                {
+                    dgvNum.Rows.Add(v.ApId, v.HotelId, v.PlaceQuantity, v.ClassId);
+                    if (colorKey % 2 == 0)
+                    {
+                        for (int i = 0; i < dgvNum.ColumnCount; ++i)
+                            dgvNum.Rows[colorKey].Cells[i].Style.BackColor = Color.Lavender;
+                    }
+                    colorKey++;
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+
+        // запрос списка свободных комнат
+        public void UpdateComboBoxApId(ReposFactory reposFactory, ComboBox comboBox, DateTimePicker dtpIn, DateTimePicker dtpOut)
+        {
+            comboBox.Text = @"";
             comboBox.Items.Clear();
             try
             {
                 // фильтр даты
                 //var dateMinusDay = dtpIn.Value.AddDays(-1);
-                string filterDate = Convert.ToString(dtpIn.Value);
-                foreach (var v in reposFactory.GetApartmentAClass().GetNumList(filterDate))
+                string filterDateIn = Convert.ToString(dtpIn.Value);
+                string filterDateOut = Convert.ToString(dtpOut.Value);
+                foreach (var v in reposFactory.GetApartmentAClass().GetNumList(filterDateIn, filterDateOut))
                 {
                     comboBox.Items.Add(v.ApId);
                 }

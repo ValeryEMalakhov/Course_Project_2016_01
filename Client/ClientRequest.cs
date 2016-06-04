@@ -1,24 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Reflection;
-using System.Collections;
-using System.Data.Common;
-using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
-using System.Runtime.CompilerServices;
 using ClassRequest;
-using ClassRequest.DAL;
-using ClassRequest.SingleTable;
 using Npgsql;
 
 namespace Client
@@ -41,16 +26,16 @@ namespace Client
         }
 
         // вывод списка свободных номеров
-        public void NumOutput(ReposFactory reposFactory, DataGridView dgvNum, DateTimePicker dateTpNum)
+        public void NumOutput(ReposFactory reposFactory, DataGridView dgvNum, DateTimePicker dtpCheckIn, DateTimePicker dtpCheckOut)
         {
             dgvNum.Rows.Clear();
             try
             {
-                // фильтр даты
-                //var dateMinusDay = dateTpNum.Value.AddDays(-1);
-                string filterDate = Convert.ToString(dateTpNum.Value);
                 int colorKey = 0;
-                foreach (var v in reposFactory.GetApartmentAClass().GetNumList(filterDate))
+
+                string filterDateIn = Convert.ToString(dtpCheckIn.Value);
+                string filterDateOut = Convert.ToString(dtpCheckOut.Value);
+                foreach (var v in reposFactory.GetApartmentAClass().GetNumList(filterDateIn, filterDateOut))
                 {
                     dgvNum.Rows.Add(v.ApId, v.PlaceQuantity, v.ClassId, v.ClassCost);
                     if (colorKey%2 == 0)
@@ -140,6 +125,29 @@ namespace Client
             }
         }
 
+        // запрос списка свободных комнат
+        public void UpdateComboBoxApId(ReposFactory reposFactory, ComboBox comboBox, DateTimePicker dtpIn, DateTimePicker dtpOut)
+        {
+            comboBox.Text = @"";
+            comboBox.Items.Clear();
+            try
+            {
+                // фильтр даты
+                //var dateMinusDay = dtpIn.Value.AddDays(-1);
+                string filterDateIn = Convert.ToString(dtpIn.Value);
+                string filterDateOut = Convert.ToString(dtpOut.Value);
+                foreach (var v in reposFactory.GetApartmentAClass().GetNumList(filterDateIn, filterDateOut))
+                {
+                    comboBox.Items.Add(v.ApId);
+                }
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+
         // добавление брони
         public void RequestAdd(ReposFactory reposFactory, string loginId, string apId,
             DateTimePicker dtpCheckIn, DateTimePicker dtpCheckOut, RichTextBox textBoxComm)
@@ -174,12 +182,11 @@ namespace Client
         }
 
         public void SelectStatInfo(ReposFactory reposFactory, string comboBoxApId, DateTimePicker dtpCheckIn,
-            DateTimePicker dtpCheckOut, Label labelRoomN, Label labelRoomQ, Label labelRoomT, Label labelRoomC)
+            DateTimePicker dtpCheckOut, Label labelRoomQ, Label labelRoomT, Label labelRoomC)
         {
             try
             {
                 double costValue = 0;
-                labelRoomN.Text = comboBoxApId;
                 foreach (var v in reposFactory.GetApartmentAClass().UpdateStatAdd())
                 {
                     if (v.ApId == comboBoxApId)
@@ -188,6 +195,7 @@ namespace Client
                         costValue = Convert.ToDouble(v.ClassCost);
                     }
                 }
+
                 var dateDiff = (dtpCheckOut.Value - dtpCheckIn.Value).TotalDays;
                 dateDiff = Math.Round(Convert.ToDouble(dateDiff), 2, MidpointRounding.AwayFromZero);
                 labelRoomT.Text = Convert.ToString(dateDiff, CultureInfo.CurrentCulture);

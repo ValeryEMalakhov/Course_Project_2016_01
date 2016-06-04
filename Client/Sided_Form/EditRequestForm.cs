@@ -1,25 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
-using System.Threading;
-using System.Reflection;
-using System.Collections;
-using System.Security.Cryptography;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using Npgsql;
 using ClassRequest;
-using ClassRequest.DAL;
-using Client.Sided_Form;
 
 namespace Client.Sided_Form
 {
@@ -50,7 +31,7 @@ namespace Client.Sided_Form
 
             _reposFactory = reposFactory;
             _clientId = clientId;
-            _loginId = Protection.Decrypt(loginId, "VEM");
+            _loginId = Protection.DESDecrypt(loginId);
 
             textBoxNewPass.UseSystemPasswordChar = true;
         }

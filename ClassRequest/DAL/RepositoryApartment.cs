@@ -1,21 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Reflection;
-using System.Collections;
 using System.Data.Common;
-using System.Data.Entity.SqlServer;
-using System.Security.Cryptography;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using ClassRequest.DAL;
 using ClassRequest.SingleTable;
 using Npgsql;
 
@@ -47,8 +33,6 @@ namespace ClassRequest.DAL
                     "SELECT *" +
                     " FROM \"hotel\".\"Apartment\"" +
                     " ORDER BY (Ap_ID) ;";
-                // открываем соединение
-                //sqlConnect.GetNewSqlConn().OpenConn();
 
                 NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
                 NpgsqlDataReader readerTable = command.ExecuteReader();
@@ -70,11 +54,6 @@ namespace ClassRequest.DAL
                 // MessageBox.Show("Не удалось выполнить запрос!");
                 MessageBox.Show(Convert.ToString(exp));
             }
-            finally
-            {
-                // соединение закрыто принудительно
-                //sqlConnect.GetNewSqlConn().CloseConn();
-            }
             return tableApartmentList;
         }
 
@@ -87,8 +66,6 @@ namespace ClassRequest.DAL
         {
             try
             {
-                // открываем соединение
-                //sqlConnect.GetNewSqlConn().OpenConn();
                 string commPart =
                     "UPDATE \"hotel\".\"Apartment\"" +
                     " SET Hotel_ID = @textBoxNumHotel," +
@@ -110,11 +87,6 @@ namespace ClassRequest.DAL
                 // MessageBox.Show("Не удалось выполнить запрос!");
                 MessageBox.Show(Convert.ToString(exp));
             }
-            finally
-            {
-                // соединение закрыто принудительно
-                //sqlConnect.GetNewSqlConn().CloseConn();
-            }
         }
 
         #endregion
@@ -124,12 +96,8 @@ namespace ClassRequest.DAL
         public void AddApartment(string textBoxNum, string textBoxNumHotel, string textBoxPlace,
             string textBoxNumClass)
         {
-            // открываем соединение
-            //sqlConnect.GetNewSqlConn().OpenConn();
             try
             {
-                // открываем соединение
-                //sqlConnect.GetNewSqlConn().OpenConn();
                 string commPart =
                     "INSERT INTO \"hotel\".\"Apartment\"" +
                     " (Ap_ID, Hotel_ID, PlaceQuantity, Class_ID)" +
@@ -157,11 +125,6 @@ namespace ClassRequest.DAL
                 // MessageBox.Show("Не удалось выполнить запрос!");
                 MessageBox.Show(Convert.ToString(exp));
             }
-            finally
-            {
-                // соединение закрыто принудительно
-                //sqlConnect.GetNewSqlConn().CloseConn();
-            }
         }
 
         #endregion
@@ -172,8 +135,6 @@ namespace ClassRequest.DAL
         {
             try
             {
-                // открываем соединение
-                //sqlConnect.GetNewSqlConn().OpenConn();
                 string commPart =
                     "DELETE FROM \"hotel\".\"Apartment\"" +
                     " WHERE Ap_ID = @textBoxNum ;";
@@ -189,16 +150,7 @@ namespace ClassRequest.DAL
                 // MessageBox.Show("Не удалось выполнить запрос!");
                 MessageBox.Show(Convert.ToString(exp));
             }
-            finally
-            {
-                // соединение закрыто принудительно
-                //sqlConnect.GetNewSqlConn().CloseConn();
-            }
         }
-
-        #endregion
-
-        #region Other
 
         #endregion
     }

@@ -1,25 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
-using System.Threading;
-using System.Reflection;
-using System.Collections;
-using System.Security.Cryptography;
-using System.Diagnostics;
 using System.Globalization;
-using System.Runtime.CompilerServices;
-using Npgsql;
-using ClassRequest;
-using ClassRequest.DAL;
 
 namespace Client
 {
@@ -194,11 +175,46 @@ namespace Client
             }
         }
 
+        public bool ValidUpdateComboBoxApId(ComboBox comboBox, DateTimePicker dtpIn)
+        {
+            try
+            {
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
         public bool ValidAddUser(string comboBoxApId, DateTimePicker dtpCheckIn, DateTimePicker dtpCheckOut,
             RichTextBox textBoxComm)
         {
             try
             {
+                if (comboBoxApId == string.Empty)
+                {
+                    ErrorString += "-- Номер комнаты не может быть пуcтой\n";
+                    ValidKey = false;
+                }
+                else
+                {
+                    if (Convert.ToInt32(comboBoxApId) < 0)
+                    {
+                        ErrorString += "-- Номер комнаты не может быть меньше нуля\n";
+                        ValidKey = false;
+                    }
+                }
                 if (dtpCheckOut.Value < dtpCheckIn.Value)
                 {
                     ErrorString += "-- Дата выселения не может быть раньше даты вселения в номер\n";

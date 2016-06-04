@@ -37,13 +37,13 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.comboBoxApId = new System.Windows.Forms.ComboBox();
             this.labelRoomC = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.labelRoomT = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.labelRoomN = new System.Windows.Forms.Label();
             this.labelRoomQ = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -124,13 +124,13 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.comboBoxApId);
             this.groupBox4.Controls.Add(this.labelRoomC);
             this.groupBox4.Controls.Add(this.label14);
             this.groupBox4.Controls.Add(this.labelRoomT);
             this.groupBox4.Controls.Add(this.label16);
             this.groupBox4.Controls.Add(this.label13);
             this.groupBox4.Controls.Add(this.label12);
-            this.groupBox4.Controls.Add(this.labelRoomN);
             this.groupBox4.Controls.Add(this.labelRoomQ);
             this.groupBox4.Location = new System.Drawing.Point(12, 192);
             this.groupBox4.Name = "groupBox4";
@@ -138,6 +138,15 @@
             this.groupBox4.TabIndex = 8;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Панель вывода";
+            // 
+            // comboBoxApId
+            // 
+            this.comboBoxApId.FormattingEnabled = true;
+            this.comboBoxApId.Location = new System.Drawing.Point(107, 16);
+            this.comboBoxApId.Name = "comboBoxApId";
+            this.comboBoxApId.Size = new System.Drawing.Size(54, 21);
+            this.comboBoxApId.TabIndex = 15;
+            this.comboBoxApId.SelectedIndexChanged += new System.EventHandler(this.comboBoxApId_SelectedIndexChanged);
             // 
             // labelRoomC
             // 
@@ -192,15 +201,6 @@
             this.label12.Size = new System.Drawing.Size(130, 13);
             this.label12.TabIndex = 11;
             this.label12.Text = "Кол-во мест в комнате: ";
-            // 
-            // labelRoomN
-            // 
-            this.labelRoomN.AutoSize = true;
-            this.labelRoomN.Location = new System.Drawing.Point(142, 19);
-            this.labelRoomN.Name = "labelRoomN";
-            this.labelRoomN.Size = new System.Drawing.Size(13, 13);
-            this.labelRoomN.TabIndex = 11;
-            this.labelRoomN.Text = "0";
             // 
             // labelRoomQ
             // 
@@ -273,9 +273,9 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label labelRoomN;
         private System.Windows.Forms.Label labelRoomQ;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.ComboBox comboBoxApId;
     }
 }

@@ -33,15 +33,6 @@ namespace ClassRequest
             sqlConnect = new SqlConnect(npgsql);
             OpenConnection();
 
-            //RepositoryACard = new RepositoryACard(npgsql);
-            //RepositoryAClass = new RepositoryAClass(npgsql);
-            //RepositoryApartment = new RepositoryApartment(npgsql);
-            //RepositoryApartmentAClass = new RepositoryApartmentAClass(npgsql);
-            //RepositoryClient = new RepositoryClient(npgsql);
-            //RepositoryHotel = new RepositoryHotel(npgsql);
-            //RepositoryStaff = new RepositoryStaff(npgsql);
-            //RepositoryStaffPosition = new RepositoryStaffPosition(npgsql);
-            //RepositoryUserApartmentCard = new RepositoryUserApartmentCard(npgsql);
             RepositoryACard = new RepositoryACard(sqlConnect);
             RepositoryAClass = new RepositoryAClass(sqlConnect);
             RepositoryApartment = new RepositoryApartment(sqlConnect);
