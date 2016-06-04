@@ -25,7 +25,7 @@ namespace Staff
                 foreach (var v in reposFactory.GetUserApartmentCard().GetUserList(filterDate))
                 {
                     dgvUser.Rows.Add(v.FirstName, v.SecondName, v.Gender, v.ApId,
-                        v.CheckInDate, v.CheckOutDate, v.ClientId);
+                        v.CheckInDate, v.CheckOutDate, v.ClientId, v.MToPay);
 
                     if (colorKey%2 == 0)
                     {
@@ -244,10 +244,24 @@ namespace Staff
                 }
                 newLogIn = @"user-" + Convert.ToString(key);
 
+                double costValue = 0;
+
+                foreach (var w in reposFactory.GetApartmentAClass().UpdateStatAdd())
+                {
+                    if (w.ApId == comboBoxApId.Text)
+                    {
+                        costValue = Convert.ToDouble(w.ClassCost);
+                    }
+                }
+
+                var dateDiff = (dtpCheckOut.Value - dtpCheckIn.Value).TotalDays;
+                dateDiff = Math.Round(Convert.ToDouble(dateDiff), 2, MidpointRounding.AwayFromZero);
+                costValue = Math.Round(costValue * Convert.ToDouble(dateDiff), 2, MidpointRounding.AwayFromZero);
+
                 reposFactory.GetACard().AddUser(textBoxPass.Text, textBoxFirstName.Text,
                     textBoxSecondName.Text, comboBoxGender.Text,
                     dtpBirth.Text, textBoxPhone.Text,
-                    comboBoxApId.Text, dtpCheckIn.Text, dtpCheckOut.Text, textBoxComm.Text,
+                    comboBoxApId.Text, dtpCheckIn.Text, dtpCheckOut.Text, textBoxComm.Text, costValue,
                     newLogIn, newPass);
             }
             catch (Exception exp)

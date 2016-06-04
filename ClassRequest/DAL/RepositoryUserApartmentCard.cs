@@ -51,7 +51,8 @@ namespace ClassRequest.DAL
                         dbDataRecord["SecondName"].ToString(),
                         dbDataRecord["Gender"].ToString(),
                         dbDataRecord["CheckInDate"].ToString(),
-                        dbDataRecord["CheckOutDate"].ToString());
+                        dbDataRecord["CheckOutDate"].ToString(),
+                        dbDataRecord["mToPay"].ToString());
 
                     userAppartmentCardList.Add(userAppartmentCard);
                 }
@@ -90,7 +91,8 @@ namespace ClassRequest.DAL
                         dbDataRecord["SecondName"].ToString(),
                         dbDataRecord["Gender"].ToString(),
                         dbDataRecord["CheckInDate"].ToString(),
-                        dbDataRecord["CheckOutDate"].ToString());
+                        dbDataRecord["CheckOutDate"].ToString(),
+                        dbDataRecord["mToPay"].ToString());
 
                     userAppartmentCardList.Add(userAppartmentCard);
                 }

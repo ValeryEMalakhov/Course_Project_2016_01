@@ -167,9 +167,23 @@ namespace Client
                         }
                         string newLogIn = @"user-" + Convert.ToString(key);
 
+                        double costValue = 0;
+
+                        foreach (var w in reposFactory.GetApartmentAClass().UpdateStatAdd())
+                        {
+                            if (w.ApId == apId)
+                            {
+                                costValue = Convert.ToDouble(w.ClassCost);
+                            }
+                        }
+
+                        var dateDiff = (dtpCheckOut.Value - dtpCheckIn.Value).TotalDays;
+                        dateDiff = Math.Round(Convert.ToDouble(dateDiff), 2, MidpointRounding.AwayFromZero);
+                        costValue = Math.Round(costValue * Convert.ToDouble(dateDiff), 2, MidpointRounding.AwayFromZero);
+                        
                         reposFactory.GetACard().AddUser(loginId, v.FirstName, v.SecondName,
                             v.Gender, v.DateOfBirth, v.Phone,
-                            apId, dtpCheckIn.Text, dtpCheckOut.Text, textBoxComm.Text,
+                            apId, dtpCheckIn.Text, dtpCheckOut.Text, textBoxComm.Text, costValue,
                             newLogIn, newPass);
                     }
                 }

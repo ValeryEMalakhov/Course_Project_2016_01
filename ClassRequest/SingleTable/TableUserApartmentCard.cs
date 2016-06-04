@@ -10,11 +10,13 @@
         public string Gender { private set; get; }
         public string CheckInDate { private set; get; }
         public string CheckOutDate { private set; get; }
+        public string MToPay { private set; get; }
 
         public TableUserAppartmentCard()
         { }
 
-        public TableUserAppartmentCard(string clientId, string apId, string firstName, string secondName, string gender, string checkInDate, string checkOutDate)
+        public TableUserAppartmentCard(string clientId, string apId, string firstName,
+            string secondName, string gender, string checkInDate, string checkOutDate, string mToPay)
         {
             ClientId = clientId;
             ApId = apId;
@@ -23,6 +25,7 @@
             Gender = gender;
             CheckInDate = checkInDate;
             CheckOutDate = checkOutDate;
+            MToPay = mToPay;
         }
     }
 }

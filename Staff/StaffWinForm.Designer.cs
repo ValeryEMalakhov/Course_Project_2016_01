@@ -31,13 +31,14 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffWinForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabUser = new System.Windows.Forms.TabPage();
             this.gBUserAction = new System.Windows.Forms.GroupBox();
@@ -47,15 +48,9 @@
             this.dateTPUser = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvUser = new System.Windows.Forms.DataGridView();
-            this.cName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cSName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cInDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cOutDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CPasp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabNumb = new System.Windows.Forms.TabPage();
             this.gBNum = new System.Windows.Forms.GroupBox();
+            this.btnUpdateNum = new System.Windows.Forms.Button();
             this.dateTPNum = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvNum = new System.Windows.Forms.DataGridView();
@@ -96,9 +91,16 @@
             this.HotelPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HotelClass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HotelWeb = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnUpdateNum = new System.Windows.Forms.Button();
             this.toolTipAddReq = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipDeleteUser = new System.Windows.Forms.ToolTip(this.components);
+            this.cName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cSName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cInDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cOutDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CPasp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
             this.tabUser.SuspendLayout();
             this.gBUserAction.SuspendLayout();
@@ -143,14 +145,14 @@
             this.gBUserAction.Controls.Add(this.btnAddUser);
             this.gBUserAction.Location = new System.Drawing.Point(5, 336);
             this.gBUserAction.Name = "gBUserAction";
-            this.gBUserAction.Size = new System.Drawing.Size(197, 191);
+            this.gBUserAction.Size = new System.Drawing.Size(139, 191);
             this.gBUserAction.TabIndex = 6;
             this.gBUserAction.TabStop = false;
             // 
             // btnDeleteUser
             // 
             this.btnDeleteUser.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteUser.Image")));
-            this.btnDeleteUser.Location = new System.Drawing.Point(104, 19);
+            this.btnDeleteUser.Location = new System.Drawing.Point(13, 105);
             this.btnDeleteUser.Name = "btnDeleteUser";
             this.btnDeleteUser.Size = new System.Drawing.Size(80, 80);
             this.btnDeleteUser.TabIndex = 0;
@@ -173,7 +175,7 @@
             this.gBUser.Controls.Add(this.label2);
             this.gBUser.Location = new System.Drawing.Point(5, 3);
             this.gBUser.Name = "gBUser";
-            this.gBUser.Size = new System.Drawing.Size(197, 327);
+            this.gBUser.Size = new System.Drawing.Size(139, 327);
             this.gBUser.TabIndex = 5;
             this.gBUser.TabStop = false;
             this.gBUser.Text = "Фильтры";
@@ -181,7 +183,7 @@
             // dateTPUser
             // 
             this.dateTPUser.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTPUser.Location = new System.Drawing.Point(63, 20);
+            this.dateTPUser.Location = new System.Drawing.Point(6, 39);
             this.dateTPUser.MaxDate = new System.DateTime(2999, 12, 31, 0, 0, 0, 0);
             this.dateTPUser.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dateTPUser.Name = "dateTPUser";
@@ -192,7 +194,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 23);
+            this.label2.Location = new System.Drawing.Point(6, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 0;
@@ -216,76 +218,12 @@
             this.cNum,
             this.cInDate,
             this.cOutDate,
-            this.CPasp});
-            this.dgvUser.Location = new System.Drawing.Point(208, 6);
+            this.CPasp,
+            this.ColumnPay});
+            this.dgvUser.Location = new System.Drawing.Point(150, 6);
             this.dgvUser.Name = "dgvUser";
-            this.dgvUser.Size = new System.Drawing.Size(723, 521);
+            this.dgvUser.Size = new System.Drawing.Size(781, 521);
             this.dgvUser.TabIndex = 0;
-            // 
-            // cName
-            // 
-            this.cName.HeaderText = "Имя";
-            this.cName.Name = "cName";
-            this.cName.ReadOnly = true;
-            this.cName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cName.Width = 110;
-            // 
-            // cSName
-            // 
-            this.cSName.HeaderText = "Фамилия";
-            this.cSName.Name = "cSName";
-            this.cSName.ReadOnly = true;
-            this.cSName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cSName.Width = 130;
-            // 
-            // cGender
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cGender.DefaultCellStyle = dataGridViewCellStyle2;
-            this.cGender.HeaderText = "Пол";
-            this.cGender.Name = "cGender";
-            this.cGender.ReadOnly = true;
-            this.cGender.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cGender.Width = 40;
-            // 
-            // cNum
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cNum.DefaultCellStyle = dataGridViewCellStyle3;
-            this.cNum.HeaderText = "Номер";
-            this.cNum.Name = "cNum";
-            this.cNum.ReadOnly = true;
-            this.cNum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cNum.Width = 60;
-            // 
-            // cInDate
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cInDate.DefaultCellStyle = dataGridViewCellStyle4;
-            this.cInDate.HeaderText = "Дата вселения";
-            this.cInDate.Name = "cInDate";
-            this.cInDate.ReadOnly = true;
-            this.cInDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cInDate.Width = 110;
-            // 
-            // cOutDate
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cOutDate.DefaultCellStyle = dataGridViewCellStyle5;
-            this.cOutDate.HeaderText = "Дата выселения";
-            this.cOutDate.Name = "cOutDate";
-            this.cOutDate.ReadOnly = true;
-            this.cOutDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cOutDate.Width = 110;
-            // 
-            // CPasp
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CPasp.DefaultCellStyle = dataGridViewCellStyle6;
-            this.CPasp.HeaderText = "Код паспорта";
-            this.CPasp.Name = "CPasp";
-            this.CPasp.ReadOnly = true;
-            this.CPasp.Width = 120;
             // 
             // tabNumb
             // 
@@ -311,6 +249,16 @@
             this.gBNum.TabStop = false;
             this.gBNum.Text = "Фильтры";
             // 
+            // btnUpdateNum
+            // 
+            this.btnUpdateNum.Location = new System.Drawing.Point(6, 159);
+            this.btnUpdateNum.Name = "btnUpdateNum";
+            this.btnUpdateNum.Size = new System.Drawing.Size(303, 26);
+            this.btnUpdateNum.TabIndex = 14;
+            this.btnUpdateNum.Text = "Сбросить фильтр";
+            this.btnUpdateNum.UseVisualStyleBackColor = true;
+            this.btnUpdateNum.Click += new System.EventHandler(this.btnUpdateNum_Click_1);
+            // 
             // dateTPNum
             // 
             this.dateTPNum.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -333,14 +281,14 @@
             // 
             // dgvNum
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNum.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNum.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvNum.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNum.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CNumb,
@@ -621,14 +569,14 @@
             // dgvHotel
             // 
             this.dgvHotel.AllowUserToResizeRows = false;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvHotel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvHotel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvHotel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHotel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -712,15 +660,79 @@
             this.HotelWeb.ReadOnly = true;
             this.HotelWeb.Width = 175;
             // 
-            // btnUpdateNum
+            // cName
             // 
-            this.btnUpdateNum.Location = new System.Drawing.Point(6, 159);
-            this.btnUpdateNum.Name = "btnUpdateNum";
-            this.btnUpdateNum.Size = new System.Drawing.Size(303, 26);
-            this.btnUpdateNum.TabIndex = 14;
-            this.btnUpdateNum.Text = "Сбросить фильтр";
-            this.btnUpdateNum.UseVisualStyleBackColor = true;
-            this.btnUpdateNum.Click += new System.EventHandler(this.btnUpdateNum_Click_1);
+            this.cName.HeaderText = "Имя";
+            this.cName.Name = "cName";
+            this.cName.ReadOnly = true;
+            this.cName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cName.Width = 110;
+            // 
+            // cSName
+            // 
+            this.cSName.HeaderText = "Фамилия";
+            this.cSName.Name = "cSName";
+            this.cSName.ReadOnly = true;
+            this.cSName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cSName.Width = 130;
+            // 
+            // cGender
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cGender.DefaultCellStyle = dataGridViewCellStyle2;
+            this.cGender.HeaderText = "Пол";
+            this.cGender.Name = "cGender";
+            this.cGender.ReadOnly = true;
+            this.cGender.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cGender.Width = 40;
+            // 
+            // cNum
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cNum.DefaultCellStyle = dataGridViewCellStyle3;
+            this.cNum.HeaderText = "Номер";
+            this.cNum.Name = "cNum";
+            this.cNum.ReadOnly = true;
+            this.cNum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cNum.Width = 60;
+            // 
+            // cInDate
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cInDate.DefaultCellStyle = dataGridViewCellStyle4;
+            this.cInDate.HeaderText = "Дата вселения";
+            this.cInDate.Name = "cInDate";
+            this.cInDate.ReadOnly = true;
+            this.cInDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // cOutDate
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cOutDate.DefaultCellStyle = dataGridViewCellStyle5;
+            this.cOutDate.HeaderText = "Дата выселения";
+            this.cOutDate.Name = "cOutDate";
+            this.cOutDate.ReadOnly = true;
+            this.cOutDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // CPasp
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CPasp.DefaultCellStyle = dataGridViewCellStyle6;
+            this.CPasp.HeaderText = "Код паспорта";
+            this.CPasp.Name = "CPasp";
+            this.CPasp.ReadOnly = true;
+            this.CPasp.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CPasp.Width = 120;
+            // 
+            // ColumnPay
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ColumnPay.DefaultCellStyle = dataGridViewCellStyle7;
+            this.ColumnPay.HeaderText = "К оплате";
+            this.ColumnPay.Name = "ColumnPay";
+            this.ColumnPay.ReadOnly = true;
+            this.ColumnPay.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnPay.Width = 78;
             // 
             // StaffWinForm
             // 
@@ -773,13 +785,6 @@
         protected internal System.Windows.Forms.DataGridView dgvNum;
         private System.Windows.Forms.TabPage tabHotel;
         private System.Windows.Forms.Button btnDeleteUser;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cSName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cGender;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cNum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cInDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cOutDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CPasp;
         private System.Windows.Forms.DataGridViewTextBoxColumn CNumb;
         private System.Windows.Forms.DataGridViewTextBoxColumn CPlace;
         private System.Windows.Forms.DataGridViewTextBoxColumn CClass;
@@ -819,6 +824,14 @@
         private System.Windows.Forms.Button btnUpdateNum;
         private System.Windows.Forms.ToolTip toolTipAddReq;
         private System.Windows.Forms.ToolTip toolTipDeleteUser;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cSName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cGender;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cInDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cOutDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CPasp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPay;
     }
 }
 

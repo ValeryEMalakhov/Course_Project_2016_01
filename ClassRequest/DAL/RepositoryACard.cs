@@ -51,7 +51,8 @@ namespace ClassRequest.DAL
                         dbDataRecord["Ap_ID"].ToString(),
                         dbDataRecord["CheckInDate"].ToString(),
                         dbDataRecord["CheckOutDate"].ToString(),
-                        dbDataRecord["StComment"].ToString());
+                        dbDataRecord["StComment"].ToString(),
+                        dbDataRecord["mToPay"].ToString());
                     tableACardList.Add(tableACard);
                 }
                 readerTable.Close();
@@ -70,7 +71,7 @@ namespace ClassRequest.DAL
 
         public void AddUser(string textBoxPass, string textBoxFirstName, string textBoxSecondName,
             string textBoxGender, string dtpBirth, string textBoxPhone,
-            string comboBoxApId, string dtpCheckIn, string dtpCheckOut, string textBoxComm,
+            string comboBoxApId, string dtpCheckIn, string dtpCheckOut, string textBoxComm, double mToPay,
             string newLogIn, string newPass)
         {
             int keyClientJustInHotel = 0;
@@ -162,9 +163,9 @@ namespace ClassRequest.DAL
                     {
                         string commPart =
                             "INSERT INTO \"hotel\".\"ACard\"" +
-                            " (Client_ID, Ap_ID, CheckInDate, CheckOutDate, StComment)" +
+                            " (Client_ID, Ap_ID, CheckInDate, CheckOutDate, StComment, mToPay)" +
                             " VALUES" +
-                            " (@Client_ID, @Ap_ID, @CheckInDate::timestamp with time zone, @CheckOutDate::timestamp with time zone, @StComment)";
+                            " (@Client_ID, @Ap_ID, @CheckInDate::timestamp with time zone, @CheckOutDate::timestamp with time zone, @StComment, @mToPay)";
 
                         NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
@@ -177,18 +178,19 @@ namespace ClassRequest.DAL
                             textBoxComm = @"";
                         }
                         command.Parameters.AddWithValue("@StComment", textBoxComm);
+                        command.Parameters.AddWithValue("@mToPay", mToPay);
 
                         try
                         {
                             command.ExecuteNonQuery();
                             MessageBox.Show(@"Успешно добавлен/на!");
                         }
-                        catch (NpgsqlException exp)
+                        catch (PostgresException exp)
                         {
                             MessageBox.Show(Convert.ToString(exp));
                         }
                     }
-                    catch (NpgsqlException exp)
+                    catch (PostgresException exp)
                     {
                         // MessageBox.Show("Не удалось выполнить запрос!");
                         MessageBox.Show(Convert.ToString(exp));
@@ -201,9 +203,9 @@ namespace ClassRequest.DAL
                     {
                         string commPart =
                             "INSERT INTO \"hotel\".\"ACard\"" +
-                            " (Client_ID, Ap_ID, CheckInDate, CheckOutDate, StComment)" +
+                            " (Client_ID, Ap_ID, CheckInDate, CheckOutDate, StComment, mToPay)" +
                             " VALUES" +
-                            " (@Client_ID, @Ap_ID, @CheckInDate::timestamp with time zone, @CheckOutDate::timestamp with time zone, @StComment)";
+                            " (@Client_ID, @Ap_ID, @CheckInDate::timestamp with time zone, @CheckOutDate::timestamp with time zone, @StComment, @mToPay)";
 
                         NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
 
@@ -216,18 +218,19 @@ namespace ClassRequest.DAL
                             textBoxComm = @"";
                         }
                         command.Parameters.AddWithValue("@StComment", textBoxComm);
+                        command.Parameters.AddWithValue("@mToPay", mToPay);
 
                         try
                         {
                             command.ExecuteNonQuery();
                             MessageBox.Show(@"Успешно добавлен/на!");
                         }
-                        catch (NpgsqlException exp)
+                        catch (PostgresException exp)
                         {
                             MessageBox.Show(Convert.ToString(exp));
                         }
                     }
-                    catch (NpgsqlException exp)
+                    catch (PostgresException exp)
                     {
                         // MessageBox.Show("Не удалось выполнить запрос!");
                         MessageBox.Show(Convert.ToString(exp));
