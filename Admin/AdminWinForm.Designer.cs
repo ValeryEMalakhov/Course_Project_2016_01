@@ -28,6 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -36,9 +43,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -49,16 +53,21 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminWinForm));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabUser = new System.Windows.Forms.TabPage();
+            this.dgvUser = new System.Windows.Forms.DataGridView();
+            this.cName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cSName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cInDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cOutDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CPasp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gBUserAction = new System.Windows.Forms.GroupBox();
             this.btnDeleteUser = new System.Windows.Forms.Button();
             this.btnAddUser = new System.Windows.Forms.Button();
@@ -169,9 +178,6 @@
             this.label22 = new System.Windows.Forms.Label();
             this.btnEditStaff = new System.Windows.Forms.Button();
             this.dgvStaffPosition = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnVacantCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvStaff = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -181,17 +187,22 @@
             this.vacant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SuperUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RegistrBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvUser = new System.Windows.Forms.DataGridView();
-            this.cName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cSName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cInDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cOutDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CPasp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnVacantCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxNewAdminPass = new System.Windows.Forms.TextBox();
+            this.textBoxNewStaffPass = new System.Windows.Forms.TextBox();
+            this.btnLogInOk = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabUser.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUser)).BeginInit();
             this.gBUserAction.SuspendLayout();
             this.gBUser.SuspendLayout();
             this.tabNumb.SuspendLayout();
@@ -210,7 +221,7 @@
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaffPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaff)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUser)).BeginInit();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -237,6 +248,105 @@
             this.tabUser.TabIndex = 0;
             this.tabUser.Text = "Постояльцы";
             this.tabUser.UseVisualStyleBackColor = true;
+            // 
+            // dgvUser
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cName,
+            this.cSName,
+            this.cGender,
+            this.cNum,
+            this.cInDate,
+            this.cOutDate,
+            this.CPasp,
+            this.ColumnPay});
+            this.dgvUser.Location = new System.Drawing.Point(149, 6);
+            this.dgvUser.Name = "dgvUser";
+            this.dgvUser.Size = new System.Drawing.Size(781, 521);
+            this.dgvUser.TabIndex = 7;
+            // 
+            // cName
+            // 
+            this.cName.HeaderText = "Имя";
+            this.cName.Name = "cName";
+            this.cName.ReadOnly = true;
+            this.cName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cName.Width = 110;
+            // 
+            // cSName
+            // 
+            this.cSName.HeaderText = "Фамилия";
+            this.cSName.Name = "cSName";
+            this.cSName.ReadOnly = true;
+            this.cSName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cSName.Width = 130;
+            // 
+            // cGender
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cGender.DefaultCellStyle = dataGridViewCellStyle2;
+            this.cGender.HeaderText = "Пол";
+            this.cGender.Name = "cGender";
+            this.cGender.ReadOnly = true;
+            this.cGender.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cGender.Width = 40;
+            // 
+            // cNum
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cNum.DefaultCellStyle = dataGridViewCellStyle3;
+            this.cNum.HeaderText = "Номер";
+            this.cNum.Name = "cNum";
+            this.cNum.ReadOnly = true;
+            this.cNum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cNum.Width = 60;
+            // 
+            // cInDate
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cInDate.DefaultCellStyle = dataGridViewCellStyle4;
+            this.cInDate.HeaderText = "Дата вселения";
+            this.cInDate.Name = "cInDate";
+            this.cInDate.ReadOnly = true;
+            this.cInDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // cOutDate
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cOutDate.DefaultCellStyle = dataGridViewCellStyle5;
+            this.cOutDate.HeaderText = "Дата выселения";
+            this.cOutDate.Name = "cOutDate";
+            this.cOutDate.ReadOnly = true;
+            this.cOutDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // CPasp
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CPasp.DefaultCellStyle = dataGridViewCellStyle6;
+            this.CPasp.HeaderText = "Код паспорта";
+            this.CPasp.Name = "CPasp";
+            this.CPasp.ReadOnly = true;
+            this.CPasp.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CPasp.Width = 120;
+            // 
+            // ColumnPay
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ColumnPay.DefaultCellStyle = dataGridViewCellStyle7;
+            this.ColumnPay.HeaderText = "К оплате";
+            this.ColumnPay.Name = "ColumnPay";
+            this.ColumnPay.ReadOnly = true;
+            this.ColumnPay.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnPay.Width = 78;
             // 
             // gBUserAction
             // 
@@ -796,6 +906,7 @@
             // 
             // textBoxHotelNum
             // 
+            this.textBoxHotelNum.Enabled = false;
             this.textBoxHotelNum.Location = new System.Drawing.Point(13, 32);
             this.textBoxHotelNum.Name = "textBoxHotelNum";
             this.textBoxHotelNum.Size = new System.Drawing.Size(153, 20);
@@ -963,7 +1074,7 @@
             this.dgvHotel.Location = new System.Drawing.Point(6, 6);
             this.dgvHotel.Name = "dgvHotel";
             this.dgvHotel.ReadOnly = true;
-            this.dgvHotel.Size = new System.Drawing.Size(924, 227);
+            this.dgvHotel.Size = new System.Drawing.Size(924, 332);
             this.dgvHotel.TabIndex = 109;
             this.dgvHotel.TabStop = false;
             this.dgvHotel.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHotel_CellClick);
@@ -1035,6 +1146,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox6);
             this.tabPage1.Controls.Add(this.groupBox7);
             this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Controls.Add(this.dgvStaffPosition);
@@ -1391,42 +1503,11 @@
             this.dgvStaffPosition.Location = new System.Drawing.Point(384, 235);
             this.dgvStaffPosition.Name = "dgvStaffPosition";
             this.dgvStaffPosition.ReadOnly = true;
-            this.dgvStaffPosition.Size = new System.Drawing.Size(546, 292);
+            this.dgvStaffPosition.Size = new System.Drawing.Size(395, 292);
             this.dgvStaffPosition.TabIndex = 101;
             this.dgvStaffPosition.TabStop = false;
             this.dgvStaffPosition.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaffPosition_CellClick);
             this.dgvStaffPosition.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvStaffPosition_KeyUp);
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle16;
-            this.dataGridViewTextBoxColumn5.Frozen = true;
-            this.dataGridViewTextBoxColumn5.HeaderText = "Код должности";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn5.Width = 110;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle17;
-            this.dataGridViewTextBoxColumn6.Frozen = true;
-            this.dataGridViewTextBoxColumn6.HeaderText = "Название";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 250;
-            // 
-            // ColumnVacantCost
-            // 
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ColumnVacantCost.DefaultCellStyle = dataGridViewCellStyle18;
-            this.ColumnVacantCost.Frozen = true;
-            this.ColumnVacantCost.HeaderText = "Зарплата";
-            this.ColumnVacantCost.Name = "ColumnVacantCost";
-            this.ColumnVacantCost.ReadOnly = true;
-            this.ColumnVacantCost.Width = 142;
             // 
             // dgvStaff
             // 
@@ -1550,104 +1631,133 @@
             this.RegistrBuild.ReadOnly = true;
             this.RegistrBuild.Width = 65;
             // 
-            // dgvUser
+            // dataGridViewTextBoxColumn5
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUser.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvUser.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUser.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cName,
-            this.cSName,
-            this.cGender,
-            this.cNum,
-            this.cInDate,
-            this.cOutDate,
-            this.CPasp,
-            this.ColumnPay});
-            this.dgvUser.Location = new System.Drawing.Point(149, 6);
-            this.dgvUser.Name = "dgvUser";
-            this.dgvUser.Size = new System.Drawing.Size(781, 521);
-            this.dgvUser.TabIndex = 7;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle16;
+            this.dataGridViewTextBoxColumn5.Frozen = true;
+            this.dataGridViewTextBoxColumn5.HeaderText = "ИД";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn5.Width = 50;
             // 
-            // cName
+            // dataGridViewTextBoxColumn6
             // 
-            this.cName.HeaderText = "Имя";
-            this.cName.Name = "cName";
-            this.cName.ReadOnly = true;
-            this.cName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cName.Width = 110;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle17;
+            this.dataGridViewTextBoxColumn6.Frozen = true;
+            this.dataGridViewTextBoxColumn6.HeaderText = "Название";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 200;
             // 
-            // cSName
+            // ColumnVacantCost
             // 
-            this.cSName.HeaderText = "Фамилия";
-            this.cSName.Name = "cSName";
-            this.cSName.ReadOnly = true;
-            this.cSName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cSName.Width = 130;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ColumnVacantCost.DefaultCellStyle = dataGridViewCellStyle18;
+            this.ColumnVacantCost.Frozen = true;
+            this.ColumnVacantCost.HeaderText = "Зарплата";
+            this.ColumnVacantCost.Name = "ColumnVacantCost";
+            this.ColumnVacantCost.ReadOnly = true;
             // 
-            // cGender
+            // groupBox6
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cGender.DefaultCellStyle = dataGridViewCellStyle2;
-            this.cGender.HeaderText = "Пол";
-            this.cGender.Name = "cGender";
-            this.cGender.ReadOnly = true;
-            this.cGender.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cGender.Width = 40;
+            this.groupBox6.Controls.Add(this.btnLogInOk);
+            this.groupBox6.Controls.Add(this.textBoxNewStaffPass);
+            this.groupBox6.Controls.Add(this.textBoxNewAdminPass);
+            this.groupBox6.Controls.Add(this.textBox2);
+            this.groupBox6.Controls.Add(this.textBox1);
+            this.groupBox6.Controls.Add(this.label33);
+            this.groupBox6.Controls.Add(this.label32);
+            this.groupBox6.Controls.Add(this.label31);
+            this.groupBox6.Controls.Add(this.label30);
+            this.groupBox6.Location = new System.Drawing.Point(785, 235);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(145, 292);
+            this.groupBox6.TabIndex = 104;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Пароль групп";
             // 
-            // cNum
+            // label30
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cNum.DefaultCellStyle = dataGridViewCellStyle3;
-            this.cNum.HeaderText = "Номер";
-            this.cNum.Name = "cNum";
-            this.cNum.ReadOnly = true;
-            this.cNum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cNum.Width = 60;
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(6, 59);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(132, 13);
+            this.label30.TabIndex = 0;
+            this.label30.Text = "Пароль администратора";
             // 
-            // cInDate
+            // label31
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cInDate.DefaultCellStyle = dataGridViewCellStyle4;
-            this.cInDate.HeaderText = "Дата вселения";
-            this.cInDate.Name = "cInDate";
-            this.cInDate.ReadOnly = true;
-            this.cInDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(6, 16);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(125, 13);
+            this.label31.TabIndex = 0;
+            this.label31.Text = "Логин администратора";
             // 
-            // cOutDate
+            // label32
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cOutDate.DefaultCellStyle = dataGridViewCellStyle5;
-            this.cOutDate.HeaderText = "Дата выселения";
-            this.cOutDate.Name = "cOutDate";
-            this.cOutDate.ReadOnly = true;
-            this.cOutDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(6, 114);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(99, 13);
+            this.label32.TabIndex = 0;
+            this.label32.Text = "Логин сотрудника";
             // 
-            // CPasp
+            // label33
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CPasp.DefaultCellStyle = dataGridViewCellStyle6;
-            this.CPasp.HeaderText = "Код паспорта";
-            this.CPasp.Name = "CPasp";
-            this.CPasp.ReadOnly = true;
-            this.CPasp.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CPasp.Width = 120;
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(6, 159);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(106, 13);
+            this.label33.TabIndex = 0;
+            this.label33.Text = "Пароль сотрудника";
             // 
-            // ColumnPay
+            // textBox1
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ColumnPay.DefaultCellStyle = dataGridViewCellStyle7;
-            this.ColumnPay.HeaderText = "К оплате";
-            this.ColumnPay.Name = "ColumnPay";
-            this.ColumnPay.ReadOnly = true;
-            this.ColumnPay.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnPay.Width = 78;
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(6, 32);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(133, 20);
+            this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "admin";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Enabled = false;
+            this.textBox2.Location = new System.Drawing.Point(6, 130);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(133, 20);
+            this.textBox2.TabIndex = 1;
+            this.textBox2.Text = "staff";
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBoxNewAdminPass
+            // 
+            this.textBoxNewAdminPass.Location = new System.Drawing.Point(6, 75);
+            this.textBoxNewAdminPass.Name = "textBoxNewAdminPass";
+            this.textBoxNewAdminPass.Size = new System.Drawing.Size(133, 20);
+            this.textBoxNewAdminPass.TabIndex = 2;
+            // 
+            // textBoxNewStaffPass
+            // 
+            this.textBoxNewStaffPass.Location = new System.Drawing.Point(6, 175);
+            this.textBoxNewStaffPass.Name = "textBoxNewStaffPass";
+            this.textBoxNewStaffPass.Size = new System.Drawing.Size(133, 20);
+            this.textBoxNewStaffPass.TabIndex = 2;
+            // 
+            // btnLogInOk
+            // 
+            this.btnLogInOk.Location = new System.Drawing.Point(5, 221);
+            this.btnLogInOk.Name = "btnLogInOk";
+            this.btnLogInOk.Size = new System.Drawing.Size(134, 65);
+            this.btnLogInOk.TabIndex = 3;
+            this.btnLogInOk.Text = "Применить";
+            this.btnLogInOk.UseVisualStyleBackColor = true;
+            this.btnLogInOk.Click += new System.EventHandler(this.btnLogInOk_Click);
             // 
             // AdminWinForm
             // 
@@ -1665,6 +1775,7 @@
             this.Load += new System.EventHandler(this.AdminWinForm_Load);
             this.tabControl.ResumeLayout(false);
             this.tabUser.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUser)).EndInit();
             this.gBUserAction.ResumeLayout(false);
             this.gBUser.ResumeLayout(false);
             this.gBUser.PerformLayout();
@@ -1691,7 +1802,8 @@
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaffPosition)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaff)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUser)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1815,9 +1927,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn vacant;
         private System.Windows.Forms.DataGridViewTextBoxColumn SuperUser;
         private System.Windows.Forms.DataGridViewTextBoxColumn RegistrBuild;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnVacantCost;
         private System.Windows.Forms.Button btnDeleteVacant;
         private System.Windows.Forms.Button btnEditVacant;
         private System.Windows.Forms.Button btnClearFieldsVacant;
@@ -1831,6 +1940,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cOutDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn CPasp;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPay;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Button btnLogInOk;
+        private System.Windows.Forms.TextBox textBoxNewStaffPass;
+        private System.Windows.Forms.TextBox textBoxNewAdminPass;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnVacantCost;
     }
 }
 

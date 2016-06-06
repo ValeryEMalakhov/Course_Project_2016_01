@@ -594,7 +594,6 @@ namespace Admin
                     textBoxHotelWeb.Text);
 
                 textBoxHotelNum.Text = string.Empty;
-                textBoxHotelNum.Enabled = true;
                 textBoxHotelName.Text = string.Empty;
                 textBoxHotelName.Enabled = true;
                 textBoxHotelOrg.Text = string.Empty;
@@ -842,6 +841,19 @@ namespace Admin
             catch (Exception exp)
             {
                 MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+
+        // pass and login
+        public void EditNewPass(ReposFactory reposFactory, string newAdminPass, string newStaffPass)
+        {
+            if (newAdminPass != string.Empty)
+            {
+                reposFactory.GetLogin().TableAdminEditPass(newAdminPass);
+            }
+            if (newStaffPass != string.Empty)
+            {
+                reposFactory.GetLogin().TableStaffEditPass(newStaffPass);
             }
         }
     }

@@ -306,7 +306,6 @@ namespace Admin
         private void btnClear3_Click(object sender, EventArgs e)
         {
             textBoxHotelNum.Text = string.Empty;
-            textBoxHotelNum.Enabled = true;
             textBoxHotelName.Text = string.Empty;
             textBoxHotelName.Enabled = true;
             textBoxHotelOrg.Text = string.Empty;
@@ -586,6 +585,13 @@ namespace Admin
             {
                 e.Handled = true;
             }
+        }
+
+        private void btnLogInOk_Click(object sender, EventArgs e)
+        {
+            _adminRequest.EditNewPass(_reposFactory, textBoxNewAdminPass.Text, textBoxNewStaffPass.Text);
+            textBoxNewAdminPass.Text = string.Empty;
+            textBoxNewStaffPass.Text = string.Empty;
         }
     }
 }

@@ -217,6 +217,54 @@ namespace ClassRequest.Login
 
         #endregion
 
+        #region TableUpdate
+
+        public void TableAdminEditPass(string newPass)
+        {
+            try
+            {
+                string commPart =
+                    "UPDATE \"login\".\"UserPass\"" +
+                    " SET Pass = @newPass" +
+                    " WHERE Login_ID = @loginId ;";
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
+
+                command.Parameters.AddWithValue("@newPass", Protection.EncryptMD5(newPass));
+                command.Parameters.AddWithValue("@loginId", Protection.DESEncrypt("admin"));
+
+                command.ExecuteNonQuery();
+                MessageBox.Show(@"Данные успешно измененны");
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+        public void TableStaffEditPass(string newPass)
+        {
+            try
+            {
+                string commPart =
+                    "UPDATE \"login\".\"UserPass\"" +
+                    " SET Pass = @newPass" +
+                    " WHERE Login_ID = @loginId ;";
+                NpgsqlCommand command = new NpgsqlCommand(commPart, sqlConnect.GetNewSqlConn().GetConn);
+
+                command.Parameters.AddWithValue("@newPass", Protection.EncryptMD5(newPass));
+                command.Parameters.AddWithValue("@loginId", Protection.DESEncrypt("staff"));
+
+                command.ExecuteNonQuery();
+                MessageBox.Show(@"Данные успешно измененны");
+            }
+            catch (NpgsqlException exp)
+            {
+                // MessageBox.Show("Не удалось выполнить запрос!");
+                MessageBox.Show(Convert.ToString(exp));
+            }
+        }
+        #endregion
+
         #region TableDelete
 
         public void RequestDeleteLogIn(string logIn)
