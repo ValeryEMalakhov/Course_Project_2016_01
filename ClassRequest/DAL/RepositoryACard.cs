@@ -57,10 +57,11 @@ namespace ClassRequest.DAL
                 }
                 readerTable.Close();
             }
-            catch (NpgsqlException exp)
+            catch (PostgresException exp)
             {
+                MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                // MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
             }
             return tableACardList;
         }
@@ -110,15 +111,15 @@ namespace ClassRequest.DAL
                             command.ExecuteNonQuery();
                             MessageBox.Show("Новый логин: " + newLogIn + "\nНовый пароль: " + newPass);
                         }
-                        catch (NpgsqlException exp)
+                        catch (PostgresException exp)
                         {
-                            MessageBox.Show(Convert.ToString(exp));
+                            MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
                         }
                     }
-                    catch (NpgsqlException exp)
+                    catch (PostgresException exp)
                     {
                         // MessageBox.Show("Не удалось выполнить запрос!");
-                        MessageBox.Show(Convert.ToString(exp));
+                        MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
                     }
                     // блок добавления нового пользователя в базу
                     try
@@ -147,16 +148,16 @@ namespace ClassRequest.DAL
                         {
                             command.ExecuteNonQuery();
                         }
-                        catch (NpgsqlException exp)
+                        catch (PostgresException exp)
                         {
-                            MessageBox.Show(Convert.ToString(exp));
+                            MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
                             repositoryLogin.RequestDeleteLogIn(newLogIn);
                         }
                     }
-                    catch (NpgsqlException exp)
+                    catch (PostgresException exp)
                     {
                         // MessageBox.Show("Не удалось выполнить запрос!");
-                        MessageBox.Show(Convert.ToString(exp));
+                        MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
                     }
                     // блок добавления человека в карту регистрации
                     try
@@ -187,13 +188,13 @@ namespace ClassRequest.DAL
                         }
                         catch (PostgresException exp)
                         {
-                            MessageBox.Show(Convert.ToString(exp));
+                            MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
                         }
                     }
                     catch (PostgresException exp)
                     {
                         // MessageBox.Show("Не удалось выполнить запрос!");
-                        MessageBox.Show(Convert.ToString(exp));
+                        MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
                     }
                 }
                 else
@@ -227,13 +228,13 @@ namespace ClassRequest.DAL
                         }
                         catch (PostgresException exp)
                         {
-                            MessageBox.Show(Convert.ToString(exp));
+                            MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
                         }
                     }
                     catch (PostgresException exp)
                     {
                         // MessageBox.Show("Не удалось выполнить запрос!");
-                        MessageBox.Show(Convert.ToString(exp));
+                        MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
                     }
                 }
             }
@@ -264,10 +265,10 @@ namespace ClassRequest.DAL
 
                 command.ExecuteNonQuery();
             }
-            catch (NpgsqlException exp)
+            catch (PostgresException exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
             }
         }
 
@@ -287,10 +288,10 @@ namespace ClassRequest.DAL
 
                 command.ExecuteNonQuery();
             }
-            catch (NpgsqlException exp)
+            catch (PostgresException exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
             }
         }
 
@@ -306,10 +307,10 @@ namespace ClassRequest.DAL
                 command.Parameters.AddWithValue("@textBoxNum", Convert.ToInt32(textBoxNum));
                 command.ExecuteNonQuery();
             }
-            catch (NpgsqlException exp)
+            catch (PostgresException exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
             }
         }
 

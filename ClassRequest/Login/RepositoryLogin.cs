@@ -52,10 +52,10 @@ namespace ClassRequest.Login
                 }
                 readerTable.Close();
             }
-            catch (NpgsqlException exp)
+            catch (PostgresException exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
             }
             return tableLoginList;
         }
@@ -95,15 +95,15 @@ namespace ClassRequest.Login
                     {
                         command.ExecuteNonQuery();
                     }
-                    catch (NpgsqlException exp)
+                    catch (PostgresException exp)
                     {
-                        MessageBox.Show(Convert.ToString(exp));
+                        MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
                     }
                 }
-                catch (NpgsqlException exp)
+                catch (PostgresException exp)
                 {
                     // MessageBox.Show("Не удалось выполнить запрос!");
-                    MessageBox.Show(Convert.ToString(exp));
+                    MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
                 }
                 // блок добавления нового пользователя в базу
                 try
@@ -133,15 +133,15 @@ namespace ClassRequest.Login
                         command.ExecuteNonQuery();
                         MessageBox.Show(@"Успешно добавлено!");
                     }
-                    catch (NpgsqlException exp)
+                    catch (PostgresException exp)
                     {
-                        MessageBox.Show(Convert.ToString(exp));
+                        MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
                     }
                 }
-                catch (NpgsqlException exp)
+                catch (PostgresException exp)
                 {
                     // MessageBox.Show("Не удалось выполнить запрос!");
-                    MessageBox.Show(Convert.ToString(exp));
+                    MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
                 }
             }
             else
@@ -171,15 +171,15 @@ namespace ClassRequest.Login
                 {
                     command.ExecuteNonQuery();
                 }
-                catch (NpgsqlException exp)
+                catch (PostgresException exp)
                 {
-                    MessageBox.Show(Convert.ToString(exp));
+                    MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
                 }
             }
-            catch (NpgsqlException exp)
+            catch (PostgresException exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
             }
         }
         public void AddUserStaff(string textBoxLogIn, string textBoxPass)
@@ -203,15 +203,15 @@ namespace ClassRequest.Login
                 {
                     command.ExecuteNonQuery();
                 }
-                catch (NpgsqlException exp)
+                catch (PostgresException exp)
                 {
-                    MessageBox.Show(Convert.ToString(exp));
+                    MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
                 }
             }
-            catch (NpgsqlException exp)
+            catch (PostgresException exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
             }
         }
 
@@ -235,10 +235,10 @@ namespace ClassRequest.Login
                 command.ExecuteNonQuery();
                 MessageBox.Show(@"Данные успешно измененны");
             }
-            catch (NpgsqlException exp)
+            catch (PostgresException exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
             }
         }
         public void TableStaffEditPass(string newPass)
@@ -257,10 +257,10 @@ namespace ClassRequest.Login
                 command.ExecuteNonQuery();
                 MessageBox.Show(@"Данные успешно измененны");
             }
-            catch (NpgsqlException exp)
+            catch (PostgresException exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
             }
         }
         #endregion
@@ -279,10 +279,10 @@ namespace ClassRequest.Login
                 command.Parameters.AddWithValue("@logIn", Protection.DESEncrypt(logIn));
                 command.ExecuteNonQuery();
             }
-            catch (NpgsqlException exp)
+            catch (PostgresException exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace Client
 {
@@ -290,6 +291,26 @@ namespace Client
                 {
                     ErrorString += "-- Пол человека не может быть пустым\n";
                     ValidKey = false;
+                }
+                else
+                {
+                    if (comboBoxGender.Text != "муж" && comboBoxGender.Text != "жен")
+                    {
+                        ErrorString += "-- Пол человека не может быть таким\n";
+                        ValidKey = false;
+                    }
+                }
+                if (Regex.Replace(textBoxPhone.Text, "[ ]+", "") != "()-")
+                {
+                    if (textBoxPhone.Text.IndexOf(' ') != 5 && textBoxPhone.Text.IndexOf(' ') != -1)
+                    {
+                        ErrorString += "-- Номер должен быть без пробелов\n";
+                        ValidKey = false;
+                    }
+                }
+                else
+                {
+                    textBoxPhone.Text = "0000000000";
                 }
 
                 if (ValidKey)

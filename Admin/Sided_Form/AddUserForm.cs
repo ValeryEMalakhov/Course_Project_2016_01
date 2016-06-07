@@ -40,6 +40,13 @@ namespace Admin.Sided_Form
             {
                 _adminRequest.UpdateComboBoxApId(_reposFactory, comboBoxApId, dtpCheckIn, dtpCheckOut);
             }
+
+            dtpBirth.MinDate = DateTime.Today.AddYears(-100);
+            dtpBirth.MaxDate = DateTime.Today.AddYears(-16);
+            dtpCheckIn.MinDate = DateTime.Today;
+            dtpCheckIn.MaxDate = DateTime.Today.AddYears(1);
+            dtpCheckOut.MinDate = DateTime.Today;
+            dtpCheckOut.MaxDate = DateTime.Today.AddYears(2);
         }
 
         private void AddUserForm_FormClosing(object sender, FormClosingEventArgs e)

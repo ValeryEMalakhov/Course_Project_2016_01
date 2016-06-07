@@ -53,6 +53,11 @@ namespace Client.Sided_Form
                 _clientRequest.UpdateComboBoxApId(_reposFactory, comboBoxApId, dtpCheckIn, dtpCheckOut);
             }
             comboBoxApId.Text = _currentApId;
+
+            dtpCheckIn.MinDate = DateTime.Today;
+            dtpCheckIn.MaxDate = DateTime.Today.AddYears(1);
+            dtpCheckOut.MinDate = DateTime.Today;
+            dtpCheckOut.MaxDate = DateTime.Today.AddYears(2);
         }
 
         private void AddForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -101,6 +106,14 @@ namespace Client.Sided_Form
             {
                 _clientRequest.SelectStatInfo(_reposFactory, comboBoxApId.Text, dtpCheckIn, dtpCheckOut,
                     labelRoomQ, labelRoomT, labelRoomC);
+            }
+        }
+
+        private void comboBoxApId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

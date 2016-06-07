@@ -31,14 +31,14 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StaffWinForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabUser = new System.Windows.Forms.TabPage();
             this.gBUserAction = new System.Windows.Forms.GroupBox();
@@ -48,6 +48,14 @@
             this.dateTPUser = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvUser = new System.Windows.Forms.DataGridView();
+            this.cName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cSName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cInDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cOutDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CPasp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabNumb = new System.Windows.Forms.TabPage();
             this.gBNum = new System.Windows.Forms.GroupBox();
             this.btnUpdateNum = new System.Windows.Forms.Button();
@@ -93,14 +101,6 @@
             this.HotelWeb = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolTipAddReq = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipDeleteUser = new System.Windows.Forms.ToolTip(this.components);
-            this.cName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cSName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cInDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cOutDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CPasp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
             this.tabUser.SuspendLayout();
             this.gBUserAction.SuspendLayout();
@@ -152,7 +152,7 @@
             // btnDeleteUser
             // 
             this.btnDeleteUser.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteUser.Image")));
-            this.btnDeleteUser.Location = new System.Drawing.Point(13, 105);
+            this.btnDeleteUser.Location = new System.Drawing.Point(29, 105);
             this.btnDeleteUser.Name = "btnDeleteUser";
             this.btnDeleteUser.Size = new System.Drawing.Size(80, 80);
             this.btnDeleteUser.TabIndex = 0;
@@ -162,7 +162,7 @@
             // btnAddUser
             // 
             this.btnAddUser.Image = ((System.Drawing.Image)(resources.GetObject("btnAddUser.Image")));
-            this.btnAddUser.Location = new System.Drawing.Point(13, 19);
+            this.btnAddUser.Location = new System.Drawing.Point(29, 19);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(80, 80);
             this.btnAddUser.TabIndex = 0;
@@ -224,6 +224,80 @@
             this.dgvUser.Name = "dgvUser";
             this.dgvUser.Size = new System.Drawing.Size(781, 521);
             this.dgvUser.TabIndex = 0;
+            // 
+            // cName
+            // 
+            this.cName.HeaderText = "Имя";
+            this.cName.Name = "cName";
+            this.cName.ReadOnly = true;
+            this.cName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cName.Width = 110;
+            // 
+            // cSName
+            // 
+            this.cSName.HeaderText = "Фамилия";
+            this.cSName.Name = "cSName";
+            this.cSName.ReadOnly = true;
+            this.cSName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cSName.Width = 130;
+            // 
+            // cGender
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cGender.DefaultCellStyle = dataGridViewCellStyle2;
+            this.cGender.HeaderText = "Пол";
+            this.cGender.Name = "cGender";
+            this.cGender.ReadOnly = true;
+            this.cGender.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cGender.Width = 40;
+            // 
+            // cNum
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cNum.DefaultCellStyle = dataGridViewCellStyle3;
+            this.cNum.HeaderText = "Номер";
+            this.cNum.Name = "cNum";
+            this.cNum.ReadOnly = true;
+            this.cNum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cNum.Width = 60;
+            // 
+            // cInDate
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cInDate.DefaultCellStyle = dataGridViewCellStyle4;
+            this.cInDate.HeaderText = "Дата вселения";
+            this.cInDate.Name = "cInDate";
+            this.cInDate.ReadOnly = true;
+            this.cInDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // cOutDate
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cOutDate.DefaultCellStyle = dataGridViewCellStyle5;
+            this.cOutDate.HeaderText = "Дата выселения";
+            this.cOutDate.Name = "cOutDate";
+            this.cOutDate.ReadOnly = true;
+            this.cOutDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // CPasp
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.CPasp.DefaultCellStyle = dataGridViewCellStyle6;
+            this.CPasp.HeaderText = "Код паспорта";
+            this.CPasp.Name = "CPasp";
+            this.CPasp.ReadOnly = true;
+            this.CPasp.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CPasp.Width = 120;
+            // 
+            // ColumnPay
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ColumnPay.DefaultCellStyle = dataGridViewCellStyle7;
+            this.ColumnPay.HeaderText = "К оплате";
+            this.ColumnPay.Name = "ColumnPay";
+            this.ColumnPay.ReadOnly = true;
+            this.ColumnPay.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnPay.Width = 78;
             // 
             // tabNumb
             // 
@@ -659,80 +733,6 @@
             this.HotelWeb.Name = "HotelWeb";
             this.HotelWeb.ReadOnly = true;
             this.HotelWeb.Width = 175;
-            // 
-            // cName
-            // 
-            this.cName.HeaderText = "Имя";
-            this.cName.Name = "cName";
-            this.cName.ReadOnly = true;
-            this.cName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cName.Width = 110;
-            // 
-            // cSName
-            // 
-            this.cSName.HeaderText = "Фамилия";
-            this.cSName.Name = "cSName";
-            this.cSName.ReadOnly = true;
-            this.cSName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cSName.Width = 130;
-            // 
-            // cGender
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cGender.DefaultCellStyle = dataGridViewCellStyle2;
-            this.cGender.HeaderText = "Пол";
-            this.cGender.Name = "cGender";
-            this.cGender.ReadOnly = true;
-            this.cGender.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cGender.Width = 40;
-            // 
-            // cNum
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cNum.DefaultCellStyle = dataGridViewCellStyle3;
-            this.cNum.HeaderText = "Номер";
-            this.cNum.Name = "cNum";
-            this.cNum.ReadOnly = true;
-            this.cNum.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.cNum.Width = 60;
-            // 
-            // cInDate
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cInDate.DefaultCellStyle = dataGridViewCellStyle4;
-            this.cInDate.HeaderText = "Дата вселения";
-            this.cInDate.Name = "cInDate";
-            this.cInDate.ReadOnly = true;
-            this.cInDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // cOutDate
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cOutDate.DefaultCellStyle = dataGridViewCellStyle5;
-            this.cOutDate.HeaderText = "Дата выселения";
-            this.cOutDate.Name = "cOutDate";
-            this.cOutDate.ReadOnly = true;
-            this.cOutDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // CPasp
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.CPasp.DefaultCellStyle = dataGridViewCellStyle6;
-            this.CPasp.HeaderText = "Код паспорта";
-            this.CPasp.Name = "CPasp";
-            this.CPasp.ReadOnly = true;
-            this.CPasp.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CPasp.Width = 120;
-            // 
-            // ColumnPay
-            // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ColumnPay.DefaultCellStyle = dataGridViewCellStyle7;
-            this.ColumnPay.HeaderText = "К оплате";
-            this.ColumnPay.Name = "ColumnPay";
-            this.ColumnPay.ReadOnly = true;
-            this.ColumnPay.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnPay.Width = 78;
             // 
             // StaffWinForm
             // 

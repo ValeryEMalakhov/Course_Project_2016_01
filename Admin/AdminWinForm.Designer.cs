@@ -43,6 +43,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -53,9 +56,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminWinForm));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabUser = new System.Windows.Forms.TabPage();
@@ -145,6 +145,16 @@
             this.HotelClass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HotelWeb = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnLogInOk = new System.Windows.Forms.Button();
+            this.textBoxNewStaffPass = new System.Windows.Forms.TextBox();
+            this.textBoxNewAdminPass = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.textBoxSvacantPay = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -178,6 +188,9 @@
             this.label22 = new System.Windows.Forms.Label();
             this.btnEditStaff = new System.Windows.Forms.Button();
             this.dgvStaffPosition = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnVacantCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvStaff = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -187,19 +200,6 @@
             this.vacant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SuperUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RegistrBuild = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnVacantCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBoxNewAdminPass = new System.Windows.Forms.TextBox();
-            this.textBoxNewStaffPass = new System.Windows.Forms.TextBox();
-            this.btnLogInOk = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUser)).BeginInit();
@@ -217,11 +217,11 @@
             this.groupBoxStat.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHotel)).BeginInit();
             this.tabPage1.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaffPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaff)).BeginInit();
-            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -1159,6 +1159,106 @@
             this.tabPage1.Text = "Сотрудники";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.btnLogInOk);
+            this.groupBox6.Controls.Add(this.textBoxNewStaffPass);
+            this.groupBox6.Controls.Add(this.textBoxNewAdminPass);
+            this.groupBox6.Controls.Add(this.textBox2);
+            this.groupBox6.Controls.Add(this.textBox1);
+            this.groupBox6.Controls.Add(this.label33);
+            this.groupBox6.Controls.Add(this.label32);
+            this.groupBox6.Controls.Add(this.label31);
+            this.groupBox6.Controls.Add(this.label30);
+            this.groupBox6.Location = new System.Drawing.Point(785, 235);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(145, 292);
+            this.groupBox6.TabIndex = 104;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Пароль групп";
+            // 
+            // btnLogInOk
+            // 
+            this.btnLogInOk.Location = new System.Drawing.Point(5, 221);
+            this.btnLogInOk.Name = "btnLogInOk";
+            this.btnLogInOk.Size = new System.Drawing.Size(134, 65);
+            this.btnLogInOk.TabIndex = 3;
+            this.btnLogInOk.Text = "Применить";
+            this.btnLogInOk.UseVisualStyleBackColor = true;
+            this.btnLogInOk.Click += new System.EventHandler(this.btnLogInOk_Click);
+            // 
+            // textBoxNewStaffPass
+            // 
+            this.textBoxNewStaffPass.Location = new System.Drawing.Point(6, 175);
+            this.textBoxNewStaffPass.Name = "textBoxNewStaffPass";
+            this.textBoxNewStaffPass.Size = new System.Drawing.Size(133, 20);
+            this.textBoxNewStaffPass.TabIndex = 2;
+            this.textBoxNewStaffPass.UseSystemPasswordChar = true;
+            // 
+            // textBoxNewAdminPass
+            // 
+            this.textBoxNewAdminPass.Location = new System.Drawing.Point(6, 75);
+            this.textBoxNewAdminPass.Name = "textBoxNewAdminPass";
+            this.textBoxNewAdminPass.Size = new System.Drawing.Size(133, 20);
+            this.textBoxNewAdminPass.TabIndex = 2;
+            this.textBoxNewAdminPass.UseSystemPasswordChar = true;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Enabled = false;
+            this.textBox2.Location = new System.Drawing.Point(6, 130);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(133, 20);
+            this.textBox2.TabIndex = 1;
+            this.textBox2.Text = "staff";
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(6, 32);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(133, 20);
+            this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "admin";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(6, 159);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(106, 13);
+            this.label33.TabIndex = 0;
+            this.label33.Text = "Пароль сотрудника";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(6, 114);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(99, 13);
+            this.label32.TabIndex = 0;
+            this.label32.Text = "Логин сотрудника";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(6, 16);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(125, 13);
+            this.label31.TabIndex = 0;
+            this.label31.Text = "Логин администратора";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(6, 59);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(132, 13);
+            this.label30.TabIndex = 0;
+            this.label30.Text = "Пароль администратора";
+            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.textBoxSvacantPay);
@@ -1313,6 +1413,7 @@
             this.comboBoxStaffHotel.Name = "comboBoxStaffHotel";
             this.comboBoxStaffHotel.Size = new System.Drawing.Size(150, 21);
             this.comboBoxStaffHotel.TabIndex = 31;
+            this.comboBoxStaffHotel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxStaffGender_KeyPress);
             // 
             // label28
             // 
@@ -1330,6 +1431,7 @@
             this.comboBoxLeader.Name = "comboBoxLeader";
             this.comboBoxLeader.Size = new System.Drawing.Size(150, 21);
             this.comboBoxLeader.TabIndex = 29;
+            this.comboBoxLeader.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxStaffGender_KeyPress);
             // 
             // label20
             // 
@@ -1347,6 +1449,7 @@
             this.comboBoxSvacant.Name = "comboBoxSvacant";
             this.comboBoxSvacant.Size = new System.Drawing.Size(150, 21);
             this.comboBoxSvacant.TabIndex = 27;
+            this.comboBoxSvacant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxStaffGender_KeyPress);
             // 
             // comboBoxStaffGender
             // 
@@ -1358,7 +1461,7 @@
             this.comboBoxStaffGender.Name = "comboBoxStaffGender";
             this.comboBoxStaffGender.Size = new System.Drawing.Size(150, 21);
             this.comboBoxStaffGender.TabIndex = 25;
-            this.comboBoxStaffGender.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxStaffName_KeyPress);
+            this.comboBoxStaffGender.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxStaffGender_KeyPress);
             // 
             // dtpStaffBirth
             // 
@@ -1509,6 +1612,36 @@
             this.dgvStaffPosition.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaffPosition_CellClick);
             this.dgvStaffPosition.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvStaffPosition_KeyUp);
             // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle16;
+            this.dataGridViewTextBoxColumn5.Frozen = true;
+            this.dataGridViewTextBoxColumn5.HeaderText = "ИД";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn5.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle17;
+            this.dataGridViewTextBoxColumn6.Frozen = true;
+            this.dataGridViewTextBoxColumn6.HeaderText = "Название";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 200;
+            // 
+            // ColumnVacantCost
+            // 
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ColumnVacantCost.DefaultCellStyle = dataGridViewCellStyle18;
+            this.ColumnVacantCost.Frozen = true;
+            this.ColumnVacantCost.HeaderText = "Зарплата";
+            this.ColumnVacantCost.Name = "ColumnVacantCost";
+            this.ColumnVacantCost.ReadOnly = true;
+            // 
             // dgvStaff
             // 
             this.dgvStaff.AllowUserToResizeRows = false;
@@ -1631,134 +1764,6 @@
             this.RegistrBuild.ReadOnly = true;
             this.RegistrBuild.Width = 65;
             // 
-            // dataGridViewTextBoxColumn5
-            // 
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle16;
-            this.dataGridViewTextBoxColumn5.Frozen = true;
-            this.dataGridViewTextBoxColumn5.HeaderText = "ИД";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn5.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle17;
-            this.dataGridViewTextBoxColumn6.Frozen = true;
-            this.dataGridViewTextBoxColumn6.HeaderText = "Название";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 200;
-            // 
-            // ColumnVacantCost
-            // 
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ColumnVacantCost.DefaultCellStyle = dataGridViewCellStyle18;
-            this.ColumnVacantCost.Frozen = true;
-            this.ColumnVacantCost.HeaderText = "Зарплата";
-            this.ColumnVacantCost.Name = "ColumnVacantCost";
-            this.ColumnVacantCost.ReadOnly = true;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.btnLogInOk);
-            this.groupBox6.Controls.Add(this.textBoxNewStaffPass);
-            this.groupBox6.Controls.Add(this.textBoxNewAdminPass);
-            this.groupBox6.Controls.Add(this.textBox2);
-            this.groupBox6.Controls.Add(this.textBox1);
-            this.groupBox6.Controls.Add(this.label33);
-            this.groupBox6.Controls.Add(this.label32);
-            this.groupBox6.Controls.Add(this.label31);
-            this.groupBox6.Controls.Add(this.label30);
-            this.groupBox6.Location = new System.Drawing.Point(785, 235);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(145, 292);
-            this.groupBox6.TabIndex = 104;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Пароль групп";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(6, 59);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(132, 13);
-            this.label30.TabIndex = 0;
-            this.label30.Text = "Пароль администратора";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(6, 16);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(125, 13);
-            this.label31.TabIndex = 0;
-            this.label31.Text = "Логин администратора";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(6, 114);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(99, 13);
-            this.label32.TabIndex = 0;
-            this.label32.Text = "Логин сотрудника";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(6, 159);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(106, 13);
-            this.label33.TabIndex = 0;
-            this.label33.Text = "Пароль сотрудника";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(6, 32);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(133, 20);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "admin";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(6, 130);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(133, 20);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "staff";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBoxNewAdminPass
-            // 
-            this.textBoxNewAdminPass.Location = new System.Drawing.Point(6, 75);
-            this.textBoxNewAdminPass.Name = "textBoxNewAdminPass";
-            this.textBoxNewAdminPass.Size = new System.Drawing.Size(133, 20);
-            this.textBoxNewAdminPass.TabIndex = 2;
-            // 
-            // textBoxNewStaffPass
-            // 
-            this.textBoxNewStaffPass.Location = new System.Drawing.Point(6, 175);
-            this.textBoxNewStaffPass.Name = "textBoxNewStaffPass";
-            this.textBoxNewStaffPass.Size = new System.Drawing.Size(133, 20);
-            this.textBoxNewStaffPass.TabIndex = 2;
-            // 
-            // btnLogInOk
-            // 
-            this.btnLogInOk.Location = new System.Drawing.Point(5, 221);
-            this.btnLogInOk.Name = "btnLogInOk";
-            this.btnLogInOk.Size = new System.Drawing.Size(134, 65);
-            this.btnLogInOk.TabIndex = 3;
-            this.btnLogInOk.Text = "Применить";
-            this.btnLogInOk.UseVisualStyleBackColor = true;
-            this.btnLogInOk.Click += new System.EventHandler(this.btnLogInOk_Click);
-            // 
             // AdminWinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1796,14 +1801,14 @@
             this.groupBoxStat.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHotel)).EndInit();
             this.tabPage1.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaffPosition)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaff)).EndInit();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }

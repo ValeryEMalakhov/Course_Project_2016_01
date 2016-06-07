@@ -23,13 +23,13 @@ namespace LogIn
             //ConfigurationManager.AppSettings.Set("ip", Protection.DESEncrypt("127.0.0.1"));
             //ConfigurationManager.AppSettings.Set("port", Protection.DESEncrypt("5432"));
             //ConfigurationManager.AppSettings.Set("userIdAdmin", Protection.DESEncrypt("admin"));
-            //ConfigurationManager.AppSettings.Set("passwdAdmin", Protection.DESEncrypt("1507"));
+            //ConfigurationManager.AppSettings.Set("passwdAdmin", Protection.DESEncrypt("0000"));
             //ConfigurationManager.AppSettings.Set("userIdStaff", Protection.DESEncrypt("staff"));
             //ConfigurationManager.AppSettings.Set("passwdStaff", Protection.DESEncrypt("1111"));
             //ConfigurationManager.AppSettings.Set("userIdUser", Protection.DESEncrypt("users"));
             //ConfigurationManager.AppSettings.Set("passwdUser", Protection.DESEncrypt("2222"));
             //ConfigurationManager.AppSettings.Set("userIdLogin", Protection.DESEncrypt("login"));
-            //ConfigurationManager.AppSettings.Set("passwdLogin", Protection.DESEncrypt("1507"));
+            //ConfigurationManager.AppSettings.Set("passwdLogin", Protection.DESEncrypt("0001"));
             //ConfigurationManager.AppSettings.Set("dataBase", Protection.DESEncrypt("malakhov"));
 
             //string ip = ConfigurationManager.AppSettings.Get("ip");

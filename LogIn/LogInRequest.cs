@@ -53,7 +53,7 @@ namespace LogIn
             catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось добавить клиента!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
     }

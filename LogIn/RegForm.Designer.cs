@@ -38,6 +38,7 @@
             this.labelPassword = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
             this.groupBoxInfo = new System.Windows.Forms.GroupBox();
+            this.maskedTextBoxPhone = new System.Windows.Forms.MaskedTextBox();
             this.comboBoxGender = new System.Windows.Forms.ComboBox();
             this.textBoxCodeID = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
-            this.maskedTextBoxPhone = new System.Windows.Forms.MaskedTextBox();
             this.groupBoxLogPass.SuspendLayout();
             this.groupBoxInfo.SuspendLayout();
             this.SuspendLayout();
@@ -89,7 +89,7 @@
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(176, 30);
             this.btnBack.TabIndex = 10;
-            this.btnBack.Text = "Назад";
+            this.btnBack.Text = "Отмена";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
@@ -164,6 +164,15 @@
             this.groupBoxInfo.TabStop = false;
             this.groupBoxInfo.Text = "Общая информация";
             // 
+            // maskedTextBoxPhone
+            // 
+            this.maskedTextBoxPhone.Location = new System.Drawing.Point(98, 153);
+            this.maskedTextBoxPhone.Mask = "(999) 000-0000";
+            this.maskedTextBoxPhone.Name = "maskedTextBoxPhone";
+            this.maskedTextBoxPhone.Size = new System.Drawing.Size(258, 22);
+            this.maskedTextBoxPhone.TabIndex = 8;
+            this.maskedTextBoxPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBoxPhone_KeyPress);
+            // 
             // comboBoxGender
             // 
             this.comboBoxGender.FormattingEnabled = true;
@@ -174,6 +183,7 @@
             this.comboBoxGender.Name = "comboBoxGender";
             this.comboBoxGender.Size = new System.Drawing.Size(258, 23);
             this.comboBoxGender.TabIndex = 6;
+            this.comboBoxGender.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxGender_KeyPress);
             // 
             // textBoxCodeID
             // 
@@ -197,6 +207,7 @@
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(258, 22);
             this.textBoxFirstName.TabIndex = 4;
+            this.textBoxFirstName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxFirstName_KeyPress);
             // 
             // textBoxSecondName
             // 
@@ -204,6 +215,7 @@
             this.textBoxSecondName.Name = "textBoxSecondName";
             this.textBoxSecondName.Size = new System.Drawing.Size(258, 22);
             this.textBoxSecondName.TabIndex = 5;
+            this.textBoxSecondName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxFirstName_KeyPress);
             // 
             // dtpBirth
             // 
@@ -270,14 +282,6 @@
             this.btnOK.Text = "Готово";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // maskedTextBoxPhone
-            // 
-            this.maskedTextBoxPhone.Location = new System.Drawing.Point(98, 153);
-            this.maskedTextBoxPhone.Mask = "(999) 000-0000";
-            this.maskedTextBoxPhone.Name = "maskedTextBoxPhone";
-            this.maskedTextBoxPhone.Size = new System.Drawing.Size(258, 22);
-            this.maskedTextBoxPhone.TabIndex = 8;
             // 
             // RegForm
             // 

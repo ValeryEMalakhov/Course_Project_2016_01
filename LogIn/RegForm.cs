@@ -31,6 +31,8 @@ namespace LogIn
         private void RegForm_Load(object sender, EventArgs e)
         {
             _logInRequest.GiveUser(_loginReposFactory, textBoxID);
+            dtpBirth.MinDate = DateTime.Today.AddYears(-120);
+            dtpBirth.MaxDate = DateTime.Today.AddYears(-16);
         }
 
         private void RegForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -46,6 +48,7 @@ namespace LogIn
         private void btnNext_Click(object sender, EventArgs e)
         {
             textBoxPass.Enabled = false;
+            btnNext.Enabled = false;
             groupBoxInfo.Enabled = true;
         }
 
@@ -153,11 +156,35 @@ namespace LogIn
             textBoxFirstName.Text = "Джефф";
             textBoxSecondName.Text = "Моро";
             comboBoxGender.Text = "муж";
-            dtpBirth.Text = "01.01.2155";
+            dtpBirth.Text = "01.01.1955";
             maskedTextBoxPhone.Text = "(777) 424-2564";
             _logInRequest.AddUserFirstPart(_loginReposFactory, textBoxID, textBoxPass, textBoxCodeID,
                 textBoxFirstName, textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone);
 
+        }
+
+        private void maskedTextBoxPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void comboBoxGender_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxFirstName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

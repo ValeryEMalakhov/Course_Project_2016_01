@@ -43,13 +43,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.maskedTextBoxPhone = new System.Windows.Forms.MaskedTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.checkBoxPass = new System.Windows.Forms.CheckBox();
             this.textBoxNewPass = new System.Windows.Forms.TextBox();
             this.textBoxID = new System.Windows.Forms.TextBox();
-            this.maskedTextBoxPhone = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -85,6 +85,7 @@
             this.comboBoxGender.Size = new System.Drawing.Size(150, 21);
             this.comboBoxGender.TabIndex = 3;
             this.comboBoxGender.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditRequestForm_KeyDown);
+            this.comboBoxGender.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxGender_KeyPress);
             // 
             // textBoxPass
             // 
@@ -110,6 +111,7 @@
             this.textBoxFirstName.Size = new System.Drawing.Size(150, 20);
             this.textBoxFirstName.TabIndex = 1;
             this.textBoxFirstName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditRequestForm_KeyDown);
+            this.textBoxFirstName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxFirstName_KeyPress);
             // 
             // textBoxSecondName
             // 
@@ -118,6 +120,7 @@
             this.textBoxSecondName.Size = new System.Drawing.Size(150, 20);
             this.textBoxSecondName.TabIndex = 2;
             this.textBoxSecondName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditRequestForm_KeyDown);
+            this.textBoxSecondName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxFirstName_KeyPress);
             // 
             // dtpBirth
             // 
@@ -194,6 +197,15 @@
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             // 
+            // maskedTextBoxPhone
+            // 
+            this.maskedTextBoxPhone.Location = new System.Drawing.Point(98, 144);
+            this.maskedTextBoxPhone.Mask = "(999) 000-0000";
+            this.maskedTextBoxPhone.Name = "maskedTextBoxPhone";
+            this.maskedTextBoxPhone.Size = new System.Drawing.Size(150, 20);
+            this.maskedTextBoxPhone.TabIndex = 17;
+            this.maskedTextBoxPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maskedTextBoxPhone_KeyPress);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label8);
@@ -252,14 +264,6 @@
             this.textBoxID.Size = new System.Drawing.Size(150, 20);
             this.textBoxID.TabIndex = 12;
             this.textBoxID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // maskedTextBoxPhone
-            // 
-            this.maskedTextBoxPhone.Location = new System.Drawing.Point(98, 144);
-            this.maskedTextBoxPhone.Mask = "(999) 000-0000";
-            this.maskedTextBoxPhone.Name = "maskedTextBoxPhone";
-            this.maskedTextBoxPhone.Size = new System.Drawing.Size(150, 20);
-            this.maskedTextBoxPhone.TabIndex = 17;
             // 
             // EditRequestForm
             // 

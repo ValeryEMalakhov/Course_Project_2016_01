@@ -58,10 +58,10 @@ namespace ClassRequest.DAL
                 }
                 readerTable.Close();
             }
-            catch (NpgsqlException exp)
+            catch (PostgresException exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
             }
             return tableApartmentList;
         }
@@ -109,10 +109,10 @@ namespace ClassRequest.DAL
                 }
                 readerTable.Close();
             }
-            catch (NpgsqlException exp)
+            catch (PostgresException exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
             }
             return tableApartmentList;
         }
@@ -146,10 +146,10 @@ namespace ClassRequest.DAL
                 }
                 readerTable.Close();
             }
-            catch (NpgsqlException exp)
+            catch (PostgresException exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
             }
             return tableApartmentList;
         }
@@ -182,10 +182,10 @@ namespace ClassRequest.DAL
                 }
                 readerTable.Close();
             }
-            catch (NpgsqlException exp)
+            catch (PostgresException exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне БД.\r\nКод ошибки: " + Convert.ToString(exp.SqlState));
             }
             return tableApartmentList;
         }

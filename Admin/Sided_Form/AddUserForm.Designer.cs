@@ -89,7 +89,7 @@
             this.groupBox1.Size = new System.Drawing.Size(297, 202);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Информаци о клиенте";
+            this.groupBox1.Text = "Информация о клиенте";
             // 
             // maskedTextBoxPhone
             // 
@@ -110,7 +110,7 @@
             this.comboBoxGender.Name = "comboBoxGender";
             this.comboBoxGender.Size = new System.Drawing.Size(150, 21);
             this.comboBoxGender.TabIndex = 3;
-            this.comboBoxGender.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxFirstName_KeyPress);
+            this.comboBoxGender.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxApId_KeyPress);
             // 
             // textBoxPass
             // 
@@ -225,7 +225,7 @@
             this.groupBox2.Size = new System.Drawing.Size(297, 202);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Информаци о номере";
+            this.groupBox2.Text = "Информация о номере";
             // 
             // textBoxComm
             // 

@@ -39,7 +39,7 @@ namespace Admin
             catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось заполнить список!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -65,7 +65,7 @@ namespace Admin
             catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось заполнить список!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -90,10 +90,10 @@ namespace Admin
                     colorKey++;
                 }
             }
-            catch (NpgsqlException exp)
+            catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -116,10 +116,10 @@ namespace Admin
                     colorKey++;
                 }
             }
-            catch (NpgsqlException exp)
+            catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -141,10 +141,10 @@ namespace Admin
                     colorKey++;
                 }
             }
-            catch (NpgsqlException exp)
+            catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -167,10 +167,10 @@ namespace Admin
                     colorKey++;
                 }
             }
-            catch (NpgsqlException exp)
+            catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -193,10 +193,10 @@ namespace Admin
                     colorKey++;
                 }
             }
-            catch (NpgsqlException exp)
+            catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -218,10 +218,10 @@ namespace Admin
                     colorKey++;
                 }
             }
-            catch (NpgsqlException exp)
+            catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -300,10 +300,10 @@ namespace Admin
                     comboBox.Items.Add(v.ApId);
                 }
             }
-            catch (NpgsqlException exp)
+            catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -385,7 +385,7 @@ namespace Admin
             catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось удалить клиента!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -429,7 +429,7 @@ namespace Admin
             catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось добавить клиента!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
             finally
             {
@@ -459,7 +459,7 @@ namespace Admin
             }
             catch (Exception exp)
             {
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -496,7 +496,7 @@ namespace Admin
             }
             catch (Exception exp)
             {
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -505,21 +505,36 @@ namespace Admin
         {
             try
             {
-                reposFactory.GetApartment().EditApartment(textBoxNum.Text, textBoxNumHotel.Text, textBoxPlace.Text,
-                    textBoxNumClass.Text);
+                bool key = false;
+                foreach (var v in reposFactory.GetHotel().GetSingleTable())
+                {
+                    if (v.HotelId == textBoxNumHotel.Text)
+                        key = true;
 
-                textBoxNum.Text = string.Empty;
-                textBoxNum.Enabled = true;
-                textBoxNumHotel.Text = string.Empty;
-                textBoxNumHotel.Enabled = true;
-                textBoxPlace.Text = string.Empty;
-                textBoxPlace.Enabled = true;
-                textBoxNumClass.Text = string.Empty;
-                textBoxNumClass.Enabled = true;
+                }
+                if (key)
+                {
+                    reposFactory.GetApartment().EditApartment(textBoxNum.Text, textBoxNumHotel.Text, textBoxPlace.Text,
+                        textBoxNumClass.Text);
+
+                    textBoxNum.Text = string.Empty;
+                    textBoxNum.Enabled = true;
+                    textBoxNumHotel.Text = string.Empty;
+                    textBoxNumHotel.Enabled = true;
+                    textBoxPlace.Text = string.Empty;
+                    textBoxPlace.Enabled = true;
+                    textBoxNumClass.Text = string.Empty;
+                    textBoxNumClass.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show(@"Отель в базе не найден");
+                }
+
             }
             catch (Exception exp)
             {
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -566,7 +581,7 @@ namespace Admin
             }
             catch (Exception exp)
             {
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -578,7 +593,7 @@ namespace Admin
             }
             catch (Exception exp)
             {
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -611,7 +626,7 @@ namespace Admin
             }
             catch (Exception exp)
             {
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -630,10 +645,10 @@ namespace Admin
                     comboBoxSvacant.Items.Add(v.SVacant);
                 }
             }
-            catch (NpgsqlException exp)
+            catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
             try
             {
@@ -642,10 +657,10 @@ namespace Admin
                     comboBoxLeader.Items.Add(v.StaffId);
                 }
             }
-            catch (NpgsqlException exp)
+            catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
             try
             {
@@ -654,10 +669,10 @@ namespace Admin
                     comboBoxStaffHotel.Items.Add(v.HotelName);
                 }
             }
-            catch (NpgsqlException exp)
+            catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -711,7 +726,7 @@ namespace Admin
             }
             catch (Exception exp)
             {
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -742,7 +757,7 @@ namespace Admin
             }
             catch (Exception exp)
             {
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -771,7 +786,7 @@ namespace Admin
             }
             catch (Exception exp)
             {
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -800,7 +815,7 @@ namespace Admin
             }
             catch (Exception exp)
             {
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -820,7 +835,7 @@ namespace Admin
             }
             catch (Exception exp)
             {
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -840,7 +855,7 @@ namespace Admin
             }
             catch (Exception exp)
             {
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 

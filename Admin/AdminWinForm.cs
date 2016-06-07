@@ -59,6 +59,9 @@ namespace Admin
             if (dgvStaffPosition.CurrentRow != null)
                 dgvStaffPosition.Rows[dgvStaffPosition.CurrentRow.Index].Selected = false;
             dgvStaffPosition.AllowUserToAddRows = false;
+
+            dtpStaffBirth.MinDate = DateTime.Today.AddYears(-100);
+            dtpStaffBirth.MaxDate = DateTime.Today.AddYears(-18);
         }
 
         private void AdminWinForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -112,7 +115,7 @@ namespace Admin
             catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось заполнить список!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне представления");
             }
             finally
             {
@@ -333,13 +336,14 @@ namespace Admin
         private void btnAddHotel_Click(object sender, EventArgs e)
         {
             MessageBox.Show(@"Постройка отелей временно недоступна");
+            //
         }
 
         private void btnEditHotel_Click(object sender, EventArgs e)
         {
             if (_adminValidators.ValidEditThirdBox(textBoxHotelNum.Text, textBoxHotelName.Text, textBoxHotelOrg.Text,
                 textBoxHotelC.Text,
-                textBoxHotelS.Text, maskedTextBoxHotelPhone.Text, textBoxHotelClass.Text, textBoxHotelWeb.Text))
+                textBoxHotelS.Text, maskedTextBoxHotelPhone, textBoxHotelClass.Text, textBoxHotelWeb.Text))
             {
                 _adminRequest.EditThirdBox(_reposFactory, textBoxHotelNum, textBoxHotelName, textBoxHotelOrg,
                     textBoxHotelC,
@@ -349,6 +353,8 @@ namespace Admin
                 _adminRequest.NumOutputFull(_reposFactory, dgvNum);
                 _adminRequest.NumCostOutput(_reposFactory, dgvNumClass);
                 _adminRequest.HotelOutput(_reposFactory, dgvHotel);
+
+                _adminRequest.UpdateComboBoxes(_reposFactory, comboBoxSvacant, comboBoxLeader, comboBoxStaffHotel);
 
                 //groupBoxStat, labelAllUser, labelNewUser
                 groupBoxStat.Text = @"Статистика {empty}";
@@ -532,6 +538,7 @@ namespace Admin
             }
 
             _adminRequest.StaffPositionOutput(_reposFactory, dgvStaffPosition);
+            _adminRequest.UpdateComboBoxes(_reposFactory, comboBoxSvacant, comboBoxLeader, comboBoxStaffHotel);
             if (dgvStaffPosition.CurrentRow != null)
                 dgvStaffPosition.Rows[dgvStaffPosition.CurrentRow.Index].Selected = false;
         }
@@ -589,9 +596,20 @@ namespace Admin
 
         private void btnLogInOk_Click(object sender, EventArgs e)
         {
-            _adminRequest.EditNewPass(_reposFactory, textBoxNewAdminPass.Text, textBoxNewStaffPass.Text);
-            textBoxNewAdminPass.Text = string.Empty;
-            textBoxNewStaffPass.Text = string.Empty;
+            if (_adminValidators.ValidEditNewPass(textBoxNewAdminPass.Text, textBoxNewStaffPass.Text))
+            {
+                _adminRequest.EditNewPass(_reposFactory, textBoxNewAdminPass.Text, textBoxNewStaffPass.Text);
+                textBoxNewAdminPass.Text = string.Empty;
+                textBoxNewStaffPass.Text = string.Empty;
+            }
+        }
+
+        private void comboBoxStaffGender_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

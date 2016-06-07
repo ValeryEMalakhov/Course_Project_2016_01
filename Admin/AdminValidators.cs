@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace Admin
 {
@@ -276,7 +277,7 @@ namespace Admin
 
         public bool ValidEditThirdBox(string textBoxHotelNum, string textBoxHotelName, string textBoxHotelOrg,
             string textBoxHotelC,
-            string textBoxHotelS, string textBoxHotelPhone, string textBoxHotelClass, string textBoxHotelWeb)
+            string textBoxHotelS, MaskedTextBox textBoxHotelPhone, string textBoxHotelClass, string textBoxHotelWeb)
         {
             try
             {
@@ -330,6 +331,26 @@ namespace Admin
                         ValidKey = false;
                     }
                 }
+                if (Regex.Replace(textBoxHotelPhone.Text, "[ ]+", "") != "()-")
+                {
+                    if (textBoxHotelPhone.Text.IndexOf(' ') != 5 && textBoxHotelPhone.Text.IndexOf(' ') != -1)
+                    {
+                        ErrorString += "-- Номер должен быть без пробелов\n";
+                        ValidKey = false;
+                    }
+                }
+                else
+                {
+                    textBoxHotelPhone.Text = "0000000000";
+                }
+                if (textBoxHotelWeb != string.Empty)
+                {
+                    if (textBoxHotelWeb.IndexOf(' ') != -1)
+                    {
+                        ErrorString += "-- Адресс сайта должен быть без пробелов\n";
+                        ValidKey = false;
+                    }
+                }
 
                 if (ValidKey)
                 {
@@ -359,6 +380,14 @@ namespace Admin
                     ErrorString += "-- Сначало выберите класс\n";
                     ValidKey = false;
                 }
+                else
+                {
+                    if (Convert.ToInt32(numClass) <= 0 || Convert.ToInt32(numClass) > 5)
+                    {
+                        ErrorString += "-- Класс не находится в диапазоне (1-5)\n";
+                        ValidKey = false;
+                    }
+                }
 
                 if (numClassCost == string.Empty)
                 {
@@ -367,10 +396,18 @@ namespace Admin
                 }
                 else
                 {
-                    if (Convert.ToDouble(numClassCost) < 0)
+                    if (numClassCost.IndexOf(' ') != -1)
                     {
-                        ErrorString += "-- Стоимость не может быть меньше нуля\n";
+                        ErrorString += "-- Цена должена быть без пробелов\n";
                         ValidKey = false;
+                    }
+                    else
+                    {
+                        if (Convert.ToDouble(numClassCost) < 0)
+                        {
+                            ErrorString += "-- Стоимость не может быть меньше нуля\n";
+                            ValidKey = false;
+                        }
                     }
                 }
 
@@ -403,6 +440,7 @@ namespace Admin
                     ValidKey = false;
                 }
 
+
                 if (textBoxNumHotel == string.Empty)
                 {
                     ErrorString += "-- Поле отеля не может быть пустым\n";
@@ -433,7 +471,7 @@ namespace Admin
                 {
                     if (Convert.ToInt32(textBoxNumClass) <= 0 || Convert.ToInt32(textBoxNumClass) > 5)
                     {
-                        ErrorString += "-- Клас не находиться в диапазоне (0-5)\n";
+                        ErrorString += "-- Класс не находится в диапазоне (1-5)\n";
                         ValidKey = false;
                     }
                 }
@@ -491,7 +529,7 @@ namespace Admin
                 {
                     if (Convert.ToInt32(textBoxNumClass) <= 0 || Convert.ToInt32(textBoxNumClass) > 5)
                     {
-                        ErrorString += "-- Клас не находиться в диапазоне (0-5)\n";
+                        ErrorString += "-- Класс не находится в диапазоне (1-5)\n";
                         ValidKey = false;
                     }
                     else
@@ -581,7 +619,7 @@ namespace Admin
                 {
                     if (Convert.ToInt32(textBoxNumClass) <= 0 || Convert.ToInt32(textBoxNumClass) > 5)
                     {
-                        ErrorString += "-- Клас не находиться в диапазоне (0-5)\n";
+                        ErrorString += "-- Класс не находится в диапазоне (1-5)\n";
                         ValidKey = false;
                     }
                 }
@@ -914,11 +952,22 @@ namespace Admin
                     ErrorString += "-- Пол человека не может быть пустым\n";
                     ValidKey = false;
                 }
-                //if (comboBoxApId.Text != string.Empty)
-                //{
-                //    ErrorString += "-- Номер комнаты не может быть пустым\n";
-                //    ValidKey = false;
-                //}
+                else
+                {
+                    if (comboBoxGender.Text != "муж" && comboBoxGender.Text != "жен")
+                    {
+                        ErrorString += "-- Пол человека не может быть таким\n";
+                        ValidKey = false;
+                    }
+                }
+                if (textBoxPhone.Text != string.Empty)
+                {
+                    if (textBoxPhone.Text.IndexOf(' ') != 5 && textBoxPhone.Text.IndexOf(' ') != -1)
+                    {
+                        ErrorString += "-- Номер должен быть без пробелов\n";
+                        ValidKey = false;
+                    }
+                }
                 if (dtpCheckOut.Value < dtpCheckIn.Value)
                 {
                     ErrorString += "-- Дата выселения не может быть раньше даты вселения в номер\n";
@@ -979,6 +1028,45 @@ namespace Admin
         {
             try
             {
+                if (ValidKey)
+                {
+                    return ValidKey;
+                }
+                else
+                {
+                    MessageBox.Show(ErrorString);
+                    return ValidKey;
+                }
+            }
+            finally
+            {
+                ValidKey = true;
+                ErrorString = "--- Введите корректные значения ---\n" +
+                              "-----------------------------------------\n";
+            }
+        }
+
+        public bool ValidEditNewPass(string newPassAdmin, string newPassStaff)
+        {
+            try
+            {
+                if (newPassAdmin != string.Empty)
+                {
+                    if (newPassAdmin.IndexOf(' ') != -1)
+                    {
+                        ErrorString += "-- Пароль админа должена быть без пробелов\n";
+                        ValidKey = false;
+                    }
+                }
+                if (newPassStaff != string.Empty)
+                {
+                    if (newPassStaff.IndexOf(' ') != -1)
+                    {
+                        ErrorString += "-- Пароль сотрудника должена быть без пробелов\n";
+                        ValidKey = false;
+                    }
+                }
+
                 if (ValidKey)
                 {
                     return ValidKey;

@@ -46,10 +46,11 @@ namespace Client
                     colorKey++;
                 }
             }
-            catch (NpgsqlException exp)
+            catch (Exception exp)
             {
+                // MessageBox.Show("Произошла ошибка на уровне контроллера.\r\nТекст ошибки: " + Convert.ToString(exp));
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -79,7 +80,7 @@ namespace Client
             catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось заполнить список!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -108,7 +109,7 @@ namespace Client
             catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось заполнить список!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -121,7 +122,7 @@ namespace Client
             catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось удалить бронь!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -141,10 +142,10 @@ namespace Client
                     comboBox.Items.Add(v.ApId);
                 }
             }
-            catch (NpgsqlException exp)
+            catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -191,7 +192,7 @@ namespace Client
             catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось добавить клиента!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -226,7 +227,7 @@ namespace Client
             catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось добавить клиента!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -260,7 +261,7 @@ namespace Client
             }
             catch (Exception exp)
             {
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
         public void UserEditPass(ReposFactory reposFactory, string loginId, TextBox textBoxNewPass)
@@ -271,7 +272,7 @@ namespace Client
             }
             catch (Exception exp)
             {
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 

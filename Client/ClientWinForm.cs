@@ -143,7 +143,7 @@ namespace Client
             catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось удалить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне представления");
             }
             finally
             {

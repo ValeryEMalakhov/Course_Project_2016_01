@@ -97,7 +97,7 @@ namespace Staff
             catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось заполнить список!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне представления");
             }
             finally
             {

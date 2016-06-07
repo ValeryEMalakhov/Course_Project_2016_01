@@ -38,7 +38,7 @@ namespace Staff
             catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось заполнить список!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -63,10 +63,10 @@ namespace Staff
                     colorKey++;
                 }
             }
-            catch (NpgsqlException exp)
+            catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -89,7 +89,7 @@ namespace Staff
                     colorKey++;
                 }
             }
-            catch (NpgsqlException exp)
+            catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
                 MessageBox.Show(Convert.ToString(exp));
@@ -112,10 +112,10 @@ namespace Staff
                     comboBox.Items.Add(v.ApId);
                 }
             }
-            catch (NpgsqlException exp)
+            catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -137,10 +137,10 @@ namespace Staff
                     colorKey++;
                 }
             }
-            catch (NpgsqlException exp)
+            catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось выполнить запрос!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -222,7 +222,7 @@ namespace Staff
             catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось удалить клиента!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
 
@@ -267,7 +267,7 @@ namespace Staff
             catch (Exception exp)
             {
                 // MessageBox.Show("Не удалось добавить клиента!");
-                MessageBox.Show(Convert.ToString(exp));
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
             finally
             {

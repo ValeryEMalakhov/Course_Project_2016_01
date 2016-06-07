@@ -50,6 +50,9 @@ namespace Client.Sided_Form
                         textBoxSecondName, comboBoxGender, dtpBirth, maskedTextBoxPhone);
                 }
             }
+
+            dtpBirth.MinDate = DateTime.Today.AddYears(-120);
+            dtpBirth.MaxDate = DateTime.Today.AddYears(-16);
         }
 
         private void EditRequestForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -96,6 +99,30 @@ namespace Client.Sided_Form
         private void checkBoxPass_CheckedChanged(object sender, EventArgs e)
         {
             textBoxNewPass.UseSystemPasswordChar = !textBoxNewPass.UseSystemPasswordChar;
+        }
+
+        private void maskedTextBoxPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void comboBoxGender_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxFirstName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

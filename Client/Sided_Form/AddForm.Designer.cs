@@ -147,6 +147,7 @@
             this.comboBoxApId.Size = new System.Drawing.Size(54, 21);
             this.comboBoxApId.TabIndex = 15;
             this.comboBoxApId.SelectedIndexChanged += new System.EventHandler(this.comboBoxApId_SelectedIndexChanged);
+            this.comboBoxApId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxApId_KeyPress);
             // 
             // labelRoomC
             // 
