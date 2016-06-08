@@ -147,6 +147,32 @@ namespace Admin
                 MessageBox.Show("Произошла ошибка на уровне контроллера");
             }
         }
+        // вывод списка гостей
+        public void ClientAllOutput(ReposFactory reposFactory, DataGridView dgvClientAll)
+        {
+            dgvClientAll.Rows.Clear();
+            try
+            {
+                int colorKey = 0;
+                foreach (var v in reposFactory.GetClient().GetSingleTable())
+                {
+                    dgvClientAll.Rows.Add(v.FirstName, v.SecondName, v.Gender, v.DateOfBirth,
+                        v.Phone, v.ClientId);
+
+                    if (colorKey % 2 == 0)
+                    {
+                        for (int i = 0; i < dgvClientAll.ColumnCount; ++i)
+                            dgvClientAll.Rows[colorKey].Cells[i].Style.BackColor = Color.Lavender;
+                    }
+                    colorKey++;
+                }
+            }
+            catch (Exception exp)
+            {
+                // MessageBox.Show("Не удалось заполнить список!");
+                MessageBox.Show("Произошла ошибка на уровне контроллера");
+            }
+        }
 
         // вывод списка отелей
         public void HotelOutput(ReposFactory reposFactory, DataGridView dgvHotel)
@@ -812,6 +838,7 @@ namespace Admin
                 textBoxSvacantName.Enabled = true;
                 textBoxSvacantPay.Text = string.Empty;
                 textBoxSvacantPay.Enabled = true;
+
             }
             catch (Exception exp)
             {

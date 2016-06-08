@@ -76,6 +76,7 @@ namespace ClassRequest.DAL
                 command.Parameters.AddWithValue("@textBoxSvacantId", Convert.ToInt32(textBoxSvacantId));
 
                 command.ExecuteNonQuery();
+                MessageBox.Show("Успешно изменено");
             }
             catch (PostgresException exp)
             {

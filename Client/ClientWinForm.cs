@@ -112,6 +112,11 @@ namespace Client
                 addUser.ShowDialog();
             }
 
+            _clientRequest.InputGroupBoxName(_reposFactory, _clientId, groupBoxUserInfo);
+            _clientRequest.InputHotelName(_reposFactory, lLabelHotelName, labelHotelPhone);
+
+            dtpCheckIn.Value = DateTime.Today;
+            dtpCheckOut.Value = DateTime.Today;
             // обновляем таблицу
             if (_clientValidators.ValidNumOutput(dtpCheckIn))
             {
@@ -170,6 +175,9 @@ namespace Client
                 EditRequestForm editRequestForm = new EditRequestForm(_reposFactory, _clientId, _loginId);
                 editRequestForm.ShowDialog();
             }
+
+            _clientRequest.InputGroupBoxName(_reposFactory, _clientId, groupBoxUserInfo);
+            _clientRequest.InputHotelName(_reposFactory, lLabelHotelName, labelHotelPhone);
 
             // обновляем таблицу
             if (_clientValidators.ValidNumOutput(dtpCheckIn))

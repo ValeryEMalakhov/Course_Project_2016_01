@@ -51,7 +51,6 @@
             this.gBNum = new System.Windows.Forms.GroupBox();
             this.dtpCheckOut = new System.Windows.Forms.DateTimePicker();
             this.dtpCheckIn = new System.Windows.Forms.DateTimePicker();
-            this.btnUpdateNum = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvNum = new System.Windows.Forms.DataGridView();
             this.CNumb = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -153,7 +152,6 @@
             // 
             this.gBNum.Controls.Add(this.dtpCheckOut);
             this.gBNum.Controls.Add(this.dtpCheckIn);
-            this.gBNum.Controls.Add(this.btnUpdateNum);
             this.gBNum.Controls.Add(this.label1);
             this.gBNum.Location = new System.Drawing.Point(6, 7);
             this.gBNum.Name = "gBNum";
@@ -182,17 +180,6 @@
             this.dtpCheckIn.Size = new System.Drawing.Size(214, 22);
             this.dtpCheckIn.TabIndex = 1;
             this.dtpCheckIn.ValueChanged += new System.EventHandler(this.dateTPNum_ValueChanged);
-            // 
-            // btnUpdateNum
-            // 
-            this.btnUpdateNum.Enabled = false;
-            this.btnUpdateNum.Location = new System.Drawing.Point(6, 160);
-            this.btnUpdateNum.Name = "btnUpdateNum";
-            this.btnUpdateNum.Size = new System.Drawing.Size(271, 25);
-            this.btnUpdateNum.TabIndex = 3;
-            this.btnUpdateNum.Text = "Обновить";
-            this.btnUpdateNum.UseVisualStyleBackColor = true;
-            this.btnUpdateNum.Click += new System.EventHandler(this.btnUpdateNum_Click);
             // 
             // label1
             // 
@@ -548,7 +535,6 @@
         private System.Windows.Forms.TabPage tabNumb;
         private System.Windows.Forms.GroupBox gBNum;
         private System.Windows.Forms.DateTimePicker dtpCheckIn;
-        private System.Windows.Forms.Button btnUpdateNum;
         private System.Windows.Forms.Label label1;
         protected internal System.Windows.Forms.DataGridView dgvNum;
         private System.Windows.Forms.TabPage tabHotel;

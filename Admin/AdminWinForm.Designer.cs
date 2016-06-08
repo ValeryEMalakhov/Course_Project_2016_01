@@ -48,6 +48,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -59,6 +64,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminWinForm));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabUser = new System.Windows.Forms.TabPage();
+            this.label36 = new System.Windows.Forms.Label();
             this.dgvUser = new System.Windows.Forms.DataGridView();
             this.cName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cSName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,6 +82,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnUpdateUser = new System.Windows.Forms.Button();
             this.tabNumb = new System.Windows.Forms.TabPage();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.textBoxNum = new System.Windows.Forms.TextBox();
             this.textBoxNumClass = new System.Windows.Forms.TextBox();
@@ -110,6 +118,7 @@
             this.CClass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabHotel = new System.Windows.Forms.TabPage();
+            this.label40 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.maskedTextBoxHotelPhone = new System.Windows.Forms.MaskedTextBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -145,6 +154,8 @@
             this.HotelClass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HotelWeb = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.btnLogInOk = new System.Windows.Forms.Button();
             this.textBoxNewStaffPass = new System.Windows.Forms.TextBox();
@@ -192,6 +203,15 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnVacantCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvStaff = new System.Windows.Forms.DataGridView();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label37 = new System.Windows.Forms.Label();
+            this.dgvClientAll = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -222,6 +242,8 @@
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaffPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaff)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientAll)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -230,6 +252,7 @@
             this.tabControl.Controls.Add(this.tabNumb);
             this.tabControl.Controls.Add(this.tabHotel);
             this.tabControl.Controls.Add(this.tabPage1);
+            this.tabControl.Controls.Add(this.tabPage2);
             this.tabControl.Location = new System.Drawing.Point(4, 5);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -238,6 +261,7 @@
             // 
             // tabUser
             // 
+            this.tabUser.Controls.Add(this.label36);
             this.tabUser.Controls.Add(this.dgvUser);
             this.tabUser.Controls.Add(this.gBUserAction);
             this.tabUser.Controls.Add(this.gBUser);
@@ -248,6 +272,16 @@
             this.tabUser.TabIndex = 0;
             this.tabUser.Text = "Постояльцы";
             this.tabUser.UseVisualStyleBackColor = true;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label36.Location = new System.Drawing.Point(458, 1);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(184, 22);
+            this.label36.TabIndex = 101;
+            this.label36.Text = "Журнал проживания";
             // 
             // dgvUser
             // 
@@ -269,9 +303,9 @@
             this.cOutDate,
             this.CPasp,
             this.ColumnPay});
-            this.dgvUser.Location = new System.Drawing.Point(149, 6);
+            this.dgvUser.Location = new System.Drawing.Point(149, 26);
             this.dgvUser.Name = "dgvUser";
-            this.dgvUser.Size = new System.Drawing.Size(781, 521);
+            this.dgvUser.Size = new System.Drawing.Size(781, 501);
             this.dgvUser.TabIndex = 7;
             // 
             // cName
@@ -422,6 +456,8 @@
             // 
             // tabNumb
             // 
+            this.tabNumb.Controls.Add(this.label35);
+            this.tabNumb.Controls.Add(this.label34);
             this.tabNumb.Controls.Add(this.groupBox4);
             this.tabNumb.Controls.Add(this.dgvNumClass);
             this.tabNumb.Controls.Add(this.groupBox1);
@@ -434,6 +470,26 @@
             this.tabNumb.TabIndex = 1;
             this.tabNumb.Text = "Номера";
             this.tabNumb.UseVisualStyleBackColor = true;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label35.Location = new System.Drawing.Point(662, 288);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(121, 22);
+            this.label35.TabIndex = 101;
+            this.label35.Text = "Класс номера";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label34.Location = new System.Drawing.Point(635, 3);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(167, 22);
+            this.label34.TabIndex = 100;
+            this.label34.Text = "Свободные номера";
             // 
             // groupBox4
             // 
@@ -751,10 +807,10 @@
             this.CPlace,
             this.CClass,
             this.CCost});
-            this.dgvNum.Location = new System.Drawing.Point(494, 6);
+            this.dgvNum.Location = new System.Drawing.Point(494, 28);
             this.dgvNum.Name = "dgvNum";
             this.dgvNum.ReadOnly = true;
-            this.dgvNum.Size = new System.Drawing.Size(437, 304);
+            this.dgvNum.Size = new System.Drawing.Size(437, 257);
             this.dgvNum.TabIndex = 99;
             this.dgvNum.TabStop = false;
             this.dgvNum.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNum_CellClick);
@@ -790,6 +846,7 @@
             // 
             // tabHotel
             // 
+            this.tabHotel.Controls.Add(this.label40);
             this.tabHotel.Controls.Add(this.groupBox2);
             this.tabHotel.Controls.Add(this.dgvHotel);
             this.tabHotel.Location = new System.Drawing.Point(4, 22);
@@ -799,6 +856,16 @@
             this.tabHotel.TabIndex = 2;
             this.tabHotel.Text = "Отель";
             this.tabHotel.UseVisualStyleBackColor = true;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label40.Location = new System.Drawing.Point(390, 3);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(132, 22);
+            this.label40.TabIndex = 111;
+            this.label40.Text = "Список отелей";
             // 
             // groupBox2
             // 
@@ -1071,10 +1138,10 @@
             this.HotelPhone,
             this.HotelClass,
             this.HotelWeb});
-            this.dgvHotel.Location = new System.Drawing.Point(6, 6);
+            this.dgvHotel.Location = new System.Drawing.Point(6, 29);
             this.dgvHotel.Name = "dgvHotel";
             this.dgvHotel.ReadOnly = true;
-            this.dgvHotel.Size = new System.Drawing.Size(924, 332);
+            this.dgvHotel.Size = new System.Drawing.Size(924, 309);
             this.dgvHotel.TabIndex = 109;
             this.dgvHotel.TabStop = false;
             this.dgvHotel.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHotel_CellClick);
@@ -1146,6 +1213,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label39);
+            this.tabPage1.Controls.Add(this.label38);
             this.tabPage1.Controls.Add(this.groupBox6);
             this.tabPage1.Controls.Add(this.groupBox7);
             this.tabPage1.Controls.Add(this.groupBox5);
@@ -1158,6 +1227,26 @@
             this.tabPage1.TabIndex = 3;
             this.tabPage1.Text = "Сотрудники";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label39.Location = new System.Drawing.Point(476, 0);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(179, 22);
+            this.label39.TabIndex = 106;
+            this.label39.Text = "Список сотрудников";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label38.Location = new System.Drawing.Point(476, 231);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(201, 22);
+            this.label38.TabIndex = 105;
+            this.label38.Text = "Должность сотрудника";
             // 
             // groupBox6
             // 
@@ -1603,10 +1692,10 @@
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6,
             this.ColumnVacantCost});
-            this.dgvStaffPosition.Location = new System.Drawing.Point(384, 235);
+            this.dgvStaffPosition.Location = new System.Drawing.Point(384, 256);
             this.dgvStaffPosition.Name = "dgvStaffPosition";
             this.dgvStaffPosition.ReadOnly = true;
-            this.dgvStaffPosition.Size = new System.Drawing.Size(395, 292);
+            this.dgvStaffPosition.Size = new System.Drawing.Size(395, 271);
             this.dgvStaffPosition.TabIndex = 101;
             this.dgvStaffPosition.TabStop = false;
             this.dgvStaffPosition.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaffPosition_CellClick);
@@ -1672,14 +1761,115 @@
             dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvStaff.DefaultCellStyle = dataGridViewCellStyle28;
-            this.dgvStaff.Location = new System.Drawing.Point(186, 6);
+            this.dgvStaff.Location = new System.Drawing.Point(186, 25);
             this.dgvStaff.Name = "dgvStaff";
             this.dgvStaff.ReadOnly = true;
-            this.dgvStaff.Size = new System.Drawing.Size(745, 223);
+            this.dgvStaff.Size = new System.Drawing.Size(745, 204);
             this.dgvStaff.TabIndex = 103;
             this.dgvStaff.TabStop = false;
             this.dgvStaff.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaff_CellClick);
             this.dgvStaff.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dgvStaff_KeyUp);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.label37);
+            this.tabPage2.Controls.Add(this.dgvClientAll);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(936, 533);
+            this.tabPage2.TabIndex = 4;
+            this.tabPage2.Text = "Гости";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label37.Location = new System.Drawing.Point(397, 0);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(180, 22);
+            this.label37.TabIndex = 101;
+            this.label37.Text = "Список гостей отеля";
+            // 
+            // dgvClientAll
+            // 
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvClientAll.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            this.dgvClientAll.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvClientAll.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn12,
+            this.dataGridViewTextBoxColumn13,
+            this.dataGridViewTextBoxColumn14,
+            this.dataGridViewTextBoxColumn15,
+            this.dataGridViewTextBoxColumn17});
+            this.dgvClientAll.Location = new System.Drawing.Point(6, 26);
+            this.dgvClientAll.Name = "dgvClientAll";
+            this.dgvClientAll.Size = new System.Drawing.Size(924, 501);
+            this.dgvClientAll.TabIndex = 8;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.HeaderText = "Имя";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            this.dataGridViewTextBoxColumn11.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn11.Width = 190;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.HeaderText = "Фамилия";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            this.dataGridViewTextBoxColumn12.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn12.Width = 190;
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn13.DefaultCellStyle = dataGridViewCellStyle30;
+            this.dataGridViewTextBoxColumn13.HeaderText = "Пол";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            this.dataGridViewTextBoxColumn13.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn13.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle31;
+            this.dataGridViewTextBoxColumn14.HeaderText = "Дата рождения";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.ReadOnly = true;
+            this.dataGridViewTextBoxColumn14.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn14.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn15.DefaultCellStyle = dataGridViewCellStyle32;
+            this.dataGridViewTextBoxColumn15.HeaderText = "Телефон";
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.ReadOnly = true;
+            this.dataGridViewTextBoxColumn15.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn15.Width = 130;
+            // 
+            // dataGridViewTextBoxColumn17
+            // 
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn17.DefaultCellStyle = dataGridViewCellStyle33;
+            this.dataGridViewTextBoxColumn17.HeaderText = "Код паспорта";
+            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
+            this.dataGridViewTextBoxColumn17.ReadOnly = true;
+            this.dataGridViewTextBoxColumn17.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn17.Width = 200;
             // 
             // dataGridViewTextBoxColumn7
             // 
@@ -1701,7 +1891,7 @@
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
             this.dataGridViewTextBoxColumn8.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn8.Width = 120;
+            this.dataGridViewTextBoxColumn8.Width = 110;
             // 
             // dataGridViewTextBoxColumn9
             // 
@@ -1780,11 +1970,13 @@
             this.Load += new System.EventHandler(this.AdminWinForm_Load);
             this.tabControl.ResumeLayout(false);
             this.tabUser.ResumeLayout(false);
+            this.tabUser.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUser)).EndInit();
             this.gBUserAction.ResumeLayout(false);
             this.gBUser.ResumeLayout(false);
             this.gBUser.PerformLayout();
             this.tabNumb.ResumeLayout(false);
+            this.tabNumb.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNumClass)).EndInit();
@@ -1795,12 +1987,14 @@
             this.gBNum.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNum)).EndInit();
             this.tabHotel.ResumeLayout(false);
+            this.tabHotel.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBoxStat.ResumeLayout(false);
             this.groupBoxStat.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHotel)).EndInit();
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
@@ -1809,6 +2003,9 @@
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaffPosition)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaff)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientAll)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1924,14 +2121,6 @@
         private System.Windows.Forms.ComboBox comboBoxStaffHotel;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.ComboBox comboBoxLeader;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StaffBirth;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vacant;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SuperUser;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RegistrBuild;
         private System.Windows.Forms.Button btnDeleteVacant;
         private System.Windows.Forms.Button btnEditVacant;
         private System.Windows.Forms.Button btnClearFieldsVacant;
@@ -1958,6 +2147,29 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnVacantCost;
+        private System.Windows.Forms.TabPage tabPage2;
+        protected internal System.Windows.Forms.DataGridView dgvClientAll;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StaffBirth;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vacant;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SuperUser;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RegistrBuild;
     }
 }
 

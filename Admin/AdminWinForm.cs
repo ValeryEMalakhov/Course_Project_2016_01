@@ -29,6 +29,7 @@ namespace Admin
             dgvHotel.ScrollBars = ScrollBars.Vertical;
             dgvStaff.ScrollBars = ScrollBars.Vertical;
             dgvStaffPosition.ScrollBars = ScrollBars.Vertical;
+            dgvClientAll.ScrollBars = ScrollBars.Vertical;
         }
 
         public AdminWinForm()
@@ -45,6 +46,7 @@ namespace Admin
             _adminRequest.StaffOutput(_reposFactory, dgvStaff);
             _adminRequest.UpdateComboBoxes(_reposFactory, comboBoxSvacant, comboBoxLeader, comboBoxStaffHotel);
             _adminRequest.StaffPositionOutput(_reposFactory, dgvStaffPosition);
+            _adminRequest.ClientAllOutput(_reposFactory, dgvClientAll);
 
             if (dgvUser.CurrentRow != null) dgvUser.Rows[dgvUser.CurrentRow.Index].Selected = false;
             dgvUser.AllowUserToAddRows = false;
@@ -59,6 +61,8 @@ namespace Admin
             if (dgvStaffPosition.CurrentRow != null)
                 dgvStaffPosition.Rows[dgvStaffPosition.CurrentRow.Index].Selected = false;
             dgvStaffPosition.AllowUserToAddRows = false;
+            if (dgvClientAll.CurrentRow != null) dgvClientAll.Rows[dgvClientAll.CurrentRow.Index].Selected = false;
+            dgvClientAll.AllowUserToAddRows = false;
 
             dtpStaffBirth.MinDate = DateTime.Today.AddYears(-100);
             dtpStaffBirth.MaxDate = DateTime.Today.AddYears(-18);
@@ -89,6 +93,7 @@ namespace Admin
             {
                 _adminRequest.NumOutput(_reposFactory, dgvNum, dateTPUser);
             }
+            _adminRequest.ClientAllOutput(_reposFactory, dgvClientAll);
         }
 
         private void btnUpdateNum_Click(object sender, EventArgs e)
@@ -519,6 +524,7 @@ namespace Admin
             if (_adminValidators.ValidVacant(textBoxSvacantId.Text, textBoxSvacantName.Text, textBoxSvacantPay.Text))
             {
                 _adminRequest.EditStaffBoxVacant(_reposFactory, textBoxSvacantId, textBoxSvacantName,  textBoxSvacantPay);
+
             }
 
             _adminRequest.StaffPositionOutput(_reposFactory, dgvStaffPosition);

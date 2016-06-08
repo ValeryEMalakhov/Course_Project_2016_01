@@ -336,7 +336,7 @@ namespace Client
             {
                 if (textNewPass.Text == string.Empty)
                 {
-                    ErrorString += "-- Пароль не может быть пустым\n";
+                    //ErrorString += "-- Пароль не может быть пустым\n";
                     ValidKey = false;
                 }
 
@@ -346,7 +346,7 @@ namespace Client
                 }
                 else
                 {
-                    MessageBox.Show(ErrorString);
+                    //MessageBox.Show(ErrorString);
                     return ValidKey;
                 }
             }

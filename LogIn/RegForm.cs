@@ -54,8 +54,8 @@ namespace LogIn
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            if(textBoxID.Text == "user-1102")
-                TestEnter();
+            //if(textBoxID.Text == "user-1102")
+            //   TestEnter();
             this.Close();
         }
 
