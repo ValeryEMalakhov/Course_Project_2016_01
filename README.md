@@ -29,4 +29,4 @@ Empty for now.
 
 by Valary E. Malakhov
 
-E-mail: alphakrig@gmail.com
+E-mail: ****
